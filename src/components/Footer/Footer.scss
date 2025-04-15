@@ -1,29 +1,51 @@
-.wrapper-footer {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.wrapper-assist-footer {
-  width: 100%;
-  padding: 1.25rem 0 1.25rem 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-}
-
+/* -------------------- FOOTER MAIN CONTAINER -------------------- */
 .footer-main-container {
   width: 100%;
   background-color: #d4d4d46c;
   color: #282828;
   font-size: 1.2rem;
 
+  .footer-divider {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 1.25rem 1.5rem;
+  }
+}
+
+/* -------------------- UNIFY SECTION SPACING -------------------- */
+.footer-first-section,
+.footer-second-section,
+.footer-third-section {
+  /* 2rem top/bottom padding for each section */
+  padding: 2rem 4rem 2rem 4rem;
+}
+
+/* -------------------- FIRST SECTION -------------------- */
+.footer-first-section {
+  .wrapper-footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .wrapper-assist-footer {
+    /* 
+      If you want to keep or remove the padding here, 
+      that’s up to your design. 
+      Remove or reduce if it creates extra whitespace.
+    */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+  }
+
   .footer-logo-container {
     width: 100%;
-    padding: 0.625rem 0 0.625rem 0;
+    padding: 0.625rem 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,28 +62,28 @@
     justify-content: space-between;
     flex-wrap: wrap;
     max-width: 100%;
-    font-family: 'Lato', sans-serif;
-    padding-top: 1rem;
+    font-family: 'Poppins', sans-serif;
+    padding-top: 1rem; /* Remove or reduce if unwanted extra space */
 
     .footer-menu-container {
       width: 25%;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: left;
 
       .footer-menu-header {
         margin-bottom: 0.5rem;
-        font-family: 'Lato', sans-serif;
-        font-size: 1.2rem;
-        font-weight: 750;
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.4rem;
+        font-weight: 600;
         letter-spacing: 0.1rem;
       }
 
       .footer-menu-link {
         color: #282828;
-        font-family: 'Lato', sans-serif;
+        font-family: 'Poppins', sans-serif;
         font-size: 1rem;
-        font-weight: 750;
+        font-weight: 600;
         text-decoration: none;
         transition: color 0.3s ease;
         letter-spacing: 0.1rem;
@@ -72,27 +94,26 @@
       }
     }
   }
+}
 
-  .footer-adress-section {
-    padding: 4rem;
-    font-family: 'Lato', sans-serif;
-    font-weight: 500;
+/* -------------------- SECOND SECTION -------------------- */
+.footer-second-section {
+  /* Removed the old padding: 4rem; now controlled by .footer-first-section, .footer-second-section, etc. */
 
-    .footer-adress-wrapper {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-    }
+  .footer-address-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
 
-    .footer-adress-content {
+    .footer-address-content {
       flex: 1;
 
-      .footer-adress-header {
+      .footer-address-header {
         font-size: 1rem;
         font-weight: 700;
       }
 
-      .footer-adress-email {
+      .footer-address-email {
         margin: 0.5rem 0;
         font-size: 1rem;
       }
@@ -111,27 +132,50 @@
     }
 
     .footer-images-container {
-      flex: 1;
       display: flex;
       justify-content: flex-end;
       align-items: center;
       gap: 1rem;
-
-      .footer-image-placeholder {
-        width: 50px; 
-        height: 50px; 
-        background-color: #ccc; 
+      flex-wrap: wrap;
+    
+      .footer-image-icon {
+        // You can leave these as relative, since the Image style is controlled via CSS now
+        // This rule forces each image inside the container to have a width of 2rem and auto height.
+        img {
+          width: 5rem !important;
+          height: auto !important;
+        }
       }
     }
   }
 }
 
-.footer-divider {
-  border: none;
-  border-top: 1px solid #ccc;
-  margin: 1.25rem 0;
+/* -------------------- THIRD SECTION -------------------- */
+.footer-third-section {
+  /* Removed the original padding: 1rem 2rem; now unified by the shared rule */
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .footer-third-left {
+    .footer-third-link {
+      color: #282828;
+      font-size: 1rem;
+      text-decoration: none;
+
+      &:hover {
+        color: #E6332A;
+      }
+    }
+  }
+
+  .footer-third-right {
+    font-size: 1rem;
+  }
 }
 
+/* -------------------- MEDIA QUERIES -------------------- */
 @media (max-width: 62.5rem) {
   .footer-middle {
     flex-direction: column;

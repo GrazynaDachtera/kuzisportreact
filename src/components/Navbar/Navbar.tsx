@@ -78,7 +78,7 @@ const NavBar: React.FC = () => {
         <nav className="navbar">
           <div className="logo-navbar">
             <Image
-              src="/logokuzisport.png"
+              src="/NavBar/logokuzisport.png"
               alt="logoKuziSport"
               width={100}
               height={0}

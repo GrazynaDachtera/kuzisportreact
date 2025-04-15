@@ -3,6 +3,7 @@
 import React from "react";
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
+import Cookies from "../components/Cookies/Cookies";
 import "../app/globals.css";
 import "typeface-poppins";
 import "typeface-nunito-sans";
@@ -15,6 +16,7 @@ export default function Home() {
         <Navbar />
       </div>
       <Footer />
+      <Cookies />
     </section>
   );
 }

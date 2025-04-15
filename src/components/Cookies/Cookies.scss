@@ -1,0 +1,20 @@
+.cookies {
+    position: fixed;
+    z-index: 9999;
+    bottom: 1rem;
+    left: 1rem;
+  
+    .cookiesContainer {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  
+    .cookiesIcon {
+      width: 3rem;
+      height: auto;
+      object-fit: contain;
+      cursor: pointer;
+    }
+  }
+  
