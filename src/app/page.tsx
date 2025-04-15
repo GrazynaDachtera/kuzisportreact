@@ -1,22 +1,38 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 import Cookies from "../components/Cookies/Cookies";
+import Message from "../components/Message/Message";
+import Scrollbar from "smooth-scrollbar";
 import "../app/globals.css";
 import "typeface-poppins";
 import "typeface-nunito-sans";
 import "typeface-lato";
 
 export default function Home() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      Scrollbar.init(scrollRef.current, { damping: 0.07 });
+    }
+  }, []);
+
   return (
-    <section className="kuziSport">
-      <div className="main">
-        <Navbar />
+    <>
+      <div ref={scrollRef} style={{ height: "100vh", overflow: "hidden" }}>
+        <section className="kuziSport">
+          <div className="main">
+            <Navbar />
+            <div style={{ height: "300vh" }}></div>
+          </div>
+          <Footer />
+        </section>
       </div>
-      <Footer />
       <Cookies />
-    </section>
+      <Message />
+    </>
   );
 }

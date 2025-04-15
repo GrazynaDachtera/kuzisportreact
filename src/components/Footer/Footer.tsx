@@ -56,15 +56,6 @@ const FooterFirstSection = () => {
     <div className="footer-first-section">
       <div className="wrapper-footer">
         <div className="wrapper-assist-footer">
-          <div className="footer-logo-container">
-            <Image
-              src="/Footer/sygnet.png"
-              alt="Logo"
-              width={50}
-              height={50}
-              className="kuziLogo"
-            />
-          </div>
           <div className="footer-middle">
             {menus.map((menu, index) => (
               <FooterMenu key={index} {...menu} />
