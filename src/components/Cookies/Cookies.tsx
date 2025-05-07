@@ -42,10 +42,10 @@ export default function Cookies() {
         <section className="cookiesIconSection">
           <div className="cookiesIconContainer" onClick={handleIconClick}>
             <Image
-              src="/Cookies/cookie.png"
+              src="/Cookies/cookie.svg"
               alt="Cookies Icon"
-              width={48}
-              height={48}
+              width={64}
+              height={64}
               className="cookiesIcon"
             />
           </div>

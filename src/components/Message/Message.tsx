@@ -15,10 +15,10 @@ export default function Message() {
       <section className="messageIconSection">
         <div className="messageIconContainer">
           <Image
-            src="/Message/message.png"
+            src="/Message/message.svg"
             alt="Message Icon"
-            width={100}
-            height={100}
+            width={64}
+            height={64}
             className="messageIcon"
           />
         </div>

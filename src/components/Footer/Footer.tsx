@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
+import Regulations from "../Regulations/Regulations";
+import Modal from "../Modal/Modal";
 import "./Footer.scss";
 
-// ======================================================
-// Footer Menu Component
-// ======================================================
 interface IFooterMenu {
   header: string;
   links: { text: string; to: string }[];
@@ -23,64 +23,47 @@ const FooterMenu = ({ header, links }: IFooterMenu) => (
   </div>
 );
 
-// ======================================================
-// Footer First Section
-// ======================================================
 const FooterFirstSection = () => {
   const menus = [
+    { header: "Rezerwacja", links: [{ text: "Rezerwacja", to: "/Blog" }] },
+    { header: "Informacje", links: [{ text: "O nas", to: "/Blog" }] },
     {
-      header: "REZERWACJA",
-      links: [{ text: "REZERWACJA", to: "/Blog" }],
-    },
-    {
-      header: "INFORMACJE",
-      links: [{ text: "O NAS", to: "/Blog" }],
-    },
-    {
-      header: "O NAS",
+      header: "O Nas",
       links: [
-        { text: "AKTUALNOSCI", to: "/About" },
-        { text: "KONTAKT", to: "/Contact" },
+        { text: "Aktualnosci", to: "/About" },
+        { text: "Kontakt", to: "/Contact" },
       ],
     },
     {
-      header: "MASZ PYTANIA?",
+      header: "Masz pytania?",
       links: [
-        { text: "ZADZWON", to: "/Kontakt" },
-        { text: "LUB ZAPYTAJ TERAZ", to: "/FORM" },
+        { text: "Zapytaj teraz", to: "/Kontakt" },
+        { text: "lub zadzwon: 785 828 666", to: "tel:785828666" },
       ],
     },
   ];
 
   return (
     <div className="footer-first-section">
-      <div className="wrapper-footer">
-        <div className="wrapper-assist-footer">
-          <div className="footer-middle">
-            {menus.map((menu, index) => (
-              <FooterMenu key={index} {...menu} />
-            ))}
-          </div>
-        </div>
+      <div className="footer-middle">
+        {menus.map((menu, index) => (
+          <FooterMenu key={index} {...menu} />
+        ))}
       </div>
     </div>
   );
 };
 
-// ======================================================
-// Footer Second Section
-// ======================================================
 const FooterSecondSection = () => {
   const address = [
     {
-      header: "Kuzi-Sport Sp. z o.o. | ul. Św. Michała 56 | 61-005 Poznań",
-      email: "kuzisport.biuro@gmail.com",
-      phoneNumbers: ["Recepcja: +48 785-828-666", "Biuro: +48 605-072-681"],
+      header: "Kuzi-Sport Sp. z o.o. | ul. Św. Michała 56 | 61-005 Poznan |",
+      email: "kuzisport.biuro@gmail.com |",
+      phoneNumbers: ["+48 785 828 666 |"],
       NIP: "NIP: 7773248243 | REGON: 361158968 | KRS: 0000551425",
     },
   ];
 
-  // Array of icon image paths – update these paths as needed.
   const iconPaths = [
     "/Footer/WKF.png",
     "/Footer/PZKB.png",
@@ -118,7 +101,6 @@ const FooterSecondSection = () => {
               <Image
                 src={src}
                 alt={`Icon ${index + 1}`}
-                // Provide intrinsic dimensions; these values are placeholders.
                 width={80}
                 height={0}
               />
@@ -130,39 +112,43 @@ const FooterSecondSection = () => {
   );
 };
 
-// ======================================================
-// Footer Third Section
-// ======================================================
 const FooterThirdSection = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setOpen(true);
+  };
+
   return (
-    <div className="footer-third-section">
-      <div className="footer-third-left">
-        <Link href="/xyz" className="footer-third-link">
-          Polityka prywatności
-        </Link>
+    <>
+      <div className="footer-third-section">
+        <a
+          href="/Regulations/Regulations"
+          className="footer-third-link"
+          onClick={handleClick}
+        >
+          Regulamin
+        </a>
+        <div className="footer-third-right">
+          © 2025 KuziSport. All rights reserved.
+        </div>
       </div>
-      <div className="footer-third-right">
-        © 2025 KuziSport. All rights reserved.
-      </div>
-    </div>
+      <Modal isOpen={open} onClose={() => setOpen(false)}>
+        <Regulations />
+      </Modal>
+    </>
   );
 };
 
-// ======================================================
-// Main Footer Component
-// ======================================================
-const Footer = () => {
-  return (
-    <div className="footer-main-container">
-      <FooterFirstSection />
-      <hr className="footer-divider" />
-
-      <FooterSecondSection />
-      <hr className="footer-divider" />
-
-      <FooterThirdSection />
-    </div>
-  );
-};
+const Footer = () => (
+  <div className="footer-main-container">
+    <FooterFirstSection />
+    <hr className="footer-divider" />
+    <FooterSecondSection />
+    <hr className="footer-divider" />
+    <FooterThirdSection />
+  </div>
+);
 
 export default Footer;
