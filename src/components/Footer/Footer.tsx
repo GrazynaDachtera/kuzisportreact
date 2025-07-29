@@ -2,9 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
-import Regulations from "../Regulations/Regulations";
-import Modal from "../Modal/Modal";
 import "./Footer.scss";
 
 interface IFooterMenu {
@@ -15,8 +12,8 @@ interface IFooterMenu {
 const FooterMenu = ({ header, links }: IFooterMenu) => (
   <div className="footer-menu-container">
     <h4 className="footer-menu-header">{header}</h4>
-    {links.map(({ text, to }, index) => (
-      <Link href={to} key={index} className="footer-menu-link">
+    {links.map(({ text, to }, idx) => (
+      <Link key={idx} href={to} className="footer-menu-link">
         {text}
       </Link>
     ))}
@@ -46,8 +43,8 @@ const FooterFirstSection = () => {
   return (
     <div className="footer-first-section">
       <div className="footer-middle">
-        {menus.map((menu, index) => (
-          <FooterMenu key={index} {...menu} />
+        {menus.map((menu, idx) => (
+          <FooterMenu key={idx} {...menu} />
         ))}
       </div>
     </div>
@@ -96,14 +93,9 @@ const FooterSecondSection = () => {
         </div>
 
         <div className="footer-images-container">
-          {iconPaths.map((src, index) => (
-            <div key={index} className="footer-image-icon">
-              <Image
-                src={src}
-                alt={`Icon ${index + 1}`}
-                width={80}
-                height={0}
-              />
+          {iconPaths.map((src, idx) => (
+            <div key={idx} className="footer-image-icon">
+              <Image src={src} alt={`Icon ${idx + 1}`} width={80} height={0} />
             </div>
           ))}
         </div>
@@ -112,36 +104,16 @@ const FooterSecondSection = () => {
   );
 };
 
-const FooterThirdSection = () => {
-  const [open, setOpen] = useState(false);
-
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    setOpen(true);
-  };
-
-  return (
-    <>
-      <div className="footer-third-section">
-        <a
-          href="/Regulations/Regulations"
-          className="footer-third-link"
-          onClick={handleClick}
-        >
-          Regulamin
-        </a>
-        <div className="footer-third-right">
-          © 2025 KuziSport. All rights reserved.
-        </div>
-      </div>
-
-      <Modal isOpen={open} onClose={() => setOpen(false)}>
-        {/* pass onClose so the modal can unmount itself */}
-        <Regulations onClose={() => setOpen(false)} />
-      </Modal>
-    </>
-  );
-};
+const FooterThirdSection = () => (
+  <div className="footer-third-section">
+    <Link href="/Regulations" className="footer-third-link">
+      Regulamin
+    </Link>
+    <div className="footer-third-right">
+      © 2025 KuziSport. All rights reserved.
+    </div>
+  </div>
+);
 
 const Footer = () => (
   <div className="footer-main-container">

@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import "./Regulations.scss";
 
 const RULES = [
@@ -11,12 +10,12 @@ const RULES = [
   "Jeśli klubowicz chce zostać na sali po odbytym treningu, powinien udać się na antresolę",
   "Właściciel obiektu nie odpowiada za rzeczy pozostawione w szatni",
   "Na strefę treningową przychodzimy:",
-  "– w stroju właściwym dyscyplinie, z wodą (najlepiej w bidonie – unikamy mnożenia odpadów z tworzyw sztucznych)",
+  "– w stroju właściwym dyscyplinie, z wodą (najlepiej w bidonie – unikamy mnożenia odpadów z tworzyw sztucznych)",
   "– na boso, w baletkach lub skarpetkach antypoślizgowych (w przypadku akrobatyki)",
   "Po wejściu na strefę treningową siadamy we wskazanym dla grupy oczekującej miejscu (ławka lub wydzielona strefa)",
   "Przy każdej strefie treningowej znajduje się trójdzielny pojemnik, w którym pozostawiamy: zdjęte skarpetki, wodę mineralną i kosztowności (telefony, portfele, klucze, biżuterię)",
   "Zarówno w ramach treningu, jak i podczas przebywania na antresoli należy zachować spokój i kulturę, niezakłócające przebiegu treningu",
-  "Zabrania się przebywania na siłowni osób poniżej 16 roku życia; młodsi mogą tam przebywać wyłącznie, gdy wymaga tego przebieg zajęć prowadzonych pod okiem wykwalifikowanego trenera",
+  "Zabrania się przebywania na siłowni osób poniżej 16 roku życia; młodsi mogą tam przebywać wyłącznie, gdy wymaga tego przebieg zajęć prowadzonych pod okiem wykwalifikowanego trenera",
   "Zabrania się samodzielnego emitowania muzyki lub zakłócania spokoju obiektu",
   "Zabrania się spożywania jedzenia w strefach treningowych",
   "Na terenie całego obiektu obowiązuje zakaz palenia papierosów, wyrobów nikotynowych i spożywania alkoholu",
@@ -25,32 +24,22 @@ const RULES = [
   "Na terenie obiektu przy ul. Św. Michała 50‑56 obowiązuje ograniczenie prędkości do 5 km/h niezależnie od środka transportu",
 ];
 
-interface Props {
-  onClose: () => void;
-}
-
-export default function Regulations({ onClose }: Props) {
-  useEffect(() => {
-    const esc = (e: KeyboardEvent) => e.key === "Escape" && onClose();
-    document.addEventListener("keydown", esc);
-    return () => document.removeEventListener("keydown", esc);
-  }, [onClose]);
-
+export default function Regulations() {
   return (
-    <div className="regulations-modal" onClick={onClose}>
-      <div className="regulations-content" onClick={(e) => e.stopPropagation()}>
-        <button className="regulations-exit" onClick={onClose}>
-          &times;
-        </button>
-        <h3>
-          REGULAMIN DOTYCZĄCY UCZESTNICTWA W TRENINGACH NA SALI KUZI SPORT
-        </h3>
+    <main className="regulations-wrapper">
+      <h1 className="regulations-title">Regulamin</h1>
+
+      <section className="regulations-content">
+        <h2 className="regulations-subtitle">
+          Regulamin dotyczący uczestnictwa w treningach na sali Kuzi Sport
+        </h2>
+
         <ol className="regulations-list">
-          {RULES.map((rule, i) => (
-            <li key={i}>{rule}</li>
+          {RULES.map((rule) => (
+            <li key={rule}>{rule}</li>
           ))}
         </ol>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
