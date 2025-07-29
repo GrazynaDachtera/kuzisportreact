@@ -134,8 +134,10 @@ const FooterThirdSection = () => {
           © 2025 KuziSport. All rights reserved.
         </div>
       </div>
+
       <Modal isOpen={open} onClose={() => setOpen(false)}>
-        <Regulations />
+        {/* pass onClose so the modal can unmount itself */}
+        <Regulations onClose={() => setOpen(false)} />
       </Modal>
     </>
   );
