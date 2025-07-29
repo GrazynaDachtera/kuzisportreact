@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import Navbar from "../components/Navbar/Navbar";
+import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import Cookies from "../components/Cookies/Cookies";
 import Message from "../components/Message/Message";
@@ -26,7 +27,7 @@ export default function Home() {
         <section className="kuziSport">
           <div className="main">
             <Navbar />
-            <div style={{ height: "300vh" }}></div>
+            <Header />
           </div>
           <Footer />
         </section>

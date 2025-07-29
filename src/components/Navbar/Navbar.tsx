@@ -1,160 +1,163 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import "./Navbar.scss";
 
-const NavBar: React.FC = () => {
-  const [isActive, setIsActive] = useState(false);
+export default function NavBar() {
   const pathname = usePathname();
-  const menuRef = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const drawerRef = useRef<HTMLDivElement>(null);
 
-  const toggleMenu = () => {
-    setIsActive((prev) => !prev);
-    toggleBodyOverflow(!isActive);
-  };
-
-  const closeMenu = useCallback(() => {
-    setIsActive(false);
-    toggleBodyOverflow(false);
+  useEffect(() => {
+    setMounted(true);
   }, []);
 
-  const toggleBodyOverflow = (shouldOverflow: boolean) => {
-    document.body.classList.toggle("overflow-hidden", shouldOverflow);
+  const toggle = () => {
+    setOpen((o) => !o);
+    document.body.classList.toggle("overflow-hidden", !open);
   };
 
+  const close = useCallback(() => {
+    setOpen(false);
+    document.body.classList.remove("overflow-hidden");
+  }, []);
+
   useEffect(() => {
-    const handleClickOutside = (event: Event) => {
+    const handler = (e: Event) => {
       if (
-        isActive &&
-        menuRef.current &&
-        !menuRef.current.contains(event.target as Node)
-      ) {
-        closeMenu();
-      }
+        open &&
+        drawerRef.current &&
+        !drawerRef.current.contains(e.target as Node)
+      )
+        close();
     };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("touchstart", handleClickOutside);
+    document.addEventListener("mousedown", handler);
+    document.addEventListener("touchstart", handler);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("touchstart", handleClickOutside);
+      document.removeEventListener("mousedown", handler);
+      document.removeEventListener("touchstart", handler);
     };
-  }, [isActive, closeMenu]);
+  }, [open, close]);
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 768) closeMenu();
+    const onResize = () => {
+      if (window.innerWidth > 768) close();
     };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [closeMenu]);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [close]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 200 && isActive) closeMenu();
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [isActive, closeMenu]);
-
-  const menuItems = [
+  const items = [
     { label: "STRONA GŁÓWNA", path: "/" },
     { label: "AKTUALNOŚCI", path: "/AboutUs" },
     { label: "REZERWACJA", path: "/Service" },
     { label: "GRAFIK", path: "/Blog" },
     { label: "CENNIK", path: "/Contact" },
     { label: "GALERIA", path: "/Social" },
-    { label: "REGULAMIN", path: "/OK" },
-    { label: "OPINIE", path: "/A" },
     { label: "KONTAKT", path: "/W" },
   ];
 
   return (
     <>
-      <section className="wrapper-navbar">
-        <nav className="navbar">
-          <div className="logo-navbar">
-            <Image
-              src="/NavBar/logokuzisport.png"
-              alt="logoKuziSport"
-              width={100}
-              height={0}
-              style={{ width: "100%", height: "auto" }}
-            />
-          </div>
-          <div className="apply-hamburger" onClick={toggleMenu}>
-            <div className={`hamburger ${isActive ? "active" : ""}`}>
-              <span className={`bar ${isActive ? "active" : ""}`}></span>
-              <span className={`bar ${isActive ? "active" : ""}`}></span>
-              <span className={`bar ${isActive ? "active" : ""}`}></span>
+      {mounted &&
+        createPortal(
+          <>
+            <header className="wrapper-navbar">
+              <nav className="navbar">
+                <div className="logo-navbar">
+                  <Image
+                    src="/NavBar/logokuzisport.png"
+                    alt="logoKuziSport"
+                    width={100}
+                    height={0}
+                    style={{ width: "100%", height: "auto" }}
+                  />
+                </div>
+                <button
+                  className={`hamburger-btn ${open ? "active" : ""}`}
+                  aria-label="Menu"
+                  onClick={toggle}
+                >
+                  <span />
+                  <span />
+                  <span />
+                </button>
+              </nav>
+            </header>
+
+            <div
+              ref={drawerRef}
+              className={`nav-drawer ${open ? "open" : ""}`}
+              onMouseLeave={close}
+            >
+              <ul>
+                {items.map((i) => (
+                  <li
+                    key={i.path}
+                    className={pathname === i.path ? "active" : ""}
+                  >
+                    <Link href={i.path} onClick={close}>
+                      {i.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="social-icons">
+                <a
+                  href="https://www.facebook.com/kuzisport/?locale=pl_PL"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="28"
+                    height="28"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#3B3B3B"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                  </svg>
+                </a>
+                <a
+                  href="https://www.instagram.com/kuzisport/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="28"
+                    height="28"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#3B3B3B"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                  </svg>
+                </a>
+              </div>
             </div>
-          </div>
-        </nav>
-      </section>
-      <div ref={menuRef} className={`nav-menu ${isActive ? "active" : ""}`}>
-        <ul>
-          {menuItems.map((item) => (
-            <li
-              key={item.path}
-              className={pathname === item.path ? "active" : ""}
-            >
-              <Link href={item.path} onClick={closeMenu}>
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <div className="social-icons" style={{ display: "flex", gap: "10px" }}>
-          <a
-            href="https://www.facebook.com/yourpage"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Facebook"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 320 512"
-              width="24"
-              height="24"
-              fill="black"
-            >
-              <path
-                d="M279.14 288l14.22-92.66h-88.91V127.39c0-25.35 
-              12.42-50.06 52.24-50.06H293V6.26S269.91 0 248.17 0C141.09 
-              0 89.54 54.42 89.54 154.29v70.05H0v92.66h89.54V512h107.66V288z"
-              />
-            </svg>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/yourprofile"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 448 512"
-              width="24"
-              height="24"
-              fill="black"
-            >
-              <path
-                d="M100.28 448H7.4V148.9h92.88zm-46.44-340C24.44 
-              108 0 83.56 0 53.36A53.36 53.36 0 1 1 53.36 0c30.2 0 
-              54.64 24.44 54.64 53.36 0 30.2-24.44 54.64-53.16 54.64zM447.9 
-              448h-92.68V302.4c0-34.7-12.46-58.4-43.66-58.4-23.8 0-38 16-44.28 
-              31.4-2.28 5.6-2.84 13.4-2.84 21.2V448h-92.66s1.24-241.7 0-266.1h92.66v37.7c-.18.3-.43.7-.61 1h.61v-1c12.3-19 
-              34.3-46.1 83.54-46.1 61 0 106.76 39.8 106.76 125.3V448z"
-              />
-            </svg>
-          </a>
-        </div>
-      </div>
+
+            <div className={`nav-mask ${open ? "show" : ""}`} onClick={close} />
+          </>,
+          document.body
+        )}
     </>
   );
-};
-
-export default NavBar;
+}

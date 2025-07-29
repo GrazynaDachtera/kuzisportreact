@@ -1,0 +1,13 @@
+.hero {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+
+  @media (max-width: 600px) { min-height: 70vh; }
+
+  &__bg       { object-fit: cover; object-position: center; pointer-events: none; z-index: 0; }
+  &__overlay  { position: absolute; inset: 0;  z-index: 1; pointer-events: none; }
+  &__inner    { position: relative; z-index: 2; display: flex; align-items: center; justify-content: center;
+                 height: 100%; padding: clamp(2rem,5vw,6rem); text-align:center; }
+}
