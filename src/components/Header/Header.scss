@@ -1,13 +1,118 @@
-.hero {
+.slider {
   position: relative;
-  width: 100vw;
-  min-height: 100vh;
   overflow: hidden;
+  width: 100vw;
+  background: #f7f7f7;
+}
 
-  @media (max-width: 600px) { min-height: 70vh; }
+.slides {
+  display: flex;
+  transition: transform .8s cubic-bezier(.22,1,.36,1);
+}
 
-  &__bg       { object-fit: cover; object-position: center; pointer-events: none; z-index: 0; }
-  &__overlay  { position: absolute; inset: 0;  z-index: 1; pointer-events: none; }
-  &__inner    { position: relative; z-index: 2; display: flex; align-items: center; justify-content: center;
-                 height: 100%; padding: clamp(2rem,5vw,6rem); text-align:center; }
+.slide {
+  flex: 0 0 100vw;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.slide__text {
+  flex: 0 0 40%;
+  max-width: 40%;
+  padding: 0 2rem 0 4rem;
+}
+
+.slide__image {
+  flex: 0 0 60%;
+  max-width: 60%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.slide__image img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+h1 {
+  font-size: clamp(3rem, 8vw, 8rem);
+  line-height: .9;
+  color: #b00000;
+  margin: 0 0 1.5rem;
+}
+
+p {
+  white-space: pre-line;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  color: #3b3b3b;
+  margin-bottom: 2.5rem;
+}
+
+.slide__cta {
+  display: inline-block;
+  background: #e6332a;
+  color: #fff;
+  padding: 1rem 3rem;
+  border-radius: 3rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background .25s;
+}
+
+.slide__cta:hover,
+.slide__cta:focus-visible {
+  background: #b40000;
+}
+
+.dots {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  z-index: 10;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #7f8c8d;
+  border: none;
+  opacity: .7;
+  cursor: pointer;
+  transition: background .3s, transform .3s, opacity .3s;
+}
+
+.dot:hover {
+  opacity: 1;
+}
+
+.dot.active {
+  background: #f5a623;
+  transform: scale(1.2);
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .slide {
+    flex-direction: column;
+  }
+  .slide__text,
+  .slide__image {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .slide__image {
+    height: 60vh;
+  }
 }

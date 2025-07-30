@@ -70,13 +70,16 @@ export default function NavBar() {
             <header className="wrapper-navbar">
               <nav className="navbar">
                 <div className="logo-navbar">
-                  <Image
-                    src="/NavBar/logokuzisport.png"
-                    alt="logoKuziSport"
-                    width={100}
-                    height={0}
-                    style={{ width: "100%", height: "auto" }}
-                  />
+                  <Link href="/" aria-label="KuziSport – Home" onClick={close}>
+                    <Image
+                      src="/NavBar/logokuzisport.png"
+                      alt="Logo KuziSport"
+                      width={120}
+                      height={40}
+                      style={{ width: "100%", height: "auto" }}
+                      priority
+                    />
+                  </Link>
                 </div>
                 <button
                   className={`hamburger-btn ${open ? "active" : ""}`}

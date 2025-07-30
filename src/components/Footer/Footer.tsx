@@ -22,13 +22,30 @@ const FooterMenu = ({ header, links }: IFooterMenu) => (
 
 const FooterFirstSection = () => {
   const menus = [
-    { header: "Rezerwacja", links: [{ text: "Rezerwacja", to: "/Blog" }] },
-    { header: "Informacje", links: [{ text: "O nas", to: "/Blog" }] },
     {
-      header: "O Nas",
+      header: "Informacje",
       links: [
-        { text: "Aktualnosci", to: "/About" },
-        { text: "Kontakt", to: "/Contact" },
+        { text: "O nas", to: "/Blog" },
+        { text: "Aktualności", to: "/Blog" },
+        { text: "Dyscypliny", to: "/Blog" },
+      ],
+    },
+    {
+      header: "Rezerwacja",
+      links: [
+        { text: "Rezerwacja", to: "/Blog" },
+        { text: "Grafik", to: "/Blog" },
+        { text: "Cennik", to: "/Blog" },
+      ],
+    },
+    {
+      header: "Social Media",
+      links: [
+        {
+          text: "Facebook",
+          to: "https://www.facebook.com/kuzisport/?locale=pl_PL",
+        },
+        { text: "Instagram", to: "https://www.instagram.com/kuzisport/" },
       ],
     },
     {
@@ -54,9 +71,10 @@ const FooterFirstSection = () => {
 const FooterSecondSection = () => {
   const address = [
     {
-      header: "Kuzi-Sport Sp. z o.o. | ul. Św. Michała 56 | 61-005 Poznan |",
-      email: "kuzisport.biuro@gmail.com |",
-      phoneNumbers: ["+48 785 828 666 |"],
+      header:
+        "Kuzi Sport Łukasz Kuzemko | ul. Św. Michała 56 | 61-005 Poznan |",
+      email: "kuzisport.biuro@gmail.com",
+      phoneNumbers: ["785 828 666"],
       NIP: "NIP: 7773248243 | REGON: 361158968 | KRS: 0000551425",
     },
   ];
