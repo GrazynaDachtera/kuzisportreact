@@ -54,11 +54,18 @@ html {
   padding: 50px 0;
 }
 
+/* Add to your globals.css */
+.kuziSport {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensures the section fills its parent's 100vh */
+}
+
 
 .main {
   position: relative;
   width: 100%;
-  min-height: 100vh; 
+  height: auto;
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -75,8 +82,7 @@ html {
     z-index: 1;
   }
 
-  .wrapper-navbar,
-  .KongwellHeader {
+  .wrapper-navbar {
     position: relative;
     z-index: 2;
   }

@@ -29,7 +29,7 @@ const slides: Slide[] = [
     text: "Z NAMI OSIĄGNIESZ\nSWOJE FITNESS CELE\nSZYBCIEJ.",
     cta: { label: "Umów się", href: "/Service" },
     img: {
-      src: "/Header/2.jpg",
+      src: "/Header/1.png",
       alt: "Trening personalny",
       width: 1600,
       height: 1067,

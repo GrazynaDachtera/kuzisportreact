@@ -1,20 +1,29 @@
 .slider {
   position: relative;
   overflow: hidden;
-  width: 100vw;
+  width: 100%;
   background: #f7f7f7;
+  flex-grow: 1;
+  display: flex;
+  height: 100%;
+
+  // KEY CHANGE 1: Add padding to prevent content from going under the navbar.
+  // Adjust '6rem' to match your actual navbar height.
+  padding-top: 6rem;
+  box-sizing: border-box; // Ensures padding is included in height calculation.
 }
 
 .slides {
   display: flex;
-  transition: transform .8s cubic-bezier(.22,1,.36,1);
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  height: 100%;
 }
 
 .slide {
   flex: 0 0 100vw;
   display: flex;
   align-items: center;
-  min-height: 100vh;
+  height: 100%;
 }
 
 .slide__text {
@@ -26,14 +35,12 @@
 .slide__image {
   flex: 0 0 60%;
   max-width: 60%;
-  height: 100vh;
+  height: 100%;
   position: relative;
-  overflow: hidden;
   pointer-events: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
 }
 
 .slide__image img {
@@ -43,7 +50,7 @@
 
 h1 {
   font-size: clamp(3rem, 8vw, 8rem);
-  line-height: .9;
+  line-height: 0.9;
   color: #b00000;
   margin: 0 0 1.5rem;
 }
@@ -64,7 +71,7 @@ p {
   border-radius: 3rem;
   font-weight: 600;
   text-decoration: none;
-  transition: background .25s;
+  transition: background 0.25s;
 }
 
 .slide__cta:hover,
@@ -75,11 +82,13 @@ p {
 .dots {
   position: absolute;
   bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
+  z-index: 10;
   display: flex;
   gap: 1rem;
-  z-index: 10;
+
+  // KEY CHANGE 2: Center dots horizontally on ALL screen sizes.
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .dot {
@@ -88,9 +97,9 @@ p {
   border-radius: 50%;
   background: #7f8c8d;
   border: none;
-  opacity: .7;
+  opacity: 0.7;
   cursor: pointer;
-  transition: background .3s, transform .3s, opacity .3s;
+  transition: background 0.3s, transform 0.3s, opacity 0.3s;
 }
 
 .dot:hover {
@@ -103,16 +112,47 @@ p {
   opacity: 1;
 }
 
+/* Tablet styles */
+@media (max-width: 1024px) {
+  .slide__text {
+    flex-basis: 50%;
+    max-width: 50%;
+    padding: 0 2rem;
+  }
+  .slide__image {
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+}
+
+/* Mobile styles */
 @media (max-width: 768px) {
+  .slider {
+    // Adjust top padding for smaller mobile navbars if needed.
+    padding-top: 5rem;
+  }
+
   .slide {
     flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
   }
-  .slide__text,
-  .slide__image {
-    flex: 0 0 100%;
+
+  .slide__text {
+    flex-basis: auto;
     max-width: 100%;
+    padding: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
+
   .slide__image {
-    height: 60vh;
+    display: none;
+  }
+
+  .dots {
+    bottom: 3rem;
   }
 }
