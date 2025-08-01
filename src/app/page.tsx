@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import Header from "../components/Header/Header";
 import Reviews from "../components/Reviews/Reviews";
+import Sports from "../components/Sports/Sports";
 import Footer from "../components/Footer/Footer";
 import Cookies from "../components/Cookies/Cookies";
 import Message from "../components/Message/Message";
@@ -31,6 +32,7 @@ export default function Home() {
           </div>
           <Header />
           <Reviews />
+          <Sports />
           <Footer />
         </section>
       </div>

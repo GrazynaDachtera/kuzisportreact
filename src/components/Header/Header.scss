@@ -65,18 +65,24 @@ p {
 
 .slide__cta {
   display: inline-block;
-  background: #e6332a;
-  color: #fff;
   padding: 1rem 3rem;
-  border-radius: 3rem;
+  font-size: 1rem;
   font-weight: 600;
-  text-decoration: none;
-  transition: background 0.25s;
+  color: #eeeeee;
+  background-color: #b00000;
+  border: none;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  
+  /* --- Added lines --- */
+  text-decoration: none; /* Removes the underline from links */
+  transition: background-color 0.3s ease-in-out; /* Adds a smooth transition */
 }
 
 .slide__cta:hover,
 .slide__cta:focus-visible {
-  background: #b40000;
+  background-color: #d20000;
 }
 
 .dots {
