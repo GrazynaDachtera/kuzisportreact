@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar/Navbar";
 import Header from "../components/Header/Header";
 import Reviews from "../components/Reviews/Reviews";
 import Sports from "../components/Sports/Sports";
+import News from "../components/News/News";
 import Footer from "../components/Footer/Footer";
 import Cookies from "../components/Cookies/Cookies";
 import Message from "../components/Message/Message";
@@ -33,6 +34,7 @@ export default function Home() {
           <Header />
           <Reviews />
           <Sports />
+          <News />
           <Footer />
         </section>
       </div>
