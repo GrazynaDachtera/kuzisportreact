@@ -18,7 +18,7 @@ const slides: Slide[] = [
     text: "SPORT I REKREACJA DLA\nDZIECI, MŁODZIEŻY\nORAZ DOROSŁYCH.",
     cta: { label: "Zapisz się", href: "/Service" },
     img: {
-      src: "/Header/1.png",
+      src: "/Header/x.png",
       alt: "Kobieta ćwicząca na szarfach",
       width: 1600,
       height: 1067,
@@ -29,7 +29,7 @@ const slides: Slide[] = [
     text: "Z NAMI OSIĄGNIESZ\nSWOJE FITNESS CELE\nSZYBCIEJ.",
     cta: { label: "Umów się", href: "/Service" },
     img: {
-      src: "/Header/1.png",
+      src: "/Header/x.png",
       alt: "Trening personalny",
       width: 1600,
       height: 1067,
