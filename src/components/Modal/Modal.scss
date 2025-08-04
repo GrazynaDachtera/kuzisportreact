@@ -1,0 +1,39 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(0.125rem);
+  display: grid;
+  place-items: center;
+  z-index: 1000;
+}
+
+.modal-dialog {
+  position: relative;
+  max-width: 37.5rem;
+  width: 90%;
+  max-height: 90dvh;
+  background: #fff;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-body {
+  padding: 2rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  flex: 1;
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  font-size: 1.75rem;
+  line-height: 1;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}

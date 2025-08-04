@@ -1,0 +1,81 @@
+/* ─────────── Wrapper & grid ─────────────────────────────────────── */
+.reviews {
+  padding: clamp(2rem, 5vw, 4rem) 1rem;
+  background: #fff;
+}
+
+.reviews__container {
+  max-width: 1200px;
+  margin-inline: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1rem, 3vw, 2rem);
+  justify-content: center;
+}
+
+/* ─────────── Generic card style ─────────────────────────────────── */
+.reviews__card {
+  flex: 1 1 200px;               /* phones: min-200px width            */
+  max-width: 280px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgb(0 0 0 / 6%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+/* Badge images */
+.reviews__badge {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ─────────── Rating-card specifics ──────────────────────────────── */
+.reviews__rating {
+  flex-direction: column;
+  text-align: center;
+}
+
+.reviews__stars {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 0.75rem;
+}
+
+.reviews__star {
+  width: 24px;
+  height: 24px;
+  fill: #ffc107;                /* golden yellow                      */
+}
+
+.reviews__score {
+  margin: 0;
+  font-weight: 700;
+  color: #0f2167;                /* deep navy                          */
+  font-size: 1.5rem;
+
+  span {
+    font-size: 2.75rem;
+    line-height: 1;
+  }
+}
+
+.reviews__desc {
+  margin-top: 0.75rem;
+  color: #c4c7d4;
+  font-weight: 600;
+  line-height: 1.3;
+  font-size: 0.95rem;
+}
+
+/* ─────────── Breakpoints ────────────────────────────────────────── */
+@media (min-width: 768px) {      /* tablets */
+  .reviews__card { flex: 1 1 30%; }
+}
+
+@media (min-width: 1024px) {     /* desktops */
+  .reviews__card { flex: 1 1 22%; }
+}

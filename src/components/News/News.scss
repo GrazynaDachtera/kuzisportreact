@@ -1,0 +1,97 @@
+.News {
+  width: 100%;
+  background-color: #f8f9fa;
+  padding-block: clamp(1rem, 4vw, 6rem);
+  font-family: "Poppins", sans-serif;
+}
+
+.news-container {
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+  max-width: 100%;
+  margin-inline: auto;
+  padding-inline: 4rem;
+  flex-direction: row-reverse;
+}
+
+.news-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.news-hero {
+  flex: 1 1 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.news-hero img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  object-fit: cover;
+}
+
+.news-tagline {
+  font-family: "Sacramento", cursive;
+  font-size: 1.25rem;
+  color: #b00000;
+  margin-bottom: 0.25rem;
+}
+
+.news-heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #b00000;
+}
+
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.news-item {
+  display: flex;
+  gap: 1rem;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.3s ease;
+  border-radius: 0.75rem;
+}
+
+.news-item:hover {
+  opacity: 0.85;
+}
+
+.news-thumb img {
+  border-radius: 0.5rem;
+  width: 90px;
+  height: 74px;
+  object-fit: cover;
+}
+
+.news-category {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #b00000;
+}
+
+.news-title {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 992px) {
+  .news-container {
+    flex-direction: column;
+    gap: 40px;
+    padding-inline: 2rem;
+  }
+}

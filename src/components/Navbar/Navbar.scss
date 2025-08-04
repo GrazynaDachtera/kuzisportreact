@@ -1,0 +1,126 @@
+.wrapper-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.25rem 2rem;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(99, 99, 99, .2);
+  z-index: 1000;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.hamburger-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2rem;
+  gap: .3rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  span {
+    display: block;
+    width: 100%;
+    height: .3rem;
+    background: #e6332a;
+    border-radius: 1.5rem;
+    transition: .3s;
+  }
+  &.active span:nth-child(1) { transform: translateY(.65rem) rotate(45deg); }
+  &.active span:nth-child(2) { opacity: 0; }
+  &.active span:nth-child(3) { transform: translateY(-.65rem) rotate(-45deg); }
+}
+
+.nav-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 15.625rem;
+  max-width: 80vw;
+  height: 100vh;
+  background: #fff;
+  padding: 6rem 1.75rem 0;      /* increased top padding */
+  box-shadow: 0 2px 8px rgba(99, 99, 99, .2);
+  transform: translateX(100%);
+  transition: transform .3s ease;
+  z-index: 999;
+  pointer-events: none;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      margin: 1rem 0;           /* extra vertical space */
+      a {
+        font-size: 1.25rem;
+        font-weight: 550;
+        color: #3b3b3b;
+        text-decoration: none;
+        position: relative;
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -.3rem;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background: #61616142;
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform .3s;
+        }
+        &:hover::after { transform: scaleX(1); }
+      }
+
+      &.active a {
+        color: #e6332a;
+        &::after { transform: scaleX(1); }
+      }
+
+      &:hover a { color: #e6332a; }
+    }
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 10px;
+    margin-top: 2rem;
+    a svg { display: block; }
+  }
+}
+
+.nav-drawer.open {
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.nav-mask {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+  z-index: 998;
+}
+
+.nav-mask.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (max-width: 1400px) {
+  .wrapper-navbar { padding: 1.25rem; }
+}

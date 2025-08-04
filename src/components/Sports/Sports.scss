@@ -1,0 +1,165 @@
+:root {
+  --section-py: clamp(0, 2vw, 5rem);
+  font-family: "Poppins", sans-serif;
+}
+
+.Sports {
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  color: #333;
+}
+
+.sports-top-wrapper {
+  background-color: #f8f9fa;
+}
+
+.sports-top-wrapper .sports-container {
+  padding-block: var(--section-py);
+  padding-inline: 4rem;
+}
+
+.sports-grid-wrapper {
+  background-color: #ffffff;
+  padding: 80px 0;
+  width: 100%;
+}
+
+.sports-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+
+.sports-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+@media (max-width: 992px) {
+  .sports-top {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.sports-content {
+  flex: 1;
+  max-width: 500px;
+}
+
+@media (max-width: 992px) {
+  .sports-content {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.sports-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #b00000;
+  font-family: "Poppins", sans-serif;
+}
+
+.sports-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  color: #555;
+  font-family: "Poppins", sans-serif;
+}
+
+.sports-button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #eeeeee;
+  background-color: #b00000;
+  border: none;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.sports-button:hover {
+  background-color: #d20000;
+}
+
+.sports-image-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.sports-image-wrapper .sports-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.sports-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px 30px;
+}
+
+@media (max-width: 768px) {
+  .sports-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.grid-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.grid-item-icon-wrapper {
+  border: none;
+  padding: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+.grid-item-icon-wrapper .arrow-icon {
+  width: 20px;
+  height: 20px;
+  color: #b00000;
+}
+
+.grid-item-text {
+  flex: 1;
+}
+
+.grid-item-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #b00000;
+  font-family: "Poppins", sans-serif;
+}
+
+.grid-item-description {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #666;
+  font-family: "Poppins", sans-serif;
+}
+
+@media (max-width: 992px) {
+  .sports-top-wrapper .sports-container {
+    padding-inline: 2rem;
+  }
+}
