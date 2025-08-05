@@ -6,7 +6,7 @@
 .Sports {
   width: 100%;
   font-family: "Poppins", sans-serif;
-  color: #E88463;
+  color: #e88463;
 }
 
 .sports-top-wrapper {
@@ -40,7 +40,8 @@
 @media (max-width: 992px) {
   .sports-top {
     flex-direction: column;
-    text-align: center;
+    text-align: left;
+    align-items: flex-start;
   }
 }
 
@@ -54,7 +55,7 @@
     max-width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
   }
 }
 
@@ -62,8 +63,7 @@
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 20px;
-  color: #E88463;
-  font-family: "Poppins", sans-serif;
+  color: #e88463;
 }
 
 .sports-description {
@@ -71,7 +71,6 @@
   line-height: 1.6;
   margin-bottom: 30px;
   color: #555;
-  font-family: "Poppins", sans-serif;
 }
 
 .sports-button {
@@ -79,11 +78,10 @@
   font-size: 1rem;
   font-weight: 600;
   color: #eeeeee;
-  background-color: #E88463;
+  background-color: #e88463;
   border: none;
   border-radius: 0.6rem;
   cursor: pointer;
-  font-family: "Poppins", sans-serif;
   text-decoration: none;
   transition: background-color 0.3s ease-in-out;
 }
@@ -92,17 +90,24 @@
   background-color: #d20000;
 }
 
+@media (max-width: 992px) {
+  .sports-button {
+    align-self: flex-start;
+  }
+}
+
 .sports-image-wrapper {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  max-width: 100%;
 }
 
-.sports-image-wrapper .sports-image {
-  max-width: 100%;
+.sports-image {
+  width: 100%;
   height: auto;
-  border-radius: 8px;
+  object-fit: contain;
 }
 
 .sports-grid {
@@ -127,8 +132,8 @@
   border: none;
   padding: 4px;
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: left;
   border-radius: 4px;
   margin-top: 5px;
 }
@@ -136,7 +141,7 @@
 .grid-item-icon-wrapper .arrow-icon {
   width: 20px;
   height: 20px;
-  color: #E88463;
+  color: #e88463;
 }
 
 .grid-item-text {
@@ -147,15 +152,13 @@
   font-size: 1.1rem;
   font-weight: 700;
   margin-bottom: 8px;
-  color: #E88463;
-  font-family: "Poppins", sans-serif;
+  color: #e88463;
 }
 
 .grid-item-description {
   font-size: 0.95rem;
   line-height: 1.5;
   color: #666;
-  font-family: "Poppins", sans-serif;
 }
 
 @media (max-width: 992px) {

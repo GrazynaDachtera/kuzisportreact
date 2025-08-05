@@ -9,7 +9,6 @@ import News from "../components/News/News";
 import CtaContact from "../components/CtaContact/CtaContact";
 import Footer from "../components/Footer/Footer";
 import Cookies from "../components/Cookies/Cookies";
-import Message from "../components/Message/Message";
 import Scrollbar from "smooth-scrollbar";
 import "../app/globals.css";
 import { Poppins } from "next/font/google";
@@ -53,7 +52,6 @@ export default function Home() {
         </section>
       </div>
       <Cookies />
-      <Message />
     </>
   );
 }

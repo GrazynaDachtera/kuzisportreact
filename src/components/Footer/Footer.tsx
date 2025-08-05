@@ -45,9 +45,12 @@ const FooterFirstSection = () => {
       links: [
         {
           text: "Facebook",
-          to: "https://www.facebook.com/kuzisport/?locale=pl_PL",
+          to: "https://www.facebook.com/sasiedzkilazarz/?locale=pl_PL",
         },
-        { text: "Instagram", to: "https://www.instagram.com/kuzisport/" },
+        {
+          text: "Instagram",
+          to: "https://www.instagram.com/sasiedzki_lazarz/",
+        },
       ],
     },
     {
