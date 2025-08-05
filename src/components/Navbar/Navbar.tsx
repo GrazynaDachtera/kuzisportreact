@@ -130,7 +130,7 @@ export default function NavBar() {
 
               <div className="social-icons">
                 <a
-                  href="https://www.facebook.com/kuzisport/?locale=pl_PL"
+                  href="https://www.facebook.com/sasiedzkilazarz/?locale=pl_PL"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook"
@@ -150,7 +150,7 @@ export default function NavBar() {
                   </svg>
                 </a>
                 <a
-                  href="https://www.instagram.com/kuzisport/"
+                  href="https://www.instagram.com/sasiedzki_lazarz/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
