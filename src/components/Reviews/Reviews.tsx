@@ -5,8 +5,8 @@ import "./Reviews.scss";
 
 /* ── Image badges (first two cards) ──────────────────────────────── */
 const IMAGE_BADGES = [
-  { src: "/Reviews/benefitsystems.png", alt: "Benefit Systems logo" },
-  { src: "/Reviews/profit.webp", alt: "Profit logo" },
+  { src: "/Reviews/profit.png", alt: "Benefit Systems logo" },
+  { src: "/Reviews/profit.png", alt: "Profit logo" },
 ];
 
 export default function Reviews() {

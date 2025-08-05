@@ -26,19 +26,19 @@ const ArrowIcon = () => (
 export default function Sports() {
   const features = [
     {
-      title: "Sporty gimnastyczne",
+      title: "Projekt 1",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     },
     {
-      title: "Sporty walki",
+      title: "Projekt 2",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     },
     {
-      title: "Sporty motoryczne",
+      title: "Projekt 3",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     },
     {
-      title: "Treningi dla klubów",
+      title: "Projekt 4",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     },
   ];
@@ -49,7 +49,7 @@ export default function Sports() {
         <div className="sports-container">
           <div className="sports-top">
             <div className="sports-content">
-              <h2 className="sports-title">Dyscypliny</h2>
+              <h2 className="sports-title">Projekty</h2>
               <p className="sports-description">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
                 malesuada tincidunt turpis, pretium consequat ante mollis a.
@@ -60,10 +60,10 @@ export default function Sports() {
             </div>
             <div className="sports-image-wrapper">
               <Image
-                src="/Sports/karate.png"
+                src="/Sports/people.png"
                 alt="karate"
-                width={600}
-                height={400}
+                width={652}
+                height={336}
                 className="sports__badge"
                 priority
               />

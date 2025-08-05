@@ -1,14 +1,14 @@
 .footer-main-container {
   width: 100%;
   background-color: #d4d4d42f;
-  color: #3b3b3b;
+  color: #666;
   font-size: 1.2rem;
-  font-family: 'Poppins', Tahoma, Arial, sans-serif;
+  font-family: "Poppins", Tahoma, Arial, sans-serif;
 
   .footer-divider {
     border: none;
     border-top: 1px solid #ccc;
-    margin: 1.25rem 1.8rem 1.25rem 1.8rem;
+    margin: 1.25rem 1.8rem;
   }
 }
 
@@ -18,13 +18,14 @@
   padding: 2rem 4rem;
 }
 
+/* ───────────── 1-st SECTION ───────────── */
+
 .footer-first-section {
   .footer-middle {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     width: 100%;
-    max-width: 100%;
     padding-top: 1rem;
 
     .footer-menu-container {
@@ -37,23 +38,23 @@
         margin-bottom: 0.5rem;
         font-size: 1.4rem;
         font-weight: 700;
-        color: #e6332a;
+        color: #e88463;
       }
 
       .footer-menu-link {
-        color: #3b3b3b;
+        color: #666;
         font-size: 1rem;
         font-weight: 500;
         text-decoration: none;
         transition: color 0.3s ease;
 
-        &:hover {
-          color: #e6332a;
-        }
+        &:hover { color: #e88463; }
       }
     }
   }
 }
+
+/* ───────────── 2-nd SECTION ───────────── */
 
 .footer-second-section {
   .footer-address-wrapper {
@@ -64,6 +65,7 @@
     .footer-address-content {
       flex: 1;
 
+      /* every address line uses identical colour and weight (#666, 500) */
       .footer-address-header,
       .footer-address-email,
       .footer-phone,
@@ -71,10 +73,7 @@
         font-size: 1rem;
         font-weight: 500;
         margin: 0.5rem 0;
-      }
-
-      .footer-address-header {
-        margin-top: 0;
+        color: #666;
       }
     }
 
@@ -96,20 +95,20 @@
   }
 }
 
+/* ───────────── 3-rd SECTION ───────────── */
+
 .footer-third-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   .footer-third-link {
-    color: #3b3b3b;
+    color: #666;
     font-size: 1rem;
     text-decoration: none;
     font-weight: 500;
 
-    &:hover {
-      color: #e6332a;
-    }
+    &:hover { color: #e88463; }
   }
 
   .footer-third-right {
@@ -118,84 +117,58 @@
   }
 }
 
+/* ───────────── BREAKPOINTS ───────────── */
+
 @media (min-width: 1025px) {
   .footer-first-section,
   .footer-second-section,
-  .footer-third-section {
-    padding: 2rem 3rem;
-  }
+  .footer-third-section { padding: 2rem 3rem; }
 
   .footer-second-section .footer-address-wrapper {
     gap: 4rem;
-
-    .footer-images-container {
-      max-width: 60%;
-      margin-top: 0;
-    }
+    .footer-images-container { max-width: 60%; margin-top: 0; }
   }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
   .footer-first-section,
   .footer-second-section,
-  .footer-third-section {
-    padding: 1.5rem 2rem;
-  }
+  .footer-third-section { padding: 1.5rem 2rem; }
 
   .footer-second-section .footer-address-wrapper {
     gap: 2rem;
-
-    .footer-images-container {
-      max-width: 50%;
-      margin-top: 0;
-    }
+    .footer-images-container { max-width: 50%; margin-top: 0; }
   }
 }
 
 @media (max-width: 768px) {
   .footer-first-section,
   .footer-second-section,
-  .footer-third-section {
-    padding: 1rem 2rem;
-  }
+  .footer-third-section { padding: 1rem 2rem; }
 
   .footer-first-section .footer-middle {
     flex-direction: column;
     align-items: flex-start;
-
-    .footer-menu-container {
-      width: 100%;
-    }
+    .footer-menu-container { width: 100%; }
   }
 
   .footer-second-section .footer-address-wrapper {
     flex-direction: column;
     align-items: flex-start;
     gap: 3rem;
-
-    .footer-images-container {
-      justify-content: flex-start;
-      max-width: 90%;
-    }
+    .footer-images-container { justify-content: flex-start; max-width: 90%; }
   }
 
   .footer-third-section {
     flex-direction: column;
     gap: 0.5rem;
-  }
-
-  .footer-third-link,
-  .footer-third-right {
-    align-self: flex-start;
-    text-align: left;
+    .footer-third-link,
+    .footer-third-right { align-self: flex-start; text-align: left; }
   }
 }
 
 @media (max-width: 480px) {
-  .footer-main-container {
-    font-size: 1rem;
-    text-align: left;
-  }
+  .footer-main-container { font-size: 1rem; text-align: left; }
 
   .footer-first-section .footer-middle,
   .footer-second-section .footer-address-wrapper,
@@ -206,4 +179,3 @@
     justify-content: flex-start;
   }
 }
-

@@ -1,7 +1,7 @@
 /* -------------  section shell ------------- */
 .cta-contact {
   width: 100%;
-  background: #4b4b4b;          // dark grey bar
+  background: #666666e0;          // dark grey bar
   color: #fff;                  // white text
   padding: 2.5rem 1rem;
 
@@ -21,7 +21,7 @@
 
     h2 {
       font-size: clamp(1.5rem, 2.5vw, 2rem);
-      font-weight: 700;
+      font-weight: 600;
       margin: 0 0 0.25rem;
     }
 
@@ -61,11 +61,11 @@
       margin-left: 0;
       padding: 0.75rem 2rem;
       border: none;
-      background: #e33941;       // pill-shaped red
+      background: #e87063;       // pill-shaped red
       color: #fff;
       font-size: 1rem;
       font-weight: 600;
-      border-radius: 9999px;
+      border-radius: 0.6rem;
       cursor: pointer;
       transition: opacity 0.2s ease-in-out;
 
@@ -83,7 +83,7 @@
     &__checkbox {
       display: flex;
       align-items: flex-start;
-      font-size: 0.875rem;
+      font-size: 0.6rem;
       gap: 0.5rem;
 
       input {

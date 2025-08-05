@@ -51,7 +51,7 @@
 h1 {
   font-size: clamp(3rem, 8vw, 8rem);
   line-height: 0.9;
-  color: #b00000;
+  color: #E88463;
   margin: 0 0 1.5rem;
 }
 
@@ -59,7 +59,7 @@ p {
   white-space: pre-line;
   font-size: 1.25rem;
   line-height: 1.4;
-  color: #3b3b3b;
+  color: #666;
   margin-bottom: 2.5rem;
 }
 
@@ -69,7 +69,7 @@ p {
   font-size: 1rem;
   font-weight: 600;
   color: #eeeeee;
-  background-color: #b00000;
+  background-color: #E88463;
   border: none;
   border-radius: 0.6rem;
   cursor: pointer;
@@ -82,7 +82,7 @@ p {
 
 .slide__cta:hover,
 .slide__cta:focus-visible {
-  background-color: #d20000;
+  background-color: #e87063;
 }
 
 .dots {
@@ -113,7 +113,7 @@ p {
 }
 
 .dot.active {
-  background: #f5a623;
+  background: #e87063;
   transform: scale(1.2);
   opacity: 1;
 }

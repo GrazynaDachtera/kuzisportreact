@@ -15,22 +15,22 @@ interface Slide {
 const slides: Slide[] = [
   {
     titleLines: ["Sąsiedzki", "Łazarz"],
-    text: "SPORT I REKREACJA DLA\nDZIECI, MŁODZIEŻY\nORAZ DOROSŁYCH.",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     cta: { label: "Zapisz się", href: "/Service" },
     img: {
       src: "/Header/x.png",
-      alt: "Kobieta ćwicząca na szarfach",
+      alt: "z",
       width: 1600,
       height: 1067,
     },
   },
   {
-    titleLines: ["TRENING", "PERSONALNY"],
-    text: "Z NAMI OSIĄGNIESZ\nSWOJE FITNESS CELE\nSZYBCIEJ.",
-    cta: { label: "Umów się", href: "/Service" },
+    titleLines: ["XYZ", "XYZ"],
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    cta: { label: "Sprawdź", href: "/Service" },
     img: {
       src: "/Header/x.png",
-      alt: "Trening personalny",
+      alt: "z",
       width: 1600,
       height: 1067,
     },

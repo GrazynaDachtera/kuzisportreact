@@ -17,8 +17,7 @@ export default function CtaContact() {
       <div className="cta-contact__container">
         {/* left side – copy */}
         <div className="cta-contact__content">
-          <h2>Bądź ze mną w kontakcie i otrzymuj zniżki!</h2>
-          <p>Zapisz się do newslettera!</p>
+          <h2>Zapisz się do newslettera!</h2>
         </div>
 
         {/* right side – form */}

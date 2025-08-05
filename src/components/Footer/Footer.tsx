@@ -35,7 +35,7 @@ const FooterFirstSection = () => {
       header: "Informacje prawne",
       links: [
         { text: "RODO", to: "/Blog" },
-        { text: "COOKIES", to: "/Blog" },
+        { text: "Cookies", to: "/Blog" },
         { text: "Polityka prywatności", to: "/Blog" },
         { text: "Deklaracja dostępności", to: "/Blog" },
       ],

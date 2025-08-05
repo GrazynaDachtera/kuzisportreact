@@ -18,13 +18,18 @@ export default function NavBar() {
   }, []);
 
   const toggle = () => {
-    setOpen((o) => !o);
-    document.body.classList.toggle("overflow-hidden", !open);
+    setOpen((prev) => {
+      const next = !prev;
+      document.body.classList.toggle("overflow-hidden", next);
+      document.body.classList.toggle("menu-open", next);
+      return next;
+    });
   };
 
   const close = useCallback(() => {
     setOpen(false);
     document.body.classList.remove("overflow-hidden");
+    document.body.classList.remove("menu-open");
   }, []);
 
   useEffect(() => {
@@ -53,13 +58,12 @@ export default function NavBar() {
   }, [close]);
 
   const items = [
-    { label: "STRONA GŁÓWNA", path: "/" },
-    { label: "AKTUALNOŚCI", path: "/AboutUs" },
-    { label: "REZERWACJA", path: "/Service" },
-    { label: "GRAFIK", path: "/Blog" },
-    { label: "CENNIK", path: "/Contact" },
-    { label: "GALERIA", path: "/Social" },
-    { label: "KONTAKT", path: "/W" },
+    { label: "O nas", path: "/" },
+    { label: "Aktualności", path: "/AboutUs" },
+    { label: "Osiedlowe ABC", path: "/Service" },
+    { label: "Projekty", path: "/Blog" },
+    { label: "Ty też możesz pomóc", path: "/Contact" },
+    { label: "Kontakt", path: "/W" },
   ];
 
   return (
@@ -72,15 +76,28 @@ export default function NavBar() {
                 <div className="logo-navbar">
                   <Link href="/" aria-label="KuziSport – Home" onClick={close}>
                     <Image
-                      src="/NavBar/x.png"
-                      alt="Logo KuziSport"
-                      width={120}
-                      height={40}
-                      style={{ width: "100%", height: "auto" }}
+                      src="/NavBar/logo.png"
+                      alt="Logo Sasiedzki Lazarz"
+                      width={90}
+                      height={65}
                       priority
                     />
                   </Link>
                 </div>
+
+                <ul className={`nav-horizontal ${open ? "hidden" : ""}`}>
+                  {items.map((i) => (
+                    <li
+                      key={i.path}
+                      className={pathname === i.path ? "active" : ""}
+                    >
+                      <Link href={i.path} onClick={close}>
+                        {i.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+
                 <button
                   className={`hamburger-btn ${open ? "active" : ""}`}
                   aria-label="Menu"
@@ -124,7 +141,7 @@ export default function NavBar() {
                     height="28"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke="#3B3B3B"
+                    stroke="#E88463"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -144,7 +161,7 @@ export default function NavBar() {
                     height="28"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke="#3B3B3B"
+                    stroke="#E88463"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"

@@ -14,7 +14,7 @@ type Article = {
 export default function News() {
   const hero = {
     href: "/artykuly",
-    src: "/News/karate.png",
+    src: "/News/matejki-poznan.png",
     alt: "Ann pointing at featured articles",
     width: 424,
     height: 532,
@@ -24,21 +24,22 @@ export default function News() {
     {
       href: "/artykuly/nowosci-w-diet-training",
       thumbnail: "/News/smallimg1.jpg",
-      category: "ODŻYWIANIE · TRENING · ZDROWIE",
+      category: "ZYX · XYZ · XYZ",
       title:
-        "Totalne nowości w Diet & Training by Ann! Odkryj funkcje, które wyniosą Twój trening i dietę na WYŻSZY POZIOM!",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     },
     {
       href: "/artykuly/alergie-i-nietolerancje",
       thumbnail: "/News/smallimg1.jpg",
-      category: "ZDROWIE",
-      title: "Alergie i nietolerancje pokarmowe – co trzeba o nich wiedzieć?",
+      category: "ZYX · XYZ · XYZ",
+      title:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     },
     {
       href: "/artykuly/warzywa-owoce-kluczem",
       thumbnail: "/News/smallimg1.jpg",
-      category: "ODŻYWIANIE",
-      title: "Sezonowe warzywa i owoce kluczem do zdrowia",
+      category: "ZYX · XYZ · XYZ",
+      title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     },
   ];
 
@@ -47,7 +48,7 @@ export default function News() {
       <div className="news-container">
         <div className="news-left">
           <span className="news-tagline">bądź na bieżąco!</span>
-          <h2 className="news-heading">Blog</h2>
+          <h2 className="news-heading">Aktualności</h2>
           <div className="news-list">
             {articles.map((a, i) => (
               <Link href={a.href} className="news-item" key={i}>
