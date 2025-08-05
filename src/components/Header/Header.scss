@@ -5,12 +5,15 @@
   background: #f7f7f7;
   flex-grow: 1;
   display: flex;
-  height: 100%;
-
-  // KEY CHANGE 1: Add padding to prevent content from going under the navbar.
-  // Adjust '6rem' to match your actual navbar height.
+  height: 100svh;
   padding-top: 6rem;
-  box-sizing: border-box; // Ensures padding is included in height calculation.
+  box-sizing: border-box;
+}
+
+@supports (height: 100dvh) {
+  .slider {
+    height: 100dvh;
+  }
 }
 
 .slides {
@@ -74,10 +77,8 @@ p {
   border-radius: 0.6rem;
   cursor: pointer;
   font-family: "Poppins", sans-serif;
-  
-  /* --- Added lines --- */
-  text-decoration: none; /* Removes the underline from links */
-  transition: background-color 0.3s ease-in-out; /* Adds a smooth transition */
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .slide__cta:hover,
@@ -91,8 +92,6 @@ p {
   z-index: 10;
   display: flex;
   gap: 1rem;
-
-  // KEY CHANGE 2: Center dots horizontally on ALL screen sizes.
   left: 50%;
   transform: translateX(-50%);
 }
@@ -118,7 +117,6 @@ p {
   opacity: 1;
 }
 
-/* Tablet styles */
 @media (max-width: 1024px) {
   .slide__text {
     flex-basis: 50%;
@@ -131,19 +129,15 @@ p {
   }
 }
 
-/* Mobile styles */
 @media (max-width: 768px) {
   .slider {
-    // Adjust top padding for smaller mobile navbars if needed.
     padding-top: 5rem;
   }
-
   .slide {
     flex-direction: column;
     justify-content: center;
     padding: 2rem;
   }
-
   .slide__text {
     flex-basis: auto;
     max-width: 100%;
@@ -153,11 +147,9 @@ p {
     flex-direction: column;
     align-items: center;
   }
-
   .slide__image {
     display: none;
   }
-
   .dots {
     bottom: 3rem;
   }
