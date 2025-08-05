@@ -6,7 +6,6 @@ import Navbar from "@/components/Navbar/Navbar";
 import Regulations from "@/components/Regulations/Regulations";
 import Footer from "@/components/Footer/Footer";
 import Cookies from "@/components/Cookies/Cookies";
-import Message from "@/components/Message/Message";
 import "@/app/globals.css";
 
 export default function RegulationsPage() {
@@ -30,7 +29,6 @@ export default function RegulationsPage() {
         </section>
       </div>
       <Cookies />
-      <Message />
     </>
   );
 }
