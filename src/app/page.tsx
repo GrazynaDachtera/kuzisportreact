@@ -5,7 +5,9 @@ import Navbar from "../components/Navbar/Navbar";
 import Header from "../components/Header/Header";
 import Reviews from "../components/Reviews/Reviews";
 import Sports from "../components/Sports/Sports";
+import Birthday from "../components/Birthday/Birthday";
 import News from "../components/News/News";
+import Benefits from "../components/Benefits/Benefits";
 import CtaContact from "../components/CtaContact/CtaContact";
 import Footer from "../components/Footer/Footer";
 import Cookies from "../components/Cookies/Cookies";
@@ -35,7 +37,9 @@ export default function Home() {
           <Header />
           <Reviews />
           <Sports />
+          <Birthday />
           <News />
+          <Benefits />
           <CtaContact />
           <Footer />
         </section>
