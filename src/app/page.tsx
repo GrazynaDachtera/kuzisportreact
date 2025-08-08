@@ -38,8 +38,8 @@ export default function Home() {
           <Reviews />
           <Sports />
           <Birthday />
-          <News />
           <Benefits />
+          <News />
           <CtaContact />
           <Footer />
         </section>

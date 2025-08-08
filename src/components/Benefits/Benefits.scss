@@ -1,32 +1,32 @@
 :root {
   --benefits-py: clamp(2rem, 6vw, 6rem);
-  --card-bg: #ffffff;
+  --gap-x: clamp(3rem, 8vw, 6rem);
+  --gap-y: 2.5rem;
+  --card-bg: hsl(0 0% 100% / 0.65);
   --card-radius: 1rem;
   --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-  --title-color: #1a1a1a;
+  --title-color: #b00000;
   --text-color: #555;
-  --font: "Poppins", sans-serif;
-  --bg-img: url("/Benefits/aerialsilks.png"); /* full‑width background */
+  --font-main: "Poppins", sans-serif;
+  --bg-img: url("/Benefits/aerialsilks.png");
 }
 
 .benefits {
   position: relative;
   padding-block: var(--benefits-py);
-  font-family: var(--font);
-  overflow: hidden; /* ensures pseudo‑element is clipped */
+  font-family: var(--font-main);
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--bg-img) center / 100% auto no-repeat;
+    z-index: 0;
+    pointer-events: none;
+  }
 }
 
-/* Background image (full width, auto height) */
-.benefits::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--bg-img) center/100% auto no-repeat; /* 100% width, auto height */
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* ----------------------------------------------------------- CLOUD & TITLE */
 .benefits__cloud {
   position: absolute;
   top: 0;
@@ -34,12 +34,11 @@
   transform: translate(-50%, -35%);
   width: min(90%, 700px);
   aspect-ratio: 7 / 3;
-  background: url("/WhyUs/cloud.svg") center/contain no-repeat; /* update if needed */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
+  background: url("/WhyUs/cloud.svg") center / contain no-repeat;
+  display: grid;
+  place-items: center;
   z-index: 2;
+  pointer-events: none;
 }
 
 .benefits__title {
@@ -51,16 +50,15 @@
   max-width: 80%;
 }
 
-/* ---------------------------------------------------------- GRID & CARDS */
 .benefits__inner {
-  position: relative; /* keep above background */
+  position: relative;
   z-index: 1;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2.5rem 2rem;
+  column-gap: var(--gap-x);
+  row-gap: var(--gap-y);
   max-width: 1200px;
   margin-inline: auto;
-  align-items: start;
 }
 
 .benefits__card {
@@ -69,44 +67,32 @@
   box-shadow: var(--card-shadow);
   padding: 1.6rem 2rem;
   max-width: 340px;
-  backdrop-filter: blur(2px); /* slight glassy effect over bg image */
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.7rem;
+    color: var(--title-color);
+  }
+
+  p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text-color);
+  }
 }
 
-.benefits__card h3 {
-  font-size: 1.05rem;
-  font-weight: 700;
-  margin-bottom: 0.7rem;
-  color: var(--title-color);
-}
-
-.benefits__card p {
-  font-size: 0.9rem;
-  line-height: 1.5;
-  color: var(--text-color);
-}
-
-/* ------------------------ CARD ORDER ON DESKTOP (2‑column layout) */
-.card--1 { grid-column: 1 / 2; grid-row: 1 / 2; }
-.card--2 { grid-column: 2 / 3; grid-row: 1 / 2; }
-.card--3 { grid-column: 2 / 3; grid-row: 2 / 3; }
-.card--4 { grid-column: 1 / 2; grid-row: 2 / 3; }
-.card--5 { grid-column: 1 / -1; grid-row: 3 / 4; }
-
-/* -------------------------------------------------- TABLETS (<= 992px) */
 @media (max-width: 992px) {
   .benefits__inner {
     grid-template-columns: 1fr;
-    gap: 1.8rem;
+    column-gap: 0;
+    row-gap: calc(var(--gap-y) * 0.75);
   }
 
   .benefits__card {
     max-width: 90%;
     margin-inline: auto;
   }
-
-  .card--1 { grid-column: 1; grid-row: 1; }
-  .card--2 { grid-column: 1; grid-row: 2; }
-  .card--3 { grid-column: 1; grid-row: 3; }
-  .card--4 { grid-column: 1; grid-row: 4; }
-  .card--5 { grid-column: 1; grid-row: 5; }
 }

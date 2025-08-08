@@ -98,10 +98,10 @@ export default function Sports() {
             </div>
             <div className="sports-image-wrapper">
               <Image
-                src="/Sports/karate.png"
+                src="/Sports/gimnastyka.png"
                 alt="karate"
                 width={600}
-                height={400}
+                height={541}
                 className="sports__badge"
                 priority
               />
