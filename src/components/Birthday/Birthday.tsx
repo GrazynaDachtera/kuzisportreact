@@ -13,7 +13,7 @@ export default function Birthday() {
             {/* Image now appears on the left */}
             <div className="sports-image-wrapper">
               <Image
-                src="/Sports/karate.png"
+                src="/Birthday/birthdaycake.png"
                 alt="karate"
                 width={600}
                 height={400}
