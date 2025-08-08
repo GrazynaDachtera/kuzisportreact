@@ -18,18 +18,18 @@ const slides: Slide[] = [
     text: "SPORT I REKREACJA DLA\nDZIECI, MŁODZIEŻY\nORAZ DOROSŁYCH.",
     cta: { label: "Zapisz się", href: "/Service" },
     img: {
-      src: "/Header/1.png",
+      src: "/Header/x.png",
       alt: "Kobieta ćwicząca na szarfach",
       width: 1600,
       height: 1067,
     },
   },
   {
-    titleLines: ["TRENING", "PERSONALNY"],
-    text: "Z NAMI OSIĄGNIESZ\nSWOJE FITNESS CELE\nSZYBCIEJ.",
+    titleLines: ["Xyz", "Xyz"],
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     cta: { label: "Umów się", href: "/Service" },
     img: {
-      src: "/Header/1.png",
+      src: "/Header/x.png",
       alt: "Trening personalny",
       width: 1600,
       height: 1067,
