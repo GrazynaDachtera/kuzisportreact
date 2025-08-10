@@ -9,10 +9,18 @@ interface IFooterMenu {
   links: { text: string; to: string }[];
 }
 
+type AddressItem = {
+  header: string;
+  address: string;
+  NIP: string;
+  phoneNumbers: string[];
+  email: string;
+};
+
 const FooterMenu = ({ header, links }: IFooterMenu) => (
   <div className="footer-menu-container">
     <h4 className="footer-menu-header">{header}</h4>
-    {links.map(({ text, to }, idx) => (
+    {links.map(({ text, to }: { text: string; to: string }, idx: number) => (
       <Link key={idx} href={to} className="footer-menu-link">
         {text}
       </Link>
@@ -21,7 +29,7 @@ const FooterMenu = ({ header, links }: IFooterMenu) => (
 );
 
 const FooterFirstSection = () => {
-  const menus = [
+  const menus: IFooterMenu[] = [
     {
       header: "Sąsiedzki Łazarz",
       links: [
@@ -74,16 +82,17 @@ const FooterFirstSection = () => {
 };
 
 const FooterSecondSection = () => {
-  const address = [
+  const address: AddressItem[] = [
     {
-      header: "Sąsiedzki Łazarz | ul. Ułańska 5 | 60-748 Poznań",
+      header: "Sąsiedzki Łazarz",
+      address: "ul. Ułańska 5, 60-748 Poznań",
+      NIP: "NIP: 7792584284 REGON: 540869932",
+      phoneNumbers: ["tel. 605 550 370"],
       email: "kontakt@sasiedzkilazarz.pl",
-      phoneNumbers: ["605 550 370"],
-      NIP: "NIP: 7792584284 | REGON: 540869932",
     },
   ];
 
-  const iconPaths = [
+  const iconPaths: string[] = [
     "/Footer/X.png",
     "/Footer/X.png",
     "/Footer/X.png",
@@ -94,26 +103,27 @@ const FooterSecondSection = () => {
     <div className="footer-second-section">
       <div className="footer-address-wrapper">
         <div className="footer-address-content">
-          {address.map((item, idx) => (
+          {address.map((item: AddressItem, idx: number) => (
             <div key={idx}>
               <h4 className="footer-address-header">{item.header}</h4>
-              <p className="footer-address-email">{item.email}</p>
+              <p className="footer-address-line">{item.address}</p>
+              <p className="footer-nip">{item.NIP}</p>
               <div className="footer-phone-numbers">
-                {item.phoneNumbers.map((phone, i) => (
+                {item.phoneNumbers.map((phone: string, i: number) => (
                   <p key={i} className="footer-phone">
                     {phone}
                   </p>
                 ))}
               </div>
-              <p className="footer-nip">{item.NIP}</p>
+              <p className="footer-address-email">{item.email}</p>
             </div>
           ))}
         </div>
 
         <div className="footer-images-container">
-          {iconPaths.map((src, idx) => (
+          {iconPaths.map((src: string, idx: number) => (
             <div key={idx} className="footer-image-icon">
-              <Image src={src} alt={`Icon ${idx + 1}`} width={80} height={0} />
+              <Image src={src} alt={`Icon ${idx + 1}`} width={80} height={80} />
             </div>
           ))}
         </div>
@@ -128,7 +138,7 @@ const FooterThirdSection = () => (
       Regulamin
     </Link>
     <div className="footer-third-right">
-      © 2025 SasiedzkiLazarz. All rights reserved.
+      © 2025 SasiedzkiLazarz. All rights reserved.
     </div>
   </div>
 );
