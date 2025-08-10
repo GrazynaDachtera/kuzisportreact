@@ -16,8 +16,6 @@ export default function News() {
     href: "/artykuly",
     src: "/News/karate.png",
     alt: "Ann pointing at featured articles",
-    width: 300,
-    height: 447,
   };
 
   const articles: Article[] = [
@@ -59,6 +57,8 @@ export default function News() {
                     alt={a.title}
                     width={90}
                     height={74}
+                    sizes="(max-width: 992px) 90px, 90px"
+                    className="news__thumb-img"
                     priority={i === 0}
                   />
                 </div>
@@ -70,13 +70,16 @@ export default function News() {
             ))}
           </div>
         </div>
+
         <div className="news-hero">
-          <Link href={hero.href}>
+          <Link href={hero.href} className="news-hero-link">
             <Image
               src={hero.src}
               alt={hero.alt}
-              width={hero.width}
-              height={hero.height}
+              width={600}
+              height={900}
+              sizes="(max-width: 992px) 100vw, 40vw"
+              className="news__hero-img"
               priority
             />
           </Link>

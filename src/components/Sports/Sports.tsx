@@ -4,7 +4,6 @@ import React from "react";
 import Image from "next/image";
 import "./Sports.scss";
 
-// Updated ArrowIcon component
 const ArrowIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -13,12 +12,11 @@ const ArrowIcon = () => (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="2.5" // Increased strokeWidth for a bolder look
+    strokeWidth="2.5"
     strokeLinecap="round"
     strokeLinejoin="round"
     className="arrow-icon"
   >
-    {/* This single path creates the new arrow shape */}
     <path d="M7 7h10v10" />
   </svg>
 );
@@ -102,6 +100,8 @@ export default function Sports() {
                 alt="karate"
                 width={600}
                 height={541}
+                sizes="(max-width: 992px) 90vw, 600px"
+                style={{ width: "100%", height: "auto", display: "block" }}
                 className="sports__badge"
                 priority
               />

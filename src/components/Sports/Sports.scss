@@ -3,10 +3,16 @@
   font-family: "Poppins", sans-serif;
 }
 
+.Sports,
+.Sports * {
+  box-sizing: border-box;
+}
+
 .Sports {
   width: 100%;
   font-family: "Poppins", sans-serif;
   color: #333;
+  overflow-x: hidden;
 }
 
 .sports-top-wrapper {
@@ -15,7 +21,7 @@
 
 .sports-top-wrapper .sports-container {
   padding-block: var(--section-py);
-  padding-inline: 4rem;
+  padding-inline: clamp(1rem, 4vw, 4rem);
 }
 
 .sports-grid-wrapper {
@@ -25,9 +31,9 @@
 }
 
 .sports-container {
-  max-width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 4rem;
+  padding-inline: clamp(1rem, 4vw, 4rem);
 }
 
 .sports-top {
@@ -46,7 +52,7 @@
 
 .sports-content {
   flex: 1;
-  max-width: 500px;
+  max-width: 560px;
 }
 
 @media (max-width: 992px) {
@@ -59,7 +65,7 @@
 }
 
 .sports-title {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 4.5vw, 2.5rem);
   font-weight: 700;
   margin-bottom: 20px;
   color: #b00000;
@@ -97,12 +103,16 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  max-width: 600px;
+  width: 100%;
+  margin-left: auto;
 }
 
-.sports-image-wrapper .sports-image {
+.sports__badge {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
+  display: block;
 }
 
 .sports-grid {
@@ -160,6 +170,6 @@
 
 @media (max-width: 992px) {
   .sports-top-wrapper .sports-container {
-    padding-inline: 2rem;
+    padding-inline: 1rem;
   }
 }

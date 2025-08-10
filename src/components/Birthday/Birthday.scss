@@ -1,12 +1,19 @@
 :root {
-  --section-py: clamp(0, 2vw, 5rem);
+  --section-py: clamp(1.5rem, 3vw, 5rem);
   font-family: "Poppins", sans-serif;
+}
+
+/* Scope box-sizing so paddings don't push width past viewport */
+.Birthday,
+.Birthday * {
+  box-sizing: border-box;
 }
 
 .Birthday {
   width: 100%;
-  font-family: "Poppins", sans-serif;
   color: #333;
+  /* Safety: prevent any accidental horizontal overflow */
+  overflow-x: hidden;
 }
 
 .birthday-top-wrapper {
@@ -14,12 +21,11 @@
 }
 
 .birthday-container {
+  margin-inline: auto;
+  max-width: 1200px;
   padding-block: var(--section-py);
-  padding-inline: 4rem;
-
-  @media (max-width: 992px) {
-    padding-inline: 2rem;
-  }
+  /* Fluid, mobile-first padding that never overflows small screens */
+  padding-inline: clamp(1rem, 4vw, 4rem);
 }
 
 /* Mobile: stack title -> image -> description -> button */
@@ -28,7 +34,6 @@
   text-align: center;
 
   @media (min-width: 993px) {
-    /* Desktop: true 2-column layout with one image */
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
@@ -41,45 +46,48 @@
   }
 }
 
-/* Content acts as a container on mobile; becomes 'transparent' on desktop
-   so its children (title, image, description, button) can occupy grid areas. */
+/* Content wrapper */
 .birthday-content {
   display: flex;
   flex-direction: column;
   align-items: center;
 
   @media (min-width: 993px) {
-    display: contents; /* lets children participate in the parent grid */
+    display: contents;
   }
 }
 
 /* Image */
 .birthday-image-wrapper {
   margin: 20px 0;
-  display: flex;
-  justify-content: center;
+  width: 100%;
+  max-width: 430px; /* never wider than the intrinsic image, but can shrink */
+  display: block;
 
   @media (min-width: 993px) {
     margin: 0;
     grid-area: image;
-    justify-content: center;
-    align-items: center;
     justify-self: center;
+    align-self: center;
   }
 }
 
+/* The class still helps if style prop is removed later */
 .birthday__badge {
-  max-width: 100%;
+  width: 100%;
   height: auto;
+  max-width: 100%;
   border-radius: 8px;
+  display: block;
 }
 
 /* Title */
 .birthday-title {
-  font-size: 2.5rem;
+  font-size: clamp(1.75rem, 4.5vw, 2.5rem);
   font-weight: 700;
   color: #b00000;
   margin-bottom: 20px;
+  word-break: break-word;
 
   @media (max-width: 992px) {
     text-align: center;
@@ -96,6 +104,7 @@
   line-height: 1.6;
   margin: 20px 0 30px;
   color: #555;
+  word-wrap: anywhere;
 
   @media (min-width: 993px) {
     grid-area: description;
