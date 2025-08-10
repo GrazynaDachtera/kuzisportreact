@@ -1,80 +1,110 @@
-// Birthday.scss
 :root {
   --section-py: clamp(0, 2vw, 5rem);
   font-family: "Poppins", sans-serif;
 }
 
-.Sports {
+.Birthday {
   width: 100%;
   font-family: "Poppins", sans-serif;
   color: #333;
 }
 
-.sports-top-wrapper {
+.birthday-top-wrapper {
   background-color: #f8f9fa;
 }
 
-.sports-top-wrapper .sports-container {
+.birthday-container {
   padding-block: var(--section-py);
   padding-inline: 4rem;
-}
 
-.sports-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-}
-
-@media (max-width: 992px) {
-  .sports-top {
-    flex-direction: column;
-    text-align: center;
+  @media (max-width: 992px) {
+    padding-inline: 2rem;
   }
 }
 
-.sports-image-wrapper {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Mobile: stack title -> image -> description -> button */
+.birthday-top {
+  display: block;
+  text-align: center;
+
+  @media (min-width: 993px) {
+    /* Desktop: true 2-column layout with one image */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "image title"
+      "image description"
+      "image cta";
+    column-gap: 40px;
+    align-items: center;
+    text-align: left;
+  }
 }
 
-.sports-image-wrapper .sports__badge {
+/* Content acts as a container on mobile; becomes 'transparent' on desktop
+   so its children (title, image, description, button) can occupy grid areas. */
+.birthday-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (min-width: 993px) {
+    display: contents; /* lets children participate in the parent grid */
+  }
+}
+
+/* Image */
+.birthday-image-wrapper {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+
+  @media (min-width: 993px) {
+    margin: 0;
+    grid-area: image;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+  }
+}
+
+.birthday__badge {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
 }
 
-.sports-content {
-  flex: 1;
-  max-width: 500px;
-}
+/* Title */
+.birthday-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #b00000;
+  margin-bottom: 20px;
 
-@media (max-width: 992px) {
-  .sports-content {
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  @media (max-width: 992px) {
+    text-align: center;
+  }
+
+  @media (min-width: 993px) {
+    grid-area: title;
   }
 }
 
-.sports-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 20px;
-  color: #b00000;
-}
-
-.sports-description {
+/* Description */
+.birthday-description {
   font-size: 1rem;
   line-height: 1.6;
-  margin-bottom: 30px;
+  margin: 20px 0 30px;
   color: #555;
+
+  @media (min-width: 993px) {
+    grid-area: description;
+    margin: 0 0 20px 0;
+  }
 }
 
-.sports-button {
+/* Button */
+.birthday-button {
   padding: 12px 24px;
   font-size: 1rem;
   font-weight: 600;
@@ -85,14 +115,14 @@
   cursor: pointer;
   text-decoration: none;
   transition: background-color 0.3s ease-in-out;
-}
 
-.sports-button:hover {
-  background-color: #d20000;
-}
+  @media (min-width: 993px) {
+    grid-area: cta;
+    justify-self: start;
+    width: fit-content;
+  }
 
-@media (max-width: 992px) {
-  .sports-top-wrapper .sports-container {
-    padding-inline: 2rem;
+  &:hover {
+    background-color: #d20000;
   }
 }

@@ -1,40 +1,36 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
 import "./Birthday.scss";
 
 export default function Birthday() {
   return (
-    <section className="Sports">
-      <div className="sports-top-wrapper">
-        <div className="sports-container">
-          <div className="sports-top">
-            {/* Image now appears on the left */}
-            <div className="sports-image-wrapper">
-              <Image
-                src="/Birthday/birthdaycake.png"
-                alt="karate"
-                width={600}
-                height={400}
-                className="sports__badge"
-                priority
-              />
-            </div>
-
-            {/* Description appears on the right */}
-            <div className="sports-content">
-              <h2 className="sports-title">
+    <section className="Birthday">
+      <div className="birthday-top-wrapper">
+        <div className="birthday-container">
+          <div className="birthday-top">
+            <div className="birthday-content">
+              <h2 className="birthday-title">
                 Organizacja Urodzin dla Dzieci w Kuzi Sport
               </h2>
-              <p className="sports-description">
+              <div className="birthday-image-wrapper">
+                <Image
+                  src="/Birthday/birthdaycake.png"
+                  alt="birthday cake"
+                  width={430}
+                  height={424}
+                  className="birthday__badge"
+                  priority
+                />
+              </div>
+              <p className="birthday-description">
                 Zapraszamy do wyjątkowego świata urodzinowych przyjęć w Kuzi
                 Sport! Nasza sala sportowa to idealne miejsce, aby świętować ten
                 szczególny dzień w radosnej i aktywnej atmosferze. Oferujemy
                 organizację urodzin dla dzieci w każdym wieku, które z pewnością
                 zostaną na długo w pamięci zarówno maluchów, jak i ich rodziców.
               </p>
-              <button className="sports-button">Sprawdź</button>
+              <button className="birthday-button">Sprawdź</button>
             </div>
           </div>
         </div>
