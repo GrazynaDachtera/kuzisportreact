@@ -1,45 +1,42 @@
-/* ───────────────  Global design tokens  ─────────────── */
 :root {
-  /* section padding */
-  --benefits-py: clamp(2rem, 6vw, 6rem);     /* top / bottom */
-  --benefits-px: clamp(1rem, 5vw, 4rem);     /* left / right  */
-
-  /* layout */
+  --benefits-py: clamp(2rem, 6vw, 6rem);
+  --benefits-px: clamp(1rem, 5vw, 4rem);
   --gap-x: clamp(3rem, 8vw, 6rem);
   --gap-y: 2.5rem;
-
-  /* card styling */
   --card-bg: hsl(0 0% 100% / 0.85);
   --card-radius: 1rem;
   --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-
-  /* typography & colours */
   --title-color: #b00000;
-  --text-color:  #555;
-  --font-main:   "Poppins", sans-serif;
-
-  /* imagery */
+  --text-color: #555;
+  --font-main: "Poppins", sans-serif;
   --bg-img: url("/Benefits/aerialsilks.png");
+
+  /* controls how far below the title the figure starts */
+  --figure-offset-top: clamp(6rem, 16vw, 10rem);
 }
 
-/* ───────────────  Section wrapper  ─────────────── */
 .benefits {
   position: relative;
-  padding: var(--benefits-py) var(--benefits-px);   /* extra horizontal padding */
+  padding: var(--benefits-py) var(--benefits-px);
   font-family: var(--font-main);
   overflow: hidden;
 
   &::before {
     content: "";
     position: absolute;
-    inset: 0;
-    background: var(--bg-img) center / 100% auto no-repeat;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: var(--figure-offset-top);
+    background-image: var(--bg-img);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center top;
     z-index: 0;
     pointer-events: none;
   }
 }
 
-/* ───────────────  Decorative cloud & heading  ─────────────── */
 .benefits__cloud {
   position: absolute;
   top: 0;
@@ -64,20 +61,39 @@
   padding-top: 2rem;
 }
 
-/* ───────────────  Grid container  ─────────────── */
 .benefits__inner {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr min(420px, 30vw) 1fr;
   column-gap: var(--gap-x);
-  row-gap: var(--gap-y);
   max-width: 1200px;
   margin-inline: auto;
-  justify-items: center;          /* centres each card in its cell */
+  align-items: start;
 }
 
-/* ───────────────  Individual card  ─────────────── */
+.benefits__center {
+  min-height: 1px;
+}
+
+.benefits__col {
+  display: grid;
+  grid-auto-rows: max-content;
+  row-gap: var(--gap-y);
+  align-content: start;
+  padding-top: var(--col-offset, 0);
+}
+
+.benefits__col--left {
+  justify-items: end;
+  margin-right: clamp(0rem, 2vw, 1rem);
+}
+
+.benefits__col--right {
+  justify-items: start;
+  margin-left: clamp(0rem, 2vw, 1rem);
+}
+
 .benefits__card {
   background: var(--card-bg);
   border-radius: var(--card-radius);
@@ -101,15 +117,26 @@
   }
 }
 
-/* ───────────────  Responsive tweaks  ─────────────── */
 @media (max-width: 992px) {
+  :root {
+    --figure-offset-top: clamp(3rem, 10vw, 6rem);
+  }
+
   .benefits__inner {
     grid-template-columns: 1fr;
-    column-gap: 0;
-    row-gap: calc(var(--gap-y) * 0.75);
+  }
+
+  .benefits__col {
+    justify-items: center;
+    padding-top: 0;
+  }
+
+  .benefits__col--left,
+  .benefits__col--right {
+    margin: 0;
   }
 
   .benefits__card {
-    max-width: 90%;               /* keep cards nicely sized on small screens */
+    max-width: 90%;
   }
 }
