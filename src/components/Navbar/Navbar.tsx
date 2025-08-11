@@ -59,7 +59,7 @@ export default function NavBar() {
     { label: "GRAFIK", path: "/Blog" },
     { label: "CENNIK", path: "/Contact" },
     { label: "GALERIA", path: "/Social" },
-    { label: "KONTAKT", path: "/W" },
+    { label: "KONTAKT", path: "/Contact" },
   ];
 
   return (
