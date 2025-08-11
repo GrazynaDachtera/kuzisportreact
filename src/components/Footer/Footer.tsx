@@ -69,15 +69,15 @@ const FooterFirstSection = () => {
 };
 
 const FooterSecondSection = () => {
-  const address = [
-    {
-      header:
-        "Kuzi Sport Łukasz Kuzemko | ul. Św. Michała 56 | 61-005 Poznan |",
-      email: "kuzisport.biuro@gmail.com",
-      phoneNumbers: ["785 828 666"],
-      NIP: "NIP: 7773248243 | REGON: 361158968 | KRS: 0000551425",
-    },
-  ];
+  const address = {
+    title: "Kuzi Sport Łukasz Kuzemko",
+    street: "ul. św. Michała 56",
+    zipCity: "61–005 Poznań",
+    nip: "7773248243",
+    regon: "361158968",
+    tel: "785 828 666",
+    email: "kuzisport.biuro@gmail.com",
+  };
 
   const iconPaths = [
     "/Footer/WKF.png",
@@ -94,20 +94,34 @@ const FooterSecondSection = () => {
     <div className="footer-second-section">
       <div className="footer-address-wrapper">
         <div className="footer-address-content">
-          {address.map((item, idx) => (
-            <div key={idx}>
-              <h4 className="footer-address-header">{item.header}</h4>
-              <p className="footer-address-email">{item.email}</p>
-              <div className="footer-phone-numbers">
-                {item.phoneNumbers.map((phone, i) => (
-                  <p key={i} className="footer-phone">
-                    {phone}
-                  </p>
-                ))}
-              </div>
-              <p className="footer-nip">{item.NIP}</p>
-            </div>
-          ))}
+          <div className="footer-address-card">
+            <h4 className="addr-title">{address.title}</h4>
+
+            <p className="addr-line">
+              {address.street}, {address.zipCity}
+            </p>
+
+            <p className="addr-line">
+              <span className="addr-label">NIP</span> {address.nip}{" "}
+              <span className="addr-label">REGON</span> {address.regon}{" "}
+            </p>
+
+            <p className="addr-line">
+              <span className="addr-label">tel.</span>{" "}
+              <a
+                className="addr-link"
+                href={`tel:${address.tel.replace(/\s/g, "")}`}
+              >
+                {address.tel}
+              </a>
+            </p>
+
+            <p className="addr-line">
+              <a className="addr-link" href={`mailto:${address.email}`}>
+                {address.email}
+              </a>
+            </p>
+          </div>
         </div>
 
         <div className="footer-images-container">
@@ -128,7 +142,7 @@ const FooterThirdSection = () => (
       Regulamin
     </Link>
     <div className="footer-third-right">
-      © 2025 KuziSport. All rights reserved.
+      © 2025 KuziSport. All rights reserved.
     </div>
   </div>
 );

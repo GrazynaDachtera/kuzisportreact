@@ -9,6 +9,7 @@
   padding-block: clamp(1rem, 4vw, 6rem);
   font-family: "Poppins", sans-serif;
   overflow-x: hidden;
+  color: #666;
 }
 
 .news-container {
@@ -109,6 +110,7 @@
   font-size: 0.9rem;
   line-height: 1.4;
   margin-top: 0.25rem;
+  color: #666;
 }
 
 @media (max-width: 992px) {
@@ -120,6 +122,16 @@
 
   .news-hero {
     max-width: 420px;
+    margin-inline: auto;
+  }
+
+  .news-heading {
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .news-tagline {
+        text-align: center;
     margin-inline: auto;
   }
 }

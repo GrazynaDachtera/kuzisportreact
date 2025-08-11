@@ -18,6 +18,7 @@
   padding: 2rem 4rem;
 }
 
+/* ----- FIRST SECTION ----- */
 .footer-first-section {
   .footer-middle {
     display: flex;
@@ -55,6 +56,7 @@
   }
 }
 
+/* ----- SECOND SECTION (Address) ----- */
 .footer-second-section {
   .footer-address-wrapper {
     display: flex;
@@ -64,17 +66,37 @@
     .footer-address-content {
       flex: 1;
 
-      .footer-address-header,
-      .footer-address-email,
-      .footer-phone,
-      .footer-nip {
-        font-size: 1rem;
-        font-weight: 500;
-        margin: 0.5rem 0;
+      .footer-address-card {
+        max-width: 480px;
       }
 
-      .footer-address-header {
-        margin-top: 0;
+      .addr-title {
+        margin: 0 0 0.6rem 0;
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: #e6332a; // green title
+      }
+
+      .addr-line {
+        margin: 0.35rem 0;
+        font-size: 1rem;
+        line-height: 1.6;
+        font-weight: 500;
+        color: #3b3b3b;
+      }
+
+      .addr-label {
+        font-weight: 500;
+      }
+
+      .addr-link {
+        color: #3b3b3b;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+          color: #e6332a;
+        }
       }
     }
 
@@ -96,6 +118,7 @@
   }
 }
 
+/* ----- THIRD SECTION ----- */
 .footer-third-section {
   display: flex;
   justify-content: space-between;
@@ -118,6 +141,7 @@
   }
 }
 
+/* ----- RESPONSIVE ----- */
 @media (min-width: 1025px) {
   .footer-first-section,
   .footer-second-section,
@@ -206,4 +230,3 @@
     justify-content: flex-start;
   }
 }
-

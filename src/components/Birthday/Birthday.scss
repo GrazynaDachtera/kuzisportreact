@@ -1,34 +1,28 @@
 :root {
   --section-py: clamp(1.5rem, 3vw, 5rem);
+  --stack-gap: clamp(14px, 3vw, 24px);
+  --title-pad: clamp(0.75rem, 2.5vw, 1.25rem);
   font-family: "Poppins", sans-serif;
 }
 
-/* Scope box-sizing so paddings don't push width past viewport */
 .Birthday,
-.Birthday * {
-  box-sizing: border-box;
-}
+.Birthday * { box-sizing: border-box; }
 
 .Birthday {
   width: 100%;
   color: #333;
-  /* Safety: prevent any accidental horizontal overflow */
   overflow-x: hidden;
 }
 
-.birthday-top-wrapper {
-  background-color: #f8f9fa;
-}
+.birthday-top-wrapper { background-color: #f8f9fa; }
 
 .birthday-container {
   margin-inline: auto;
   max-width: 1200px;
   padding-block: var(--section-py);
-  /* Fluid, mobile-first padding that never overflows small screens */
   padding-inline: clamp(1rem, 4vw, 4rem);
 }
 
-/* Mobile: stack title -> image -> description -> button */
 .birthday-top {
   display: block;
   text-align: center;
@@ -41,38 +35,36 @@
       "image description"
       "image cta";
     column-gap: 40px;
+    row-gap: var(--stack-gap);
     align-items: center;
     text-align: left;
   }
 }
 
-/* Content wrapper */
 .birthday-content {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: var(--stack-gap);
 
   @media (min-width: 993px) {
     display: contents;
   }
 }
 
-/* Image */
 .birthday-image-wrapper {
-  margin: 20px 0;
+  margin: 0;
   width: 100%;
-  max-width: 430px; /* never wider than the intrinsic image, but can shrink */
+  max-width: 430px;
   display: block;
 
   @media (min-width: 993px) {
-    margin: 0;
     grid-area: image;
     justify-self: center;
     align-self: center;
   }
 }
 
-/* The class still helps if style prop is removed later */
 .birthday__badge {
   width: 100%;
   height: auto;
@@ -81,38 +73,29 @@
   display: block;
 }
 
-/* Title */
 .birthday-title {
-  font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+  font-size: clamp(2rem, 4.5vw, 2.5rem);
   font-weight: 700;
   color: #b00000;
-  margin-bottom: 20px;
-  word-break: break-word;
+  font-family: "Poppins", sans-serif;
+  padding-block: var(--title-pad);
+  margin: 0;
 
-  @media (max-width: 992px) {
-    text-align: center;
-  }
-
-  @media (min-width: 993px) {
-    grid-area: title;
-  }
+  @media (max-width: 992px) { text-align: center; }
+  @media (min-width: 993px) { grid-area: title; }
 }
 
-/* Description */
 .birthday-description {
   font-size: 1rem;
   line-height: 1.6;
-  margin: 20px 0 30px;
   color: #555;
   word-wrap: anywhere;
+  text-align: left;
+  margin: 0;
 
-  @media (min-width: 993px) {
-    grid-area: description;
-    margin: 0 0 20px 0;
-  }
+  @media (min-width: 993px) { grid-area: description; }
 }
 
-/* Button */
 .birthday-button {
   padding: 12px 24px;
   font-size: 1rem;
@@ -131,7 +114,5 @@
     width: fit-content;
   }
 
-  &:hover {
-    background-color: #d20000;
-  }
+  &:hover { background-color: #d20000; }
 }
