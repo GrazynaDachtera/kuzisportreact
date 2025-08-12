@@ -63,7 +63,7 @@ export default function NavBar() {
     { label: "Osiedlowe ABC", path: "/Service" },
     { label: "Projekty", path: "/Blog" },
     { label: "Ty też możesz pomóc", path: "/Contact" },
-    { label: "Kontakt", path: "/W" },
+    { label: "Kontakt", path: "/Contact" },
   ];
 
   return (

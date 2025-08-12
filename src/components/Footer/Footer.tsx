@@ -64,7 +64,7 @@ const FooterFirstSection = () => {
     {
       header: "Masz pytania?",
       links: [
-        { text: "Zapytaj teraz", to: "/Kontakt" },
+        { text: "Zapytaj teraz", to: "/Contact" },
         { text: "lub zadzwoń: 123", to: "tel:123" },
       ],
     },
