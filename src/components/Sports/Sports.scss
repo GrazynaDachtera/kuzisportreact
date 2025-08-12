@@ -38,6 +38,24 @@
   gap: 40px;
 }
 
+/* Desktop: force 50/50 split */
+@media (min-width: 992px) {
+  .sports-content,
+  .sports-image-wrapper {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .sports-content { max-width: 50%; }
+
+  .sports-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+/* Tablet & down: stack */
 @media (max-width: 992px) {
   .sports-top {
     flex-direction: column;
