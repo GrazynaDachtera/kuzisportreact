@@ -6,15 +6,19 @@
 }
 
 .Birthday,
-.Birthday * { box-sizing: border-box; }
+.Birthday * {
+  box-sizing: border-box;
+}
 
 .Birthday {
   width: 100%;
-  color: #333;
+  color: #6a7280;
   overflow-x: hidden;
 }
 
-.birthday-top-wrapper { background-color: #f8f9fa; }
+.birthday-top-wrapper {
+  background-color: #f8f9fa;
+}
 
 .birthday-container {
   margin-inline: auto;
@@ -76,24 +80,30 @@
 .birthday-title {
   font-size: clamp(2rem, 4.5vw, 2.5rem);
   font-weight: 700;
-  color: #b00000;
+  color: #6a7280; /* green heading */
   font-family: "Poppins", sans-serif;
   padding-block: var(--title-pad);
   margin: 0;
 
-  @media (max-width: 992px) { text-align: center; }
-  @media (min-width: 993px) { grid-area: title; }
+  @media (max-width: 992px) {
+    text-align: center;
+  }
+  @media (min-width: 993px) {
+    grid-area: title;
+  }
 }
 
 .birthday-description {
   font-size: 1rem;
   line-height: 1.6;
-  color: #555;
+  color: #6a7280;
   word-wrap: anywhere;
   text-align: left;
   margin: 0;
 
-  @media (min-width: 993px) { grid-area: description; }
+  @media (min-width: 993px) {
+    grid-area: description;
+  }
 }
 
 .birthday-button {
@@ -101,7 +111,7 @@
   font-size: 1rem;
   font-weight: 600;
   color: #eeeeee;
-  background-color: #b00000;
+  background-color: #006f44; /* button green */
   border: none;
   border-radius: 0.6rem;
   cursor: pointer;
@@ -114,5 +124,7 @@
     width: fit-content;
   }
 
-  &:hover { background-color: #d20000; }
+  &:hover {
+    background-color: #009c5c;
+  }
 }

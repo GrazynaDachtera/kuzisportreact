@@ -11,7 +11,7 @@
 .Sports {
   width: 100%;
   font-family: "Poppins", sans-serif;
-  color: #333;
+  color: #6a7280;
   overflow-x: hidden;
 }
 
@@ -58,7 +58,6 @@
 
 @media (max-width: 992px) {
   .sports-content {
-    /* let children (title, description, button) be ordered with the image */
     display: contents;
   }
 }
@@ -67,7 +66,7 @@
   font-size: clamp(2rem, 4.5vw, 2.5rem);
   font-weight: 700;
   margin-bottom: 20px;
-  color: #b00000;
+  color: #6a7280; /* green heading */
   font-family: "Poppins", sans-serif;
 }
 
@@ -75,7 +74,7 @@
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 30px;
-  color: #555;
+  color: #6a7280;
   font-family: "Poppins", sans-serif;
   text-align: left;
 }
@@ -85,7 +84,7 @@
   font-size: 1rem;
   font-weight: 600;
   color: #eeeeee;
-  background-color: #b00000;
+  background-color: #006f44; /* button green */
   border: none;
   border-radius: 0.6rem;
   cursor: pointer;
@@ -95,7 +94,7 @@
 }
 
 .sports-button:hover {
-  background-color: #d20000;
+  background-color: #009c5c;
 }
 
 .sports-image-wrapper {
@@ -115,7 +114,6 @@
   display: block;
 }
 
-/* ===== Mobile ordering: Title -> Image -> Description -> Button ===== */
 @media (max-width: 992px) {
   .sports-title { order: 1; margin-bottom: 12px; }
   .sports-image-wrapper { order: 2; }
@@ -154,7 +152,7 @@
 .grid-item-icon-wrapper .arrow-icon {
   width: 20px;
   height: 20px;
-  color: #b00000;
+  color: #009c5c; /* green arrow */
 }
 
 .grid-item-text {
@@ -165,14 +163,14 @@
   font-size: 1.1rem;
   font-weight: 700;
   margin-bottom: 8px;
-  color: #b00000;
+  color: #009c5c; /* green title */
   font-family: "Poppins", sans-serif;
 }
 
 .grid-item-description {
   font-size: 0.95rem;
   line-height: 1.5;
-  color: #666;
+  color: #6a7280;
   font-family: "Poppins", sans-serif;
 }
 

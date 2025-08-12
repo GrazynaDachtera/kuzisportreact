@@ -21,8 +21,7 @@ type Props = {
 type LeafletModule = typeof import("leaflet");
 
 export default function MapComponent({
-  // keep your human-readable address for the card
-  address = "Poznań, ul. św. Michała 56, 61-005",
+  address = "ul. Św. Michała 56, 61-005 Poznań",
   company = "KuziSport",
   nip = "7773248243",
   regon = "361158968",
@@ -61,7 +60,6 @@ export default function MapComponent({
 
       L.control.zoom({ position: "bottomright" }).addTo(map);
 
-      // Precise, structured geocoding limited to Poznań, PL
       const geocodePoznan = async () => {
         const params = new URLSearchParams({
           format: "jsonv2",
@@ -70,7 +68,6 @@ export default function MapComponent({
           postalcode: "61-005",
           countrycodes: "pl",
           limit: "1",
-          // bias to Poznań bbox (lon,lat order): left,top,right,bottom
           viewbox: "16.75,52.55,17.10,52.29",
           bounded: "1",
         });
@@ -83,7 +80,6 @@ export default function MapComponent({
         if (data[0]) {
           return { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) };
         }
-        // fallback: center of Poznań
         return { lat: 52.4064, lng: 16.9252 };
       };
 
@@ -92,7 +88,7 @@ export default function MapComponent({
 
       const pinSvg = `
         <svg width="56" height="72" viewBox="0 0 56 72" xmlns="http://www.w3.org/2000/svg">
-          <path d="M28 72c8-14 28-27 28-44C56 12.54 43.46 0 28 0S0 12.54 0 28c0 17 20 30 28 44z" fill="#e6332a"/>
+          <path d="M28 72c8-14 28-27 28-44C56 12.54 43.46 0 28 0S0 12.54 0 28c0 17 20 30 28 44z" fill="#3da575"/>
           <circle cx="28" cy="28" r="10" fill="#fff"/>
         </svg>
       `;

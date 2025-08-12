@@ -141,9 +141,7 @@ const FooterThirdSection = () => (
     <Link href="/Regulations" className="footer-third-link">
       Regulamin
     </Link>
-    <div className="footer-third-right">
-      © 2025 KuziSport. All rights reserved.
-    </div>
+    <div className="footer-third-right">© 2025 KuziSport.</div>
   </div>
 );
 

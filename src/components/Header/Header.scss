@@ -1,3 +1,8 @@
+:root {
+  --cta-green: #2e7d57;
+  --cta-green-hover: #276b49;
+}
+
 .slider {
   position: relative;
   overflow: hidden;
@@ -63,7 +68,7 @@ p {
   white-space: pre-line;
   font-size: 1.25rem;
   line-height: 1.4;
-  color: #f8f9fa;
+  color: #f8f9fa; /* same as title */
   margin-bottom: 2.5rem;
   font-weight: 500;
   font-family: "Poppins", sans-serif;
@@ -75,7 +80,7 @@ p {
   font-size: 1rem;
   font-weight: 600;
   color: #eeeeee;
-  background-color: #b00000;
+  background-color: var(--cta-green);
   border: none;
   border-radius: 0.6rem;
   cursor: pointer;
@@ -85,7 +90,7 @@ p {
 }
 
 .slide__cta:hover,
-.slide__cta:focus-visible { background-color: #e87063; }
+.slide__cta:focus-visible { background-color: var(--cta-green-hover); }
 
 .dots {
   position: absolute;
@@ -109,7 +114,7 @@ p {
 }
 
 .dot:hover { opacity: 1; }
-.dot.active { background: #b00000; transform: scale(1.2); opacity: 1; }
+.dot.active { background: var(--cta-green); transform: scale(1.2); opacity: 1; }
 
 @media (max-width: 1024px) {
   .slide__text {

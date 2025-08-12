@@ -1,5 +1,6 @@
 $footer-text: #6b7280;
 $footer-line: #e6e6e6;
+$accent: #3da575;
 
 .footer-main-container {
   width: 100%;
@@ -7,38 +8,38 @@ $footer-line: #e6e6e6;
   color: $footer-text;
   font-size: 1rem;
   font-family: 'Poppins', Tahoma, Arial, sans-serif;
+  line-height: 1.45;
 
   a {
     color: $footer-text;
     text-decoration: none;
 
-    &:hover { color: #e6332a; }
+    &:hover { color: $accent; }
     &:visited { color: $footer-text; }
   }
 
   .footer-divider {
     border: none;
     border-top: 1px solid $footer-line;
-    margin: 1.25rem 1.8rem;
+    margin: 1rem 1.6rem;
   }
 }
 
 .footer-first-section,
 .footer-second-section,
 .footer-third-section {
-  padding: 2rem 4rem;
+  padding: 1.6rem 3.2rem;
 }
 
-/* FIRST SECTION — 4 columns on desktop */
 .footer-first-section {
   .footer-middle {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    column-gap: clamp(1rem, 2.5vw, 3rem);
-    row-gap: 1.25rem;
+    column-gap: clamp(.8rem, 2vw, 2.2rem);
+    row-gap: .8rem;
     width: 100%;
     max-width: 100%;
-    padding-top: 1rem;
+    padding-top: .8rem;
   }
 
   .footer-menu-container {
@@ -46,34 +47,35 @@ $footer-line: #e6e6e6;
     min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: .45rem;
+    gap: .35rem;
     margin: 0;
 
     .footer-menu-header {
-      margin: 0 0 .5rem 0;
-      font-size: 1.4rem;
+      margin: 0 0 .4rem 0;
+      font-size: 1.35rem;
       font-weight: 700;
-      color: #e6332a;
+      color: $accent;
+      line-height: 1.2;
     }
 
     .footer-menu-link {
       display: block;
       font-size: 1rem;
       font-weight: 500;
-      line-height: 1.5;
+      line-height: 1.4;
       word-break: break-word;
 
-      &:hover { color: #e6332a; }
+      &:hover { color: $accent; }
     }
   }
 }
 
-/* SECOND SECTION (Address) */
 .footer-second-section {
   .footer-address-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    gap: 2rem;
 
     .footer-address-content {
       flex: 1;
@@ -81,16 +83,17 @@ $footer-line: #e6e6e6;
       .footer-address-card { max-width: 480px; }
 
       .addr-title {
-        margin: 0 0 .6rem 0;
+        margin: 0 0 .5rem 0;
         font-size: 1.2rem;
         font-weight: 700;
-        color: #e6332a;
+        color: $accent;
+        line-height: 1.2;
       }
 
       .addr-line {
-        margin: .35rem 0;
+        margin: .25rem 0;
         font-size: 1rem;
-        line-height: 1.6;
+        line-height: 1.45;
         font-weight: 500;
         color: $footer-text;
       }
@@ -102,7 +105,7 @@ $footer-line: #e6e6e6;
 
         &:hover {
           text-decoration: underline;
-          color: #e6332a;
+          color: $accent;
         }
       }
     }
@@ -110,7 +113,7 @@ $footer-line: #e6e6e6;
     .footer-images-container {
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: .75rem;
       justify-content: flex-end;
       align-items: center;
       max-width: 60%;
@@ -123,15 +126,17 @@ $footer-line: #e6e6e6;
   }
 }
 
-/* THIRD SECTION */
 .footer-third-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  row-gap: .25rem;
 
   .footer-third-link {
     font-size: 1rem;
     font-weight: 500;
+
+    &:hover { color: $accent; }
   }
 
   .footer-third-right {
@@ -141,14 +146,13 @@ $footer-line: #e6e6e6;
   }
 }
 
-/* RESPONSIVE */
 @media (min-width: 1025px) {
   .footer-first-section,
   .footer-second-section,
-  .footer-third-section { padding: 2rem 3rem; }
+  .footer-third-section { padding: 1.8rem 2.6rem; }
 
   .footer-second-section .footer-address-wrapper {
-    gap: 4rem;
+    gap: 3rem;
 
     .footer-images-container {
       max-width: 60%;
@@ -160,14 +164,15 @@ $footer-line: #e6e6e6;
 @media (min-width: 769px) and (max-width: 1024px) {
   .footer-first-section,
   .footer-second-section,
-  .footer-third-section { padding: 1.5rem 2rem; }
+  .footer-third-section { padding: 1.4rem 2rem; }
 
   .footer-first-section .footer-middle {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: .7rem;
   }
 
   .footer-second-section .footer-address-wrapper {
-    gap: 2rem;
+    gap: 1.6rem;
 
     .footer-images-container {
       max-width: 50%;
@@ -179,16 +184,17 @@ $footer-line: #e6e6e6;
 @media (max-width: 768px) {
   .footer-first-section,
   .footer-second-section,
-  .footer-third-section { padding: 1rem 2rem; }
+  .footer-third-section { padding: .9rem 1.6rem; }
 
   .footer-first-section .footer-middle {
     grid-template-columns: 1fr;
+    row-gap: .6rem;
   }
 
   .footer-second-section .footer-address-wrapper {
     flex-direction: column;
     align-items: flex-start;
-    gap: 3rem;
+    gap: 2rem;
 
     .footer-images-container {
       justify-content: flex-start;
@@ -198,7 +204,7 @@ $footer-line: #e6e6e6;
 
   .footer-third-section {
     flex-direction: column;
-    gap: .5rem;
+    gap: .4rem;
 
     .footer-third-link,
     .footer-third-right {
