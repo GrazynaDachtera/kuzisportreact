@@ -99,3 +99,11 @@
     padding-inline: 2rem;
   }
 }
+
+/* Center only the two titles on mobile */
+@media (max-width: 768px) {
+  .news-tagline,
+  .news-heading {
+    text-align: center;
+  }
+}

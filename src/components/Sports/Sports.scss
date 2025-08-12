@@ -12,9 +12,7 @@
   color: var(--brand-green);
 }
 
-.sports-top-wrapper {
-  background-color: #f8f9fa;
-}
+.sports-top-wrapper { background-color: #f8f9fa; }
 
 .sports-top-wrapper .sports-container {
   padding-block: var(--section-py);
@@ -90,14 +88,10 @@
 }
 
 .sports-button:hover,
-.sports-button:focus-visible {
-  background-color: var(--cta-green-hover);
-}
+.sports-button:focus-visible { background-color: var(--cta-green-hover); }
 
 @media (max-width: 992px) {
-  .sports-button {
-    align-self: flex-start;
-  }
+  .sports-button { align-self: flex-start; }
 }
 
 .sports-image-wrapper {
@@ -121,9 +115,7 @@
 }
 
 @media (max-width: 768px) {
-  .sports-grid {
-    grid-template-columns: 1fr;
-  }
+  .sports-grid { grid-template-columns: 1fr; }
 }
 
 .grid-item {
@@ -148,9 +140,7 @@
   color: var(--brand-green);
 }
 
-.grid-item-text {
-  flex: 1;
-}
+.grid-item-text { flex: 1; }
 
 .grid-item-title {
   font-size: 1.1rem;
@@ -166,7 +156,42 @@
 }
 
 @media (max-width: 992px) {
-  .sports-top-wrapper .sports-container {
-    padding-inline: 2rem;
+  .sports-top-wrapper .sports-container { padding-inline: 2rem; }
+}
+
+/* Mobile centering + bigger image */
+@media (max-width: 768px) {
+  .sports-top {
+    align-items: center;
+    text-align: center;
+  }
+
+  .sports-content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .sports-button {
+    align-self: center;
+  }
+
+  .sports-image-wrapper {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  .sports-image {
+    width: min(95vw, 720px);
+    height: auto;
+  }
+}
+
+/* Small phones padding */
+@media (max-width: 480px) {
+  .sports-top-wrapper .sports-container,
+  .sports-container {
+    padding-inline: 1rem;
   }
 }

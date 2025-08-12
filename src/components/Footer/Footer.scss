@@ -1,3 +1,9 @@
+:root {
+  --brand-green: #3da575;
+  --accent-green: #2e7d57;
+  --accent-green-hover: #276b49;
+}
+
 .footer-main-container {
   width: 100%;
   background-color: #d4d4d42f;
@@ -13,8 +19,7 @@
 }
 
 .footer-first-section,
-.footer-second-section,
-.footer-third-section {
+.footer-second-section {
   padding: 2rem 4rem;
 }
 
@@ -38,7 +43,7 @@
         margin-bottom: 0.5rem;
         font-size: 1.4rem;
         font-weight: 700;
-        color: #3da575;
+        color: var(--brand-green);
       }
 
       .footer-menu-link {
@@ -46,10 +51,11 @@
         font-size: 1rem;
         font-weight: 500;
         text-decoration: none;
-        transition: color 0.3s ease;
+        transition: color 0.2s ease;
 
-        &:hover {
-          color: #e88463;
+        &:hover,
+        &:focus-visible {
+          color: var(--accent-green);
         }
       }
     }
@@ -63,19 +69,18 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    gap: 2rem;
 
     .footer-address-content {
       flex: 1;
 
-      /* header gets its own style */
       .footer-address-header {
         font-size: 1.1rem;
         font-weight: 700;
-        color: #3da575;
+        color: var(--brand-green);
         margin: 0.5rem 0;
       }
 
-      /* the rest of the lines share the same style */
       .footer-address-line,
       .footer-address-email,
       .footer-phone,
@@ -87,45 +92,14 @@
       }
     }
 
-    .footer-images-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: flex-end;
-      align-items: center;
-      max-width: 60%;
-
-      .footer-image-icon {
-        img {
-          width: 5rem !important;
-          height: auto !important;
-        }
-      }
+    .footer-copyright {
+      align-self: flex-end;
+      margin-left: auto;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #666;
+      white-space: nowrap;
     }
-  }
-}
-
-/* ───────────── 3-rd SECTION ───────────── */
-
-.footer-third-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  .footer-third-link {
-    color: #666;
-    font-size: 1rem;
-    text-decoration: none;
-    font-weight: 500;
-
-    &:hover {
-      color: #e88463;
-    }
-  }
-
-  .footer-third-right {
-    font-size: 1rem;
-    font-weight: 500;
   }
 }
 
@@ -133,42 +107,29 @@
 
 @media (min-width: 1025px) {
   .footer-first-section,
-  .footer-second-section,
-  .footer-third-section {
+  .footer-second-section {
     padding: 2rem 3rem;
   }
 
   .footer-second-section .footer-address-wrapper {
     gap: 4rem;
-
-    .footer-images-container {
-      max-width: 60%;
-      margin-top: 0;
-    }
   }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
   .footer-first-section,
-  .footer-second-section,
-  .footer-third-section {
+  .footer-second-section {
     padding: 1.5rem 2rem;
   }
 
   .footer-second-section .footer-address-wrapper {
     gap: 2rem;
-
-    .footer-images-container {
-      max-width: 50%;
-      margin-top: 0;
-    }
   }
 }
 
 @media (max-width: 768px) {
   .footer-first-section,
-  .footer-second-section,
-  .footer-third-section {
+  .footer-second-section {
     padding: 1rem 2rem;
   }
 
@@ -184,22 +145,12 @@
   .footer-second-section .footer-address-wrapper {
     flex-direction: column;
     align-items: flex-start;
-    gap: 3rem;
+    gap: 1.5rem;
 
-    .footer-images-container {
-      justify-content: flex-start;
-      max-width: 90%;
-    }
-  }
-
-  .footer-third-section {
-    flex-direction: column;
-    gap: 0.5rem;
-
-    .footer-third-link,
-    .footer-third-right {
+    .footer-copyright {
+      margin-left: 0;
       align-self: flex-start;
-      text-align: left;
+      white-space: normal;
     }
   }
 }
@@ -211,8 +162,7 @@
   }
 
   .footer-first-section .footer-middle,
-  .footer-second-section .footer-address-wrapper,
-  .footer-third-section .footer-images-container {
+  .footer-second-section .footer-address-wrapper {
     max-width: 90%;
     flex-direction: column !important;
     align-items: flex-start !important;

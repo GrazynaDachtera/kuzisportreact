@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import "./Footer.scss";
 
 interface IFooterMenu {
@@ -46,6 +45,7 @@ const FooterFirstSection = () => {
         { text: "Cookies", to: "/Blog" },
         { text: "Polityka prywatności", to: "/Blog" },
         { text: "Deklaracja dostępności", to: "/Blog" },
+        { text: "Regulamin", to: "/Regulations" },
       ],
     },
     {
@@ -92,12 +92,7 @@ const FooterSecondSection = () => {
     },
   ];
 
-  const iconPaths: string[] = [
-    "/Footer/X.png",
-    "/Footer/X.png",
-    "/Footer/X.png",
-    "/Footer/X.png",
-  ];
+  const year = new Date().getFullYear();
 
   return (
     <div className="footer-second-section">
@@ -120,36 +115,17 @@ const FooterSecondSection = () => {
           ))}
         </div>
 
-        <div className="footer-images-container">
-          {iconPaths.map((src: string, idx: number) => (
-            <div key={idx} className="footer-image-icon">
-              <Image src={src} alt={`Icon ${idx + 1}`} width={80} height={80} />
-            </div>
-          ))}
-        </div>
+        <div className="footer-copyright">© {year} SasiedzkiLazarz.</div>
       </div>
     </div>
   );
 };
-
-const FooterThirdSection = () => (
-  <div className="footer-third-section">
-    <Link href="/Regulations" className="footer-third-link">
-      Regulamin
-    </Link>
-    <div className="footer-third-right">
-      © 2025 SasiedzkiLazarz. All rights reserved.
-    </div>
-  </div>
-);
 
 const Footer = () => (
   <div className="footer-main-container">
     <FooterFirstSection />
     <hr className="footer-divider" />
     <FooterSecondSection />
-    <hr className="footer-divider" />
-    <FooterThirdSection />
   </div>
 );
 

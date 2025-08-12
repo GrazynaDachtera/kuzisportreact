@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, Fragment } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import "./Header.scss";
 
@@ -50,7 +49,15 @@ export default function HeroSlider() {
         }}
       >
         {slides.map((s, i) => (
-          <div className="slide" key={`slide-${i}`}>
+          <div
+            className="slide"
+            key={`slide-${i}`}
+            style={{
+              backgroundImage: `url(${s.img.src})`,
+            }}
+            aria-label={s.img.alt}
+            role="img"
+          >
             <div className="slide__text">
               <h1>
                 {s.titleLines.map((line, li) => (
@@ -64,18 +71,6 @@ export default function HeroSlider() {
               <Link href={s.cta.href} className="slide__cta">
                 {s.cta.label}
               </Link>
-            </div>
-
-            <div className="slide__image">
-              <Image
-                src={s.img.src}
-                alt={s.img.alt}
-                width={s.img.width}
-                height={s.img.height}
-                priority={i === 0}
-                sizes="(min-width: 1280px) 900px, (min-width: 768px) 60vw, 100vw"
-                style={{ width: "100%", height: "auto", objectFit: "contain" }}
-              />
             </div>
           </div>
         ))}
