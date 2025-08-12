@@ -1,10 +1,17 @@
+:root {
+  --brand-green: #3da575;
+  --nav-accent: #2e7d57;
+  --nav-accent-hover: #276b49;
+  --nav-link-hover: #bbf7d0;
+}
+
 .wrapper-navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   padding: 1.25rem 2rem;
-  background: #3da575;
+  background: var(--brand-green);
   z-index: 1000;
 }
 
@@ -14,6 +21,22 @@
   align-items: center;
   width: 100%;
   position: relative;
+}
+
+.logo-navbar {
+  display: flex;
+  align-items: center;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .logo {
+    height: clamp(56px, 6vw, 80px);
+    width: auto;
+    display: block;
+  }
 }
 
 .hamburger-btn {
@@ -40,7 +63,7 @@
   &.active span:nth-child(3) { transform: translateY(-0.65rem) rotate(-45deg); }
 }
 
-.hamburger-btn.active span { background: #e88463; }
+.hamburger-btn.active span { background: var(--nav-accent); }
 
 @media (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
   .hamburger-btn { display: flex; }
@@ -66,9 +89,11 @@
         font-weight: 550;
         text-decoration: none;
         white-space: nowrap;
+        transition: color 0.2s ease;
       }
       &.active a,
-      a:hover { color: #e88463; }
+      a:hover,
+      a:focus-visible { color: var(--nav-link-hover); }
     }
   }
 }
@@ -98,9 +123,10 @@
       a {
         font-size: 1.25rem;
         font-weight: 550;
-        color: #e88463;
+        color: var(--nav-accent);
         text-decoration: none;
         position: relative;
+        transition: color 0.2s ease;
         &::after {
           content: "";
           position: absolute;
@@ -113,19 +139,27 @@
           transform-origin: left;
           transition: transform 0.3s;
         }
-        &:hover::after { transform: scaleX(1); }
+        &:hover::after,
+        &:focus-visible::after { transform: scaleX(1); }
       }
       &.active a {
-        color: #e88463;
+        color: var(--nav-accent);
         &::after { transform: scaleX(1); }
       }
-      &:hover a { color: #e88463; }
+      &:hover a,
+      a:focus-visible { color: var(--nav-accent-hover); }
     }
   }
   .social-icons {
     display: flex;
     gap: 10px;
     margin-top: 2rem;
+    a {
+      display: inline-flex;
+      color: var(--nav-accent);
+      transition: color 0.2s ease;
+    }
+    a:hover { color: var(--nav-accent-hover); }
     a svg { display: block; }
   }
 }

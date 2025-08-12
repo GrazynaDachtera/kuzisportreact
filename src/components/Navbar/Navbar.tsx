@@ -78,9 +78,12 @@ export default function NavBar() {
                     <Image
                       src="/NavBar/logo.png"
                       alt="Logo Sasiedzki Lazarz"
-                      width={90}
-                      height={65}
+                      width={400}
+                      height={180}
                       priority
+                      quality={95}
+                      sizes="(min-width: 769px) 180px, 150px"
+                      className="logo"
                     />
                   </Link>
                 </div>
@@ -141,7 +144,7 @@ export default function NavBar() {
                     height="28"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke="#E88463"
+                    stroke="currentColor"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -161,7 +164,7 @@ export default function NavBar() {
                     height="28"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke="#E88463"
+                    stroke="currentColor"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"

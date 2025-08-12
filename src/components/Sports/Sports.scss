@@ -1,12 +1,15 @@
 :root {
   --section-py: clamp(0, 2vw, 5rem);
+  --brand-green: #3da575;
+  --cta-green: #2e7d57;
+  --cta-green-hover: #276b49;
   font-family: "Poppins", sans-serif;
 }
 
 .Sports {
   width: 100%;
   font-family: "Poppins", sans-serif;
-  color: #3da575;
+  color: var(--brand-green);
 }
 
 .sports-top-wrapper {
@@ -63,7 +66,7 @@
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 20px;
-  color: #3da575;
+  color: var(--brand-green);
 }
 
 .sports-description {
@@ -78,7 +81,7 @@
   font-size: 1rem;
   font-weight: 600;
   color: #eeeeee;
-  background-color: #e88463;
+  background-color: var(--cta-green);
   border: none;
   border-radius: 0.6rem;
   cursor: pointer;
@@ -86,8 +89,9 @@
   transition: background-color 0.3s ease-in-out;
 }
 
-.sports-button:hover {
-  background-color: #d20000;
+.sports-button:hover,
+.sports-button:focus-visible {
+  background-color: var(--cta-green-hover);
 }
 
 @media (max-width: 992px) {
@@ -141,7 +145,7 @@
 .grid-item-icon-wrapper .arrow-icon {
   width: 20px;
   height: 20px;
-  color: #3da575;
+  color: var(--brand-green);
 }
 
 .grid-item-text {
@@ -152,7 +156,7 @@
   font-size: 1.1rem;
   font-weight: 700;
   margin-bottom: 8px;
-  color: #3da575;
+  color: var(--brand-green);
 }
 
 .grid-item-description {

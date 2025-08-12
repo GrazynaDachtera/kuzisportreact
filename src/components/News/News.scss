@@ -1,3 +1,7 @@
+:root {
+  --brand-green: #3da575;
+}
+
 .News {
   width: 100%;
   background-color: #f8f9fa;
@@ -37,7 +41,7 @@
 .news-tagline {
   font-family: "Sacramento", cursive;
   font-size: 1.25rem;
-  color: #E88463;
+  color: var(--brand-green);
   margin-bottom: 0.25rem;
 }
 
@@ -45,7 +49,7 @@
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 2rem;
-  color: #3da575;
+  color: var(--brand-green);
 }
 
 .news-list {
@@ -79,7 +83,7 @@
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: #E88463;
+  color: var(--brand-green);
 }
 
 .news-title {

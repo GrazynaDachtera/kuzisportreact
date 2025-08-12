@@ -1,3 +1,9 @@
+:root {
+  --brand-green: #3da575;
+  --cta-green: #2e7d57;
+  --cta-green-hover: #276b49;
+}
+
 .slider {
   position: relative;
   overflow: hidden;
@@ -54,7 +60,7 @@
 h1 {
   font-size: clamp(3rem, 8vw, 8rem);
   line-height: 0.9;
-  color: #3da575;
+  color: var(--brand-green);
   margin: 0 0 1.5rem;
 }
 
@@ -72,18 +78,22 @@ p {
   font-size: 1rem;
   font-weight: 600;
   color: #eeeeee;
-  background-color: #E88463;
+  background-color: var(--cta-green);
   border: none;
   border-radius: 0.6rem;
   cursor: pointer;
   font-family: "Poppins", sans-serif;
   text-decoration: none;
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, transform 0.15s ease-in-out;
 }
 
 .slide__cta:hover,
 .slide__cta:focus-visible {
-  background-color: #e87063;
+  background-color: var(--cta-green-hover);
+}
+
+.slide__cta:active {
+  transform: translateY(1px);
 }
 
 .dots {
@@ -112,7 +122,7 @@ p {
 }
 
 .dot.active {
-  background: #e87063;
+  background: var(--cta-green);
   transform: scale(1.2);
   opacity: 1;
 }
