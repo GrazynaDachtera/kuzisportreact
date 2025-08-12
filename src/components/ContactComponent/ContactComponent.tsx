@@ -77,7 +77,7 @@ const ShieldIcon = () => (
   </svg>
 );
 
-export default function Contact() {
+export default function ContactComponent() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     alert("Dziękujemy! Wiadomość została wysłana (demo).");
@@ -184,9 +184,9 @@ export default function Contact() {
               <PhoneIcon />
             </div>
             <div className="meta">
-              <p className="label">Infolinia:</p>
-              <a href="tel:618802446" className="value">
-                000
+              <p className="label">Recepcja:</p>
+              <a href="tel:785828666" className="value">
+                785-828-666
               </a>
             </div>
           </div>
@@ -196,9 +196,9 @@ export default function Contact() {
               <PhoneIcon />
             </div>
             <div className="meta">
-              <p className="label">Faktury VAT i rozliczenia:</p>
-              <a href="tel:501063329" className="value">
-                000
+              <p className="label">Biuro:</p>
+              <a href="tel:605072681" className="value">
+                605-072-681
               </a>
             </div>
           </div>
@@ -208,10 +208,12 @@ export default function Contact() {
               <PhoneIcon />
             </div>
             <div className="meta">
-              <p className="label">Współpraca partnerska:</p>
-              <a href="tel:732107712" className="value">
-                000
-              </a>
+              <p className="label">Trenerzy:</p>
+              <div className="phones">
+                <a href="tel:785082777" className="value">
+                  785-082-777
+                </a>
+              </div>
             </div>
           </div>
 
@@ -221,7 +223,7 @@ export default function Contact() {
             </div>
             <div className="meta">
               <p className="label">E-mail:</p>
-              <a href="mailto:kontakt@upblue.pl" className="value">
+              <a href="mailto:kuzisport.biuro@gmail.com" className="value">
                 kuzisport.biuro@gmail.com
               </a>
             </div>

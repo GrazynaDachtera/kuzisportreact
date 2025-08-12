@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 import Scrollbar from "smooth-scrollbar";
 import Navbar from "@/components/Navbar/Navbar";
 import ContactComponent from "@/components/ContactComponent/ContactComponent";
+import MapComponent from "@/components/MapComponent/MapComponent";
 import Footer from "@/components/Footer/Footer";
 import Cookies from "@/components/Cookies/Cookies";
 import Message from "@/components/Message/Message";
@@ -26,6 +27,7 @@ export default function Contact() {
             <Navbar />
             <ContactComponent />
           </div>
+          <MapComponent />
           <Footer />
         </section>
       </div>
