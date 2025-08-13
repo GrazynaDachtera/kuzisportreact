@@ -16,14 +16,31 @@ type AddressItem = {
   email: string;
 };
 
+const isExternalHref = (to: string) =>
+  to.startsWith("http") || to.startsWith("mailto:") || to.startsWith("tel:");
+
+const toTelHref = (raw: string) => `tel:${raw.replace(/[^0-9+]/g, "")}`;
+
 const FooterMenu = ({ header, links }: IFooterMenu) => (
   <div className="footer-menu-container">
     <h4 className="footer-menu-header">{header}</h4>
-    {links.map(({ text, to }: { text: string; to: string }, idx: number) => (
-      <Link key={idx} href={to} className="footer-menu-link">
-        {text}
-      </Link>
-    ))}
+    {links.map(({ text, to }, idx) =>
+      isExternalHref(to) ? (
+        <a
+          key={`${to}-${idx}`}
+          href={to}
+          className="footer-menu-link"
+          target={to.startsWith("http") ? "_blank" : undefined}
+          rel={to.startsWith("http") ? "noopener noreferrer" : undefined}
+        >
+          {text}
+        </a>
+      ) : (
+        <Link key={`${to}-${idx}`} href={to} className="footer-menu-link">
+          {text}
+        </Link>
+      )
+    )}
   </div>
 );
 
@@ -97,23 +114,24 @@ const FooterSecondSection = () => {
     <div className="footer-second-section">
       <div className="footer-address-wrapper">
         <div className="footer-address-content">
-          {address.map((item: AddressItem, idx: number) => (
+          {address.map((item, idx) => (
             <div key={idx}>
               <h4 className="footer-address-header">{item.header}</h4>
               <p className="footer-address-line">{item.address}</p>
               <p className="footer-nip">{item.NIP}</p>
               <div className="footer-phone-numbers">
-                {item.phoneNumbers.map((phone: string, i: number) => (
+                {item.phoneNumbers.map((phone, i) => (
                   <p key={i} className="footer-phone">
-                    {phone}
+                    <a href={toTelHref(phone)}>{phone}</a>
                   </p>
                 ))}
               </div>
-              <p className="footer-address-email">{item.email}</p>
+              <p className="footer-address-email">
+                <a href={`mailto:${item.email}`}>{item.email}</a>
+              </p>
             </div>
           ))}
         </div>
-
         <div className="footer-copyright">© {year} SasiedzkiLazarz.</div>
       </div>
     </div>
