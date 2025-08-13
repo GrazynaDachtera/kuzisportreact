@@ -65,7 +65,7 @@ const FooterFirstSection = () => {
       header: "Masz pytania?",
       links: [
         { text: "Zapytaj teraz", to: "/Contact" },
-        { text: "lub zadzwoń: 123", to: "tel:123" },
+        { text: "lub zadzwoń: 605 550 370", to: "tel:605550370" },
       ],
     },
   ];
