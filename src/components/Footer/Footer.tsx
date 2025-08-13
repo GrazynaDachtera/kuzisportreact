@@ -41,10 +41,9 @@ const FooterFirstSection = () => {
     {
       header: "Informacje prawne",
       links: [
-        { text: "RODO", to: "/Blog" },
-        { text: "Cookies", to: "/Blog" },
-        { text: "Polityka prywatności", to: "/Blog" },
-        { text: "Deklaracja dostępności", to: "/Blog" },
+        { text: "RODO", to: "/Rodo" },
+        { text: "Polityka prywatności", to: "/PrivacyPolicy" },
+        { text: "Deklaracja dostępności", to: "/AccDeclaration" },
         { text: "Regulamin", to: "/Regulations" },
       ],
     },

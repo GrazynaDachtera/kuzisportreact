@@ -1,6 +1,6 @@
 "use client";
 
-import "./Regulations.scss";
+import "./PrivacyPolicy.scss";
 
 const RULES = [
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -11,15 +11,17 @@ const RULES = [
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
 ];
 
-export default function RegulationsPage() {
+export default function PrivacyPolicyPage() {
   return (
-    <main className="regulations-wrapper">
-      <h1 className="regulations-title">Regulamin</h1>
+    <main className="privacyPolicy-wrapper">
+      <h1 className="privacyPolicy-title">Polityka prywatności</h1>
 
-      <section className="regulations-content">
-        <h2 className="regulations-subtitle">Regulamin Sąsiedzki Łazarz</h2>
+      <section className="privacyPolicy-content">
+        <h2 className="privacyPolicy-subtitle">
+          Polityka prywatności Sąsiedzki Łazarz
+        </h2>
 
-        <ol className="regulations-list">
+        <ol className="privacyPolicy-list">
           {RULES.map((rule) => (
             <li key={rule}>{rule}</li>
           ))}

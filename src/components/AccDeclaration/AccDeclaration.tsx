@@ -1,6 +1,6 @@
 "use client";
 
-import "./Regulations.scss";
+import "./AccDeclaration.scss";
 
 const RULES = [
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -11,15 +11,17 @@ const RULES = [
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
 ];
 
-export default function RegulationsPage() {
+export default function AccDeclarationPage() {
   return (
-    <main className="regulations-wrapper">
-      <h1 className="regulations-title">Regulamin</h1>
+    <main className="accDeclaration-wrapper">
+      <h1 className="accDeclaration-title">Deklaracja dostępności</h1>
 
-      <section className="regulations-content">
-        <h2 className="regulations-subtitle">Regulamin Sąsiedzki Łazarz</h2>
+      <section className="accDeclaration-content">
+        <h2 className="accDeclaration-subtitle">
+          Deklaracja dostępności Sąsiedzki Łazarz
+        </h2>
 
-        <ol className="regulations-list">
+        <ol className="accDeclaration-list">
           {RULES.map((rule) => (
             <li key={rule}>{rule}</li>
           ))}

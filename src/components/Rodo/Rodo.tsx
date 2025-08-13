@@ -1,6 +1,6 @@
 "use client";
 
-import "./Regulations.scss";
+import "./Rodo.scss";
 
 const RULES = [
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -11,15 +11,15 @@ const RULES = [
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
 ];
 
-export default function RegulationsPage() {
+export default function RodoPage() {
   return (
-    <main className="regulations-wrapper">
-      <h1 className="regulations-title">Regulamin</h1>
+    <main className="rodo-wrapper">
+      <h1 className="rodo-title">RODO</h1>
 
-      <section className="regulations-content">
-        <h2 className="regulations-subtitle">Regulamin Sąsiedzki Łazarz</h2>
+      <section className="rodo-content">
+        <h2 className="rodo-subtitle">RODO Sąsiedzki Łazarz</h2>
 
-        <ol className="regulations-list">
+        <ol className="rodo-list">
           {RULES.map((rule) => (
             <li key={rule}>{rule}</li>
           ))}
