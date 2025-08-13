@@ -8,7 +8,7 @@ import Footer from "@/components/Footer/Footer";
 import Cookies from "@/components/Cookies/Cookies";
 import "@/app/globals.css";
 
-export default function NewsPage() {
+export default function NewsSubpage() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

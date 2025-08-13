@@ -11,7 +11,7 @@ const RULES = [
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
 ];
 
-export default function NewsPage() {
+export default function NewsSubpage() {
   return (
     <main className="newsPage-wrapper">
       <h1 className="newsPage-title">Aktualności</h1>
