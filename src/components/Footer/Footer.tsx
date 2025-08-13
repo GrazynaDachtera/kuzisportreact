@@ -34,7 +34,7 @@ const FooterFirstSection = () => {
       links: [
         { text: "O nas", to: "/Blog" },
         { text: "Osiedlowe ABC", to: "/Blog" },
-        { text: "Materiały do pobrania", to: "/Blog" },
+        { text: "Materiały do pobrania", to: "/DownloadMaterials" },
         { text: "Ty też możesz pomóc", to: "/Blog" },
       ],
     },
