@@ -58,11 +58,11 @@ export default function NavBar() {
   }, [close]);
 
   const items = [
-    { label: "O nas", path: "/" },
-    { label: "Aktualności", path: "/AboutUs" },
-    { label: "Osiedlowe ABC", path: "/Service" },
-    { label: "Projekty", path: "/Blog" },
-    { label: "Ty też możesz pomóc", path: "/Contact" },
+    { label: "O nas", path: "/AboutFoundation" },
+    { label: "Aktualności", path: "/NewsPage" },
+    { label: "Osiedlowe ABC", path: "/Abc" },
+    { label: "Projekty", path: "/Projects" },
+    { label: "Ty też możesz pomóc", path: "/Help" },
     { label: "Kontakt", path: "/Contact" },
   ];
 

@@ -32,10 +32,10 @@ const FooterFirstSection = () => {
     {
       header: "Sąsiedzki Łazarz",
       links: [
-        { text: "O nas", to: "/Blog" },
-        { text: "Osiedlowe ABC", to: "/Blog" },
+        { text: "O nas", to: "/AboutFoundation" },
+        { text: "Osiedlowe ABC", to: "/Abc" },
         { text: "Materiały do pobrania", to: "/DownloadMaterials" },
-        { text: "Ty też możesz pomóc", to: "/Blog" },
+        { text: "Ty też możesz pomóc", to: "/Help" },
       ],
     },
     {

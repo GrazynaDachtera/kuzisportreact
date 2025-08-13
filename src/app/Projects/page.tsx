@@ -3,13 +3,12 @@
 import React, { useEffect, useRef } from "react";
 import Scrollbar from "smooth-scrollbar";
 import Navbar from "@/components/Navbar/Navbar";
-import ContactComponent from "@/components/ContactComponent/ContactComponent";
-import MapComponent from "@/components/MapComponent/MapComponent";
+import Projects from "@/components/Projects/Projects";
 import Footer from "@/components/Footer/Footer";
 import Cookies from "@/components/Cookies/Cookies";
 import "@/app/globals.css";
 
-export default function Contact() {
+export default function ProjectsPage() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -24,9 +23,8 @@ export default function Contact() {
         <section className="kuziSport">
           <div className="main">
             <Navbar />
-            <ContactComponent />
+            <Projects />
           </div>
-          <MapComponent />
           <Footer />
         </section>
       </div>
