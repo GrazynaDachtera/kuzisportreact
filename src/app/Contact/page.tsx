@@ -32,7 +32,6 @@ export default function Contact() {
         </section>
       </div>
       <Cookies />
-      <Message />
     </>
   );
 }
