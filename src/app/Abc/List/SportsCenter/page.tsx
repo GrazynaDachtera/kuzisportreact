@@ -4,12 +4,12 @@ import React, { useEffect, useRef } from "react";
 import Scrollbar from "smooth-scrollbar";
 import Navbar from "@/components/Navbar/Navbar";
 import AbcHeadingPage from "@/components/AbcHeading/AbcHeading";
-import Abc from "@/components/Abc/Abc";
+import SportsCenter from "@/components/AbcList/SportsCenter/SportsCenter";
 import Footer from "@/components/Footer/Footer";
 import Cookies from "@/components/Cookies/Cookies";
 import "@/app/globals.css";
 
-export default function AbcPage() {
+export default function SportsCenterPage() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export default function AbcPage() {
           <div className="main">
             <Navbar />
             <AbcHeadingPage />
-            <Abc />
+            <SportsCenter />
           </div>
           <Footer />
         </section>
