@@ -1,90 +1,327 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap");
-
 :root {
-  --nav-h: 80px;
-}
-@media (max-width: 1024px) {
-  :root {
-    --nav-h: 72px;
-  }
-}
-@media (max-width: 480px) {
-  :root {
-    --nav-h: 86px;
-  }
-}
-
-html {
-  scroll-padding-top: calc(var(--nav-h) + 2rem);
+  --section-py: clamp(0, 2vw, 5rem);
+  --brand-green: #3da575;
+  --brand-green-dark: #2b7a55;
+  --text-dark: #2a3140;
+  --text-mid: #6a7280;
+  --line: #d0d5db;
+  --node-size: 84px;
+  --right-gap: clamp(28px, 4vw, 64px);
+  --point-stagger: 120ms;
+  font-family: "Poppins", sans-serif;
 }
 
-$pad-desktop: 2rem;
-$pad-tablet: 2rem;
-$pad-phone: 1rem;
+/* ========= Base section (O nas) ========= */
 
-.aboutfoundation-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 4rem;
-}
-
-.aboutfoundation-title {
+.AboutFoundation {
   width: 100%;
+  color: var(--brand-green);
+  font-family: "Poppins", sans-serif;
+}
+
+.aboutfoundation-top-wrapper { background: #fff; }
+
+.aboutfoundation-top-wrapper .aboutfoundation-container {
+  padding-block: var(--section-py);
+  padding-inline: 4rem;
+}
+
+.aboutfoundation-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+
+.aboutfoundation-top {
   display: flex;
   align-items: center;
-  box-sizing: border-box;
-  margin: 0;
-  padding: clamp(1.25rem, 2.5vw, 2.5rem) $pad-desktop;
-  font: 800 clamp(2rem, 4vw + 1rem, 3rem) "Poppins", sans-serif;
-  color: #6a7280;
-  background: #f1f1f1;
-  padding-top: calc(var(--nav-h) + 4rem);
+  justify-content: space-between;
+  gap: 40px;
+}
+
+@media (min-width: 992px) {
+  .aboutfoundation-content,
+  .aboutfoundation-image-wrapper {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .aboutfoundation-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 992px) {
+  .aboutfoundation-top {
+    flex-direction: column;
+    text-align: left;
+    align-items: flex-start;
+  }
 }
 
 .aboutfoundation-content {
-  width: min(100vw, 65rem);
-  margin-top: clamp(2rem, 3.5vw, 3.5rem);
-  background: #fff;
+  flex: 1;
+  max-width: 500px;
 }
 
-.aboutfoundation-subtitle {
-  padding: 0 $pad-desktop;
-  font: 800 clamp(1.6rem, 3.5vw + 0.5rem, 2.5rem) "Poppins", sans-serif;
-  color: #6a7280;
-  text-align: left;
-}
-
-.aboutfoundation-list {
-  list-style: decimal;
-  line-height: 1.6;
-  margin: 2.5rem $pad-desktop 1rem;
-  padding-left: 1.5rem;
-  font: 400 clamp(0.95rem, 2.2vw + 0.1rem, 1.2rem) "Poppins", sans-serif;
-  color: #6a7280;
-  text-align: left;
-}
-
-@media (max-width: 1024px) {
-  .aboutfoundation-title,
-  .aboutfoundation-subtitle {
-    padding-left: $pad-tablet;
-    padding-right: $pad-tablet;
+@media (max-width: 992px) {
+  .aboutfoundation-content {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
-  .aboutfoundation-list {
-    margin-left: $pad-tablet;
-    margin-right: $pad-tablet;
+}
+
+.aboutfoundation-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--brand-green);
+}
+
+.aboutfoundation-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+  color: #555;
+}
+
+.aboutfoundation-image-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  max-width: 100%;
+}
+
+.aboutfoundation-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 992px) {
+  .aboutfoundation-top-wrapper .aboutfoundation-container { padding-inline: 2rem; }
+}
+
+@media (max-width: 768px) {
+  .aboutfoundation-top { align-items: center; text-align: center; }
+  .aboutfoundation-content { align-items: center; text-align: center; }
+  .aboutfoundation-image-wrapper {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  .aboutfoundation-image {
+    width: min(95vw, 720px);
+    height: auto;
   }
 }
 
 @media (max-width: 480px) {
-  .aboutfoundation-title,
-  .aboutfoundation-subtitle {
-    padding-left: $pad-phone;
-    padding-right: $pad-phone;
+  .aboutfoundation-top-wrapper .aboutfoundation-container,
+  .aboutfoundation-container { padding-inline: 1rem; }
+}
+
+/* ========= Timeline ========= */
+
+.foundation-timeline {
+  margin-block: clamp(36px, 5vw, 72px);
+}
+
+/* Header aligned with first node on desktop */
+.foundation-timeline .aboutfoundation-container {
+  position: relative;
+}
+
+.tl-header {
+  position: absolute;
+  top: 0;
+  right: 50%;
+  width: calc(50% - var(--right-gap));
+  padding-right: max(var(--right-gap), calc(var(--node-size) / 2 + 12px));
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  text-align: right;
+}
+
+/* Make the timeline title identical to the "O nas" title */
+.tl-title {
+  @extend .aboutfoundation-title;
+}
+
+/* optional: nicer wrapping on tiny screens */
+@media (max-width: 480px) {
+  .tl-title { hyphens: auto; line-height: 1.2; }
+}
+
+.tl-lead {
+  margin: 0;
+  color: var(--text-mid);
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 60ch;
+}
+
+.tl-wrap {
+  position: relative;
+  padding-top: 0;
+}
+
+.tl-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  border-left: 2px dashed var(--line);
+  transform: translateX(-50%);
+}
+
+.tl-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: start;
+  padding: clamp(18px, 2.5vw, 28px) 0;
+}
+
+.tl-node {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: var(--node-size);
+  height: var(--node-size);
+  border-radius: 999px;
+  background: #fff;
+  box-shadow:
+    0 10px 25px rgba(28, 33, 58, 0.06),
+    0 45px 85px rgba(28, 33, 58, 0.08);
+  display: grid;
+  place-items: center;
+  z-index: 2;
+}
+
+.tl-node span {
+  font-weight: 800;
+  color: var(--brand-green);
+  font-size: clamp(18px, 1.2vw + 12px, 24px);
+}
+
+.tl-right {
+  grid-column: 2;
+  padding-left: var(--right-gap);
+}
+
+.tl-year {
+  color: var(--brand-green);
+  font-weight: 800;
+  font-size: clamp(22px, 1.6vw + 12px, 36px);
+  margin-bottom: clamp(8px, 1.2vw, 12px);
+}
+
+.tl-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: clamp(10px, 1.3vw, 14px);
+}
+
+/* ===== Points: scroll-triggered reveal only for .tl-list-item ===== */
+.tl-list-item {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  align-items: start;
+  gap: 10px;
+  color: var(--text-mid);
+  font-size: clamp(15px, 0.9vw + 12px, 18px);
+
+  opacity: 0;
+  transform: translateY(10px);
+  filter: blur(2px);
+  transition:
+    opacity 420ms ease,
+    transform 420ms ease,
+    filter 420ms ease;
+}
+
+.tl-list-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: none;
+}
+
+.tl-check {
+  color: var(--brand-green);
+  display: block;
+  margin-top: 2px;
+}
+
+.tl-text { color: var(--text-mid); }
+
+@media (prefers-reduced-motion: reduce) {
+  .tl-list-item {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
   }
-  .aboutfoundation-list {
-    margin-left: $pad-phone;
-    margin-right: $pad-phone;
+}
+
+@media (min-width: 992px) {
+  .tl-right { padding-left: calc(var(--right-gap) + 8px); }
+}
+
+/* ===== Mobile layout fixes: center header, move dots/line left ===== */
+@media (max-width: 900px) {
+  .foundation-timeline {
+    --m-line-x: clamp(18px, 6vw, 28px);
+    --node-size: clamp(48px, 9vw, 64px);
+    --m-left-gap: calc(var(--m-line-x) + calc(var(--node-size) / 2) + 12px);
+  }
+
+  .tl-header {
+    position: static;
+    width: auto;
+    padding-right: 0;
+    text-align: center;
+    margin-bottom: clamp(20px, 3vw, 32px);
+  }
+
+  .tl-title,
+  .tl-lead {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .tl-wrap { padding-top: clamp(10px, 1.5vw, 18px); }
+
+  .tl-item {
+    grid-template-columns: 1fr;
+    padding: clamp(12px, 2.5vw, 18px) 0;
+  }
+
+  .tl-line {
+    left: var(--m-line-x);
+    transform: none;
+  }
+
+  .tl-node {
+    left: var(--m-line-x);
+    transform: translateX(-50%);
+  }
+
+  .tl-right {
+    grid-column: 1;
+    margin-top: calc(var(--node-size) * 0.2);
+    padding-left: var(--m-left-gap);
   }
 }

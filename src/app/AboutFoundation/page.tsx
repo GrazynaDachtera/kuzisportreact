@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import Scrollbar from "smooth-scrollbar";
 import Navbar from "@/components/Navbar/Navbar";
+import AboutFoundationHeading from "@/components/AboutFoundation/AboutFoundationHeading/AboutFoundationHeading";
 import AboutFoundation from "@/components/AboutFoundation/AboutFoundation";
 import Footer from "@/components/Footer/Footer";
 import Cookies from "@/components/Cookies/Cookies";
@@ -23,6 +24,7 @@ export default function AboutFoundationPage() {
         <section className="kuziSport">
           <div className="main">
             <Navbar />
+            <AboutFoundationHeading />
             <AboutFoundation />
           </div>
           <Footer />
