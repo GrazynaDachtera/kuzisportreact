@@ -12,9 +12,10 @@
 }
 
 .areas-container {
+  width: 90%;
   max-width: 1200px;
   margin: 0 auto;
-  padding-inline: 4rem;
+  padding-inline: 2rem;
 }
 
 .areas-top {
@@ -62,11 +63,10 @@
     flex: 0 0 50%;
     max-width: 50%;
   }
-  .areas-image { max-width: 350px; }
-}
-
-@media (max-width: 992px) {
-  .areas-container { padding-inline: 2rem; }
+  .areas-image {
+    width: 95%;
+    max-width: 600px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -91,7 +91,7 @@
     margin-top: 1rem;
   }
   .areas-image {
-    width: 90%;
+    width: min(95vw, 680px);
     height: auto;
     max-width: none;
     margin-inline: auto;

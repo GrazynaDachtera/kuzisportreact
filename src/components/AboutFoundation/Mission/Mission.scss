@@ -8,13 +8,14 @@
 .mission-top-wrapper {
   width: 100%;
   background: #fff;
-  padding-block: var(--section-py); /* equal top & bottom */
+  padding-block: var(--section-py);
 }
 
 .mission-container {
+  width: 90%;
   max-width: 1200px;
   margin: 0 auto;
-  padding-inline: 4rem;
+  padding-inline: 2rem;
 }
 
 .mission-top {
@@ -63,16 +64,20 @@
     max-width: 50%;
   }
 
-  .mission-image { max-width: 350px; }
+  .mission-image {
+    width: 95%;
+    max-width: 600px;
+  }
 }
 
 @media (max-width: 992px) {
   .mission-top {
-    flex-direction: column-reverse;     /* image below text */
-    gap: clamp(16px, 3.5vw, 24px);      /* internal spacing, no extra margins */
+    flex-direction: column-reverse;
+    gap: clamp(16px, 3.5vw, 24px);
     align-items: center;
     text-align: center;
   }
+
   .mission-content {
     max-width: 100%;
     display: flex;
@@ -80,7 +85,6 @@
     align-items: center;
     text-align: center;
   }
-  .mission-container { padding-inline: 2rem; }
 }
 
 @media (max-width: 768px) {
@@ -90,8 +94,9 @@
     justify-content: center;
     align-items: center;
   }
+
   .mission-image {
-    width: 90%;                         /* centered 90% width */
+    width: min(95vw, 680px);
     max-width: none;
     margin-inline: auto;
   }

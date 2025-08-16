@@ -11,16 +11,16 @@
   font-family: "Poppins", sans-serif;
 }
 
-/* Top intro block */
 .abc-heading-top-wrapper {
   background-color: #fff;
   padding-block: var(--section-py);
 }
 
 .abc-heading-container {
+  width: 90%;
   max-width: 1200px;
   margin: 0 auto;
-  padding-inline: 4rem;
+  padding-inline: 2rem;
 }
 @media (max-width: 992px) { .abc-heading-container { padding-inline: 2rem; } }
 @media (max-width: 480px) { .abc-heading-container { padding-inline: 1rem; } }
@@ -70,7 +70,10 @@
     flex: 0 0 50%;
     max-width: 50%;
   }
-  .abc-heading-image { max-width: 350px; }
+  .abc-heading-image {
+    width: 95%;
+    max-width: 600px;
+  }
 }
 
 @media (max-width: 992px) {
@@ -97,20 +100,18 @@
     align-items: center;
   }
   .abc-heading-image {
-    width: 90%;
+    width: min(95vw, 680px);
     max-width: none;
     margin-inline: auto;
   }
 }
 
-/* Grid section */
 .abc-heading-grid-wrapper {
   background-color: #fff;
   padding-block: var(--section-py);
   width: 100%;
 }
 
-/* Centered grid */
 .abc-heading-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(260px, 1fr));
@@ -126,7 +127,6 @@
   }
 }
 
-/* Grid items */
 .AbcHeading .abc-heading-grid .grid-item {
   display: flex;
   align-items: flex-start;
