@@ -3,8 +3,8 @@
 import React, { useEffect, useRef } from "react";
 import Scrollbar from "smooth-scrollbar";
 import Navbar from "@/components/Navbar/Navbar";
-import AbcHeadingPage from "@/components/AbcHeading/AbcHeading";
-import Kindergarten from "@/components/AbcList/Kindergarten/Kingergarten";
+import AbcHeadingPage from "@/components/Abc/AbcHeading/AbcHeading";
+import Kindergarten from "@/components/Abc/AbcList/Kindergarten/Kingergarten";
 import Footer from "@/components/Footer/Footer";
 import Cookies from "@/components/Cookies/Cookies";
 import "@/app/globals.css";

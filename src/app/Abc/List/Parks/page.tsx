@@ -3,8 +3,8 @@
 import React, { useEffect, useRef } from "react";
 import Scrollbar from "smooth-scrollbar";
 import Navbar from "@/components/Navbar/Navbar";
-import AbcHeadingPage from "@/components/AbcHeading/AbcHeading";
-import Parks from "@/components/AbcList/Parks/Parks";
+import AbcHeadingPage from "@/components/Abc/AbcHeading/AbcHeading";
+import Parks from "@/components/Abc/AbcList/Parks/Parks";
 import Footer from "@/components/Footer/Footer";
 import Cookies from "@/components/Cookies/Cookies";
 import "@/app/globals.css";

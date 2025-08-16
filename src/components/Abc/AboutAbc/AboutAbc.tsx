@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import "./Abc.scss";
+import "./AboutAbc.scss";
 
 const ArrowIcon = () => (
   <svg
@@ -48,8 +48,10 @@ export default function AbcPage() {
                 height={336}
                 className="abc-heading-image"
                 priority
+                sizes="(max-width:700px) 90vw, (max-width:1200px) 50vw, 33vw"
               />
             </div>
+
             <div className="abc-heading-content">
               <h2 className="abc-heading-title">Osiedlowe ABC</h2>
               <p className="abc-heading-description">
@@ -66,8 +68,12 @@ export default function AbcPage() {
       <div className="abc-heading-grid-wrapper">
         <div className="abc-heading-container">
           <div className="abc-heading-grid">
-            {features.map((feature, index) => (
-              <Link href={feature.href} className="grid-item" key={index}>
+            {features.map((feature) => (
+              <Link
+                href={feature.href}
+                className="grid-item"
+                key={feature.href}
+              >
                 <span className="grid-item-icon-wrapper">
                   <ArrowIcon />
                 </span>

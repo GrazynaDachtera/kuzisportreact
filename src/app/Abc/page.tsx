@@ -3,8 +3,8 @@
 import React, { useEffect, useRef } from "react";
 import Scrollbar from "smooth-scrollbar";
 import Navbar from "@/components/Navbar/Navbar";
-import AbcHeadingPage from "@/components/AbcHeading/AbcHeading";
-import Abc from "@/components/Abc/Abc";
+import AbcHeadingPage from "@/components/Abc/AbcHeading/AbcHeading";
+import AboutAbc from "@/components/Abc/AboutAbc/AboutAbc";
 import Footer from "@/components/Footer/Footer";
 import Cookies from "@/components/Cookies/Cookies";
 import "@/app/globals.css";
@@ -25,7 +25,7 @@ export default function AbcPage() {
           <div className="main">
             <Navbar />
             <AbcHeadingPage />
-            <Abc />
+            <AboutAbc />
           </div>
           <Footer />
         </section>
