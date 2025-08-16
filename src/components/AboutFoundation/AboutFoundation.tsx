@@ -124,7 +124,7 @@ export default function AboutFoundationPage() {
               />
             </div>
             <div className="aboutfoundation-content">
-              <h2 className="aboutfoundation-title">O nas</h2>
+              <h2 className="aboutfoundation-title">Misja i wizja</h2>
               <p className="aboutfoundation-description">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
                 malesuada tincidunt turpis, pretium consequat ante mollis a.

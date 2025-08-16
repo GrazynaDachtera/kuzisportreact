@@ -4,7 +4,9 @@ import React, { useEffect, useRef } from "react";
 import Scrollbar from "smooth-scrollbar";
 import Navbar from "@/components/Navbar/Navbar";
 import AboutFoundationHeading from "@/components/AboutFoundation/AboutFoundationHeading/AboutFoundationHeading";
-import AboutFoundation from "@/components/AboutFoundation/AboutFoundation";
+import Mission from "@/components/AboutFoundation/Mission/Mission";
+import AreasOfActivity from "@/components/AboutFoundation/AreasOfActivity/AreasOfActivity";
+import Members from "@/components/AboutFoundation/Members/Members";
 import Footer from "@/components/Footer/Footer";
 import Cookies from "@/components/Cookies/Cookies";
 import "@/app/globals.css";
@@ -25,7 +27,9 @@ export default function AboutFoundationPage() {
           <div className="main">
             <Navbar />
             <AboutFoundationHeading />
-            <AboutFoundation />
+            <Mission />
+            <AreasOfActivity />
+            <Members />
           </div>
           <Footer />
         </section>
