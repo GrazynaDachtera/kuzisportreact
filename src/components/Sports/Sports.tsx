@@ -24,19 +24,15 @@ const ArrowIcon = () => (
 export default function Sports() {
   const features = [
     {
-      title: "Projekt 1",
+      title: "Nasze projekty",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     },
     {
-      title: "Projekt 2",
+      title: "Spacery",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     },
     {
-      title: "Projekt 3",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      title: "Projekt 4",
+      title: "Sprzątanie",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     },
   ];
