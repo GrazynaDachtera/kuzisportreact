@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import Scrollbar from "smooth-scrollbar";
 import Navbar from "@/components/Navbar/Navbar";
+import NewsPageHeading from "@/components/NewsPage/NewsPageHeading/NewsPageHeading";
 import NewsPage from "@/components/NewsPage/NewsPage";
 import Footer from "@/components/Footer/Footer";
 import Cookies from "@/components/Cookies/Cookies";
@@ -23,6 +24,7 @@ export default function NewsSubpage() {
         <section className="kuziSport">
           <div className="main">
             <Navbar />
+            <NewsPageHeading />
             <NewsPage />
           </div>
           <Footer />

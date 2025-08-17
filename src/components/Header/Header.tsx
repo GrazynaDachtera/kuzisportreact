@@ -14,8 +14,8 @@ interface Slide {
 const slides: Slide[] = [
   {
     titleLines: ["Sąsiedzki", "Łazarz"],
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    cta: { label: "Zapisz się", href: "/Service" },
+    text: "Jesteśmy grupą społeczników zaangażowanych w sprawy mieszkańców na Łazarzu.",
+    cta: { label: "Sprawdź", href: "/Service" },
     img: {
       src: "/Header/x.png",
       alt: "z",
@@ -24,8 +24,8 @@ const slides: Slide[] = [
     },
   },
   {
-    titleLines: ["XYZ", "XYZ"],
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    titleLines: ["KULTURA", "HISTORIA I SPORT"],
+    text: "Bądź na bieżąco!",
     cta: { label: "Sprawdź", href: "/Service" },
     img: {
       src: "/Header/x.png",

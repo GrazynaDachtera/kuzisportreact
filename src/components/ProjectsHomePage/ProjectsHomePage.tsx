@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import "./Sports.scss";
+import "./ProjectsHomePage.scss";
 
 const ArrowIcon = () => (
   <svg
@@ -21,7 +21,7 @@ const ArrowIcon = () => (
   </svg>
 );
 
-export default function Sports() {
+export default function ProjectsHomePage() {
   const features = [
     {
       title: "Nasze projekty",
@@ -38,27 +38,27 @@ export default function Sports() {
   ];
 
   return (
-    <section className="Sports">
-      <div className="sports-top-wrapper">
-        <div className="sports-container">
-          <div className="sports-top">
-            <div className="sports-content">
-              <h2 className="sports-title">Projekty</h2>
-              <p className="sports-description">
+    <section className="ProjectsHomePage">
+      <div className="projectsHomePage-top-wrapper">
+        <div className="projectsHomePage-container">
+          <div className="projectsHomePage-top">
+            <div className="projectsHomePage-content">
+              <h2 className="projectsHomePage-title">Projekty</h2>
+              <p className="projectsHomePage-description">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
                 malesuada tincidunt turpis, pretium consequat ante mollis a.
                 Nullam nec sapien nisi. Etiam pellentesque, justo vitae faucibus
                 blandit, ex sem luctus ante, eu dictum magna est quis nunc.
               </p>
-              <button className="sports-button">Sprawdź</button>
+              <button className="projectsHomePage-button">Sprawdź</button>
             </div>
-            <div className="sports-image-wrapper">
+            <div className="projectsHomePage-image-wrapper">
               <Image
-                src="/Sports/people.png"
+                src="/ProjectsHomePage/people.png"
                 alt="grupa ludzi"
                 width={652}
                 height={336}
-                className="sports-image"
+                className="projectsHomePage-image"
                 priority
               />
             </div>
@@ -66,9 +66,9 @@ export default function Sports() {
         </div>
       </div>
 
-      <div className="sports-grid-wrapper">
-        <div className="sports-container">
-          <div className="sports-grid">
+      <div className="projectsHomePage-grid-wrapper">
+        <div className="projectsHomePage-container">
+          <div className="projectsHomePage-grid">
             {features.map((feature, index) => (
               <div className="grid-item" key={index}>
                 <div className="grid-item-icon-wrapper">

@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import Header from "../components/Header/Header";
 import Reviews from "../components/Reviews/Reviews";
-import Sports from "../components/Sports/Sports";
+import ProjectsHomePage from "../components/ProjectsHomePage/ProjectsHomePage";
 import News from "../components/News/News";
 import CtaContact from "../components/CtaContact/CtaContact";
 import Footer from "../components/Footer/Footer";
@@ -45,7 +45,7 @@ export default function Home() {
           </div>
           <Header />
           <Reviews />
-          <Sports />
+          <ProjectsHomePage />
           <News />
           <CtaContact />
           <Footer />

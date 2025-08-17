@@ -1,86 +1,70 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap");
-
-:root {
-  --nav-h: 80px;
-}
-@media (max-width: 1024px) {
-  :root { --nav-h: 72px; }
-}
-@media (max-width: 480px) {
-  :root { --nav-h: 86px; }
-}
-
-html {
-  scroll-padding-top: calc(var(--nav-h) + 2rem);
-}
-
-$pad-desktop: 2rem;
-$pad-tablet: 2rem;
-$pad-phone: 1rem;
-
 .newsPage-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 4rem;
-}
-
-.newsPage-title {
   width: 100%;
-  display: flex;
-  align-items: center;
-  box-sizing: border-box;
-  margin: 0;
-  padding: clamp(1.25rem, 2.5vw, 2.5rem) $pad-desktop;
-  font: 800 clamp(2rem, 4vw + 1rem, 3rem) "Poppins", sans-serif;
-  color: #6a7280;
-  background: #f1f1f1;
-  padding-top: calc(var(--nav-h) + 4rem);
-}
-
-.newsPage-content {
-  width: min(100vw, 65rem);
-  margin-top: clamp(2rem, 3.5vw, 3.5rem);
   background: #fff;
 }
 
-.newsPage-subtitle {
-  padding: 0 $pad-desktop;
-  font: 800 clamp(1.6rem, 3.5vw + 0.5rem, 2.5rem) "Poppins", sans-serif;
-  color: #6a7280;
-  text-align: left;
+.newsPage-wall {
+  width: 100%;
+  background: #fff;
+  padding: clamp(1rem, 3vw, 2.5rem) 0 clamp(1.5rem, 4vw, 3.5rem);
 }
 
-.newsPage-list {
-  list-style: decimal;
-  line-height: 1.6;
-  margin: 2.5rem $pad-desktop 1rem;
-  padding-left: 1.5rem;
-  font: 400 clamp(0.95rem, 2.2vw + 0.1rem, 1.2rem) "Poppins", sans-serif;
-  color: #6a7280;
-  text-align: left;
+.newsPage-container {
+  width: 100%;
+  max-width: 100rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-@media (max-width: 1024px) {
-  .newsPage-title,
-  .newsPage-subtitle {
-    padding-left: $pad-tablet;
-    padding-right: $pad-tablet;
-  }
-  .newsPage-list {
-    margin-left: $pad-tablet;
-    margin-right: $pad-tablet;
-  }
+.fb-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-@media (max-width: 480px) {
-  .newsPage-title,
-  .newsPage-subtitle {
-    padding-left: $pad-phone;
-    padding-right: $pad-phone;
-  }
-  .newsPage-list {
-    margin-left: $pad-phone;
-    margin-right: $pad-phone;
-  }
+.fb-page {
+  width: 100% !important;
+}
+
+.newsPage-skeleton {
+  display: grid;
+  gap: 0.625rem;
+  margin: 0.375rem 0 1rem;
+  width: 100%;
+}
+
+.skeleton-line {
+  height: 0.875rem;
+  border-radius: 0.4375rem;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.08) 25%,
+    rgba(0, 0, 0, 0.14) 37%,
+    rgba(0, 0, 0, 0.08) 63%
+  );
+  animation: shimmer 1.4s infinite linear;
+}
+
+.skeleton-line:nth-child(1) { width: 100%; }
+.skeleton-line:nth-child(2) { width: 92%; }
+.skeleton-line:nth-child(3) { width: 84%; }
+
+@keyframes shimmer {
+  0% { background-position: -12.5rem 0; }
+  100% { background-position: 12.5rem 0; }
+}
+
+.newsPage-fallback {
+  margin-top: 0.875rem;
+  font-size: 0.95rem;
+  color: #555;
+  text-align: center;
+}
+
+.newsPage-fallback a {
+  color: #1778f2;
+  text-decoration: underline;
+  text-underline-offset: 0.125rem;
 }

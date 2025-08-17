@@ -1,37 +1,40 @@
 :root {
-  --section-py: clamp(0, 2vw, 5rem);
+  --section-py: clamp(1.5rem, 2vw, 3rem);
   --brand-green: #3da575;
   --cta-green: #2e7d57;
   --cta-green-hover: #276b49;
   font-family: "Poppins", sans-serif;
 }
 
-.Sports {
+.ProjectsHomePage {
   width: 100%;
   font-family: "Poppins", sans-serif;
   color: var(--brand-green);
 }
 
-.sports-top-wrapper { background-color: #f8f9fa; }
-
-.sports-top-wrapper .sports-container {
+.projectsHomePage-top-wrapper {
+  background-color: #f8f9fa;
   padding-block: var(--section-py);
+}
+
+.projectsHomePage-top-wrapper .projectsHomePage-container {
+  padding-block: 0;
   padding-inline: 2rem;
 }
 
-.sports-grid-wrapper {
+.projectsHomePage-grid-wrapper {
   background-color: #ffffff;
-  padding: 80px 0;
+  padding: 60px 0;
   width: 100%;
 }
 
-.sports-container {
+.projectsHomePage-container {
   width: 90%;
   margin: 0 auto;
   padding: 0 2rem;
 }
 
-.sports-top {
+.projectsHomePage-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -39,37 +42,39 @@
 }
 
 @media (min-width: 992px) {
-  .sports-content,
-  .sports-image-wrapper {
+  .projectsHomePage-content,
+  .projectsHomePage-image-wrapper {
     flex: 0 0 50%;
     max-width: 50%;
   }
 
-  .sports-content { max-width: 50%; }
+  .projectsHomePage-content {
+    max-width: 50%;
+  }
 
-  .sports-image {
-    width: 85%;
-    max-width: 520px;
+  .projectsHomePage-image {
+    width: 95%;
+    max-width: 620px;
     height: auto;
     object-fit: contain;
   }
 }
 
 @media (max-width: 992px) {
-  .sports-top {
+  .projectsHomePage-top {
     flex-direction: column;
     text-align: left;
     align-items: flex-start;
   }
 }
 
-.sports-content {
+.projectsHomePage-content {
   flex: 1;
   max-width: 500px;
 }
 
 @media (max-width: 992px) {
-  .sports-content {
+  .projectsHomePage-content {
     max-width: 100%;
     display: flex;
     flex-direction: column;
@@ -77,21 +82,21 @@
   }
 }
 
-.sports-title {
+.projectsHomePage-title {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 20px;
   color: var(--brand-green);
 }
 
-.sports-description {
+.projectsHomePage-description {
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 30px;
   color: #555;
 }
 
-.sports-button {
+.projectsHomePage-button {
   padding: 12px 24px;
   font-size: 1rem;
   font-weight: 600;
@@ -104,14 +109,18 @@
   transition: background-color 0.3s ease-in-out;
 }
 
-.sports-button:hover,
-.sports-button:focus-visible { background-color: var(--cta-green-hover); }
-
-@media (max-width: 992px) {
-  .sports-button { align-self: flex-start; }
+.projectsHomePage-button:hover,
+.projectsHomePage-button:focus-visible {
+  background-color: var(--cta-green-hover);
 }
 
-.sports-image-wrapper {
+@media (max-width: 992px) {
+  .projectsHomePage-button {
+    align-self: flex-start;
+  }
+}
+
+.projectsHomePage-image-wrapper {
   flex: 1;
   display: flex;
   justify-content: center;
@@ -119,20 +128,22 @@
   max-width: 100%;
 }
 
-.sports-image {
+.projectsHomePage-image {
   width: 100%;
   height: auto;
   object-fit: contain;
 }
 
-.sports-grid {
+.projectsHomePage-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 40px 30px;
 }
 
 @media (max-width: 768px) {
-  .sports-grid { grid-template-columns: 1fr; }
+  .projectsHomePage-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .grid-item {
@@ -157,7 +168,9 @@
   color: var(--brand-green);
 }
 
-.grid-item-text { flex: 1; }
+.grid-item-text {
+  flex: 1;
+}
 
 .grid-item-title {
   font-size: 1.1rem;
@@ -173,40 +186,42 @@
 }
 
 @media (max-width: 992px) {
-  .sports-top-wrapper .sports-container { padding-inline: 2rem; }
+  .projectsHomePage-top-wrapper .projectsHomePage-container {
+    padding-inline: 2rem;
+  }
 }
 
 @media (max-width: 768px) {
-  .sports-top {
+  .projectsHomePage-top {
     align-items: center;
     text-align: center;
   }
 
-  .sports-content {
+  .projectsHomePage-content {
     align-items: center;
     text-align: center;
   }
 
-  .sports-button {
+  .projectsHomePage-button {
     align-self: center;
   }
 
-  .sports-image-wrapper {
+  .projectsHomePage-image-wrapper {
     width: 100%;
     justify-content: center;
     align-items: center;
     margin-top: 1rem;
   }
 
-  .sports-image {
+  .projectsHomePage-image {
     width: min(85vw, 520px);
     height: auto;
   }
 }
 
 @media (max-width: 480px) {
-  .sports-top-wrapper .sports-container,
-  .sports-container {
+  .projectsHomePage-top-wrapper .projectsHomePage-container,
+  .projectsHomePage-container {
     padding-inline: 1rem;
   }
 }
