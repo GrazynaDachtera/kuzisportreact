@@ -17,7 +17,7 @@ export default function News() {
       thumbnail: "/News/smallimage1.jpg",
       category: "PRACE · TRAMWAJE · UTRUDNIENIA",
       title:
-        "🚊🚌 Status prac na torach? W poniedziałek 18 sierpnia: ➡️  przywrócone zostaje funkcjonowanie linii 1️⃣ i 7️⃣na trasach stałych, ➡️ 1️⃣0️⃣ będzie jeździła przez Łazarz. A to dlatego, że przez Hetmańską tramwaje będą mogły jeździć na wprost, ale jeszcze będą utrudnienia dla 🚗aut z powodu zamknięcia ulicy 28 czerwca 1956 na odcinku od Hetmańskiej do Traugutta. ⚠️ Węzeł Bałtyk nadal rozkopany, obowiązują objazdy tramwajowe przez Towarową. 1️⃣6️⃣4️⃣ wróciło na zwykłą trasę 🙌 Wszystkie szczegóły znajdziecie na stronie MPK Poznań Sp. z o.o., link w komentarzu ⬇️⬇️⬇️ PS Wiecie o łące i ulach na zajezdni Franowo? Zdjęcie pochodzi ze strony MPK Poznań",
+        "🚊🚌 Status prac na torach? W poniedziałek 18 sierpnia: ➡️  przywrócone zostaje funkcjonowanie linii 1️⃣ i 7️⃣na trasach stałych, ➡️ 1️⃣0️⃣ będzie jeździła przez Łazarz. A to dlatego, że przez Hetmańską tramwaje będą mogły jeździć na wprost, ale jeszcze będą utrudnienia dla 🚗aut z powodu zamknięcia ulicy 28 czerwca 1956 na odcinku od Hetmańskiej do Traugutta. ⚠️ Węzeł Bałtyk nadal rozkopany, obowiązują objazdy tramwajowe przez Towarową. 1️⃣6️⃣4️⃣ wróciło na zwykłą trasę 🙌 Wszystkie szczegóły znajdziecie na stronie MPK Poznań Sp. z o.o., link w komentarzu ⬇️⬇️⬇️ PS Wiecie o łące i ulach na zajezdni Franowo?",
     },
     {
       href: "https://www.facebook.com/photo/?fbid=122112297740958380&set=a.122111249054958380&locale=pl_PL",
