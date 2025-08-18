@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
 import "./Mission.scss";
 
 type MissionProps = {
@@ -32,14 +31,16 @@ export default function Mission({
       <div className="mission-container">
         <div className="mission-top">
           <div className="mission-image-wrapper">
+            {/* no fill — let the natural aspect render; CSS reserves height */}
             <Image
               src={image.src}
               alt={image.alt}
               width={image.width}
               height={image.height}
-              className="mission-image"
               priority={image.priority}
+              className="mission-image"
               sizes="(max-width:700px) 90vw, (max-width:1200px) 50vw, 33vw"
+              style={{ width: "100%", height: "auto", display: "block" }}
             />
           </div>
 
