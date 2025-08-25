@@ -108,7 +108,7 @@ const SECTIONS: Section[] = [
     body: (
       <>
         <p>Zgłaszając takie żądanie, prosimy podać:</p>
-        <ol className="accDeclaration-sublist">
+        <ul className="accDeclaration-sublist">
           <li>swoje imię i nazwisko,</li>
           <li>swoje dane kontaktowe (np. numer telefonu, e-mail),</li>
           <li>
@@ -119,7 +119,7 @@ const SECTIONS: Section[] = [
             opis na czym polega problem i jaki sposób jego rozwiązania byłby dla
             Ciebie najwygodniejszy.
           </li>
-        </ol>
+        </ul>
         <p>
           Na zgłoszenie odpowiemy najszybciej jak to możliwe, nie później niż w
           ciągu 7 dni od jego otrzymania.
