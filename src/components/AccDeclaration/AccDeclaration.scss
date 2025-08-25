@@ -203,6 +203,7 @@ mark { background: #fff3bf; padding: 0 2px; border-radius: 3px; color: inherit; 
   .btn { width: 100%; }
   .accDeclaration-actions { padding-left: $pad-phone; padding-right: $pad-phone; }
   .accDeclaration-text { margin-left: 1rem; }
+  .accDeclaration-subtitle { text-align: center; }
 }
 
 @media print {
