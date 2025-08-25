@@ -104,8 +104,9 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
 .privacyPolicy-navitem {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.25rem;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem;
+  align-items: baseline;
   text-align: left;
   padding: 0.55rem 0.75rem;
   background: transparent;
@@ -120,6 +121,7 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
 .privacyPolicy-navitem:focus-visible { background: #f3f4f6; }
 .privacyPolicy-navitem.is-active { background: #e5f6eb; color: #14532d; }
 
+.privacyPolicy-navmarker { font-weight: 800; color: inherit; }
 .privacyPolicy-navtitle { color: inherit; }
 mark { background: #fff3bf; padding: 0 2px; border-radius: 3px; color: inherit; }
 
@@ -147,6 +149,7 @@ mark { background: #fff3bf; padding: 0 2px; border-radius: 3px; color: inherit; 
   font-size: clamp(1.05rem, 2.2vw + 0.1rem, 1.35rem);
   color: $text;
 }
+.privacyPolicy-marker { font-weight: 800; color: $text; }
 
 .privacyPolicy-text {
   margin: 0.5rem 0 0 1.5rem;
