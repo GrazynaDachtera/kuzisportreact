@@ -2,13 +2,19 @@
 
 import "./DownloadMaterials.scss";
 
-const RULES = [
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+const MATERIALS = [
+  {
+    text: "Regulamin Stowarzyszenia Sąsiedzki Łazarz (w wersji pdf)",
+    link: "https://docs.google.com/document/d/1OIt_AYtKd3LnODBRBZQG5xnQHdxFMHti/edit",
+  },
+  {
+    text: "Logotyp Stowarzyszenia Sąsiedzki Łazarz w wersji pdf",
+    link: "/path/to/logotyp.pdf",
+  },
+  {
+    text: "Logotyp Stowarzyszenia Sąsiedzki Łazarz w wersji jpg",
+    link: "/Downloads/logo.png",
+  },
 ];
 
 export default function DownloadMaterialsPage() {
@@ -22,8 +28,12 @@ export default function DownloadMaterialsPage() {
         </h2>
 
         <ol className="downloadMaterials-list">
-          {RULES.map((rule) => (
-            <li key={rule}>{rule}</li>
+          {MATERIALS.map((item) => (
+            <li key={item.text}>
+              <a href={item.link} target="_blank" rel="noopener noreferrer">
+                {item.text}
+              </a>
+            </li>
           ))}
         </ol>
       </section>

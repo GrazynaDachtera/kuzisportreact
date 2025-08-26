@@ -4,10 +4,14 @@
   --nav-h: 80px;
 }
 @media (max-width: 1024px) {
-  :root { --nav-h: 72px; }
+  :root {
+    --nav-h: 72px;
+  }
 }
 @media (max-width: 480px) {
-  :root { --nav-h: 86px; }
+  :root {
+    --nav-h: 86px;
+  }
 }
 
 html {
@@ -59,6 +63,19 @@ $pad-phone: 1rem;
   font: 400 clamp(0.95rem, 2.2vw + 0.1rem, 1.2rem) "Poppins", sans-serif;
   color: #6a7280;
   text-align: left;
+
+  a {
+    color: #6a7280;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:visited {
+      color: #2a9d6a;
+    }
+  }
 }
 
 @media (max-width: 1024px) {
