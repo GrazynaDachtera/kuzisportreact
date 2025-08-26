@@ -4,10 +4,14 @@
   --nav-h: 80px;
 }
 @media (max-width: 1024px) {
-  :root { --nav-h: 72px; }
+  :root {
+    --nav-h: 72px;
+  }
 }
 @media (max-width: 480px) {
-  :root { --nav-h: 86px; }
+  :root {
+    --nav-h: 86px;
+  }
 }
 
 html {
@@ -17,12 +21,16 @@ html {
 $pad-desktop: 2rem;
 $pad-tablet: 2rem;
 $pad-phone: 1rem;
+$text: #6a7280;
+$body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
 
 .help-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-bottom: 4rem;
+  color: $text;
+  font-family: "Poppins", sans-serif;
 }
 
 .help-title {
@@ -32,8 +40,9 @@ $pad-phone: 1rem;
   box-sizing: border-box;
   margin: 0;
   padding: clamp(1.25rem, 2.5vw, 2.5rem) $pad-desktop;
-  font: 800 clamp(2rem, 4vw + 1rem, 3rem) "Poppins", sans-serif;
-  color: #6a7280;
+  font-weight: 800;
+  font-size: clamp(2rem, 4vw + 1rem, 3rem);
+  color: $text;
   background: #f1f1f1;
   padding-top: calc(var(--nav-h) + 4rem);
 }
@@ -42,45 +51,55 @@ $pad-phone: 1rem;
   width: min(100vw, 65rem);
   margin-top: clamp(2rem, 3.5vw, 3.5rem);
   background: #fff;
+  color: $text;
 }
 
 .help-subtitle {
   padding: 0 $pad-desktop;
-  font: 800 clamp(1.6rem, 3.5vw + 0.5rem, 2.5rem) "Poppins", sans-serif;
-  color: #6a7280;
+  font-weight: 800;
+  font-size: clamp(1.2rem, 2.2vw + 0.5rem, 1.8rem);
+  color: $text;
   text-align: left;
+  margin-bottom: 1.5rem;
 }
 
-.help-list {
-  list-style: decimal;
-  line-height: 1.6;
-  margin: 2.5rem $pad-desktop 1rem;
-  padding-left: 1.5rem;
-  font: 400 clamp(0.95rem, 2.2vw + 0.1rem, 1.2rem) "Poppins", sans-serif;
-  color: #6a7280;
+.help-text {
+  padding: 0 $pad-desktop 2rem;
+  font-weight: 400;
+  font-size: $body-fs;
+  color: $text;
+  line-height: 1.7;
   text-align: left;
+
+  p {
+    margin: 0.5rem 0;
+    font-size: inherit !important;
+    color: inherit;
+  }
+
+  strong {
+    font-weight: 700;
+    color: #2e9c6a;
+  }
 }
 
 @media (max-width: 1024px) {
   .help-title,
-  .help-subtitle {
+  .help-subtitle,
+  .help-text {
     padding-left: $pad-tablet;
     padding-right: $pad-tablet;
-  }
-  .help-list {
-    margin-left: $pad-tablet;
-    margin-right: $pad-tablet;
   }
 }
 
 @media (max-width: 480px) {
   .help-title,
-  .help-subtitle {
+  .help-subtitle,
+  .help-text {
     padding-left: $pad-phone;
     padding-right: $pad-phone;
   }
-  .help-list {
-    margin-left: $pad-phone;
-    margin-right: $pad-phone;
+  .help-subtitle {
+    text-align: center;
   }
 }
