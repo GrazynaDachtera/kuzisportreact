@@ -14,13 +14,71 @@ type Img = {
 
 type AreasOfActivityProps = {
   title?: string;
-  description?: string;
+  description?: React.ReactNode;
   image?: Img;
 };
 
 export default function AreasOfActivity({
   title = "Obszary działalności",
-  description = "Tutaj możesz dodać opis obszarów działalności fundacji. Może to być tekst o inicjatywach, projektach i aktywnościach, które realizujemy w ramach naszej misji.",
+  description = (
+    <>
+      <p>
+        <strong>Robimy Porzundek!</strong>
+        <br />
+        chodzimy po Łazarzu wzdłuż i wszerz – nieporządek zgłaszamy komu trzeba
+        i pilnujemy realizacji zadań porządkowych przez służby miejskie
+      </p>
+
+      <p>
+        <strong>Integrujemy Łazarz i sąsiedztwo!</strong>
+        <br />
+        organizujemy wydarzenia sąsiedzkie, od spacerów po pikniki i warsztaty
+        dla mieszkańców, dbając o walor edukacyjny
+      </p>
+
+      <p>
+        <strong>Zieleń i zwierzęta, natura!</strong>
+        <br />
+        naszym priorytetem jest jeszcze więcej dobrze zaplanowanej zieleni na
+        Łazarzu, miejsc przyjemnych dla ludzi i innych stworków – zawsze to
+        uwzględniamy w naszych opiniach i projektach
+      </p>
+
+      <p>
+        <strong>Inwestycje!</strong>
+        <br />
+        wiemy jak dobrze planować, wydawać pieniądze i pilnować trwałości
+        inwestycji. Staramy się o kompromis dla potrzeb pieszych, rowerzystów,
+        kierowców, młodszych, starszych, chytrych i estetów
+      </p>
+
+      <p>
+        <strong>Kultura i historia!</strong>
+        <br />
+        co, gdzie, kiedy – uważnie śledzimy i nagłaśniamy informacje o
+        wydarzeniach na Łazarzu, a także w całym Poznaniu: takich które właśnie
+        się dzieją i takich które już się działy. Organizujemy spacery z
+        historią Łazarza w tle
+      </p>
+
+      <p>
+        <strong>… i wiele więcej!</strong>
+      </p>
+
+      <a href="/obszary" className="areas-cta">
+        Poznaj wszystkie obszary naszej działalności
+        <svg
+          className="areas-cta-icon"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <path d="M6 6 L18 18" />
+          <path d="M12 18 H18 V12" />
+        </svg>
+      </a>
+    </>
+  ),
   image = {
     src: "/News/matejki-poznan.png",
     alt: "obszary działalności",
@@ -35,7 +93,7 @@ export default function AreasOfActivity({
         <div className="areas-top">
           <div className="areas-content">
             <h2 className="areas-title">{title}</h2>
-            <p className="areas-description">{description}</p>
+            <div className="areas-description">{description}</div>
           </div>
 
           <div className="areas-image-wrapper">

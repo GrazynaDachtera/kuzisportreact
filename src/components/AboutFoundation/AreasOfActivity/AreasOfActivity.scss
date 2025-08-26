@@ -2,6 +2,7 @@
   --section-py: clamp(2rem, 5vw, 6rem);
   --brand-green: #3da575;
   --text-mid: #6a7280;
+  --text-dark: #2a3140;
   font-family: "Poppins", sans-serif;
 }
 
@@ -31,7 +32,7 @@
 }
 
 .areas-title {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 1vw + 2rem, 2.5rem);
   font-weight: 700;
   margin-bottom: 20px;
   color: var(--brand-green);
@@ -55,6 +56,39 @@
   width: 100%;
   height: auto;
   object-fit: contain;
+}
+
+/* CTA link styled like a section subheading (matching “Misja i wizja” feel) */
+.areas-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+  padding: 8px 0;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.1rem, 0.6vw + 1rem, 1.5rem);
+  color: var(--brand-green);
+  text-decoration: none;
+  transition: filter .2s ease, transform .2s ease;
+}
+
+.areas-cta-icon {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transform: translateY(1px);
+}
+
+.areas-cta:hover {
+  filter: brightness(.9);
+}
+.areas-cta:hover .areas-cta-icon {
+  transform: translate(2px, 3px);
 }
 
 @media (min-width: 992px) {
@@ -83,11 +117,11 @@
     align-items: center;
     text-align: center;
   }
+  .areas-cta {
+    justify-content: center;
+  }
   .areas-image-wrapper {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin-top: 1rem;
   }
   .areas-image {

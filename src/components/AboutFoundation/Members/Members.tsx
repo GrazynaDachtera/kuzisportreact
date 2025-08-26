@@ -1,13 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import "./Members.scss";
 
 type Member = {
   name: string;
   role: string;
-  img: { src: string; alt: string; width: number; height: number };
+  bio: string;
 };
 
 type MembersProps = {
@@ -19,71 +18,56 @@ type MembersProps = {
 
 const defaultMembers: Member[] = [
   {
-    name: "Imię i nazwisko",
-    role: "Stanowisko",
-    img: {
-      src: "/team/sandra.jpg",
-      alt: "Imię i nazwisko",
-      width: 520,
-      height: 580,
-    },
+    name: "Magda Krawczyk",
+    role: "Prezeska Stowarzyszenia",
+    bio: "Prezeska stowarzyszenia, od 2024 roku radna Rady Osiedla Święty Łazarz. Z wykształcenia ekonomistka, zawodowo zajmowała się zamówieniami publicznymi w administracji rządowej oraz samorządowej, obecnie procesem kontroli zarządczej. W 2025 roku w parku Kasprowicza pojawiły się stoły do ping-ponga – to z jej inicjatywy.",
   },
   {
-    name: "Imię i nazwisko",
-    role: "Stanowisko",
-    img: {
-      src: "/team/piotr.jpg",
-      alt: "Imię i nazwisko",
-      width: 520,
-      height: 580,
-    },
+    name: "Sylwia Badzińska",
+    role: "Wiceprezeska Stowarzyszenia",
+    bio: "Wiceprezeska stowarzyszenia, radna osiedlowa drugiej kadencji oraz współzałożycielka Stowarzyszenia Łazarz Pomaga. W 2022 roku uhonorowana tytułem Przyjaciel Łazarza za wieloletnie zaangażowanie na rzecz lokalnej społeczności. Od 14 lat aktywnie i z wielkim zaangażowaniem działa w Fundacji dla Zwierząt Animalia, gdzie ratuje bezdomne i porzucone psy oraz koty, prowadzi również dom tymczasowy dla kotów. Posiada bogate doświadczenie w organizacji wydarzeń integrujących mieszkańców Łazarza – pomysłodawczyni m.in. festynu „Łazarskie pożegnanie lata” (koncerty, animacje, prezentacje lokalnych organizacji). Koncerty młodych talentów w ramach Dni Łazarza, a także warsztatów ekologicznych. Każdego roku koordynuje osiedlowy etap miejskiego konkursu Zielony Poznań. Z determinacją walczy o zachowanie i rozwój terenów zielonych na Łazarzu – m.in. terenów po dawnych ogródkach działkowych na południe od ul. Hetmańskiej. Dzięki jej zaangażowaniu w Studium Uwarunkowań i Kierunków Zagospodarowania Przestrzennego udało się zachować jako tereny zielone/działkowe ROD im. O. Kopczyńskiego oraz Marii Curie-Skłodowskiej. Angażuje się również w ochronę lokalnych zabytków – od lat walczy o ocalenie historycznego budynku Sołtysówki przy ul. Głogowskiej 35, a w 2022 roku współorganizowała pierwszy okrągły stół w sprawie ratowania tego obiektu. Walka o zachowanie Sołtysówki trwa i podejmowane są kolejne kroki, by uchronić ją przed zniszczeniem i przywróceniem jej należne miejsca w przestrzeni Łazarza. Współtworzy w Poznaniu miejski Program opieki nad zwierzętami bezdomnymi, a w najbliższym czasie przygotowuje się do udziału w Ogólnopolskim Kongresie Praw Zwierząt organizowanym przez posłanki Sejmu RP.",
   },
   {
-    name: "Imię i nazwisko",
-    role: "Stanowisko",
-    img: {
-      src: "/team/weronika-s.jpg",
-      alt: "Imię i nazwisko",
-      width: 520,
-      height: 580,
-    },
+    name: "Paulina Prusiecka",
+    role: "Członkini Stowarzyszenia",
+    bio: "Członkini stowarzyszenia, radna osiedlowa, absolwentka Uniwersytetu Artystycznego w Poznaniu oraz Uniwersytetu Warszawskiego. Zawodowo zajmuje się marketingiem nieruchomości oraz sektora HORECA. Jej pasją jest łączenie sztuk pięknych, biznesu i działań społecznych. Jest współzałożycielką galerii sztuki i od lat prowadzi rodzinną fundację. Organizatorka wystaw malarstwa i fotografii, wydarzeń charytatywnych na rzecz seniorów i osób z niepełnosprawnościami oraz akcji nasadzania drzew w lokalnych szkołach, przedszkolach i domach opieki.",
   },
   {
-    name: "Imię i nazwisko",
-    role: "Stanowisko",
-    img: {
-      src: "/team/weronika-k.jpg",
-      alt: "Imię i nazwisko",
-      width: 520,
-      height: 580,
-    },
+    name: "Roman Modrzyński",
+    role: "Członek Stowarzyszenia",
+    bio: "Członek stowarzyszenia, działacz społeczny od wielu lat związany z Łazarzem, trzykrotnie wybrany na radnego osiedlowego. W 2022 roku uhonorowany tytułem Człowieka Roku Łazarza. Aktywnie działa na rzecz mieszkańców, organizując i współorganizując wydarzenia społeczne, historyczne i zdrowotne, takie jak festyny, pokazy filmowe czy wystawy. Współtworzył m.in. pokaz filmu „Błogosławiona”, wystawę witrynową „Dawny Łazarz”, Niedzielę Palmową na Rynku Łazarskim czy Targ Różności w ramach obchodów 125. rocznicy przyłączenia Łazarza do Poznania. Pomysłodawca przejażdżki dla osób z niepełnosprawnością „Tramwaj Św. Mikołaja”. Jest członkiem Stowarzyszenia Wirtualny Łazarz, współpracuje z lokalnymi klubami seniora, a także angażuje się w działania integracyjne na rzecz osób z niepełnosprawnościami, współpracując m.in. ze ŚDS „Kamyk”, Stowarzyszeniem Na Tak oraz PSONI Poznań.",
   },
   {
-    name: "Imię i nazwisko",
-    role: "Stanowisko",
-    img: {
-      src: "/team/sandra.jpg",
-      alt: "Imię i nazwisko",
-      width: 520,
-      height: 580,
-    },
+    name: "Joanna Kamińska",
+    role: "Członkini Stowarzyszenia",
+    bio: "Członkini stowarzyszenia, radna osiedlowa, absolwentka wydziałowych studiów tłumaczeń konferencyjnych filologii germańskiej i angielskiej Uniwersytetu Adama Mickiewicza w Poznaniu oraz trzyletniego programu „Zarządzanie kształceniem grup młodzieży i dorosłych” prowadzonego przez Fundację Otto Benecke. W ramach kilkuletniej współpracy z organizacjami związanymi z Mniejszością Niemiecką w Polsce edukuje w zakresie efektywnej pracy w grupie, koordynacji projektu, zarządzania sobą w czasie, produktywności oraz aktywizacji społeczności lokalnej, tak młodzież, jak i seniorów. Doświadczenie zdobyte w tej pracy chce przenieść i skutecznie zaimplementować na Łazarskim Fyrtlu. Kocha historię łazarskich kamienic i stara się zarażać tym uczuciem, organizując spacery z lokalnymi przewodnikami.",
+  },
+  {
+    name: "Michał Frankiewicz",
+    role: "Członek Stowarzyszenia",
+    bio: "Członek stowarzyszenia, radny osiedlowy. Organizator cyklicznych akcji Sąsiedzkiego Sprzątania Łazarza, które za każdym razem zyskują więcej uczestników i wsparcie kolejnych lokalnych biznesów. Działa w Poznańskiej Sieci Dostępności od początku jej istnienia, organizował na Łazarzu spotkanie z seniorami, na którym opowiadał o usługach Poznańskiego Centrum Dostępności. Bliskie są mu tematy czystości, dostępności przestrzennej i infrastruktury rowerowej.",
+  },
+  {
+    name: "Agnieszka Michalak",
+    role: "Członkini Zarządu Stowarzyszenia",
+    bio: "Członkini zarządu stowarzyszenia, radna osiedlowa (3 kadencja), magister gospodarki przestrzennej, wytrwały bojownik o poprawę infrastruktury i bezpieczeństwa w okolicy: podjęła skuteczne starania o przejście dla pieszych przez ulicę Kasprzaka koło Morawskiego, o fotoradar na ulicy Hetmańskiej (po serii wypadków, w tym śmiertelnych), a także wpisanie do Studium uwarunkowań i kierunków zagospodarowania przestrzennego miasta Poznania łączników zieleni i terenu zieleni działkowej w okolicach ulicy Hetmańskiej. Współorganizatorka wielu wydarzeń osiedlowych: „Łazarskiego pożegnania lata”, Eko pikniku na Rynku Łazarskim, obecnie w trakcie realizacji jest grant NIW z FIO na Konwent Rad Rodziców, którego jest jedną z inicjatorek. To forum wymiany wiedzy i doświadczeń, oferujący cykliczne spotkania i szkolenia.",
+  },
+  {
+    name: "Natalia Gielniak",
+    role: "Członkini Stowarzyszenia",
+    bio: 'Członkini stowarzyszenia, radna osiedlowa, aktywnie działa także w stowarzyszeniu „Młodzi Razem". Nieocenione wsparcie w organizacji wydarzeń. Brała udział w reprezentacji Łazarza w konkursie Wianki’24 (3 miejsce) oraz w Kulinarnym Turnieju Dzielnic’25.',
+  },
+  {
+    name: "Michał Turno",
+    role: "Członek Stowarzyszenia",
+    bio: "Członek stowarzyszenia, radny osiedlowy, pracownik Wydziału Sportu Urzędu Miasta Poznania. Świetnie zna strukturę i funkcjonowanie miejskich jednostek. Posiada doświadczenie w działalności w samorządach szkolnych, Młodzieżowej Radzie Miasta Poznania, Stowarzyszeniu Młodzi Demokraci, kółkach studenckich oraz Stowarzyszeniu Nowa Generacja.",
   },
 ];
 
-function MemberCard({ m, priority }: { m: Member; priority?: boolean }) {
+function MemberCard({ m }: { m: Member }) {
   return (
     <article className="members-card" role="listitem">
-      <div className="members-photo">
-        <Image
-          src={m.img.src}
-          alt={m.img.alt}
-          width={m.img.width}
-          height={m.img.height}
-          className="members-img"
-          priority={priority}
-          sizes="(max-width:700px) 100vw, (max-width:1200px) 50vw, 33vw"
-        />
-      </div>
+      <div className="members-bio">{m.bio}</div>
       <div className="members-meta">
         <h3 className="members-name">{m.name}</h3>
         <p className="members-role">{m.role}</p>
@@ -93,8 +77,8 @@ function MemberCard({ m, priority }: { m: Member; priority?: boolean }) {
 }
 
 export default function Members({
-  title = "Członkowie stowarzyszenia",
-  subtitle = "Poznaj osoby, które tworzą fundację",
+  title = "Poznaj nas bliżej!",
+  subtitle,
   bg = "white",
   members = defaultMembers,
 }: MembersProps) {
@@ -102,6 +86,7 @@ export default function Members({
     () => (members?.length ? members : defaultMembers),
     [members]
   );
+
   const trackRef = useRef<HTMLDivElement>(null);
   const [canPrev, setCanPrev] = useState(false);
   const [canNext, setCanNext] = useState(false);
@@ -189,7 +174,7 @@ export default function Members({
 
           <div className="members-track" role="list" ref={trackRef}>
             {data.map((m, i) => (
-              <MemberCard key={`${m.name}-${i}`} m={m} priority={i < 2} />
+              <MemberCard key={`${m.name}-${i}`} m={m} />
             ))}
           </div>
 

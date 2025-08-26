@@ -17,7 +17,7 @@ type MissionProps = {
 
 export default function Mission({
   title = "Misja i wizja",
-  description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean malesuada tincidunt turpis, pretium consequat ante mollis a. Nullam nec sapien nisi. Etiam pellentesque, justo vitae faucibus blandit, ex sem luctus ante, eu dictum magna est quis nunc.",
+  description = "Jako Stowarzyszenie Sąsiedzki Łazarz działamy na rzecz mieszkańców Osiedla Święty Łazarz, organizując wydarzenia, spotkania oraz działania edukacyjne i kanały komunikacyjne, aby zachęcić do aktywnej partycypacji w życiu społecznym. Wierzymy, że każdy ma prawo żyć w bezpiecznym, nowoczesnym, zielonym i przyjaznym miejscu, dlatego łączymy nasze siły i doświadczenia jako społecznicy mieszkający tutaj, by skutecznie reprezentować potrzeby naszych sąsiadów. W naszych oczach Święty Łazarz to dzielnica przyjazna do życia, w której każdy mieszkaniec ma łatwy dostęp do terenów zielonych i kultury oraz możliwość integracji z sąsiadami i pełnej partycypacji w życiu społecznym osiedla.",
   image = {
     src: "/Sports/people.png",
     alt: "grupa ludzi",
