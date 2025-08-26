@@ -95,7 +95,6 @@ export default function AreasOfActivity({
             <h2 className="areas-title">{title}</h2>
             <div className="areas-description">{description}</div>
           </div>
-
           <div className="areas-image-wrapper">
             <Image
               src={image.src}

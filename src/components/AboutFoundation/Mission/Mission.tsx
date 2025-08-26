@@ -31,7 +31,6 @@ export default function Mission({
       <div className="mission-container">
         <div className="mission-top">
           <div className="mission-image-wrapper">
-            {/* no fill — let the natural aspect render; CSS reserves height */}
             <Image
               src={image.src}
               alt={image.alt}
@@ -43,7 +42,6 @@ export default function Mission({
               style={{ width: "100%", height: "auto", display: "block" }}
             />
           </div>
-
           <div className="mission-content">
             <h2 className="mission-title">{title}</h2>
             <p className="mission-description">{description}</p>
