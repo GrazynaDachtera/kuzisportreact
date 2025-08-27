@@ -24,22 +24,15 @@
 
 .areasextended-top {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 40px;
 }
 
 .areasextended-content {
-  flex: 1;
-  max-width: 500px;
+  flex: 1 1 50%;
+  max-width: 680px;
   text-align: left;
-}
-
-.areasextended-title {
-  font-weight: 800;
-  font-size: clamp(1.2rem, 2.2vw + 0.5rem, 1.8rem);
-  color: var(--brand-green);
-  margin-bottom: 1.5rem;
 }
 
 .areasextended-description {
@@ -57,15 +50,24 @@
 }
 
 .areasextended-item {
-  margin: 0.5rem 0;
+  margin: 0.75rem 0;
 }
 
 .areasextended-item-title {
-  font-weight: 700;
-  color: var(--brand-green); 
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-weight: 400;
+  color: var(--text-color);
   font-size: inherit;
-  line-height: 1.5;
+  line-height: 1.6;
   margin: 0;
+}
+
+.areasextended-item-number {
+  min-width: 2ch;
+  font-weight: 400;
+  color: var(--text-color);
 }
 
 .areasextended-item-text {
@@ -73,7 +75,7 @@
 }
 
 .areasextended-image-wrapper {
-  flex: 1;
+  flex: 1 1 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -84,34 +86,6 @@
   height: auto;
   object-fit: contain;
 }
-
-.areasextended-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 22px;
-  padding: 8px 0;
-  font-weight: 700;
-  font-size: clamp(1.1rem, 0.6vw + 1rem, 1.5rem);
-  color: var(--brand-green);
-  text-decoration: none;
-  transition: filter .2s ease, transform .2s ease;
-}
-
-.areasextended-cta-icon {
-  order: -1;
-  width: 18px;
-  height: 18px;
-  stroke: currentColor;
-  stroke-width: 2.2;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  transform: translateY(1px);
-}
-
-.areasextended-cta:hover { filter: brightness(.9); }
-.areasextended-cta:hover .areasextended-cta-icon { transform: translate(2px, 1px); }
 
 @media (min-width: 992px) {
   .areasextended-content,
@@ -128,18 +102,17 @@
 @media (max-width: 768px) {
   .areasextended-top {
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: stretch;
+    text-align: left;
     gap: clamp(16px, 3.5vw, 24px);
   }
   .areasextended-content {
     max-width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: stretch;
+    text-align: left;
   }
-  .areasextended-cta { justify-content: center; }
   .areasextended-image-wrapper {
     width: 100%;
     margin-top: 1rem;
@@ -155,5 +128,3 @@
 @media (max-width: 480px) {
   .areasextended-container { padding-inline: 1rem; }
 }
-
-.areasextended-description strong { color: var(--brand-green); }
