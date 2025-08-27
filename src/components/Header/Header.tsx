@@ -6,7 +6,6 @@ import "./Header.scss";
 
 interface Slide {
   titleLines: string[];
-  text: string;
   cta: { label: string; href: string };
   img: { src: string; alt: string; width: number; height: number };
 }
@@ -14,25 +13,13 @@ interface Slide {
 const slides: Slide[] = [
   {
     titleLines: ["Sąsiedzki", "Łazarz"],
-    text: "Jesteśmy grupą społeczników zaangażowanych w sprawy mieszkańców na Łazarzu.",
-    cta: { label: "Sprawdź", href: "/Service" },
-    img: {
-      src: "/Header/x.png",
-      alt: "z",
-      width: 1600,
-      height: 1067,
-    },
+    cta: { label: "Sprawdź", href: "/AboutFoundation" },
+    img: { src: "/Header/1.jpg", alt: "z", width: 1600, height: 1067 },
   },
   {
     titleLines: ["KULTURA", "HISTORIA I SPORT"],
-    text: "Bądź na bieżąco!",
-    cta: { label: "Sprawdź", href: "/Service" },
-    img: {
-      src: "/Header/x.png",
-      alt: "z",
-      width: 1600,
-      height: 1067,
-    },
+    cta: { label: "Wesprzyj", href: "/Help" },
+    img: { src: "/Header/2.jpg", alt: "z", width: 1600, height: 1067 },
   },
 ];
 
@@ -52,9 +39,7 @@ export default function HeroSlider() {
           <div
             className="slide"
             key={`slide-${i}`}
-            style={{
-              backgroundImage: `url(${s.img.src})`,
-            }}
+            style={{ backgroundImage: `url(${s.img.src})` }}
             aria-label={s.img.alt}
             role="img"
           >
@@ -63,11 +48,10 @@ export default function HeroSlider() {
                 {s.titleLines.map((line, li) => (
                   <Fragment key={`line-${i}-${li}`}>
                     <span>{line}</span>
-                    <br />
+                    {li < s.titleLines.length - 1 && <br />}
                   </Fragment>
                 ))}
               </h1>
-              <p>{s.text}</p>
               <Link href={s.cta.href} className="slide__cta">
                 {s.cta.label}
               </Link>

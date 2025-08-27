@@ -1,59 +1,82 @@
 "use client";
 
-import Image from "next/image";
 import "./Reviews.scss";
 
-/* ── Image badges (first two cards) ──────────────────────────────── */
-const IMAGE_BADGES = [
-  { src: "/Reviews/profit.png", alt: "Benefit Systems logo" },
-  { src: "/Reviews/profit.png", alt: "Profit logo" },
-];
+const PhoneIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3.11 5.18 2 2 0 0 1 5.1 3h3a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11L9.1 10.9a16 16 0 0 0 4 4l1.57-1.15a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92z" />
+  </svg>
+);
+
+const MailIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M4 4h16v16H4z" />
+    <path d="m22 6-10 7L2 6" />
+  </svg>
+);
 
 export default function Reviews() {
   return (
-    <section className="reviews">
-      <div className="reviews__container">
-        {/* ── 1-2: image badges ───────────────────────────────────── */}
-        {IMAGE_BADGES.map(({ src, alt }) => (
-          <div key={alt} className="reviews__card">
-            <Image
-              src={src}
-              alt={alt}
-              width={220}
-              height={220}
-              className="reviews__badge"
-              sizes="(max-width: 768px) 60vw,
-                     (max-width: 1200px) 30vw,
-                     220px"
-              priority
-            />
+    <section className="contact-strip" aria-label="Dane kontaktowe">
+      <div className="contact-container strip-grid">
+        <div className="strip-item">
+          <div className="icon" aria-hidden="true">
+            <PhoneIcon />
           </div>
-        ))}
-
-        {/* ── 3: Google-reviews rating card ───────────────────────── */}
-        <div className="reviews__card reviews__rating">
-          <div className="reviews__stars">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <svg
-                key={i}
-                viewBox="0 0 20 20"
-                className="reviews__star"
-                aria-hidden="true"
-              >
-                <path d="M10 1.7l2.4 5 5.5.8-4 3.9.9 5.5L10 14.8l-4.9 2.6.9-5.5-4-3.9 5.5-.8L10 1.7z" />
-              </svg>
-            ))}
+          <div className="meta">
+            <p className="label">Biuro:</p>
+            <a href="tel:605550370" className="value">
+              605 550 370
+            </a>
           </div>
+        </div>
 
-          <p className="reviews__score">
-            <span>4.9</span> / 5
-          </p>
+        <div className="strip-item">
+          <div className="icon" aria-hidden="true">
+            <PhoneIcon />
+          </div>
+          <div className="meta">
+            <p className="label">XYZ:</p>
+            <div className="phones">
+              <a href="tel:XYZ" className="value">
+                XYZ
+              </a>
+            </div>
+          </div>
+        </div>
 
-          <p className="reviews__desc">
-            na&nbsp;podstawie&nbsp;100+
-            <br />
-            opinii w&nbsp;Google i&nbsp;na&nbsp;Facebooku
-          </p>
+        <div className="strip-item">
+          <div className="icon" aria-hidden="true">
+            <MailIcon />
+          </div>
+          <div className="meta">
+            <p className="label">E-mail:</p>
+            <a href="mailto:kontakt@sasiedzkilazarz.pl" className="value">
+              kontakt@sasiedzkilazarz.pl
+            </a>
+          </div>
         </div>
       </div>
     </section>

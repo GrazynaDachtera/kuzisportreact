@@ -2,6 +2,7 @@
   --brand-green: #3da575;
   --cta-green: #2e7d57;
   --cta-green-hover: #276b49;
+  --slide-overlay: rgba(0, 0, 0, 0.35);
 }
 
 .slider {
@@ -37,19 +38,41 @@
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  isolation: isolate;
+}
+
+.slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--slide-overlay);
+  z-index: 0;
+  pointer-events: none;
 }
 
 .slide__text {
   flex: 0 0 40%;
   max-width: 40%;
   padding: 0 2rem 0 4rem;
+  transform: translateY(clamp(2rem, 8vh, 10rem));
+  will-change: transform;
+  z-index: 1;
+  container-type: inline-size;
 }
 
-h1 {
-  font-size: clamp(3rem, 8vw, 8rem);
-  line-height: 0.9;
-  color: var(--brand-green);
-  margin: 0 0 1.5rem;
+.slide__text h1 {
+  font-size: clamp(2.5rem, 11cqw, 5rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  color: #f7f7f7;
+  margin: 0 0 1rem;
+}
+
+@supports not (font-size: 1cqw) {
+  .slide__text h1 {
+    font-size: clamp(2.5rem, 7vw, 5rem);
+  }
 }
 
 p {
@@ -62,13 +85,13 @@ p {
 
 .slide__cta {
   display: inline-block;
-  padding: 1rem 3rem;
-  font-size: 1rem;
+  padding: clamp(0.85rem, 2.4cqw, 1.2rem) clamp(1.25rem, 5.5cqw, 2.6rem);
+  font-size: clamp(1rem, 3.4cqw, 1.3rem);
   font-weight: 600;
   color: #eeeeee;
   background-color: var(--cta-green);
   border: none;
-  border-radius: 0.6rem;
+  border-radius: clamp(0.55rem, 2cqw, 0.9rem);
   cursor: pointer;
   font-family: "Poppins", sans-serif;
   text-decoration: none;
@@ -98,7 +121,7 @@ p {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: #7f8c8d;
+  background: #eeeeee;
   border: none;
   opacity: 0.7;
   cursor: pointer;
@@ -120,6 +143,11 @@ p {
     flex-basis: 60%;
     max-width: 60%;
     padding: 0 2rem;
+    transform: translateY(clamp(1.5rem, 6vh, 6rem));
+  }
+
+  .slide__text h1 {
+    font-size: clamp(2.125rem, 12cqw, 3.75rem);
   }
 }
 
@@ -141,6 +169,12 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
+    transform: translateY(2rem);
+  }
+
+  .slide__text h1 {
+    font-size: clamp(1.875rem, 14cqw, 3rem);
+    line-height: 1;
   }
 
   .dots {
