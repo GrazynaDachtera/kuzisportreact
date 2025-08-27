@@ -11,8 +11,8 @@ $pad-phone: 1rem;
   --line: #e8e8ee;
   --bg: #f4f6f9;
   --white: #fff;
-  --accent: #e6332a;
-  --accent-dark: #c62b23;
+  --accent: #2e9c6a;
+  --accent-dark: #276b49;
   --brand: #2e9c6a;
   --nav-h-desktop: 5rem;
 }
@@ -171,7 +171,7 @@ textarea:focus {
   border: none;
   border-radius: 999px;
   color: #fff;
-  background: var(--accent);
+  background: var(--brand);
   font-weight: 700;
   cursor: pointer;
   transition: background .2s, transform .05s;
