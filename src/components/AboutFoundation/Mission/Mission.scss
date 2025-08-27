@@ -46,11 +46,28 @@
   line-height: 1.7;
   margin: 0;
   color: var(--text-color);
+}
 
-  strong {
-    font-weight: 700;
-    color: var(--brand-green);
-  }
+.mission-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mission-item {
+  margin: 0.5rem 0;
+}
+
+.mission-item-title {
+  margin: 0;
+  font-weight: 700;
+  font-size: inherit;
+  line-height: 1.5;
+  color: var(--brand-green);
+}
+
+.mission-item-text {
+  margin-top: 2px;
 }
 
 .mission-image-wrapper {
@@ -95,4 +112,9 @@
   .mission-container {
     padding-inline: 1rem;
   }
+}
+
+.mission-description strong {
+  font-weight: 700;
+  color: var(--brand-green);
 }
