@@ -5,8 +5,8 @@ import "./AreasExtendedHeading.scss";
 
 export default function AreasExtendedHeading() {
   return (
-    <main className="AboutFoundationHeading-wrapper">
-      <h1 className="AboutFoundationHeading-title">
+    <main className="areasextendedheading-wrapper">
+      <h1 className="areasextendedheading-title">
         <Link href="/AboutFoundation">Obszary działalności</Link>
       </h1>
     </main>

@@ -16,14 +16,14 @@ html {
 
 $pad-desktop: 2rem;
 
-.AboutFoundationHeading-wrapper {
+.areasextendedheading-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-bottom: 4rem;
 }
 
-.AboutFoundationHeading-title {
+.areasextendedheading-title {
   width: 100%;
   display: flex;
   align-items: center;
@@ -36,7 +36,7 @@ $pad-desktop: 2rem;
   padding-top: calc(var(--nav-h) + 4rem);
 }
 
-.AboutFoundationHeading-title a {
+.areasextendedheading-title a {
   color: inherit;
   text-decoration: none;
 }

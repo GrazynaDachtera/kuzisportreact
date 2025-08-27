@@ -62,28 +62,28 @@ export default function AreasOfActivity({
   },
 }: AreasOfActivityProps) {
   return (
-    <section className="areas-top-wrapper">
-      <div className="areas-container">
-        <div className="areas-top">
-          <div className="areas-content">
-            <h2 className="areas-title">{title}</h2>
+    <section className="areasextended-top-wrapper">
+      <div className="areasextended-container">
+        <div className="areasextended-top">
+          <div className="areasextended-content">
+            <h2 className="areasextended-title">{title}</h2>
 
-            <div className="areas-description">
-              <ul className="areas-list" role="list">
+            <div className="areasextended-description">
+              <ul className="areasextended-list" role="list">
                 {items.map((item, idx) => (
-                  <li key={idx} className="areas-item">
-                    <h3 className="areas-item-title">{item.title}</h3>
+                  <li key={idx} className="areasextended-item">
+                    <h3 className="areasextended-item-title">{item.title}</h3>
                     {item.text ? (
-                      <div className="areas-item-text">{item.text}</div>
+                      <div className="areasextended-item-text">{item.text}</div>
                     ) : null}
                   </li>
                 ))}
               </ul>
 
-              <Link href="/AreasOfActivity" className="areas-cta">
+              <Link href="/AreasOfActivity" className="areasextended-cta">
                 Poznaj wszystkie obszary naszej działalności
                 <svg
-                  className="areas-cta-icon"
+                  className="areasextended-cta-icon"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                   focusable="false"
@@ -95,13 +95,13 @@ export default function AreasOfActivity({
             </div>
           </div>
 
-          <div className="areas-image-wrapper">
+          <div className="areasextended-image-wrapper">
             <Image
               src={image.src}
               alt={image.alt}
               width={image.width}
               height={image.height}
-              className="areas-image"
+              className="areasextended-image"
               priority={image.priority}
               sizes="(max-width:700px) 90vw, (max-width:1200px) 50vw, 33vw"
             />
