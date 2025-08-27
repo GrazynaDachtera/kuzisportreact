@@ -2,7 +2,7 @@
   --line: #e8e8ee;
   --bg: #f4f6f9;
   --white: #fff;
-  --text: #2e9c6a;
+  --brand: #2e9c6a;
 }
 
 .contact-container {
@@ -82,7 +82,7 @@
 .strip-item .meta .value {
   margin: 0;
   font-weight: 700;
-  color: var(--text);
+  color: var(--brand);
   text-decoration: none;
   word-break: break-word;
 }
