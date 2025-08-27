@@ -13,6 +13,7 @@ $pad-phone: 1rem;
   --white: #fff;
   --accent: #e6332a;
   --accent-dark: #c62b23;
+  --brand: #2e9c6a;
   --nav-h-desktop: 5rem;
 }
 
@@ -246,7 +247,7 @@ textarea:focus {
 .strip-item .meta .value {
   margin: 0;
   font-weight: 700;
-  color: var(--text);
+  color: var(--brand);
   text-decoration: none;
   word-break: break-word;
 }
