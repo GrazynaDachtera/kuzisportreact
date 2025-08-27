@@ -37,7 +37,28 @@ const MailIcon = () => (
   </svg>
 );
 
+const PinIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M12 22s-7-5.14-7-11a7 7 0 1 1 14 0c0 5.86-7 11-7 11z" />
+    <circle cx="12" cy="11" r="2.5" />
+  </svg>
+);
+
 export default function Reviews() {
+  const mapsUrl =
+    "https://www.google.com/maps/search/?api=1&query=ul.+U%C5%82a%C5%84ska+5%2C+60-748+Pozna%C5%84";
+
   return (
     <section className="contact-strip" aria-label="Dane kontaktowe">
       <div className="contact-container strip-grid">
@@ -53,17 +74,34 @@ export default function Reviews() {
           </div>
         </div>
 
-        <div className="strip-item">
+        <div
+          className="strip-item"
+          itemScope
+          itemType="https://schema.org/Organization"
+        >
           <div className="icon" aria-hidden="true">
-            <PhoneIcon />
+            <PinIcon />
           </div>
-          <div className="meta">
-            <p className="label">XYZ:</p>
-            <div className="phones">
-              <a href="tel:XYZ" className="value">
-                XYZ
-              </a>
-            </div>
+          <div
+            className="meta"
+            itemProp="address"
+            itemScope
+            itemType="https://schema.org/PostalAddress"
+          >
+            <a
+              className="value"
+              href={mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              itemProp="name"
+            >
+              Sąsiedzki Łazarz
+            </a>
+            <p className="label" aria-label="Adres">
+              <span itemProp="streetAddress">ul. Ułańska 5</span>,{" "}
+              <span itemProp="postalCode">60-748</span>{" "}
+              <span itemProp="addressLocality">Poznań</span>
+            </p>
           </div>
         </div>
 
