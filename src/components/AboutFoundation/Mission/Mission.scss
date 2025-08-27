@@ -23,15 +23,14 @@
 
 .mission-top {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 40px;
+  gap: clamp(16px, 3.5vw, 24px);
+  text-align: center;
 }
 
 .mission-content {
-  flex: 1;
   max-width: 560px;
-  text-align: left;
 }
 
 .mission-title {
@@ -55,40 +54,40 @@
 }
 
 .mission-image-wrapper {
-  flex: 1;
-  min-width: 0;
-  aspect-ratio: 652 / 336;
+  position: relative;
   width: 100%;
-  max-width: 600px;
-  min-height: clamp(220px, 48vw, 420px);
-  margin: 0 auto;
+  max-width: 420px;
+  height: clamp(260px, 80vw, 480px);
+  margin: 12px auto 0;
 }
 
 .mission-image {
   object-fit: contain;
+  object-position: center bottom;
   display: block;
 }
 
 @media (min-width: 992px) {
-  .mission-content,
-  .mission-image-wrapper {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
-}
-
-@media (max-width: 992px) {
   .mission-top {
-    flex-direction: column-reverse;
-    gap: clamp(16px, 3.5vw, 24px);
+    flex-direction: row;
     align-items: center;
-    text-align: center;
+    justify-content: space-between;
+    gap: 40px;
+    text-align: left;
   }
 
   .mission-content {
-    max-width: 100%;
-    align-items: center;
-    text-align: center;
+    order: 2;
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .mission-image-wrapper {
+    order: 1;
+    flex: 0 0 50%;
+    max-width: 50%;
+    height: clamp(320px, 32vw, 520px);
+    margin: 0;
   }
 }
 
