@@ -28,7 +28,7 @@ export default function ProjectsHomePage() {
       title: "Park - Sad na Hetmańskiej",
       description:
         "Stowarzyszenie Sąsiedzkie Łazarz, wspólnie z mieszkankami i mieszkańcami dzielnicy, podjęło inicjatywę utworzenia nowego parku w kwartale ulic: Hetmańska – Dmowskiego – Krauthofera – Górecka.",
-      link: "/Projects", // ✅ subpage link
+      link: "/Projects/Project1",
     },
     {
       title: "Spacery",
