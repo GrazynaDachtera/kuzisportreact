@@ -34,7 +34,7 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
   padding: clamp(1.25rem, 2.5vw, 2.5rem) $pad-desktop;
   font-weight: 800;
   font-size: clamp(2rem, 4vw + 1rem, 3rem);
-  color: $brand;
+  color: $text;
   background: #f1f1f1;
   padding-top: calc(var(--nav-h) + 4rem);
   text-wrap: balance;
