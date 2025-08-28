@@ -25,8 +25,8 @@ const ArrowIcon = () => (
 export default function AbcPage() {
   const features = [
     { title: "Park-sad przy Hetmańskiej", href: "/Projects/Project1" },
-    { title: "Spacery", href: "/" },
-    { title: "Sprzątanie", href: "/" },
+    { title: "Sąsiedzkie sprzątanie Łazarza", href: "/Projects/Project2" },
+    { title: "Ognioodporny Łazarz", href: "/Projects/Project3" },
   ];
 
   return (

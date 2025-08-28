@@ -31,10 +31,16 @@ export default function ProjectsHomePage() {
       link: "/Projects/Project1",
     },
     {
-      title: "Spacery",
+      title: "Sąsiedzkie sprzątanie Łazarza",
+      description:
+        "Inicjatywa wspólnego sprzątania naszej dzielnicy powstała z pomysłu Michała Frankiewicza ze Stowarzyszenia Sąsiedzki Łazarz.",
+      link: "/Projects/Project2",
     },
     {
-      title: "Sprzątanie",
+      title: "Ognioodporny Łazarz",
+      description:
+        "Ognioodporny Łazarz to projekt, którego celem jest wyposażenie mieszkańców Osiedla Święty Łazarz w wiedzę oraz sprzęt do zapobiegania i reagowania na zagrożenia – pożary.",
+      link: "/Projects/Project3",
     },
   ];
 
