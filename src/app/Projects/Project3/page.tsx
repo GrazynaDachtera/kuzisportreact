@@ -4,12 +4,12 @@ import React, { useEffect, useRef } from "react";
 import Scrollbar from "smooth-scrollbar";
 import Navbar from "@/components/Navbar/Navbar";
 import ProjectsHeading from "@/components/Projects/ProjectsHeading/ProjectsHeading";
-import Project1 from "@/components/Projects/Project1/Project1";
+import Project3 from "@/components/Projects/Project3/Project3";
 import Footer from "@/components/Footer/Footer";
 import Cookies from "@/components/Cookies/Cookies";
 import "@/app/globals.css";
 
-export default function Project1Subpage() {
+export default function Project3Subpage() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export default function Project1Subpage() {
           <div className="main">
             <Navbar />
             <ProjectsHeading />
-            <Project1 />
+            <Project3 />
           </div>
           <Footer />
         </section>

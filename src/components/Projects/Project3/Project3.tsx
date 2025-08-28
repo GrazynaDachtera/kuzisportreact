@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import "./Project1.scss";
+import "./Project3.scss";
 
 /** ---- Content types ---- */
 type Paragraph = { t: "p"; text: string };
@@ -141,7 +141,7 @@ const IMAGES = [
 ] as const;
 
 /** ---- Page ---- */
-export default function ProjectsPage() {
+export default function Project3Page() {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [index, setIndex] = useState<number | null>(null);
 

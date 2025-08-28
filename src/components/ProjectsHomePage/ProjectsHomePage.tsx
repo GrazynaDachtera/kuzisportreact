@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link"; // ✅ import Link
+import Link from "next/link";
 import "./ProjectsHomePage.scss";
 
 const ArrowIcon = () => (
@@ -58,8 +58,13 @@ export default function ProjectsHomePage() {
                 warsztaty, po działania integrujące sąsiadów. Zobacz, nad czym
                 pracujemy i dołącz do nas!
               </p>
-              <button className="projectsHomePage-button">Sprawdź</button>
+
+              {/* ✅ Link styled as a button */}
+              <Link href="/Projects" className="projectsHomePage-button">
+                Sprawdź
+              </Link>
             </div>
+
             <div className="projectsHomePage-image-wrapper">
               <Image
                 src="/ProjectsHomePage/people.png"

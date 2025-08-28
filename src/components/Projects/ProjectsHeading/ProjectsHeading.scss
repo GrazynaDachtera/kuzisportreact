@@ -4,10 +4,14 @@
   --nav-h: 80px;
 }
 @media (max-width: 1024px) {
-  :root { --nav-h: 72px; }
+  :root {
+    --nav-h: 72px;
+  }
 }
 @media (max-width: 480px) {
-  :root { --nav-h: 86px; }
+  :root {
+    --nav-h: 86px;
+  }
 }
 
 html {
@@ -16,14 +20,14 @@ html {
 
 $pad-desktop: 2rem;
 
-.AboutFoundationHeading-wrapper {
+.ProjectsHeading-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-bottom: 4rem;
 }
 
-.AboutFoundationHeading-title {
+.ProjectsHeading-title {
   width: 100%;
   display: flex;
   align-items: center;
@@ -31,12 +35,17 @@ $pad-desktop: 2rem;
   margin: 0;
   padding: clamp(1.25rem, 2.5vw, 2.5rem) $pad-desktop;
   font: 800 clamp(2rem, 4vw + 1rem, 3rem) "Poppins", sans-serif;
-  color: #6a7280;
+  color: #6a7280; // grey text
   background: #f1f1f1;
   padding-top: calc(var(--nav-h) + 4rem);
 }
 
-.AboutFoundationHeading-title a {
-  color: inherit;
+/* ✅ Force link inside heading to be grey (overrides global navbar link styles) */
+.ProjectsHeading-wrapper .ProjectsHeading-title a,
+.ProjectsHeading-wrapper .ProjectsHeading-title a:link,
+.ProjectsHeading-wrapper .ProjectsHeading-title a:visited,
+.ProjectsHeading-wrapper .ProjectsHeading-title a:hover,
+.ProjectsHeading-wrapper .ProjectsHeading-title a:active {
+  color: #6a7280 !important;
   text-decoration: none;
 }

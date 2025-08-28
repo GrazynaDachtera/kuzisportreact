@@ -3,11 +3,11 @@
 import Link from "next/link";
 import "./ProjectsHeading.scss";
 
-export default function AboutFoundationHeading() {
+export default function ProjectsHeading() {
   return (
-    <main className="AboutFoundationHeading-wrapper">
-      <h1 className="AboutFoundationHeading-title">
-        <Link href="/AboutFoundation">Projekty</Link>
+    <main className="ProjectsHeading-wrapper">
+      <h1 className="ProjectsHeading-title">
+        <Link href="/Projects">Projekty</Link>
       </h1>
     </main>
   );
