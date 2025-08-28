@@ -1,30 +1,56 @@
 "use client";
 
+import React from "react";
+import Link from "next/link";
 import "./Projects.scss";
 
-const RULES = [
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-];
+const ArrowIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2.5"
+    strokeLinecap="butt"
+    strokeLinejoin="miter"
+    className="projects-arrow-icon"
+  >
+    <path d="M7 7 L17 17" />
+    <path d="M17 7 L17 17 L7 17" />
+  </svg>
+);
 
-export default function ProjectsPage() {
+export default function AbcPage() {
+  const features = [
+    { title: "Park - Sad na Hetmańskiej", href: "/Projects/Project1" },
+    { title: "Spacery", href: "/" },
+    { title: "Sprzątanie", href: "/" },
+  ];
+
   return (
-    <main className="projects-wrapper">
-      <h1 className="projects-title">Projekty</h1>
-
-      <section className="projects-content">
-        <h2 className="projects-subtitle">Projekty</h2>
-
-        <ol className="projects-list">
-          {RULES.map((rule) => (
-            <li key={rule}>{rule}</li>
-          ))}
-        </ol>
-      </section>
-    </main>
+    <section className="projects-heading">
+      <div className="projects-heading-grid-wrapper">
+        <div className="projects-heading-container">
+          <div className="projects-heading-grid">
+            {features.map((feature) => (
+              <Link
+                href={feature.href}
+                className="projects-grid-item"
+                key={feature.href}
+              >
+                <span className="projects-grid-item-icon-wrapper">
+                  <ArrowIcon />
+                </span>
+                <span className="projects-grid-item-text">
+                  <h3 className="projects-grid-item-title">{feature.title}</h3>
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }

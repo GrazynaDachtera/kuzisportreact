@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import Scrollbar from "smooth-scrollbar";
 import Navbar from "@/components/Navbar/Navbar";
+import ProjectsHeading from "@/components/Projects/ProjectsHeading/ProjectsHeading";
 import Projects from "@/components/Projects/Projects";
 import Footer from "@/components/Footer/Footer";
 import Cookies from "@/components/Cookies/Cookies";
@@ -23,6 +24,7 @@ export default function ProjectsPage() {
         <section className="kuziSport">
           <div className="main">
             <Navbar />
+            <ProjectsHeading />
             <Projects />
           </div>
           <Footer />

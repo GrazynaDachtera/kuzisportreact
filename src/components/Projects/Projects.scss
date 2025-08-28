@@ -1,106 +1,99 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap");
 
 :root {
-  --nav-h: 80px;
-}
-@media (max-width: 1024px) {
-  :root {
-    --nav-h: 72px;
-  }
-}
-@media (max-width: 480px) {
-  :root {
-    --nav-h: 86px;
-  }
-}
-
-html {
-  scroll-padding-top: calc(var(--nav-h) + 2rem);
-}
-
-$pad-desktop: 2rem;
-$pad-tablet: 2rem;
-$pad-phone: 1rem;
-$text: #6a7280;
-$body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
-
-.projects-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 4rem;
+  --section-py: clamp(2rem, 5vw, 6rem);
+  --brand-green: #2e9c6a;
+  --text-color: #6a7280;
+  --body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
   font-family: "Poppins", sans-serif;
-  color: $text;
 }
 
-.projects-title {
+.projects-heading {
   width: 100%;
+  color: var(--brand-green);
+  font-family: "Poppins", sans-serif;
+}
+
+.projects-heading-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-inline: 2rem;
+}
+@media (max-width: 992px) { .projects-heading-container { padding-inline: 2rem; } }
+@media (max-width: 480px) { .projects-heading-container { padding-inline: 1rem; } }
+
+.projects-heading-grid-wrapper {
+  background-color: #fff;
+  padding-block: var(--section-py);
+  width: 100%;
+}
+
+.projects-heading-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(260px, 1fr));
+  gap: 40px 30px;
+  width: min(100%, 900px);
+  margin-inline: auto;
+  justify-items: start;
+}
+@media (max-width: 768px) {
+  .projects-heading-grid {
+    grid-template-columns: 1fr;
+    width: min(100%, 520px);
+  }
+}
+
+.projects-heading .projects-heading-grid .projects-grid-item {
   display: flex;
-  align-items: center;
-  box-sizing: border-box;
-  margin: 0;
-  padding: clamp(1.25rem, 2.5vw, 2.5rem) $pad-desktop;
-  font-weight: 800;
-  font-size: clamp(2rem, 4vw + 1rem, 3rem);
-  font-family: "Poppins", sans-serif;
-  color: $text;
-  background: #f1f1f1;
-  padding-top: calc(var(--nav-h) + 4rem);
+  align-items: flex-start;
+  gap: 15px;
+  text-decoration: none;
+  color: var(--brand-green);
+  padding: 0.25rem 0;
+  border-radius: 6px;
+  transition: color .2s ease, background-color .2s ease;
+  cursor: pointer !important;
 }
 
-.projects-content {
-  width: min(100vw, 65rem);
-  margin-top: clamp(2rem, 3.5vw, 3.5rem);
-  background: #fff;
-  color: $text;
+.projects-heading .projects-heading-grid .projects-grid-item:hover,
+.projects-heading .projects-heading-grid .projects-grid-item:focus-visible {
+  color: #2b7a55 !important;
+  outline: none;
 }
 
-.projects-subtitle {
-  padding: 0 $pad-desktop;
-  font-weight: 800;
-  font-size: clamp(1.2rem, 2.2vw + 0.5rem, 1.8rem);
-  font-family: "Poppins", sans-serif;
-  color: inherit;
-  text-align: left;
+.projects-heading .projects-heading-grid .projects-grid-item:hover .projects-grid-item-title,
+.projects-heading .projects-heading-grid .projects-grid-item:focus-visible .projects-grid-item-title {
+  text-decoration: underline;
 }
 
-.projects-list {
-  list-style: decimal;
-  line-height: 1.6;
-  margin: 2.5rem $pad-desktop 1rem;
-  padding-left: 1.5rem;
-  font-weight: 400;
-  font-size: $body-fs;
-  font-family: "Poppins", sans-serif;
-  color: inherit;
-  text-align: left;
+.projects-grid-item-icon-wrapper .projects-arrow-icon {
+  width: 20px;
+  height: 20px;
+  color: currentColor;
+  transition: transform .2s ease, color .2s ease;
 }
 
-.projects-list li {
-  font-size: inherit !important;
-  color: inherit;
+.projects-heading .projects-heading-grid .projects-grid-item:hover .projects-grid-item-icon-wrapper .projects-arrow-icon,
+.projects-heading .projects-heading-grid .projects-grid-item:focus-visible .projects-grid-item-icon-wrapper .projects-arrow-icon {
+  transform: translateX(2px);
 }
 
-@media (max-width: 1024px) {
-  .projects-title,
-  .projects-subtitle {
-    padding-left: $pad-tablet;
-    padding-right: $pad-tablet;
-  }
-  .projects-list {
-    margin-left: $pad-tablet;
-    margin-right: $pad-tablet;
-  }
+.projects-grid-item-icon-wrapper {
+  border: none;
+  padding: 4px;
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: left;
+  border-radius: 4px;
+  margin-top: 5px;
 }
 
-@media (max-width: 480px) {
-  .projects-title,
-  .projects-subtitle {
-    padding-left: $pad-phone;
-    padding-right: $pad-phone;
-  }
-  .projects-list {
-    margin-left: $pad-phone;
-    margin-right: $pad-phone;
-  }
+.projects-grid-item-text { flex: 1; }
+
+.projects-grid-item-title {
+  font-weight: 700;
+  font-size: clamp(1.1rem, 0.6vw + 1rem, 1.5rem);
+  margin: 0 0 8px 0;
+  color: currentColor;
 }
