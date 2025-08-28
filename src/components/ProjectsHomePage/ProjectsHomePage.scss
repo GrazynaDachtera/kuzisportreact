@@ -182,6 +182,21 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
   color: var(--brand-green);
 }
 
+.grid-item-title a,
+.grid-item-title a:link,
+.grid-item-title a:visited {
+  color: var(--brand-green);
+  text-decoration: none;
+  display: inline-block;
+  transition: color 0.3s ease-in-out;
+}
+
+.grid-item-title a:hover,
+.grid-item-title a:focus-visible,
+.grid-item-title a:active {
+  color: var(--cta-green-hover);
+}
+
 .grid-item-description {
   font-size: $body-fs;
   line-height: 1.5;

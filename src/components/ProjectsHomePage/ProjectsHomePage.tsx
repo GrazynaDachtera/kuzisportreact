@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link"; // ✅ import Link
 import "./ProjectsHomePage.scss";
 
 const ArrowIcon = () => (
@@ -24,16 +25,16 @@ const ArrowIcon = () => (
 export default function ProjectsHomePage() {
   const features = [
     {
-      title: "Nasze projekty",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      title: "Park - Sad na Hetmańskiej",
+      description:
+        "Stowarzyszenie Sąsiedzkie Łazarz, wspólnie z mieszkankami i mieszkańcami dzielnicy, podjęło inicjatywę utworzenia nowego parku w kwartale ulic: Hetmańska – Dmowskiego – Krauthofera – Górecka.",
+      link: "/Projects", // ✅ subpage link
     },
     {
       title: "Spacery",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     },
     {
       title: "Sprzątanie",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     },
   ];
 
@@ -45,10 +46,11 @@ export default function ProjectsHomePage() {
             <div className="projectsHomePage-content">
               <h2 className="projectsHomePage-title">Projekty</h2>
               <p className="projectsHomePage-description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-                malesuada tincidunt turpis, pretium consequat ante mollis a.
-                Nullam nec sapien nisi. Etiam pellentesque, justo vitae faucibus
-                blandit, ex sem luctus ante, eu dictum magna est quis nunc.
+                Poznaj inicjatywy, które tworzymy razem z mieszkankami i
+                mieszkańcami Łazarza. Realizujemy projekty ożywiające okolicę -
+                od zielonych nasadzeń i wspólnych przestrzeni, przez spacery i
+                warsztaty, po działania integrujące sąsiadów. Zobacz, nad czym
+                pracujemy i dołącz do nas!
               </p>
               <button className="projectsHomePage-button">Sprawdź</button>
             </div>
@@ -75,8 +77,18 @@ export default function ProjectsHomePage() {
                   <ArrowIcon />
                 </div>
                 <div className="grid-item-text">
-                  <h3 className="grid-item-title">{feature.title}</h3>
-                  <p className="grid-item-description">{feature.description}</p>
+                  {feature.link ? (
+                    <h3 className="grid-item-title">
+                      <Link href={feature.link}>{feature.title}</Link>
+                    </h3>
+                  ) : (
+                    <h3 className="grid-item-title">{feature.title}</h3>
+                  )}
+                  {feature.description && (
+                    <p className="grid-item-description">
+                      {feature.description}
+                    </p>
+                  )}
                 </div>
               </div>
             ))}
