@@ -176,9 +176,8 @@ export default function ProjectsPage() {
       </h1>
 
       <section className="projects-content">
-        <h2 className="projects-subtitle">Park - Sad na Hetmańskiej</h2>
+        <h2 className="projects-subtitle">Park-sad przy Hetmańskiej</h2>
 
-        {/* Description via typed blocks */}
         <RichText blocks={DESCRIPTION} />
 
         {/* Gallery */}

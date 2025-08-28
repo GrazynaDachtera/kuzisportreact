@@ -25,7 +25,7 @@ const ArrowIcon = () => (
 export default function ProjectsHomePage() {
   const features = [
     {
-      title: "Park - Sad na Hetmańskiej",
+      title: "Park-sad przy Hetmańskiej",
       description:
         "Stowarzyszenie Sąsiedzkie Łazarz, wspólnie z mieszkankami i mieszkańcami dzielnicy, podjęło inicjatywę utworzenia nowego parku w kwartale ulic: Hetmańska – Dmowskiego – Krauthofera – Górecka.",
       link: "/Projects/Project1",
