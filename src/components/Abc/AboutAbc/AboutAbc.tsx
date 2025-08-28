@@ -55,10 +55,12 @@ export default function AbcPage() {
             <div className="abc-heading-content">
               <h2 className="abc-heading-title">Osiedlowe ABC</h2>
               <p className="abc-heading-description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-                malesuada tincidunt turpis, pretium consequat ante mollis a.
-                Nullam nec sapien nisi. Etiam pellentesque, justo vitae faucibus
-                blandit, ex sem luctus ante, eu dictum magna est quis nunc.
+                Osiedlowe ABC to praktyczny przewodnik po najważniejszych
+                miejscach i usługach w naszej okolicy. W jednym miejscu
+                zebraliśmy informacje o szkołach, przedszkolach i żłobkach,
+                SOR-ze i wieczorynce, ośrodkach kultury i sportu, parkach,
+                muzeach oraz innych ważnych obiektach - z adresami i przydatnymi
+                linkami.
               </p>
             </div>
           </div>
