@@ -28,8 +28,22 @@ export default function Home() {
 
     const isCoarse = window.matchMedia("(pointer: coarse)").matches;
 
+    const setHeightToViewport = () => {
+      const vh = window.visualViewport?.height ?? window.innerHeight;
+      el.style.height = `${vh}px`;
+    };
+    setHeightToViewport();
+    window.addEventListener("resize", setHeightToViewport);
+    window.visualViewport?.addEventListener("resize", setHeightToViewport);
+
     let sb: Scrollbar | null = null;
-    if (!isCoarse) {
+
+    if (isCoarse) {
+      el.style.overflowY = "auto";
+      (
+        el.style as unknown as { webkitOverflowScrolling?: string }
+      ).webkitOverflowScrolling = "touch";
+    } else {
       sb = Scrollbar.init(el, { damping: 0.07 });
     }
 
@@ -75,6 +89,8 @@ export default function Home() {
         allowPinch as EventListener,
         captureOptions
       );
+      window.removeEventListener("resize", setHeightToViewport);
+      window.visualViewport?.removeEventListener("resize", setHeightToViewport);
       if (sb) {
         sb.destroy();
         sb = null;
@@ -84,7 +100,7 @@ export default function Home() {
 
   return (
     <>
-      <div ref={scrollRef} style={{ height: "100vh", overflow: "hidden" }}>
+      <div ref={scrollRef} style={{ height: "100dvh", overflow: "hidden" }}>
         <section className={`kuziSport ${poppins.className}`}>
           <div className="main">
             <Navbar />
