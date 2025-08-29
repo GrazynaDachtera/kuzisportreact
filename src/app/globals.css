@@ -54,11 +54,10 @@ html {
   padding: 50px 0;
 }
 
-/* Add to your globals.css */
 .kuziSport {
   display: flex;
   flex-direction: column;
-  height: 100%; /* Ensures the section fills its parent's 100vh */
+  height: 100%; 
 }
 
 
