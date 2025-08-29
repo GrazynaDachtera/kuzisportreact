@@ -107,19 +107,48 @@ export default function ContactComponent() {
     e.preventDefault();
     if (!formRef.current) return;
 
-    // native validation
+    // Run native validation (since we use noValidate)
     if (!formRef.current.checkValidity()) {
       formRef.current.reportValidity();
       return;
     }
 
-    // honeypot
+    // Honeypot
     const honey = (
       formRef.current.querySelector(
         'input[name="bot_honey"]'
       ) as HTMLInputElement | null
     )?.value;
     if (honey) return;
+
+    // ---- Normalize consents to a single value (Tak/Nie) ----
+    const rodoCb = formRef.current.querySelector<HTMLInputElement>(
+      "input[name='consent_rodo']"
+    )!;
+    const mktCb = formRef.current.querySelector<HTMLInputElement>(
+      "input[name='consent_marketing']"
+    )!;
+
+    // Remove any previous normalized hidden inputs (in case of double submit)
+    formRef.current
+      .querySelectorAll(
+        "input[type='hidden'][name='consent_rodo'], input[type='hidden'][name='consent_marketing']"
+      )
+      .forEach((el) => el.remove());
+
+    const rodoHidden = document.createElement("input");
+    rodoHidden.type = "hidden";
+    rodoHidden.name = "consent_rodo";
+    rodoHidden.value = rodoCb.checked ? "Tak" : "Nie";
+
+    const mktHidden = document.createElement("input");
+    mktHidden.type = "hidden";
+    mktHidden.name = "consent_marketing";
+    mktHidden.value = mktCb.checked ? "Tak" : "Nie";
+
+    formRef.current.appendChild(rodoHidden);
+    formRef.current.appendChild(mktHidden);
+    // --------------------------------------------------------
 
     setStatus("sending");
     setErrorMsg("");
@@ -231,17 +260,9 @@ export default function ContactComponent() {
                 />
               </div>
 
-              {/* CONSENTS — always send Tak/Nie */}
+              {/* CONSENTS: just checkboxes here; values normalized in handleSubmit */}
               <label className="consent">
-                {/* Default when unchecked */}
-                <input type="hidden" name="consent_rodo" value="Nie" />
-                {/* When checked overrides hidden value */}
-                <input
-                  type="checkbox"
-                  name="consent_rodo"
-                  value="Tak"
-                  required
-                />
+                <input type="checkbox" name="consent_rodo" required />
                 <span>
                   Zgoda na przetwarzanie danych osobowych{" "}
                   <span className="required">*</span>
@@ -249,8 +270,7 @@ export default function ContactComponent() {
               </label>
 
               <label className="consent">
-                <input type="hidden" name="consent_marketing" value="Nie" />
-                <input type="checkbox" name="consent_marketing" value="Tak" />
+                <input type="checkbox" name="consent_marketing" />
                 <span>Zgoda marketingowa</span>
               </label>
 
