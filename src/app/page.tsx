@@ -23,15 +23,61 @@ export default function Home() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const element = scrollRef.current;
+    const el = scrollRef.current;
+    if (!el) return;
 
-    if (element) {
-      Scrollbar.init(element, { damping: 0.07 });
+    const isCoarse = window.matchMedia("(pointer: coarse)").matches;
+
+    let sb: Scrollbar | null = null;
+    if (!isCoarse) {
+      sb = Scrollbar.init(el, { damping: 0.07 });
     }
 
+    const wheelOptions: AddEventListenerOptions = {
+      capture: true,
+      passive: true,
+    };
+    const captureOptions: AddEventListenerOptions = { capture: true };
+
+    const allowZoomWheel = (e: WheelEvent) => {
+      if (e.ctrlKey || e.metaKey) {
+        e.stopImmediatePropagation();
+        e.stopPropagation();
+      }
+    };
+
+    const allowPinch = (e: Event) => {
+      e.stopImmediatePropagation();
+      e.stopPropagation();
+    };
+
+    document.addEventListener("wheel", allowZoomWheel, wheelOptions);
+    document.addEventListener(
+      "gesturestart",
+      allowPinch as EventListener,
+      captureOptions
+    );
+    document.addEventListener(
+      "gesturechange",
+      allowPinch as EventListener,
+      captureOptions
+    );
+
     return () => {
-      if (element && Scrollbar.get(element)) {
-        Scrollbar.destroy(element);
+      document.removeEventListener("wheel", allowZoomWheel, wheelOptions);
+      document.removeEventListener(
+        "gesturestart",
+        allowPinch as EventListener,
+        captureOptions
+      );
+      document.removeEventListener(
+        "gesturechange",
+        allowPinch as EventListener,
+        captureOptions
+      );
+      if (sb) {
+        sb.destroy();
+        sb = null;
       }
     };
   }, []);
