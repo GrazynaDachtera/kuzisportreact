@@ -12,42 +12,32 @@ type Link = { t: "a"; text: string; href: string };
 type OrderedList = { t: "ol"; items: string[] };
 type Block = Paragraph | Heading | Link | OrderedList;
 
-/** ---- Data ---- */
-const RULES: string[] = [
-  "Ochrona istniejącej zieleni – zachowanie drzew, które już dziś zatrzymują wodę, obniżają temperaturę i chronią przed smogiem",
-  "Bliskość dla mieszkańców – miejsce rekreacji dostępne pieszo i rowerem, zgodne z ideą „15-minutowego miasta”",
-  "Gospodarność – utrzymanie roślinności jest tańsze i skuteczniejsze niż nasadzanie nowych drzew",
-  "Społeczna zgoda – pod wnioskami do planów zagospodarowania podpisało się już ponad 200 osób",
-];
-
 const DESCRIPTION: Block[] = [
   {
     t: "p",
-    text: "Stowarzyszenie Sąsiedzkie Łazarz, wspólnie z mieszkankami i mieszkańcami dzielnicy, podjęło inicjatywę utworzenia nowego parku w kwartale ulic: Hetmańska – Dmowskiego – Krauthofera – Górecka.",
+    text: "Ognioodporny Łazarz to projekt, którego celem jest wyposażenie mieszkańców Osiedla Święty Łazarz w wiedzę oraz sprzęt do zapobiegania i reagowania na zagrożenia – pożary 🔥🔥🔥",
   },
   {
     t: "p",
-    text: "Obecnie teren ten, dawniej ogródki działkowe, porasta bogata i dojrzała zieleń – około 1500 drzew i krzewów. Choć w dokumentach planistycznych przeznaczony jest pod zabudowę usługową, mieszkańcy widzą w nim ogromny potencjał jako zielonego serca dzielnicy.",
+    text: "W 2025 roku realizujemy działania dzięki programowi Wielkopolska Wiara. W ramach grantu zorganizujemy 2 spotkania podwórkowe z mieszkańcami 👨‍👩‍👦👨‍👩‍👧",
   },
-  { t: "h3", text: "Dlaczego park jest potrzebny?" },
-  { t: "ol", items: RULES },
-  { t: "h3", text: "Nasz cel" },
+  {
+    t: "ol",
+    items: [
+      "▶️ strażaków, którzy powiedzą co robić – aby uniknąć pożaru, oraz strat – gdy już się zdarzył",
+      "▶️ 100 czujników dymu do zainstalowania w domu",
+      "▶️ okazję do spotkania sąsiadów – wierzymy, że wzajemna życzliwość jest podstawą bezpiecznych miast",
+      "▶️ zrzutkowy poczęstunek piknikowy",
+      "▶️ plakaty do przekazania sąsiadom lub znajomym",
+    ],
+  },
   {
     t: "p",
-    text: "Chcemy, aby Miasto Poznań przeznaczyło działki miejskie w tym kwartale na park-sad, włączyło ten obszar do planu zieleni miejskiej i zabezpieczyło go przed zabudową. Park miałby łączyć skwer Jacka Hałasika z powstającym parkiem Górczyńskim, tworząc ciąg rekreacyjny i przyrodniczy.",
+    text: "Na naszej stronie Ognioodporny Łazarz na facebooku, będą czekać posty z materiałami Państwowej Straży Pożarnej z zakresu prewencji.",
   },
   {
     t: "p",
-    text: "To inicjatywa oddolna – mieszkańców Łazarza i okolic, którzy chcą żyć w zdrowym, zielonym i przyjaznym otoczeniu.",
-  },
-  {
-    t: "p",
-    text: "Zapraszamy do wspierania petycji i dołączenia do działań na rzecz nowego parku!",
-  },
-  {
-    t: "a",
-    text: "Wesprzyj petycję",
-    href: "https://www.petycjeonline.com/petycja_w_sprawie_parku_sadu_przy_hetmanskiej?fbclid=IwZXh0bgNhZW0CMTEAAR4q1rry1p3ben0Roz2Psgb5JULuv8EtnLAk4VKZ26Mjg-gTjGfdow0rNa4Csw_aem_SWSWsCw-yKeCSqs_kyYD3Q",
+    text: "Wielkopolska Wiara jest realizowana przez Stowarzyszenie Centrum PISOP ze środków Narodowego Instytutu Wolności – Centrum Rozwoju Społeczeństwa Obywatelskiego w ramach Rządowego Programu Fundusz Inicjatyw Obywatelskich #NOWEFIO na lata 2021–2030. Częścią grantu jest opracowanie planu rozwoju stowarzyszenia. Właśnie widzicie stronę www, która jest jednym z etapów naszych zamierzeń.",
   },
 ];
 
@@ -59,19 +49,19 @@ function RichText({ blocks }: { blocks: Block[] }) {
         switch (b.t) {
           case "p":
             return (
-              <p key={i} className="projects-paragraph">
+              <p key={i} className="project3-paragraph">
                 {b.text}
               </p>
             );
           case "h3":
             return (
-              <h3 key={i} className="projects-subheading">
+              <h3 key={i} className="project3-subheading">
                 {b.text}
               </h3>
             );
           case "ol":
             return (
-              <ol key={i} className="projects-list">
+              <ol key={i} className="project3-list">
                 {b.items.map((it, idx) => (
                   <li key={idx}>{it}</li>
                 ))}
@@ -79,9 +69,9 @@ function RichText({ blocks }: { blocks: Block[] }) {
             );
           case "a":
             return (
-              <p key={i} className="projects-paragraph">
+              <p key={i} className="project3-paragraph">
                 <a
-                  className="projects-link"
+                  className="project3-link"
                   href={b.href}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -96,44 +86,51 @@ function RichText({ blocks }: { blocks: Block[] }) {
   );
 }
 
-/** ---- Gallery data (swap with your real images) ----
- * If you import from /public, Next gets exact width/height automatically:
- *   import img1 from "@/public/park-hetmanska/01.jpg";
- * Then use src={img1}.
- */
 const IMAGES = [
   {
-    src: "/Projects/Project1/image1.jpeg",
+    src: "/Projects/Project3/image1.jpeg",
     alt: "Zieleń w kwartale Hetmańska–Dmowskiego",
     w: 1600,
     h: 1067,
   },
   {
-    src: "/Projects/Project1/image2.jpeg",
+    src: "/Projects/Project3/image2.jpeg",
     alt: "Dojrzałe drzewa i krzewy",
     w: 1600,
     h: 1067,
   },
   {
-    src: "/Projects/Project1/image3.jpeg",
+    src: "/Projects/Project3/image3.jpeg",
     alt: "Przestrzeń rekreacyjna",
     w: 1600,
     h: 1067,
   },
   {
-    src: "/Projects/Project1/image4.jpeg",
+    src: "/Projects/Project3/image4.jpeg",
     alt: "Ścieżka pieszo-rowerowa",
     w: 1600,
     h: 1067,
   },
   {
-    src: "/Projects/Project1/image5.jpeg",
+    src: "/Projects/Project3/image5.jpeg",
     alt: "Dzika roślinność",
     w: 1600,
     h: 1067,
   },
   {
-    src: "/Projects/Project1/image7.jpeg",
+    src: "/Projects/Project3/image6.jpeg",
+    alt: "Połączenie ze skwerem Jacka Hałasika",
+    w: 1600,
+    h: 1067,
+  },
+  {
+    src: "/Projects/Project3/image7.jpeg",
+    alt: "Połączenie ze skwerem Jacka Hałasika",
+    w: 1600,
+    h: 1067,
+  },
+  {
+    src: "/Projects/Project3/image8.jpeg",
     alt: "Połączenie ze skwerem Jacka Hałasika",
     w: 1600,
     h: 1067,
@@ -168,19 +165,19 @@ export default function Project3Page() {
   }, []);
 
   return (
-    <main className="projects-wrapper">
-      <section className="projects-content">
-        <h2 className="projects-subtitle">Park-sad przy Hetmańskiej</h2>
+    <main className="project3-wrapper">
+      <section className="project3-content">
+        <h2 className="project3-subtitle">Ognioodporny Łazarz</h2>
 
         <RichText blocks={DESCRIPTION} />
 
         {/* Gallery */}
-        <h3 className="projects-subheading">Galeria</h3>
-        <div className="projects-gallery" role="list">
+        <h3 className="project3-subheading">Galeria</h3>
+        <div className="project3-gallery" role="list">
           {IMAGES.map((img, i) => (
             <button
               key={img.src}
-              className="gallery-item"
+              className="project3-gallery-item"
               onClick={() => open(i)}
               aria-label={`Otwórz zdjęcie ${i + 1} z ${IMAGES.length}`}
             >
@@ -190,7 +187,7 @@ export default function Project3Page() {
                 width={img.w}
                 height={img.h}
                 sizes="(max-width: 480px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className="gallery-img"
+                className="project3-gallery-img"
               />
             </button>
           ))}
@@ -199,20 +196,20 @@ export default function Project3Page() {
         {/* Lightbox */}
         <dialog
           ref={dialogRef}
-          className="gallery-dialog"
+          className="project3-gallery-dialog"
           aria-label="Podgląd zdjęcia"
         >
           {index !== null && (
-            <div className="viewer">
+            <div className="project3-viewer">
               <button
-                className="viewer-close"
+                className="project3-viewer-close"
                 onClick={close}
                 aria-label="Zamknij"
               >
                 ×
               </button>
               <button
-                className="viewer-nav prev"
+                className="project3-viewer-nav project3-prev"
                 onClick={prev}
                 aria-label="Poprzednie zdjęcie"
               >
@@ -225,11 +222,11 @@ export default function Project3Page() {
                 width={IMAGES[index].w}
                 height={IMAGES[index].h}
                 sizes="90vw"
-                className="viewer-img"
+                className="project3-viewer-img"
                 priority
               />
               <button
-                className="viewer-nav next"
+                className="project3-viewer-nav project3-next"
                 onClick={next}
                 aria-label="Następne zdjęcie"
               >
