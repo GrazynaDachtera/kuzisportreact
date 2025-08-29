@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
-import Scrollbar from "smooth-scrollbar";
+import React, { useRef } from "react";
 import Navbar from "@/components/Navbar/Navbar";
 import AboutFoundationHeading from "@/components/AboutFoundation/AboutFoundationHeading/AboutFoundationHeading";
 import Mission from "@/components/AboutFoundation/Mission/Mission";
@@ -10,73 +9,15 @@ import Members from "@/components/AboutFoundation/Members/Members";
 import Footer from "@/components/Footer/Footer";
 import Cookies from "@/components/Cookies/Cookies";
 import "@/app/globals.css";
+import { useSmoothScrollbar } from "@/components/hooks/useSmoothScrollbar";
 
 export default function AboutFoundationPage() {
   const scrollRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-
-    const isCoarse = window.matchMedia("(pointer: coarse)").matches;
-
-    let sb: Scrollbar | null = null;
-    if (!isCoarse) {
-      sb = Scrollbar.init(el, { damping: 0.07 });
-    }
-
-    const wheelOptions: AddEventListenerOptions = {
-      capture: true,
-      passive: true,
-    };
-    const captureOptions: AddEventListenerOptions = { capture: true };
-
-    const allowZoomWheel = (e: WheelEvent) => {
-      if (e.ctrlKey || e.metaKey) {
-        e.stopImmediatePropagation();
-        e.stopPropagation();
-      }
-    };
-
-    const allowPinch = (e: Event) => {
-      e.stopImmediatePropagation();
-      e.stopPropagation();
-    };
-
-    document.addEventListener("wheel", allowZoomWheel, wheelOptions);
-    document.addEventListener(
-      "gesturestart",
-      allowPinch as EventListener,
-      captureOptions
-    );
-    document.addEventListener(
-      "gesturechange",
-      allowPinch as EventListener,
-      captureOptions
-    );
-
-    return () => {
-      document.removeEventListener("wheel", allowZoomWheel, wheelOptions);
-      document.removeEventListener(
-        "gesturestart",
-        allowPinch as EventListener,
-        captureOptions
-      );
-      document.removeEventListener(
-        "gesturechange",
-        allowPinch as EventListener,
-        captureOptions
-      );
-      if (sb) {
-        sb.destroy();
-        sb = null;
-      }
-    };
-  }, []);
+  useSmoothScrollbar(scrollRef);
 
   return (
     <>
-      <div ref={scrollRef} style={{ height: "100vh", overflow: "hidden" }}>
+      <div ref={scrollRef} style={{ overflow: "hidden" }}>
         <section className="kuziSport">
           <div className="main">
             <Navbar />
