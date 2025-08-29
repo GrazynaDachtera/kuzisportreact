@@ -1,3 +1,4 @@
+
 *,
 *::before,
 *::after {
@@ -26,7 +27,6 @@ html {
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
-  zoom: 0.9;
 }
 
 :root {
@@ -54,11 +54,13 @@ html {
   padding: 50px 0;
 }
 
+/* Add to your globals.css */
 .kuziSport {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100%; /* Ensures the section fills its parent's 100vh */
 }
+
 
 .main {
   position: relative;
@@ -68,22 +70,23 @@ html {
   display: flex;
   flex-direction: column;
   z-index: 999;
-}
 
-.main::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-}
 
-.main .wrapper-navbar {
-  position: relative;
-  z-index: 2;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .wrapper-navbar {
+    position: relative;
+    z-index: 2;
+  }
 }
 
 @media (max-width: 1400px) {
