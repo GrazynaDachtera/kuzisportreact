@@ -107,13 +107,11 @@ export default function ContactComponent() {
     e.preventDefault();
     if (!formRef.current) return;
 
-    // Run native validation (since we use noValidate)
     if (!formRef.current.checkValidity()) {
       formRef.current.reportValidity();
       return;
     }
 
-    // Honeypot
     const honey = (
       formRef.current.querySelector(
         'input[name="bot_honey"]'
@@ -121,7 +119,6 @@ export default function ContactComponent() {
     )?.value;
     if (honey) return;
 
-    // ---- Normalize consents to a single value (Tak/Nie) ----
     const rodoCb = formRef.current.querySelector<HTMLInputElement>(
       "input[name='consent_rodo']"
     )!;
@@ -129,12 +126,14 @@ export default function ContactComponent() {
       "input[name='consent_marketing']"
     )!;
 
-    // Remove any previous normalized hidden inputs (in case of double submit)
     formRef.current
       .querySelectorAll(
         "input[type='hidden'][name='consent_rodo'], input[type='hidden'][name='consent_marketing']"
       )
       .forEach((el) => el.remove());
+
+    rodoCb.disabled = true;
+    mktCb.disabled = true;
 
     const rodoHidden = document.createElement("input");
     rodoHidden.type = "hidden";
@@ -148,7 +147,6 @@ export default function ContactComponent() {
 
     formRef.current.appendChild(rodoHidden);
     formRef.current.appendChild(mktHidden);
-    // --------------------------------------------------------
 
     setStatus("sending");
     setErrorMsg("");
@@ -166,6 +164,9 @@ export default function ContactComponent() {
       console.error("EmailJS error:", err);
       setErrorMsg("Ups… Nie udało się wysłać wiadomości. Spróbuj ponownie.");
       setStatus("error");
+    } finally {
+      rodoCb.disabled = false;
+      mktCb.disabled = false;
     }
   }
 
@@ -185,7 +186,6 @@ export default function ContactComponent() {
               onSubmit={handleSubmit}
               noValidate
             >
-              {/* Honeypot (hidden) */}
               <input
                 type="text"
                 name="bot_honey"
@@ -193,10 +193,8 @@ export default function ContactComponent() {
                 tabIndex={-1}
                 autoComplete="off"
               />
-              {/* Capture page */}
               <input type="hidden" name="page_url" value="/kontakt" />
 
-              {/* Status line */}
               <p aria-live="polite" style={{ margin: 0 }}>
                 {status === "sending" && "Wysyłanie…"}
                 {status === "sent" && (
@@ -260,7 +258,6 @@ export default function ContactComponent() {
                 />
               </div>
 
-              {/* CONSENTS: just checkboxes here; values normalized in handleSubmit */}
               <label className="consent">
                 <input type="checkbox" name="consent_rodo" required />
                 <span>
