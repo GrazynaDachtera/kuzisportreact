@@ -1,8 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { Poppins } from "next/font/google";
+import emailjs from "@emailjs/browser";
 import "./ContactComponent.scss";
 
 const poppins = Poppins({
@@ -96,9 +97,41 @@ const PinIcon = () => (
 );
 
 export default function ContactComponent() {
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle"
+  );
+  const [errorMsg, setErrorMsg] = useState<string>("");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    alert("Dziękujemy! Wiadomość została wysłana (demo).");
+    if (!formRef.current) return;
+
+    // Honeypot: block most bots silently
+    const honey = (
+      formRef.current.querySelector(
+        'input[name="bot_honey"]'
+      ) as HTMLInputElement | null
+    )?.value;
+    if (honey) return;
+
+    setStatus("sending");
+    setErrorMsg("");
+
+    try {
+      await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string,
+        formRef.current,
+        { publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY as string }
+      );
+      formRef.current.reset();
+      setStatus("sent");
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      setErrorMsg("Ups… Nie udało się wysłać wiadomości. Spróbuj ponownie.");
+      setStatus("error");
+    }
   }
 
   const mapsUrl =
@@ -111,7 +144,36 @@ export default function ContactComponent() {
           <div className="contact-form">
             <h1 className="contact-title">Kontakt</h1>
 
-            <form className="form" onSubmit={handleSubmit} noValidate>
+            <form
+              ref={formRef}
+              className="form"
+              onSubmit={handleSubmit}
+              noValidate
+            >
+              {/* Honeypot (hidden) */}
+              <input
+                type="text"
+                name="bot_honey"
+                style={{ display: "none" }}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+              {/* Optional: capture page */}
+              <input type="hidden" name="page_url" value="/kontakt" />
+
+              {/* Status live region */}
+              <p aria-live="polite" style={{ margin: 0 }}>
+                {status === "sending" && "Wysyłanie…"}
+                {status === "sent" && (
+                  <span className="security">
+                    <ShieldIcon /> Dziękujemy! Wiadomość wysłana.
+                  </span>
+                )}
+                {status === "error" && (
+                  <span style={{ color: "#c00" }}>{errorMsg}</span>
+                )}
+              </p>
+
               <div className="row full">
                 <label className="sr-only" htmlFor="name">
                   Imię i nazwisko / Firma
@@ -145,6 +207,7 @@ export default function ContactComponent() {
                     name="email"
                     type="email"
                     placeholder="E-mail"
+                    required
                   />
                 </div>
               </div>
@@ -158,11 +221,13 @@ export default function ContactComponent() {
                   name="message"
                   placeholder="Wiadomość"
                   rows={6}
+                  required
                 />
               </div>
 
               <label className="consent">
-                <input type="checkbox" required />
+                {/* Give it a name so it appears in the email */}
+                <input type="checkbox" name="consent_rodo" required />
                 <span>
                   Zgoda na przetwarzanie danych osobowych{" "}
                   <span className="required">*</span>
@@ -170,7 +235,7 @@ export default function ContactComponent() {
               </label>
 
               <label className="consent">
-                <input type="checkbox" />
+                <input type="checkbox" name="consent_marketing" />
                 <span>Zgoda marketingowa</span>
               </label>
 
@@ -178,8 +243,14 @@ export default function ContactComponent() {
                 <ShieldIcon /> <span>Twoje dane są bezpieczne</span>
               </p>
 
-              <button type="submit" className="submit">
-                <span>Wyślij wiadomość</span>
+              <button
+                type="submit"
+                className="submit"
+                disabled={status === "sending"}
+              >
+                <span>
+                  {status === "sending" ? "Wysyłanie…" : "Wyślij wiadomość"}
+                </span>
                 <ArrowIcon />
               </button>
             </form>
