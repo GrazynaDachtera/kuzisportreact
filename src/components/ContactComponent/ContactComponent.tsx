@@ -107,7 +107,13 @@ export default function ContactComponent() {
     e.preventDefault();
     if (!formRef.current) return;
 
-    // Honeypot: block most bots silently
+    // native validation
+    if (!formRef.current.checkValidity()) {
+      formRef.current.reportValidity();
+      return;
+    }
+
+    // honeypot
     const honey = (
       formRef.current.querySelector(
         'input[name="bot_honey"]'
@@ -158,10 +164,10 @@ export default function ContactComponent() {
                 tabIndex={-1}
                 autoComplete="off"
               />
-              {/* Optional: capture page */}
+              {/* Capture page */}
               <input type="hidden" name="page_url" value="/kontakt" />
 
-              {/* Status live region */}
+              {/* Status line */}
               <p aria-live="polite" style={{ margin: 0 }}>
                 {status === "sending" && "Wysyłanie…"}
                 {status === "sent" && (
@@ -225,9 +231,17 @@ export default function ContactComponent() {
                 />
               </div>
 
+              {/* CONSENTS — always send Tak/Nie */}
               <label className="consent">
-                {/* Give it a name so it appears in the email */}
-                <input type="checkbox" name="consent_rodo" required />
+                {/* Default when unchecked */}
+                <input type="hidden" name="consent_rodo" value="Nie" />
+                {/* When checked overrides hidden value */}
+                <input
+                  type="checkbox"
+                  name="consent_rodo"
+                  value="Tak"
+                  required
+                />
                 <span>
                   Zgoda na przetwarzanie danych osobowych{" "}
                   <span className="required">*</span>
@@ -235,7 +249,8 @@ export default function ContactComponent() {
               </label>
 
               <label className="consent">
-                <input type="checkbox" name="consent_marketing" />
+                <input type="hidden" name="consent_marketing" value="Nie" />
+                <input type="checkbox" name="consent_marketing" value="Tak" />
                 <span>Zgoda marketingowa</span>
               </label>
 
