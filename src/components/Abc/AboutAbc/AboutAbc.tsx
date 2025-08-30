@@ -42,7 +42,7 @@ export default function AbcPage() {
           <div className="abc-heading-top">
             <div className="abc-heading-image-wrapper">
               <Image
-                src="/Sports/people.png"
+                src="/ProjectsHomePage/people.png"
                 alt="grupa ludzi"
                 width={652}
                 height={336}
