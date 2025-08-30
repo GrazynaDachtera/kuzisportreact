@@ -5,15 +5,15 @@ import "./DownloadMaterials.scss";
 const MATERIALS = [
   {
     text: "Regulamin Stowarzyszenia Sąsiedzki Łazarz (w wersji pdf)",
-    link: "https://docs.google.com/document/d/1OIt_AYtKd3LnODBRBZQG5xnQHdxFMHti/edit",
+    link: "",
   },
   {
     text: "Logotyp Stowarzyszenia Sąsiedzki Łazarz w wersji pdf",
-    link: "/path/to/logotyp.pdf",
+    link: "/Downloads/Logo.pdf",
   },
   {
     text: "Logotyp Stowarzyszenia Sąsiedzki Łazarz w wersji jpg",
-    link: "/Downloads/logo.png",
+    link: "/Downloads/Logo.jpg",
   },
 ];
 
