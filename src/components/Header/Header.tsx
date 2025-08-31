@@ -14,7 +14,7 @@ const slides: Slide[] = [
   {
     titleLines: ["Sąsiedzki", "Łazarz"],
     cta: { label: "Sprawdź", href: "/AboutFoundation" },
-    img: { src: "/Header/1.jpg", alt: "z", width: 1600, height: 1067 },
+    img: { src: "/Header/2.jpg", alt: "z", width: 1600, height: 1067 },
   },
   {
     titleLines: ["KULTURA", "HISTORIA I SPORT"],
