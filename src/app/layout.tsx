@@ -3,10 +3,10 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: {
-    default: "Sąsiedzki Łazarz",
-    template: "%s | Sąsiedzki Łazarz",
+    default: "Kuzi Sport",
+    template: "%s | Kuzi Sport",
   },
-  description: "Łazarski portal sąsiedzki.",
+  description: "Kuzi Sport.",
   icons: { icon: "/icon.png" },
 };
 
