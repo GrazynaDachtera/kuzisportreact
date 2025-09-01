@@ -47,12 +47,11 @@ const FooterMenu = ({ header, links }: IFooterMenu) => (
 const FooterFirstSection = () => {
   const menus: IFooterMenu[] = [
     {
-      header: "Sąsiedzki Łazarz",
+      header: "Kuzi Sport",
       links: [
         { text: "O nas", to: "/AboutFoundation" },
-        { text: "Osiedlowe ABC", to: "/Abc" },
-        { text: "Materiały do pobrania", to: "/DownloadMaterials" },
-        { text: "Ty też możesz pomóc", to: "/Help" },
+        { text: "Rezerwacja", to: "/Abc" },
+        { text: "Dyscypliny", to: "/DownloadMaterials" },
       ],
     },
     {
@@ -60,7 +59,6 @@ const FooterFirstSection = () => {
       links: [
         { text: "RODO", to: "/Rodo" },
         { text: "Polityka prywatności", to: "/PrivacyPolicy" },
-        { text: "Deklaracja dostępności", to: "/AccDeclaration" },
         { text: "Regulamin", to: "/Regulations" },
       ],
     },
@@ -69,11 +67,11 @@ const FooterFirstSection = () => {
       links: [
         {
           text: "Facebook",
-          to: "https://www.facebook.com/sasiedzkilazarz/?locale=pl_PL",
+          to: "https://www.facebook.com/kuzisport/?locale=pl_PL",
         },
         {
           text: "Instagram",
-          to: "https://www.instagram.com/sasiedzki_lazarz/",
+          to: "https://www.instagram.com/kuzisport/",
         },
       ],
     },
@@ -81,7 +79,7 @@ const FooterFirstSection = () => {
       header: "Masz pytania?",
       links: [
         { text: "Zapytaj teraz", to: "/Contact" },
-        { text: "lub zadzwoń: 605 550 370", to: "tel:605550370" },
+        { text: "lub zadzwoń: 785 828 666", to: "tel: 785828666" },
       ],
     },
   ];
@@ -100,7 +98,7 @@ const FooterFirstSection = () => {
 const FooterSecondSection = () => {
   const address: AddressItem[] = [
     {
-      header: "Sąsiedzki Łazarz",
+      header: "Kuzi Sport",
       address: "ul. Ułańska 5, 60-748 Poznań",
       NIP: "NIP: 7792584284 REGON: 540869932",
       phoneNumbers: ["tel. 605 550 370"],
