@@ -68,7 +68,7 @@ export default function ProjectsHomePage() {
             <div className="projectsHomePage-image-wrapper">
               <Image
                 src="/ProjectsHomePage/person.png"
-                alt="grupa ludzi"
+                alt="Portret osoby"
                 width={652}
                 height={336}
                 className="projectsHomePage-image"
