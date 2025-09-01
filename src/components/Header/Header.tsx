@@ -12,7 +12,7 @@ interface Slide {
 
 const slides: Slide[] = [
   {
-    titleLines: ["Kuzi", "Sport"],
+    titleLines: ["Sąsiedzki", "Łazarz"],
     cta: { label: "Sprawdź", href: "/AboutFoundation" },
     img: { src: "/Header/2.jpg", alt: "z", width: 1600, height: 1067 },
   },
