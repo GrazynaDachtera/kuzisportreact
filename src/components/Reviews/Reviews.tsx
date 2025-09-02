@@ -69,7 +69,7 @@ export default function Reviews() {
           <div className="meta">
             <p className="label">Biuro:</p>
             <a href="tel:605550370" className="value">
-              605 550 370
+              605 072 681
             </a>
           </div>
         </div>
@@ -95,11 +95,11 @@ export default function Reviews() {
               rel="noopener noreferrer"
               itemProp="name"
             >
-              Sąsiedzki Łazarz
+              Kuzi Sport
             </a>
             <p className="label" aria-label="Adres">
-              <span itemProp="streetAddress">ul. Ułańska 5</span>,{" "}
-              <span itemProp="postalCode">60-748</span>{" "}
+              <span itemProp="streetAddress">ul. Św. Michała 56</span>,{" "}
+              <span itemProp="postalCode">61-005</span>{" "}
               <span itemProp="addressLocality">Poznań</span>
             </p>
           </div>
@@ -112,7 +112,7 @@ export default function Reviews() {
           <div className="meta">
             <p className="label">E-mail:</p>
             <a href="mailto:kontakt@sasiedzkilazarz.pl" className="value">
-              kontakt@sasiedzkilazarz.pl
+              kuzisport.biuro@gmail.com
             </a>
           </div>
         </div>

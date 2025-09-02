@@ -99,10 +99,10 @@ const FooterSecondSection = () => {
   const address: AddressItem[] = [
     {
       header: "Kuzi Sport",
-      address: "ul. Ułańska 5, 60-748 Poznań",
-      NIP: "NIP: 7792584284 REGON: 540869932",
-      phoneNumbers: ["tel. 605 550 370"],
-      email: "kontakt@sasiedzkilazarz.pl",
+      address: "ul. Św. Michała 56, 61-005 Poznań",
+      NIP: "NIP: 7772812670 REGON: 300930936",
+      phoneNumbers: ["tel. 785 828 666"],
+      email: "kuzisport.biuro@gmail.com",
     },
   ];
 
@@ -130,7 +130,7 @@ const FooterSecondSection = () => {
             </div>
           ))}
         </div>
-        <div className="footer-copyright">© {year} SasiedzkiLazarz.</div>
+        <div className="footer-copyright">© {year} KuziSport.</div>
       </div>
     </div>
   );
