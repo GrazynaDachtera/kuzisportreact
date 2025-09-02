@@ -60,9 +60,9 @@ export default function NavBar() {
   const items = [
     { label: "O nas", path: "/AboutFoundation" },
     { label: "Aktualności", path: "/NewsPage" },
-    { label: "Osiedlowe ABC", path: "/Abc" },
-    { label: "Projekty", path: "/Projects" },
-    { label: "Ty też możesz pomóc", path: "/Help" },
+    { label: "Rezerwacja", path: "/Abc" },
+    { label: "Grafik", path: "/Projects" },
+    { label: "Cennik", path: "/Help" },
     { label: "Kontakt", path: "/Contact" },
   ];
 

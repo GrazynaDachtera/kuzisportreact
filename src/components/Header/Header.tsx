@@ -14,12 +14,12 @@ const slides: Slide[] = [
   {
     titleLines: ["Kuzi", "Sport"],
     cta: { label: "Sprawdź", href: "/AboutFoundation" },
-    img: { src: "/Header/2.jpg", alt: "z", width: 1600, height: 1067 },
+    img: { src: "/Header/", alt: "z", width: 1600, height: 1067 },
   },
   {
     titleLines: ["KULTURA", "HISTORIA I SPORT"],
     cta: { label: "Wesprzyj", href: "/Help" },
-    img: { src: "/Header/2.jpg", alt: "z", width: 1600, height: 1067 },
+    img: { src: "/Header/", alt: "z", width: 1600, height: 1067 },
   },
 ];
 
