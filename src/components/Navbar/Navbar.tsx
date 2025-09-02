@@ -76,13 +76,12 @@ export default function NavBar() {
                 <div className="logo-navbar">
                   <Link href="/" aria-label="KuziSport – Home" onClick={close}>
                     <Image
-                      src="/NavBar/logo.png"
-                      alt="Logo Sasiedzki Lazarz"
-                      width={400}
-                      height={180}
+                      src="/NavBar/logokuzisport.png"
+                      alt="Logo KuziSport"
+                      width={432}
+                      height={161}
                       priority
-                      quality={95}
-                      sizes="(min-width: 769px) 180px, 150px"
+                      sizes="(min-width: 1024px) 160px, (min-width: 768px) 140px, 120px"
                       className="logo"
                     />
                   </Link>
