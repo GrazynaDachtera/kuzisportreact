@@ -20,15 +20,28 @@ type Props = {
 
 type LeafletModule = typeof import("leaflet");
 
+const geocodeCache = new Map<string, { lat: number; lng: number }>();
+
+const parsePlAddress = (addr: string) => {
+  const m = addr.match(/^(?:ul\.\s*)?(.*?\d+)\s*,\s*(\d{2}-\d{3})\s+(.+)$/i);
+  if (!m) return null;
+  let street = m[1].trim();
+  street = street.replace(/^św\.\s*/i, "Świętego ");
+  return { street, postalcode: m[2].trim(), city: m[3].trim() };
+};
+
 export default function MapComponent({
-  address = "ul. Ułańska 5, 60-748 Poznań",
-  company = "Sąsiedzki Łazarz",
-  nip = "7792584284",
-  regon = "540869932",
-  krs,
+  address = "ul. Św. Michała 56, 61-005 Poznań",
+  company = "Kuzi Sport",
+  nip = "7772812670",
+  regon = "300930936",
   className = "",
 }: Props) {
   const mapEl = useRef<HTMLDivElement | null>(null);
+  const LRef = useRef<LeafletModule | null>(null);
+  const mapRef = useRef<import("leaflet").Map | null>(null);
+  const markerRef = useRef<import("leaflet").Marker | null>(null);
+  const pinRef = useRef<import("leaflet").DivIcon | null>(null);
 
   useEffect(() => {
     if (!mapEl.current) return;
@@ -42,68 +55,111 @@ export default function MapComponent({
       document.head.appendChild(link);
     };
 
-    const init = async () => {
-      ensureLeafletCss();
-      const L: LeafletModule = await import("leaflet");
+    const ensureLeaflet = async () => {
+      if (!LRef.current) {
+        LRef.current = await import("leaflet");
+      }
+      return LRef.current!;
+    };
 
-      const map = L.map(mapEl.current!, {
-        center: [52.4064, 16.9252],
-        zoom: 15,
-        zoomControl: false,
-      });
+    const geocodeAddress = async (addr: string) => {
+      const cached = geocodeCache.get(addr);
+      if (cached) return cached;
 
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 19,
-        attribution:
-          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      }).addTo(map);
+      const parsed = parsePlAddress(addr);
+      const base: Record<string, string> = {
+        format: "jsonv2",
+        countrycodes: "pl",
+        limit: "1",
+        viewbox: "16.75,52.55,17.10,52.29",
+        bounded: "1",
+      };
 
-      L.control.zoom({ position: "bottomright" }).addTo(map);
+      const params = new URLSearchParams(
+        parsed
+          ? {
+              ...base,
+              street: parsed.street,
+              city: parsed.city,
+              postalcode: parsed.postalcode,
+            }
+          : { ...base, q: addr }
+      );
 
-      const geocodeAddress = async () => {
-        const params = new URLSearchParams({
-          format: "jsonv2",
-          street: "Ułańska 5",
-          city: "Poznań",
-          postalcode: "60-748",
-          countrycodes: "pl",
-          limit: "1",
-          viewbox: "16.75,52.55,17.10,52.29",
-          bounded: "1",
-        });
-
+      try {
         const res = await fetch(
           `https://nominatim.openstreetmap.org/search?${params.toString()}`,
           { headers: { "Accept-Language": "pl" } }
         );
         const data: Array<{ lat: string; lon: string }> = await res.json();
         if (data[0]) {
-          return { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) };
+          const coords = {
+            lat: parseFloat(data[0].lat),
+            lng: parseFloat(data[0].lon),
+          };
+          geocodeCache.set(addr, coords);
+          return coords;
         }
-        return { lat: 52.4064, lng: 16.9252 };
-      };
+      } catch {}
 
-      const { lat, lng } = await geocodeAddress();
-      map.setView([lat, lng], 17);
-
-      const pinSvg = `
-        <svg width="56" height="72" viewBox="0 0 56 72" xmlns="http://www.w3.org/2000/svg">
-          <path d="M28 72c8-14 28-27 28-44C56 12.54 43.46 0 28 0S0 12.54 0 28c0 17 20 30 28 44z" fill="currentColor"/>
-          <circle cx="28" cy="28" r="10" fill="#fff"/>
-        </svg>
-      `;
-
-      const pin = L.divIcon({
-        className: "custom-pin",
-        html: pinSvg,
-        iconSize: [56, 72],
-        iconAnchor: [28, 64],
-      });
-
-      L.marker([lat, lng], { icon: pin }).addTo(map);
+      return { lat: 52.4064, lng: 16.9252 };
     };
 
-    void init();
+    const initOrUpdate = async () => {
+      ensureLeafletCss();
+      const L = await ensureLeaflet();
+
+      if (!mapRef.current) {
+        mapRef.current = L.map(mapEl.current!, {
+          center: [52.4064, 16.9252],
+          zoom: 15,
+          zoomControl: false,
+        });
+
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          maxZoom: 19,
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        }).addTo(mapRef.current);
+
+        L.control.zoom({ position: "bottomright" }).addTo(mapRef.current);
+
+        const pinSvg = `
+          <svg width="56" height="72" viewBox="0 0 56 72" xmlns="http://www.w3.org/2000/svg">
+            <path d="M28 72c8-14 28-27 28-44C56 12.54 43.46 0 28 0S0 12.54 0 28c0 17 20 30 28 44z" fill="currentColor"/>
+            <circle cx="28" cy="28" r="10" fill="#fff"/>
+          </svg>
+        `;
+        pinRef.current = L.divIcon({
+          className: "custom-pin",
+          html: pinSvg,
+          iconSize: [56, 72],
+          iconAnchor: [28, 64],
+        });
+      }
+
+      const { lat, lng } = await geocodeAddress(address);
+      const map = mapRef.current!;
+      if (!markerRef.current) {
+        markerRef.current = L.marker([lat, lng], {
+          icon: pinRef.current!,
+        }).addTo(map);
+      } else {
+        markerRef.current.setLatLng([lat, lng]);
+      }
+      map.setView([lat, lng], 17);
+    };
+
+    void initOrUpdate();
+
+    return () => {
+      if (mapRef.current) {
+        mapRef.current.remove();
+        mapRef.current = null;
+        markerRef.current = null;
+        pinRef.current = null;
+      }
+    };
   }, [address]);
 
   return (
@@ -141,11 +197,6 @@ export default function MapComponent({
           <div>
             <b>REGON:</b> {regon}
           </div>
-          {krs && (
-            <div>
-              <b>KRS:</b> {krs}
-            </div>
-          )}
         </div>
       </div>
     </section>

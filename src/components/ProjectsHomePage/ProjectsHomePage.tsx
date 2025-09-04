@@ -25,22 +25,24 @@ const ArrowIcon = () => (
 export default function ProjectsHomePage() {
   const features = [
     {
-      title: "Park-sad przy Hetmańskiej",
-      description:
-        "Stowarzyszenie Sąsiedzkie Łazarz, wspólnie z mieszkankami i mieszkańcami dzielnicy, podjęło inicjatywę utworzenia nowego parku w kwartale ulic: Hetmańska – Dmowskiego – Krauthofera – Górecka.",
+      title: "Sporty Gimnastyczne - Kuzi Sport Gymnastics",
+      description: "...",
       link: "/Projects/Project1",
     },
     {
-      title: "Sąsiedzkie sprzątanie Łazarza",
-      description:
-        "Inicjatywa wspólnego sprzątania naszej dzielnicy powstała z pomysłu Michała Frankiewicza ze Stowarzyszenia Sąsiedzki Łazarz.",
+      title: "Sporty Walki - Kuzi Sport Fight",
+      description: "...",
       link: "/Projects/Project2",
     },
     {
-      title: "Ognioodporny Łazarz",
-      description:
-        "Ognioodporny Łazarz to projekt, którego celem jest wyposażenie mieszkańców Osiedla Święty Łazarz w wiedzę oraz sprzęt do zapobiegania i reagowania na zagrożenia – pożary.",
+      title: "Treningi motoryczne - Kuzi Sport Performance",
+      description: "...",
       link: "/Projects/Project3",
+    },
+    {
+      title: "Treningi dla klubów - Kuzi Sport Team",
+      description: "...",
+      link: "/Projects/Project1",
     },
   ];
 
@@ -50,13 +52,16 @@ export default function ProjectsHomePage() {
         <div className="projectsHomePage-container">
           <div className="projectsHomePage-top">
             <div className="projectsHomePage-content">
-              <h2 className="projectsHomePage-title">Projekty</h2>
+              <h2 className="projectsHomePage-title">
+                Nasze Dyscypliny Sportowe w Klubie
+              </h2>
               <p className="projectsHomePage-description">
-                Poznaj inicjatywy, które tworzymy razem z mieszkankami i
-                mieszkańcami Łazarza. Realizujemy projekty ożywiające okolicę -
-                od zielonych nasadzeń i wspólnych przestrzeni, przez spacery i
-                warsztaty, po działania integrujące sąsiadów. Zobacz, nad czym
-                pracujemy i dołącz do nas!
+                Witamy na stronie naszego klubu, gdzie pasja do sportu spotyka
+                się z profesjonalizmem oraz wspaniałą atmosferą. Oferujemy
+                szeroki wachlarz dyscyplin sportowych, które pozwalają na
+                rozwijanie umiejętności, poprawę kondycji oraz zdobycie nowych
+                doświadczeń. Poniżej przedstawiamy szczegóły dotyczące naszych
+                głównych dyscyplin:
               </p>
 
               {/* ✅ Link styled as a button */}

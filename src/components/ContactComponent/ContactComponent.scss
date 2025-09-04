@@ -225,6 +225,10 @@ textarea:focus {
 }
 .strip-item:last-child { border-right: 0; }
 
+@media (min-width: 901px) {
+  .strip-item:nth-child(3n) { border-right: 0; }
+}
+
 @media (max-width: 900px) {
   .strip-item { border-right: 0; }
 }

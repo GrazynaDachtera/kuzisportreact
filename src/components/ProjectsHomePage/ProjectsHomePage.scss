@@ -57,7 +57,7 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
 
   .projectsHomePage-image {
     width: 95%;
-    max-width: 620px;
+    max-width: 500px;
     height: auto;
     object-fit: contain;
   }
@@ -236,6 +236,7 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
     height: auto;
   }
 }
+
 @media (max-width: 480px) {
   .projectsHomePage-top-wrapper .projectsHomePage-container,
   .projectsHomePage-container {

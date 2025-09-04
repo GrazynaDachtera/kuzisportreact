@@ -76,7 +76,7 @@ export default function NavBar() {
                 <div className="logo-navbar">
                   <Link href="/" aria-label="KuziSport – Home" onClick={close}>
                     <Image
-                      src="/NavBar/logokuzisport.png"
+                      src="/NavBar/logokuzisport1.png"
                       alt="Logo KuziSport"
                       width={432}
                       height={161}

@@ -7,6 +7,7 @@ import Reviews from "../components/Reviews/Reviews";
 import ProjectsHomePage from "../components/ProjectsHomePage/ProjectsHomePage";
 import News from "../components/News/News";
 import CtaContact from "../components/CtaContact/CtaContact";
+import MapComponent from "@/components/MapComponent/MapComponent";
 import Footer from "../components/Footer/Footer";
 import Cookies from "../components/Cookies/Cookies";
 import "../app/globals.css";
@@ -35,6 +36,7 @@ export default function Home() {
           <ProjectsHomePage />
           <News />
           <CtaContact />
+          <MapComponent />
           <Footer />
         </section>
       </div>
