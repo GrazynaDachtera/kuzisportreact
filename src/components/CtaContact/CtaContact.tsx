@@ -20,6 +20,10 @@ const CLASS_FORMS = [
   "grupy zamknięte",
 ] as const;
 
+type Level = (typeof SKILL_LEVELS)[number];
+type Frequency = (typeof TRAININGS_PER_WEEK)[number];
+type ClassForm = (typeof CLASS_FORMS)[number];
+
 type DisciplineGroup = { label: string; options: string[] };
 
 const DISCIPLINE_GROUPS: DisciplineGroup[] = [
@@ -63,8 +67,36 @@ const DISCIPLINE_GROUPS: DisciplineGroup[] = [
   },
 ];
 
+type FormState = {
+  name: string;
+  phone: string;
+  email: string;
+  discipline: string;
+  birthDate: string;
+  level: Level;
+  frequency: Frequency;
+  format: ClassForm;
+  rodo: boolean;
+  marketing: boolean;
+  message: string;
+};
+
+const safeJson = async (res: Response): Promise<unknown> => {
+  try {
+    return await res.json();
+  } catch {
+    return null;
+  }
+};
+
+const isErrorResponse = (x: unknown): x is { error: string } =>
+  typeof x === "object" &&
+  x !== null &&
+  "error" in x &&
+  typeof (x as { error: unknown }).error === "string";
+
 export default function CtaContact() {
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<FormState>({
     name: "",
     phone: "",
     email: "",
@@ -92,10 +124,8 @@ export default function CtaContact() {
     return years;
   }, [form.birthDate]);
 
-  const update = <K extends keyof typeof form>(
-    key: K,
-    value: (typeof form)[K]
-  ) => setForm((f) => ({ ...f, [key]: value }));
+  const update = <K extends keyof FormState>(key: K, value: FormState[K]) =>
+    setForm((f) => ({ ...f, [key]: value }));
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -116,7 +146,8 @@ export default function CtaContact() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      const data = await res.json().catch(() => ({}));
+
+      const data = await safeJson(res);
 
       if (res.ok) {
         setMsg({
@@ -137,12 +168,10 @@ export default function CtaContact() {
           message: "",
         });
       } else {
-        setMsg({
-          type: "err",
-          text:
-            data?.error ||
-            "Nie udało się wysłać formularza. Spróbuj ponownie później.",
-        });
+        const errText = isErrorResponse(data)
+          ? data.error
+          : "Nie udało się wysłać formularza. Spróbuj ponownie później.";
+        setMsg({ type: "err", text: errText });
       }
     } catch {
       setMsg({ type: "err", text: "Wystąpił błąd sieci. Spróbuj ponownie." });
