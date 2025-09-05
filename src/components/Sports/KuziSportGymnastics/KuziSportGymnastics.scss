@@ -15,9 +15,24 @@
   font-family: "Poppins", sans-serif;
 }
 
+/* Background logo (centered, translucent, doesn't affect content) */
 .KuziSportGymnastics-grid-wrapper {
+  position: relative;
   background: #fff;
   padding-block: var(--section-py);
+}
+.KuziSportGymnastics-grid-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/Sports/KuziSportGymnastics.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: clamp(180px, 35vw, 420px); 
+  opacity: 0.07;           
+  filter: grayscale(100%);     
+  pointer-events: none;
+  z-index: 0;
 }
 
 .KuziSportGymnastics-container {
@@ -25,11 +40,13 @@
   max-width: 1200px;
   margin-inline: auto;
   padding-inline: clamp(1rem, 2vw, 2rem);
+  position: relative;
+  z-index: 1; /* keep content above the background */
 }
 
 .KuziSportGymnastics-content {
   max-width: 860px;
-  margin-inline: 0; /* left aligned within container */
+  margin-inline: 0;
 }
 
 .KuziSportGymnastics-title {
@@ -95,7 +112,6 @@
   color: currentColor;
 }
 
-/* accessibility & polish */
 @media (prefers-reduced-motion: reduce) {
   .KuziSportGymnastics-item,
   .KuziSportGymnastics-arrow-icon { transition: none; }
