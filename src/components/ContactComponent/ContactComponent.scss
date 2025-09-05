@@ -269,3 +269,18 @@ textarea:focus {
   clip: rect(1px,1px,1px,1px);
   white-space: nowrap;
 }
+
+.contact-hero { align-self: stretch; }
+.contact-hero img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+}
+@media (max-width: 992px) {
+  .contact-hero { align-self: center; }
+  .contact-hero img {
+    height: auto;
+    max-width: min(90vw, 560px);
+  }
+}

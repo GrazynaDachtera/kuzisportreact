@@ -295,7 +295,8 @@ export default function ContactComponent() {
               width={620}
               height={560}
               priority
-              sizes="(max-width: 992px) 90vw, 620px"
+              sizes="(max-width: 992px) 90vw, 46vw"
+              style={{ width: "100%", height: "100%", objectFit: "contain" }}
             />
           </div>
         </div>
