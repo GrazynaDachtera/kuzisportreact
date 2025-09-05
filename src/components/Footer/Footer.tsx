@@ -51,7 +51,7 @@ const FooterFirstSection = () => {
       links: [
         { text: "O nas", to: "/AboutFoundation" },
         { text: "Rezerwacja", to: "/Abc" },
-        { text: "Dyscypliny", to: "/DownloadMaterials" },
+        { text: "Dyscypliny", to: "/Sports" },
       ],
     },
     {

@@ -2,14 +2,14 @@
 
 import React, { useRef } from "react";
 import Navbar from "@/components/Navbar/Navbar";
-import ProjectsHeading from "@/components/Projects/ProjectsHeading/ProjectsHeading";
-import Project3 from "@/components/Projects/Project3/Project3";
+import SportsHeading from "@/components/Sports/SportsHeading/SportsHeading";
+import KuziSportGymnastics from "@/components/Sports/KuziSportGymnastics/KuziSportGymnastics";
 import Footer from "@/components/Footer/Footer";
 import Cookies from "@/components/Cookies/Cookies";
 import "@/app/globals.css";
 import { useSmoothScrollbar } from "@/components/hooks/useSmoothScrollbar";
 
-export default function Project3Subpage() {
+export default function KuziSportGymnasticsSubpage() {
   const scrollRef = useRef<HTMLDivElement>(null);
   useSmoothScrollbar(scrollRef);
 
@@ -19,8 +19,8 @@ export default function Project3Subpage() {
         <section className="kuziSport">
           <div className="main">
             <Navbar />
-            <ProjectsHeading />
-            <Project3 />
+            <SportsHeading />
+            <KuziSportGymnastics />
           </div>
           <Footer />
         </section>

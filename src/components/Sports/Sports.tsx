@@ -2,13 +2,13 @@
 
 import React from "react";
 import Link from "next/link";
-import "./Projects.scss";
+import "./Sports.scss";
 
 const ArrowIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
+    width="22"
+    height="22"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -16,6 +16,8 @@ const ArrowIcon = () => (
     strokeLinecap="butt"
     strokeLinejoin="miter"
     className="projects-arrow-icon"
+    aria-hidden="true"
+    focusable="false"
   >
     <path d="M7 7 L17 17" />
     <path d="M17 7 L17 17 L7 17" />
@@ -24,21 +26,35 @@ const ArrowIcon = () => (
 
 export default function AbcPage() {
   const features = [
-    { title: "Park-sad przy Hetmańskiej", href: "/Projects/Project1" },
-    { title: "Sąsiedzkie sprzątanie Łazarza", href: "/Projects/Project2" },
-    { title: "Ognioodporny Łazarz", href: "/Projects/Project3" },
+    {
+      title: "Sporty Gimnastyczne - Kuzi Sport Gymnastics",
+      href: "/Sports/KuziSportGymnastics",
+    },
+    {
+      title: "Sporty Walki - Kuzi Sport Fight",
+      href: "/Sports/KuziSportFight",
+    },
+    {
+      title: "Treningi motoryczne - Kuzi Sport Performance",
+      href: "/Sports/KuziSportPerformance",
+    },
+    {
+      title: "Treningi dla klubów - Kuzi Sport Team",
+      href: "/Sports/KuziSportTeam",
+    },
   ];
 
   return (
     <section className="projects-heading">
       <div className="projects-heading-grid-wrapper">
         <div className="projects-heading-container">
-          <div className="projects-heading-grid">
+          <nav className="projects-heading-grid" role="list">
             {features.map((feature) => (
               <Link
                 href={feature.href}
                 className="projects-grid-item"
                 key={feature.href}
+                role="listitem"
               >
                 <span className="projects-grid-item-icon-wrapper">
                   <ArrowIcon />
@@ -48,7 +64,7 @@ export default function AbcPage() {
                 </span>
               </Link>
             ))}
-          </div>
+          </nav>
         </div>
       </div>
     </section>

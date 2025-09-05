@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import "./ProjectsHomePage.scss";
+import "./SportsHomePage.scss";
 
 const ArrowIcon = () => (
   <svg
@@ -27,22 +27,22 @@ export default function ProjectsHomePage() {
     {
       title: "Sporty Gimnastyczne - Kuzi Sport Gymnastics",
       description: "...",
-      link: "/Projects/Project1",
+      link: "/Sports/KuziSportGymnastics",
     },
     {
       title: "Sporty Walki - Kuzi Sport Fight",
       description: "...",
-      link: "/Projects/Project2",
+      link: "/Sports/KuziSportFight",
     },
     {
       title: "Treningi motoryczne - Kuzi Sport Performance",
       description: "...",
-      link: "/Projects/Project3",
+      link: "/Sports/KuziSportPerformance",
     },
     {
       title: "Treningi dla klubów - Kuzi Sport Team",
       description: "...",
-      link: "/Projects/Project1",
+      link: "/Sports/KuziSportTeam",
     },
   ];
 
@@ -65,7 +65,7 @@ export default function ProjectsHomePage() {
               </p>
 
               {/* ✅ Link styled as a button */}
-              <Link href="/Projects" className="projectsHomePage-button">
+              <Link href="/Sports" className="projectsHomePage-button">
                 Sprawdź
               </Link>
             </div>

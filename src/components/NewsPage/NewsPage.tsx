@@ -20,12 +20,16 @@ export default function NewsSubpage() {
   const renderPlugin = () => {
     const root = containerRef.current;
     if (!root) return;
+
     const el = root.querySelector(".fb-page") as HTMLElement | null;
     if (!el) return;
+
     const width = root.clientWidth;
-    const height = Math.max(43.75 * 16, Math.floor(window.innerHeight * 0.9));
+    const height = Math.max(43.75 * 16, Math.floor(window.innerHeight * 0.9)); // min ~700px
+
     el.setAttribute("data-width", String(width));
     el.setAttribute("data-height", String(height));
+
     if (window.FB) {
       window.FB.XFBML.parse(root);
       setLoaded(true);
@@ -60,6 +64,7 @@ export default function NewsSubpage() {
       t = window.setTimeout(() => renderPlugin(), 150);
     };
     window.addEventListener("resize", onResize);
+
     return () => {
       window.removeEventListener("resize", onResize);
       window.clearTimeout(t);
@@ -81,7 +86,7 @@ export default function NewsSubpage() {
           <div ref={containerRef} className="fb-wrapper">
             <div
               className="fb-page"
-              data-href="https://www.facebook.com/sasiedzkilazarz"
+              data-href="https://www.facebook.com/kuzisport"
               data-tabs="timeline"
               data-width=""
               data-height=""
@@ -90,11 +95,11 @@ export default function NewsSubpage() {
               data-adapt-container-width="true"
             >
               <blockquote
-                cite="https://www.facebook.com/sasiedzkilazarz"
+                cite="https://www.facebook.com/kuzisport"
                 className="fb-xfbml-parse-ignore"
               >
-                <a href="https://www.facebook.com/sasiedzkilazarz">
-                  Sąsiedzki Łazarz na Facebooku
+                <a href="https://www.facebook.com/kuzisport">
+                  Kuzi Sport na Facebooku
                 </a>
               </blockquote>
             </div>
@@ -103,7 +108,7 @@ export default function NewsSubpage() {
           <p className="newsPage-fallback">
             Nie widzisz wtyczki?{" "}
             <a
-              href="https://www.facebook.com/sasiedzkilazarz/?locale=pl_PL"
+              href="https://www.facebook.com/kuzisport/?locale=pl_PL"
               target="_blank"
               rel="noreferrer"
             >

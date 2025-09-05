@@ -61,7 +61,6 @@ export default function NavBar() {
     { label: "O nas", path: "/AboutFoundation" },
     { label: "Aktualności", path: "/NewsPage" },
     { label: "Rezerwacja", path: "/Abc" },
-    { label: "Grafik", path: "/Projects" },
     { label: "Cennik", path: "/Help" },
     { label: "Kontakt", path: "/Contact" },
   ];

@@ -1,13 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import "./ProjectsHeading.scss";
+import "./SportsHeading.scss";
 
-export default function ProjectsHeading() {
+export default function SportsHeading() {
   return (
     <main className="ProjectsHeading-wrapper">
       <h1 className="ProjectsHeading-title">
-        <Link href="/Projects">Projekty</Link>
+        <Link href="/Sports">Dyscypliny</Link>
       </h1>
     </main>
   );
