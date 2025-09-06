@@ -26,32 +26,32 @@ type AreasOfActivityProps = {
 
 const DEFAULT_ITEMS: ActivityItem[] = [
   {
-    title: "Robimy Porzundek!",
-    text: "chodzimy po Łazarzu wzdłuż i wszerz – nieporządek zgłaszamy komu trzeba i pilnujemy realizacji zadań porządkowych przez służby miejskie",
+    title: "Bezpieczeństwo i Komfort",
+    text: "Nasza sala jest w pełni przystosowana do organizacji dziecięcych wydarzeń. Dbamy o bezpieczeństwo najmłodszych, oferując przestronne i bezpieczne otoczenie do zabawy.",
   },
   {
-    title: "Integrujemy Łazarz i sąsiedztwo!",
-    text: "organizujemy wydarzenia sąsiedzkie, od spacerów po pikniki i warsztaty dla mieszkańców, dbając o walor edukacyjny",
+    title: "Aktywność w Centrum Urodzin",
+    text: "Zajęcia sportowe to doskonały sposób na aktywne spędzenie czasu. Oferujemy różnorodne formy ruchu, takie jak piłka nożna, koszykówka, czy zabawy z chustą animacyjną. Niezależnie od zainteresowań, każda pociecha znajdzie coś dla siebie!",
   },
   {
-    title: "Zieleń i zwierzęta, natura!",
-    text: "naszym priorytetem jest jeszcze więcej dobrze zaplanowanej zieleni na Łazarzu, miejsc przyjemnych dla ludzi i innych stworków – zawsze to uwzględniamy w naszych opiniach i projektach",
+    title: "Indywidualne Podejście",
+    text: "Organizacja urodzin w Kuzi Sport opiera się na Twoich potrzebach i preferencjach. Współpracujemy z rodzicami, aby stworzyć niezapomniane przyjęcie dostosowane do gustu i wieku dziecka.",
   },
   {
-    title: "Inwestycje!",
-    text: "wiemy jak dobrze planować, wydawać pieniądze i pilnować trwałości inwestycji. Staramy się o kompromis dla potrzeb pieszych, rowerzystów, kierowców, młodszych, starszych, chytrych i estetów",
+    title: "Profesjonalna Obsługa",
+    text: "Nasz wykwalifikowany zespół zadba o każdy detal. Możesz liczyć na wsparcie w organizacji poczęstunku oraz dekoracji, aby przyjęcie było jeszcze bardziej wyjątkowe.",
   },
   {
-    title: "Kultura i historia!",
-    text: "co, gdzie, kiedy – uważnie śledzimy i nagłaśniamy informacje o wydarzeniach na Łazarzu, a także w całym Poznaniu: takich które właśnie się dzieją i takich które już się działy. Organizujemy spacery z historią Łazarza w tle",
+    title: "Elastyczne Pakiety Urodzinowe",
+    text: "Oferujemy różne pakiety urodzinowe, które obejmują różnorodne atrakcje oraz opcje dodatkowe, takie jak malowanie twarzy, tatuaże z wybranymi bohaterami. Z łatwością dopasujesz ofertę do swoich potrzeb i budżetu.",
   },
   {
-    title: "… i wiele więcej!",
+    title: "Zarezerwuj Termin Już Dzisiaj!",
   },
 ];
 
 export default function AreasOfActivity({
-  title = "Obszary działalności",
+  title = "Dlaczego warto wybrać Kuzi Sport?",
   items = DEFAULT_ITEMS,
   image = {
     src: "/News/matejki-poznan.png",

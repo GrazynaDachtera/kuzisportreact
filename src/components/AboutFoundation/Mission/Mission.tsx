@@ -23,21 +23,17 @@ type MissionProps = {
 
 const DEFAULT_ITEMS: MissionItem[] = [
   {
-    title: "Misja",
-    text: "Jako Stowarzyszenie Sąsiedzki Łazarz działamy na rzecz mieszkańców Osiedla Święty Łazarz, organizując wydarzenia, spotkania oraz działania edukacyjne i kanały komunikacyjne, aby zachęcić do aktywnej partycypacji w życiu społecznym.",
+    title: "Misja i wizja",
+    text: "Nasza sala sportowa to nie tylko doskonałe warunki do ćwiczeń, ale także zespół doświadczonych i pasjonujących trenerów, którzy dbają o komfort i bezpieczeństwo podczas zajęć. Organizujemy programy dostosowane do potrzeb grup, uwzględniając zarówno formy rekreacyjne, jak i sportowe. Zapewniamy miłą i wspierającą atmosferę, która zachęca do aktywności fizycznej i zdrowego stylu życia. Niezależnie od pory roku, sala Kuzi Sport jest idealnym miejscem na zorganizowanie zajęć wychowania fizycznego, które zmotywują uczniów do regularnej aktywności.",
   },
   {
-    title: "Wizja",
-    text: "Wierzymy, że każdy ma prawo żyć w bezpiecznym, nowoczesnym, zielonym i przyjaznym miejscu, dlatego łączymy nasze siły i doświadczenia jako społecznicy mieszkający tutaj, by skutecznie reprezentować potrzeby naszych sąsiadów.",
-  },
-  {
-    title: "Święty Łazarz naszym okiem",
-    text: "W naszych oczach Święty Łazarz to dzielnica przyjazna do życia, w której każdy mieszkaniec ma łatwy dostęp do terenów zielonych i kultury oraz możliwość integracji z sąsiadami i pełnej partycypacji w życiu społecznym osiedla.",
+    title: "Skontaktuj się z nami!",
+    text: "Jeśli jesteś zainteresowany organizacją zajęć w naszej sali sportowej, zapraszamy do kontaktu. Razem stworzymy program, który spełni Twoje oczekiwania i przyczyni się do rozwoju fizycznego Twoich uczniów!",
   },
 ];
 
 export default function Mission({
-  title = "Misja i wizja",
+  title = "Troszkę o nas..:)",
   items = DEFAULT_ITEMS,
   image = {
     src: "/AboutFoundation/person.png",
