@@ -10,9 +10,7 @@ const SKILL_LEVELS = [
   "średniozaawansowany",
   "zaawansowany",
 ] as const;
-
 const TRAININGS_PER_WEEK = ["1", "2", "3 lub więcej"] as const;
-
 const CLASS_FORMS = [
   "indywidualne",
   "mikrogrupa 2–4",
@@ -152,7 +150,7 @@ export default function CtaContact() {
       if (res.ok) {
         setMsg({
           type: "ok",
-          text: "Dziękujemy! Twoje zgłoszenie na zajęcia próbne zostało wysłane. Skontaktujemy się wkrótce.",
+          text: "Dziękujemy! Twoje zgłoszenie zostało wysłane. Skontaktujemy się wkrótce.",
         });
         setForm({
           name: "",
@@ -183,212 +181,256 @@ export default function CtaContact() {
   return (
     <section className="trial" aria-labelledby="trial-heading">
       <div className="trial__container">
-        <header className="trial__header">
-          <h2 id="trial-heading">Zapisz się na zajęcia próbne</h2>
-          <p className="trial__sub">
-            Szybki formularz – oddzwonimy z potwierdzeniem terminu.
-          </p>
-        </header>
+        <div className="trial__content">
+          <header className="trial__header">
+            <h2 id="trial-heading">Zapis na zajęcia próbne</h2>
+            <p className="trial__sub">Krótki formularz — oddzwonimy.</p>
+          </header>
 
-        <form className="trial__form" onSubmit={handleSubmit} noValidate>
-          <div className="trial__field">
-            <label htmlFor="trial-name">Imię i nazwisko *</label>
-            <input
-              id="trial-name"
-              type="text"
-              placeholder="Jan Kowalski"
-              value={form.name}
-              onChange={(e) => update("name", e.target.value)}
-              required
-              autoComplete="name"
-            />
-          </div>
-
-          <div className="trial__field">
-            <label htmlFor="trial-phone">Telefon *</label>
-            <input
-              id="trial-phone"
-              type="tel"
-              inputMode="tel"
-              placeholder="np. 785 828 666"
-              value={form.phone}
-              onChange={(e) => update("phone", e.target.value)}
-              required
-              pattern="[\d\s+()-]{6,}"
-              autoComplete="tel"
-            />
-          </div>
-
-          <div className="trial__field">
-            <label htmlFor="trial-email">E-mail *</label>
-            <input
-              id="trial-email"
-              type="email"
-              placeholder="np. jan@domena.pl"
-              value={form.email}
-              onChange={(e) => update("email", e.target.value)}
-              required
-              autoComplete="email"
-            />
-          </div>
-
-          <div className="trial__field">
-            <label htmlFor="trial-discipline">Dyscyplina *</label>
-            <select
-              id="trial-discipline"
-              value={form.discipline}
-              onChange={(e) => update("discipline", e.target.value)}
-              required
-            >
-              <option value="" disabled>
-                Wybierz dyscyplinę…
-              </option>
-              {DISCIPLINE_GROUPS.map((g) => (
-                <optgroup key={g.label} label={g.label}>
-                  {g.options.map((opt) => (
-                    <option key={opt} value={opt}>
-                      {opt}
-                    </option>
-                  ))}
-                </optgroup>
-              ))}
-            </select>
-          </div>
-
-          <div className="trial__field">
-            <label htmlFor="trial-birth">Data urodzenia *</label>
-            <input
-              id="trial-birth"
-              type="date"
-              value={form.birthDate}
-              onChange={(e) => update("birthDate", e.target.value)}
-              required
-              max={new Date().toISOString().slice(0, 10)}
-            />
-            {age !== null && (
-              <small aria-live="polite" className="trial__hint">
-                Wiek: {age} lat
-              </small>
-            )}
-          </div>
-
-          <fieldset className="trial__field trial__group">
-            <legend>Poziom zaawansowania *</legend>
-            <div className="trial__pills">
-              {SKILL_LEVELS.map((lvl) => (
-                <label
-                  key={lvl}
-                  className={`pill ${form.level === lvl ? "is-active" : ""}`}
-                >
-                  <input
-                    type="radio"
-                    name="skill"
-                    value={lvl}
-                    checked={form.level === lvl}
-                    onChange={() => update("level", lvl)}
-                    required
-                  />
-                  <span>{lvl}</span>
-                </label>
-              ))}
+          <form className="trial__form" onSubmit={handleSubmit} noValidate>
+            <div className="field">
+              <label htmlFor="trial-name">Imię i nazwisko *</label>
+              <input
+                id="trial-name"
+                type="text"
+                placeholder="Jan Kowalski"
+                value={form.name}
+                onChange={(e) => update("name", e.target.value)}
+                required
+                autoComplete="name"
+              />
             </div>
-          </fieldset>
 
-          <fieldset className="trial__field trial__group">
-            <legend>Deklarowana liczba treningów / tydzień *</legend>
-            <div className="trial__pills">
-              {TRAININGS_PER_WEEK.map((f) => (
-                <label
-                  key={f}
-                  className={`pill ${form.frequency === f ? "is-active" : ""}`}
-                >
-                  <input
-                    type="radio"
-                    name="frequency"
-                    value={f}
-                    checked={form.frequency === f}
-                    onChange={() => update("frequency", f)}
-                    required
-                  />
-                  <span>{f}</span>
-                </label>
-              ))}
+            <div className="field">
+              <label htmlFor="trial-phone">Telefon *</label>
+              <input
+                id="trial-phone"
+                type="tel"
+                inputMode="tel"
+                placeholder="np. 785 828 666"
+                value={form.phone}
+                onChange={(e) => update("phone", e.target.value)}
+                required
+                pattern="[\d\s+()-]{6,}"
+                autoComplete="tel"
+              />
             </div>
-          </fieldset>
 
-          <fieldset className="trial__field trial__group">
-            <legend>Forma zajęć *</legend>
-            <div className="trial__pills trial__pills--wrap">
-              {CLASS_FORMS.map((f) => (
-                <label
-                  key={f}
-                  className={`pill ${form.format === f ? "is-active" : ""}`}
-                >
-                  <input
-                    type="radio"
-                    name="format"
-                    value={f}
-                    checked={form.format === f}
-                    onChange={() => update("format", f)}
-                    required
-                  />
-                  <span>{f}</span>
-                </label>
-              ))}
+            <div className="field">
+              <label htmlFor="trial-email">E-mail *</label>
+              <input
+                id="trial-email"
+                type="email"
+                placeholder="np. jan@domena.pl"
+                value={form.email}
+                onChange={(e) => update("email", e.target.value)}
+                required
+                autoComplete="email"
+              />
             </div>
-          </fieldset>
 
-          <div className="trial__field trial__field--full">
-            <label htmlFor="trial-message">Wiadomość (opcjonalnie)</label>
-            <textarea
-              id="trial-message"
-              rows={4}
-              placeholder="Dodatkowe informacje, preferowane godziny…"
-              value={form.message}
-              onChange={(e) => update("message", e.target.value)}
-            />
-          </div>
+            <div className="field">
+              <label htmlFor="trial-discipline">Dyscyplina *</label>
+              <select
+                id="trial-discipline"
+                value={form.discipline}
+                onChange={(e) => update("discipline", e.target.value)}
+                required
+              >
+                <option value="" disabled>
+                  Wybierz…
+                </option>
+                {DISCIPLINE_GROUPS.map((g) => (
+                  <optgroup key={g.label} label={g.label}>
+                    {g.options.map((opt) => (
+                      <option key={opt} value={opt}>
+                        {opt}
+                      </option>
+                    ))}
+                  </optgroup>
+                ))}
+              </select>
+            </div>
 
-          <label className="trial__check trial__field--full">
-            <input
-              type="checkbox"
-              checked={form.rodo}
-              onChange={(e) => update("rodo", e.target.checked)}
-              required
-            />
-            <span>
-              Zgoda na przetwarzanie danych osobowych (RODO) w celu kontaktu w
-              sprawie zajęć próbnych. *
-            </span>
-          </label>
+            <div className="field">
+              <label htmlFor="trial-birth">Data urodzenia *</label>
+              <input
+                id="trial-birth"
+                type="date"
+                value={form.birthDate}
+                onChange={(e) => update("birthDate", e.target.value)}
+                required
+                max={new Date().toISOString().slice(0, 10)}
+              />
+              {age !== null && (
+                <small aria-live="polite" className="hint">
+                  Wiek: {age} lat
+                </small>
+              )}
+            </div>
 
-          <label className="trial__check trial__field--full">
-            <input
-              type="checkbox"
-              checked={form.marketing}
-              onChange={(e) => update("marketing", e.target.checked)}
-            />
-            <span>Zgoda marketingowa (opcjonalnie).</span>
-          </label>
+            <fieldset className="field group">
+              <legend>Poziom</legend>
+              <div className="pills">
+                {SKILL_LEVELS.map((lvl) => (
+                  <label
+                    key={lvl}
+                    className={`pill ${form.level === lvl ? "is-active" : ""}`}
+                  >
+                    <input
+                      type="radio"
+                      name="skill"
+                      value={lvl}
+                      checked={form.level === lvl}
+                      onChange={() => update("level", lvl)}
+                    />
+                    <span>{lvl}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
 
-          <div className="trial__actions">
-            <button className="trial__btn" type="submit" disabled={loading}>
-              {loading ? "Wysyłanie…" : "Wyślij zgłoszenie"}
-            </button>
-            <p className="trial__safety">Twoje dane są bezpieczne</p>
-          </div>
+            <fieldset className="field group">
+              <legend>Treningi / tydzień</legend>
+              <div className="pills pills--compact">
+                {TRAININGS_PER_WEEK.map((f) => (
+                  <label
+                    key={f}
+                    className={`pill ${
+                      form.frequency === f ? "is-active" : ""
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name="frequency"
+                      value={f}
+                      checked={form.frequency === f}
+                      onChange={() => update("frequency", f)}
+                    />
+                    <span>{f}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
 
-          {msg && (
-            <p
-              aria-live="polite"
-              className={`trial__msg ${
-                msg.type === "ok" ? "trial__msg--ok" : "trial__msg--err"
-              }`}
-            >
-              {msg.text}
+            <fieldset className="field group">
+              <legend>Forma zajęć</legend>
+              <div className="pills pills--wrap">
+                {CLASS_FORMS.map((f) => (
+                  <label
+                    key={f}
+                    className={`pill ${form.format === f ? "is-active" : ""}`}
+                  >
+                    <input
+                      type="radio"
+                      name="format"
+                      value={f}
+                      checked={form.format === f}
+                      onChange={() => update("format", f)}
+                    />
+                    <span>{f}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            <div className="field field--full">
+              <label htmlFor="trial-message">Wiadomość (opcjonalnie)</label>
+              <textarea
+                id="trial-message"
+                rows={4}
+                placeholder="Dodatkowe informacje, preferowane godziny…"
+                value={form.message}
+                onChange={(e) => update("message", e.target.value)}
+              />
+            </div>
+
+            <label className="check field--full">
+              <input
+                type="checkbox"
+                checked={form.rodo}
+                onChange={(e) => update("rodo", e.target.checked)}
+                required
+              />
+              <span>
+                Zgoda na przetwarzanie danych osobowych{" "}
+                <span className="req">*</span>
+              </span>
+            </label>
+
+            <label className="check field--full">
+              <input
+                type="checkbox"
+                checked={form.marketing}
+                onChange={(e) => update("marketing", e.target.checked)}
+              />
+              <span>Zgoda marketingowa</span>
+            </label>
+
+            <p className="aside">
+              <span className="ico-shield" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6l7-3z"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M9.5 12.5l2 2 4-4"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+              Twoje dane są bezpieczne
             </p>
-          )}
-        </form>
+
+            <div className="actions">
+              <button
+                className="btn btn--primary"
+                type="submit"
+                disabled={loading}
+              >
+                <span className="btn__label">
+                  {loading ? "Wysyłanie…" : "Wyślij wiadomość"}
+                </span>
+                {!loading && (
+                  <span className="btn__icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <path
+                        d="M7 17l9-9"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M9 7h7v7"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                )}
+              </button>
+            </div>
+
+            {msg && (
+              <p
+                aria-live="polite"
+                className={`msg ${msg.type === "ok" ? "msg--ok" : "msg--err"}`}
+              >
+                {msg.text}
+              </p>
+            )}
+          </form>
+        </div>
       </div>
     </section>
   );

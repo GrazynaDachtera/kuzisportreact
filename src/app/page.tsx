@@ -34,8 +34,8 @@ export default function Home() {
           <Header />
           <Reviews />
           <SportsHomePage />
-          <News />
           <CtaContact />
+          <News />
           <MapComponent />
           <Footer />
         </section>
