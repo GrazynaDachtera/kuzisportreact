@@ -183,7 +183,7 @@ export default function CtaContact() {
       <div className="trial__container">
         <div className="trial__content">
           <header className="trial__header">
-            <h2 id="trial-heading">Zapis na zajęcia próbne</h2>
+            <h2 id="trial-heading">Zapisz się na zajęcia próbne</h2>
             <p className="trial__sub">Krótki formularz — oddzwonimy.</p>
           </header>
 
