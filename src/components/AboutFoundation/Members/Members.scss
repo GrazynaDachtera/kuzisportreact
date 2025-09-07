@@ -60,7 +60,15 @@
   color: inherit;
 }
 
-.members-photo { position: relative; width: 100%; aspect-ratio: 4 / 3; background: #eef4f1; }
+.members-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #eef4f1;
+}
+@media (min-width: 992px) {
+  .members-photo { aspect-ratio: 16 / 15; }
+}
 .members-photo-img { object-fit: cover; }
 .members-photo-fallback {
   width: 100%; height: 100%; display: grid; place-items: center;
@@ -170,16 +178,10 @@
   gap: 10px;
   color: var(--brand-green);
 }
-.members-dialog-phone .phone-icon {
-  width: 22px;
-  height: 22px;
-  flex: 0 0 auto;
-}
+.members-dialog-phone .phone-icon { width: 22px; height: 22px; flex: 0 0 auto; }
 .members-dialog-phone a {
   color: var(--brand-green);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.members-dialog-phone a:hover {
-  text-decoration-thickness: 2px;
-}
+.members-dialog-phone a:hover { text-decoration-thickness: 2px; }

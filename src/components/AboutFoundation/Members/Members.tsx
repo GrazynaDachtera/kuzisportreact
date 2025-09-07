@@ -4,7 +4,11 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import "./Members.scss";
 
-type MemberImage = { src?: string; alt?: string };
+type MemberImage = {
+  src?: string;
+  alt?: string;
+  objectPosition?: string;
+};
 
 type Member = {
   name: string;
@@ -28,8 +32,9 @@ const defaultMembers: Member[] = [
     bio: "Trener karate i gimnastyki, licencjonowany Trener Polskiej Unii Karate, wielokrotny Mistrz Polski oraz Medalista Mistrzostw Europy karate Shotokan, trener Kadry Narodowej Shotokan/WKF na lata 2010/2011.",
     phone: "+48 123 456 789",
     image: {
-      src: "/AboutFoundation/MagdaKrawczyk.jpeg",
+      src: "/AboutFoundation/Members/lukasz.png",
       alt: "Łukasz Kuzemko",
+      objectPosition: "50% 0%",
     },
   },
   {
@@ -37,25 +42,44 @@ const defaultMembers: Member[] = [
     role: "Trener",
     bio: "Magister Prawa, trener Karate i gimnastyki, 3x Mistrz Polski w Karate WKF, złoty Medalista Mistrzostw Europy w Karate Shotokan, pasjonat kalisteniki oraz biegów z przeszkodami.",
     phone: "+48 883 354 040",
+    image: {
+      src: "/AboutFoundation/Members/bartosz.webp",
+      alt: "Bartosz Kuzemko",
+      objectPosition: "50% 0%",
+    },
   },
   {
     name: "Maciej Drążewski",
     role: "Trener",
     bio: "Magister Fizjoterapii, absolwent AWF w Poznaniu, licencjonowany Trener Polskiej Unii Karate, 3x Mistrz Polski w Karate WKF, aktywny zawodnik w kategorii kumite -67kg, trener-Asystent kadry Narodowej WKF od 2020 roku.",
     phone: "+48 505 875 735",
+    image: {
+      src: "/AboutFoundation/Members/Maciej.webp",
+      alt: "Maciej Drążewski",
+      objectPosition: "50% 0%",
+    },
   },
   {
     name: "Fatih Kagan Emre",
     role: "Trener",
     bio: "Magister Informatyki, trener karate, wielokrotny medalista zawodów Tureckiej Federacji Karate.",
-    image: { src: "/AboutFoundation/Roman.JPEG", alt: "Fatih Kagan Emre" },
     phone: "+48 791 650 862",
+    image: {
+      src: "/AboutFoundation/Members/Fatih.webp",
+      alt: "Fatih Kagan Emre",
+      objectPosition: "50% 0%",
+    },
   },
   {
     name: "Krystian Żuchowski",
     role: "Trener",
     bio: "Student AWF Poznań na wydziale Wychowania Fizycznego, trener karate i kickboxingu, medalista Mistrzostw Polski w Karate.",
     phone: "+48 721 365 025",
+    image: {
+      src: "/AboutFoundation/Members/Krystian.webp",
+      alt: "Krystian Żuchowski",
+      objectPosition: "50% 0%",
+    },
   },
 ];
 
@@ -80,6 +104,7 @@ function MemberCard({ m, onOpen }: { m: Member; onOpen: () => void }) {
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
             className="members-photo-img"
+            style={{ objectPosition: m.image?.objectPosition ?? "50% 0%" }}
           />
         ) : (
           <div aria-hidden className="members-photo-fallback">
