@@ -1,110 +1,106 @@
 "use client";
 
 import "./Help.scss";
+import React from "react";
 
-type Line =
-  | { kind: "text"; text: string }
-  | { kind: "label"; label: string; text: string; boldText?: boolean }
-  | { kind: "title"; text: string }
-  | { kind: "mixed"; before: string; strong: string; after: string };
+type PriceRow = { name: string; price: string; note?: string };
+type PriceSection = { id: string; title: string; items: PriceRow[] };
 
-const RULES: Line[] = [
+const SECTIONS: PriceSection[] = [
   {
-    kind: "mixed",
-    before: "Jako ",
-    strong: "Stowarzyszenie Sąsiedzki Łazarz",
-    after:
-      " działamy na rzecz mieszkańców Osiedla Święty Łazarz dzięki składkom członkowskim, dotacjom oraz darowiznom.",
+    id: "gym-acro-parkour",
+    title: "Gimnastyka / Akrobatyka sportowa / Parkour",
+    items: [
+      { name: "1 raz w tygodniu", price: "240 zł" },
+      { name: "2 razy w tygodniu", price: "400 zł" },
+      { name: "3 i więcej razy w tygodniu", price: "500 zł" },
+    ],
   },
   {
-    kind: "text",
-    text: "Ty też możesz wesprzeć nasze działania społeczne poprzez wpłatę darowizny na nasze konto.",
+    id: "kickboxing-box",
+    title: "Kickboxing / Boks",
+    items: [
+      { name: "1 raz w tygodniu", price: "200 zł" },
+      { name: "2 razy i więcej w tygodniu", price: "280 zł" },
+    ],
   },
   {
-    kind: "label",
-    label: "Nazwa:",
-    text: "Stowarzyszenie Sąsiedzki Łazarz",
-    boldText: true,
+    id: "aerial-hoop",
+    title: "Aerial Hoop (Koła)",
+    items: [
+      { name: "Zajęcia indywidualne", price: "170 zł / 1 osoba" },
+      { name: "Zajęcia 2-osobowe", price: "280 zł", note: "(140 zł od osoby)" },
+      { name: "Zajęcia 3-osobowe", price: "360 zł", note: "(120 zł od osoby)" },
+      { name: "Zajęcia 4-osobowe", price: "400 zł", note: "(100 zł od osoby)" },
+    ],
   },
   {
-    kind: "label",
-    label: "Numer Konta Bankowego:",
-    text: "65 1090 1476 0000 0001 6175 6613",
-    boldText: true,
+    id: "aerial-silks",
+    title: "Aerial Silks (Szarfy)",
+    items: [
+      { name: "1 raz w tygodniu", price: "280 zł" },
+      { name: "2 razy w tygodniu", price: "500 zł" },
+    ],
   },
-  { kind: "title", text: "Poznaj zakres naszych działań:" },
-
-  { kind: "title", text: "Robimy Porządek!" },
   {
-    kind: "text",
-    text: "Chodzimy po Łazarzu wzdłuż i wszerz, tropimy nieporządek i zgłaszamy go odpowiednim instytucjom. Pilnujemy też, by służby miejskie skutecznie realizowały swoje zadania, tak aby nasza dzielnica była czysta i zadbana.",
+    id: "karate",
+    title: "Karate",
+    items: [
+      { name: "1 raz w tygodniu", price: "200 zł" },
+      { name: "2 razy w tygodniu", price: "275 zł" },
+    ],
   },
-
-  { kind: "title", text: "Integrujemy Łazarz i okolicę!" },
-  {
-    kind: "text",
-    text: "Tworzymy przestrzeń do spotkań i współdziałania – organizujemy sąsiedzkie wydarzenia, od spacerów i pikników po warsztaty dla mieszkańców. Dbamy, by każde spotkanie miało także wymiar edukacyjny, wzmacniając więzi i wspierając rozwój naszej społeczności.",
-  },
-
-  { kind: "title", text: "Zieleń, zwierzęta, natura!" },
-  {
-    kind: "text",
-    text: "Naszym priorytetem jest tworzenie jeszcze większej ilości dobrze zaplanowanej zieleni na Łazarzu – miejsc przyjaznych zarówno ludziom, jak i zwierzętom. Dbamy o to, by w naszych opiniach i projektach zawsze znalazła się przestrzeń dla natury, która sprzyja odpoczynkowi, spotkaniom i wspólnemu życiu z innymi mieszkańcami – także tymi małymi, skrzydlatymi czy futrzastymi.",
-  },
-
-  { kind: "title", text: "Inwestycje!" },
-  {
-    kind: "text",
-    text: "Chcemy, aby na Łazarzu panował ład urbanistyczny. Jako społeczność pragniemy aktywnie uczestniczyć w planowaniu przestrzeni i wskazywać realne potrzeby mieszkańców. Dążymy do kompromisu między oczekiwaniami pieszych, rowerzystów, kierowców, młodszych i starszych – tych praktycznych i tych ceniących estetykę.",
-  },
-
-  { kind: "title", text: "Kultura i historia!" },
-  {
-    kind: "text",
-    text: "Śledzimy i nagłaśniamy najważniejsze wydarzenia kulturalne i historyczne na Łazarzu i w całym Poznaniu – te bieżące i te, które już zapisały się w pamięci mieszkańców. Organizujemy także spacery, podczas których można odkrywać historię Łazarza w wyjątkowy i ciekawy sposób.",
-  },
-
-  { kind: "title", text: "… i wiele więcej!" },
 ];
 
 export default function HelpPage() {
   return (
-    <main className="help-wrapper">
-      <h1 className="help-title">Ty też możesz pomóc</h1>
+    <section className="PriceList">
+      {/* HERO like on "Grafik" */}
+      <div className="page-hero">
+        <h1 className="page-hero-title">Cennik</h1>
+      </div>
 
-      <section className="help-content">
-        <h2 className="help-subtitle">Ty też możesz pomóc</h2>
+      <div className="price-container">
+        <p className="price-sub">
+          Ceny zgodne z aktualnym cennikiem klubu na sezon 2025/2026.
+        </p>
 
-        <div className="help-text">
-          {RULES.map((item, i) => {
-            if (item.kind === "title") {
-              return (
-                <p key={i}>
-                  <strong>{item.text}</strong>
-                </p>
-              );
-            }
-            if (item.kind === "label") {
-              return (
-                <p key={i}>
-                  <strong>{item.label}</strong>{" "}
-                  {item.boldText ? <strong>{item.text}</strong> : item.text}
-                </p>
-              );
-            }
-            if (item.kind === "mixed") {
-              return (
-                <p key={i}>
-                  {item.before}
-                  <strong>{item.strong}</strong>
-                  {item.after}
-                </p>
-              );
-            }
-            return <p key={i}>{item.text}</p>;
-          })}
+        <div className="price-list" role="list">
+          {SECTIONS.map((section) => (
+            <article key={section.id} className="price-card" role="listitem">
+              <h3 className="card-title">{section.title}</h3>
+              <ul className="card-lines">
+                {section.items.map((row, i) => (
+                  <li key={i} className="price-row">
+                    <span className="row-name">{row.name}</span>
+                    <span className="row-price">{row.price}</span>
+                    {row.note && <span className="row-note">{row.note}</span>}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+
+          <article className="price-card highlight" role="listitem">
+            <h3 className="card-title">Trening indywidualny</h3>
+            <div className="price-row solo">
+              <span className="row-name">Jednorazowo</span>
+              <span className="row-price">170 zł / zajęcia</span>
+            </div>
+            <div className="banner">
+              <strong>Zniżka dla rodzeństwa</strong> – 10%
+            </div>
+          </article>
         </div>
-      </section>
-    </main>
+
+        <footer className="price-note">
+          <p className="note-strong">
+            Siłownia gratis dla rodzica/opiekuna w trakcie trwania zajęć dziecka
+            oraz dla klubowiczów powyżej 16 r.ż trenujących minimum 2 razy w
+            tygodniu.
+          </p>
+        </footer>
+      </div>
+    </section>
   );
 }
