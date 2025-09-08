@@ -50,19 +50,28 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
   color: $text;
 }
 
-.btn {
+.btn,
+.back-btn {
   appearance: none;
   border: 1px solid #e2e8f0;
-  background: #fff;
-  border-radius: 10px;
+  background: transparent;
+  border-radius: 6px;
   padding: 0.55rem 0.9rem;
   font-weight: 600;
   font-size: 0.95rem;
-  color: $text;
+  color: #6b7280;
   cursor: pointer;
+  transition: border-color 0.2s ease;
 }
+
 .btn:hover,
-.btn:focus-visible { border-color: #a3b0bf; outline: none; }
+.btn:focus-visible,
+.back-btn:hover,
+.back-btn:focus-visible {
+  border-color: #94a3b8;
+  background: transparent;
+  outline: none;
+}
 
 .regulations-grid {
   display: grid;
@@ -127,20 +136,6 @@ mark { background: #fff3bf; padding: 0 2px; border-radius: 3px; color: inherit; 
 
 .regulations-panel { min-height: 30vh; }
 
-.back-btn {
-  display: none;
-  margin: 0 0 0.5rem 0;
-  padding: 0.45rem 0.7rem;
-  border-radius: 10px;
-  border: 1px solid #e2e8f0;
-  background: #fff;
-  color: $text;
-  font-weight: 600;
-  font-size: 0.95rem;
-}
-.back-btn:focus-visible,
-.back-btn:hover { border-color: #a3b0bf; }
-
 .regulations-block + .regulations-block { margin-top: 1.25rem; }
 
 .regulations-heading {
@@ -193,7 +188,7 @@ mark { background: #fff3bf; padding: 0 2px; border-radius: 3px; color: inherit; 
     padding-right: $pad-tablet;
   }
   .regulations-sidenav { position: static; top: auto; }
-  .back-btn { display: inline-block; position: sticky; top: calc(var(--nav-h) + 0.5rem); background: #fff; z-index: 1; }
+  .back-btn { display: inline-block; position: sticky; top: calc(var(--nav-h) + 0.5rem); z-index: 1; }
   .regulations-search input { font-size: 1rem; }
 }
 
@@ -206,8 +201,10 @@ mark { background: #fff3bf; padding: 0 2px; border-radius: 3px; color: inherit; 
 }
 
 @media print {
-  .regulations-wrapper { padding-bottom: 0; color: #6a7280; }
+  .regulations-wrapper { display: block !important; padding-bottom: 0; color: #6a7280; }
   .regulations-actions, .regulations-sidenav, .back-btn { display: none !important; }
-  .regulations-grid { display: block; padding: 0; }
-  .regulations-content { width: 100%; margin: 0; }
+  .regulations-grid { display: block !important; padding: 0 !important; }
+  .regulations-content { width: 100% !important; margin: 0 !important; display: block !important; }
+  .regulations-panel { display: block !important; min-height: auto !important; }
+  .regulations-block { page-break-inside: avoid; break-inside: avoid; margin-bottom: 0.75rem; }
 }

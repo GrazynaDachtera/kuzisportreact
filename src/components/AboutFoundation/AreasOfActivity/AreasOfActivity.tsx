@@ -54,7 +54,7 @@ export default function AreasOfActivity({
   title = "Dlaczego warto wybrać Kuzi Sport?",
   items = DEFAULT_ITEMS,
   image = {
-    src: "/News/matejki-poznan.png",
+    src: "/AboutFoundation/Kickboxing.png",
     alt: "obszary działalności",
     width: 652,
     height: 336,
@@ -81,7 +81,7 @@ export default function AreasOfActivity({
               </ul>
 
               <Link href="/AreasOfActivity" className="areas-cta">
-                Poznaj wszystkie obszary naszej działalności
+                Zarezerwuj termin
                 <svg
                   className="areas-cta-icon"
                   viewBox="0 0 24 24"

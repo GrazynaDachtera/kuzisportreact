@@ -33,7 +33,7 @@ const DEFAULT_ITEMS: MissionItem[] = [
 ];
 
 export default function Mission({
-  title = "Troszkę o nas..:)",
+  title = "Kilka słów o naszym klubie :)",
   items = DEFAULT_ITEMS,
   image = {
     src: "/AboutFoundation/person.png",
@@ -67,7 +67,7 @@ export default function Mission({
               fill
               priority={image.priority}
               quality={90}
-              sizes="(max-width: 991px) 90vw, 520px"
+              sizes="(max-width: 991px) 92vw, 50vw"
               className="mission-image"
             />
           </div>
