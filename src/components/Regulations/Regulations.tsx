@@ -230,7 +230,7 @@ export default function RegulationsPage() {
 
   return (
     <main className="regulations-wrapper">
-      <h1 className="regulations-title">Regulamin KUZI SPORT</h1>
+      <h1 className="regulations-title">Regulamin</h1>
 
       <section className="regulations-content">
         <div className="regulations-actions">
