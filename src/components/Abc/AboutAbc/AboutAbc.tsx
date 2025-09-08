@@ -16,9 +16,9 @@ type ScheduleItem = {
   day: Day;
   start: string; // "HH:MM"
   end: string; // "HH:MM"
-  title: string; // "Parkour", "Akrobatyka", "Gimnastyka", itd.
+  title: string; // e.g. "Parkour", "Akrobatyka"
   group?: string;
-  location?: string; // "Sala", "Szkoła GES", "Ring", "Train Station"
+  location?: string; // e.g. "Sala", "Szkoła GES", "Ring", "Train Station"
   tags?: string[];
 };
 
@@ -31,16 +31,12 @@ const DAYS: Day[] = [
   "Sobota",
 ];
 
-// sort by "HH:MM"
 const byTime = (a: ScheduleItem, b: ScheduleItem) =>
   a.start.localeCompare(b.start);
 
-// —————————————————————————————————————————————
-// GRAFIK – skondensowany i znormalizowany
-// (Możesz swobodnie dopisywać wpisy. UI zaktualizuje się automatycznie.)
-// —————————————————————————————————————————————
+// UPDATED SCHEDULE (synced to latest PDF) :contentReference[oaicite:1]{index=1}
 const SCHEDULE: ScheduleItem[] = [
-  // PONIEDZIAŁEK
+  // —————————————————— PONIEDZIAŁEK ——————————————————
   {
     id: "mon-gim-1",
     day: "Poniedziałek",
@@ -102,16 +98,6 @@ const SCHEDULE: ScheduleItem[] = [
     tags: ["dzieci 10–12"],
   },
   {
-    id: "mon-akr-1",
-    day: "Poniedziałek",
-    start: "18:15",
-    end: "19:30",
-    title: "Akrobatyka",
-    group: "Grupa naborowa 11–14 lat",
-    location: "Szkoła GES",
-    tags: ["dzieci 11–14"],
-  },
-  {
     id: "mon-pk-4",
     day: "Poniedziałek",
     start: "19:30",
@@ -141,13 +127,15 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Sala",
     tags: ["dzieci 4+"],
   },
+
+  // Szkoła GES (Poniedziałek)
   {
     id: "mon-ges-1",
     day: "Poniedziałek",
     start: "16:00",
     end: "17:00",
     title: "Gimnastyka sportowa",
-    group: "Szkoła GES — Gr. naborowa 7–10 lat",
+    group: "Grupa naborowa 7–10 lat",
     location: "Szkoła GES",
     tags: ["dzieci 7–10"],
   },
@@ -191,6 +179,8 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Szkoła GES",
     tags: ["studenci"],
   },
+
+  // Ring (Poniedziałek)
   {
     id: "mon-ring-1",
     day: "Poniedziałek",
@@ -226,12 +216,12 @@ const SCHEDULE: ScheduleItem[] = [
     day: "Poniedziałek",
     start: "20:45",
     end: "22:00",
-    title: "Zajęcia indywidualne",
-    group: "Kickboxing (1-na-1)",
+    title: "Kickboxing",
+    group: "Zajęcia indywidualne",
     location: "Ring",
   },
 
-  // WTOREK
+  // —————————————————— WTOREK ——————————————————
   {
     id: "tue-gim-1",
     day: "Wtorek",
@@ -273,12 +263,23 @@ const SCHEDULE: ScheduleItem[] = [
     tags: ["studenci"],
   },
   {
+    id: "tue-aerial-1",
+    day: "Wtorek",
+    start: "21:00",
+    end: "22:00",
+    title: "Aerial Hoop (Koła)",
+    location: "Sala",
+    tags: ["aerial"],
+  },
+
+  // Szkoła GES (Wtorek)
+  {
     id: "tue-ges-1",
     day: "Wtorek",
     start: "16:00",
     end: "17:00",
     title: "Akrobatyka",
-    group: "Szkoła GES — Kontynuacja 4–7 lat",
+    group: "Kontynuacja 4–7 lat",
     location: "Szkoła GES",
     tags: ["dzieci 4–7"],
   },
@@ -322,15 +323,8 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Szkoła GES",
     tags: ["wyczyn"],
   },
-  {
-    id: "tue-aerial-1",
-    day: "Wtorek",
-    start: "21:00",
-    end: "22:00",
-    title: "Aerial Hoop (Koła)",
-    location: "Sala",
-    tags: ["aerial"],
-  },
+
+  // Ring (Wtorek)
   {
     id: "tue-ring-1",
     day: "Wtorek",
@@ -352,7 +346,7 @@ const SCHEDULE: ScheduleItem[] = [
     tags: ["prospekci"],
   },
 
-  // ŚRODA
+  // —————————————————— ŚRODA ——————————————————
   {
     id: "wed-gim-1",
     day: "Środa",
@@ -360,6 +354,16 @@ const SCHEDULE: ScheduleItem[] = [
     end: "17:00",
     title: "Gimnastyka sportowa",
     group: "Grupa naborowa 4–7 lat",
+    location: "Sala",
+    tags: ["dzieci 4–7"],
+  },
+  {
+    id: "wed-kar-1",
+    day: "Środa",
+    start: "16:15",
+    end: "17:00",
+    title: "Karate",
+    group: "4–7 lat",
     location: "Sala",
     tags: ["dzieci 4–7"],
   },
@@ -372,6 +376,16 @@ const SCHEDULE: ScheduleItem[] = [
     group: "Dzieci 5–6 lat",
     location: "Sala",
     tags: ["dzieci 5–6"],
+  },
+  {
+    id: "wed-kar-2",
+    day: "Środa",
+    start: "17:00",
+    end: "18:00",
+    title: "Karate",
+    group: "7–10 lat",
+    location: "Sala",
+    tags: ["dzieci 7–10"],
   },
   {
     id: "wed-pk-2",
@@ -414,12 +428,24 @@ const SCHEDULE: ScheduleItem[] = [
     tags: ["dorośli"],
   },
   {
+    id: "wed-gim-std",
+    day: "Środa",
+    start: "19:30",
+    end: "21:00",
+    title: "Gimnastyka",
+    group: "Studenci + Dorośli",
+    location: "Sala",
+    tags: ["studenci", "dorośli"],
+  },
+
+  // Szkoła GES (Środa)
+  {
     id: "wed-ges-1",
     day: "Środa",
     start: "16:00",
     end: "17:00",
     title: "Gimnastyka sportowa",
-    group: "Szkoła GES — Nabór+Kont. 4–7 lat",
+    group: "Nabór + Kontynuacja 4–7 lat",
     location: "Szkoła GES",
     tags: ["dzieci 4–7"],
   },
@@ -443,6 +469,16 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Szkoła GES",
     tags: ["dzieci 11–14"],
   },
+  // NEW per PDF: external group training
+  {
+    id: "wed-ges-ext",
+    day: "Środa",
+    start: "19:30",
+    end: "21:00",
+    title: "Trening grupy zewnętrznej",
+    location: "Szkoła GES",
+    tags: ["zewnętrzna"],
+  },
   {
     id: "wed-ges-4",
     day: "Środa",
@@ -453,35 +489,17 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Szkoła GES",
     tags: ["wyczyn"],
   },
+
+  // Ring (Środa)
   {
-    id: "wed-gim-std",
+    id: "wed-ring-0",
     day: "Środa",
-    start: "19:30",
-    end: "21:00",
-    title: "Gimnastyka",
-    group: "Studenci + Dorośli",
-    location: "Sala",
-    tags: ["studenci", "dorośli"],
-  },
-  {
-    id: "wed-kar-1",
-    day: "Środa",
-    start: "16:15",
-    end: "17:00",
-    title: "Karate",
-    group: "4–7 lat",
-    location: "Sala",
-    tags: ["dzieci 4–7"],
-  },
-  {
-    id: "wed-kar-2",
-    day: "Środa",
-    start: "17:00",
-    end: "18:00",
-    title: "Karate",
-    group: "7–10 lat",
-    location: "Sala",
-    tags: ["dzieci 7–10"],
+    start: "17:15",
+    end: "18:15",
+    title: "Kickboxing",
+    group: "Dzieci starsze 12+",
+    location: "Ring",
+    tags: ["młodzież 12+"],
   },
   {
     id: "wed-ring-1",
@@ -503,8 +521,18 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Ring",
     tags: ["zaawansowani"],
   },
+  // NEW per PDF: individual
+  {
+    id: "wed-ring-3",
+    day: "Środa",
+    start: "20:45",
+    end: "22:00",
+    title: "Kickboxing",
+    group: "Zajęcia indywidualne",
+    location: "Ring",
+  },
 
-  // CZWARTEK
+  // —————————————————— CZWARTEK ——————————————————
   {
     id: "thu-gim-1",
     day: "Czwartek",
@@ -535,6 +563,17 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Sala",
     tags: ["dzieci 11–14"],
   },
+  // NEW per PDF: "Gimnastyka Studenci" shown alongside Stretching
+  {
+    id: "thu-gim-std",
+    day: "Czwartek",
+    start: "19:30",
+    end: "21:00",
+    title: "Gimnastyka",
+    group: "Studenci",
+    location: "Sala",
+    tags: ["studenci"],
+  },
   {
     id: "thu-stretch",
     day: "Czwartek",
@@ -554,13 +593,15 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Sala",
     tags: ["aerial"],
   },
+
+  // Szkoła GES (Czwartek)
   {
     id: "thu-ges-1",
     day: "Czwartek",
     start: "16:00",
     end: "17:00",
     title: "Akrobatyka",
-    group: "Szkoła GES — Kontynuacja 4–7 lat",
+    group: "Kontynuacja 4–7 lat",
     location: "Szkoła GES",
     tags: ["dzieci 4–7"],
   },
@@ -594,6 +635,8 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Szkoła GES",
     tags: ["wyczyn"],
   },
+
+  // Ring (Czwartek)
   {
     id: "thu-ring-1",
     day: "Czwartek",
@@ -624,7 +667,7 @@ const SCHEDULE: ScheduleItem[] = [
     tags: ["boks"],
   },
 
-  // PIĄTEK
+  // —————————————————— PIĄTEK ——————————————————
   {
     id: "fri-ges-0",
     day: "Piątek",
@@ -636,16 +679,6 @@ const SCHEDULE: ScheduleItem[] = [
     tags: ["dzieci 4–7"],
   },
   {
-    id: "fri-akr-1",
-    day: "Piątek",
-    start: "17:00",
-    end: "18:15",
-    title: "Akrobatyka",
-    group: "Grupa naborowa 11–14 lat",
-    location: "Sala",
-    tags: ["dzieci 11–14"],
-  },
-  {
     id: "fri-gim-1",
     day: "Piątek",
     start: "16:00",
@@ -654,6 +687,16 @@ const SCHEDULE: ScheduleItem[] = [
     group: "Grupa naborowa + kontynuacja 4–7 lat",
     location: "Sala",
     tags: ["dzieci 4–7"],
+  },
+  {
+    id: "fri-akr-1",
+    day: "Piątek",
+    start: "17:00",
+    end: "18:15",
+    title: "Akrobatyka",
+    group: "Grupa naborowa 11–14 lat",
+    location: "Sala",
+    tags: ["dzieci 11–14"],
   },
   {
     id: "fri-akr-2",
@@ -675,6 +718,18 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Sala",
     tags: ["dzieci 11–14"],
   },
+
+  // Szkoła GES (Piątek)
+  // NEW per PDF: external group in GES + Gymnastyka Wyczyn present
+  {
+    id: "fri-ges-ext",
+    day: "Piątek",
+    start: "19:30",
+    end: "21:00",
+    title: "Trening grupy zewnętrznej",
+    location: "Szkoła GES",
+    tags: ["zewnętrzna"],
+  },
   {
     id: "fri-ges-1",
     day: "Piątek",
@@ -685,15 +740,29 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Szkoła GES",
     tags: ["wyczyn"],
   },
+
+  // Sala (Piątek) – Aerial
   {
     id: "fri-aerial-1",
     day: "Piątek",
     start: "19:30",
     end: "21:00",
-    title: "Aerial Silks / Aerial Hoop",
+    title: "Aerial Silks (Szarfy) / Aerial Hoop (Koła)",
     location: "Sala",
     tags: ["aerial"],
   },
+  // NEW per PDF: explicit late Aerial Hoop slot
+  {
+    id: "fri-aerial-2",
+    day: "Piątek",
+    start: "21:00",
+    end: "22:00",
+    title: "Aerial Hoop (Koła)",
+    location: "Sala",
+    tags: ["aerial"],
+  },
+
+  // Ring (Piątek)
   {
     id: "fri-ring-1",
     day: "Piątek",
@@ -709,12 +778,13 @@ const SCHEDULE: ScheduleItem[] = [
     day: "Piątek",
     start: "20:45",
     end: "22:00",
-    title: "Grupa zamknięta",
+    title: "Kickboxing",
+    group: "Grupa zamknięta",
     location: "Ring",
     tags: ["zamknięta"],
   },
 
-  // SOBOTA
+  // —————————————————— SOBOTA ——————————————————
   {
     id: "sat-akr-1",
     day: "Sobota",
@@ -764,6 +834,18 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Sala",
     tags: ["wyczyn"],
   },
+  // NEW per PDF: external/events block
+  {
+    id: "sat-events",
+    day: "Sobota",
+    start: "09:00",
+    end: "15:00",
+    title: "Grupy zewnętrzne / Eventy / Urodzinki",
+    location: "Sala",
+    tags: ["zewnętrzna", "event"],
+  },
+
+  // Ring (Sobota)
   {
     id: "sat-ring-1",
     day: "Sobota",
@@ -773,6 +855,8 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Ring",
     tags: ["kickboxing"],
   },
+
+  // Info (Sobota)
   {
     id: "sat-info-1",
     day: "Sobota",

@@ -7,7 +7,7 @@ export default function AbcHeadingPage() {
   return (
     <main className="AbcHeading-wrapper">
       <h1 className="AbcHeading-title">
-        <Link href="/Abc">Grafik zajęć</Link>
+        <Link href="/Abc">Grafik</Link>
       </h1>
     </main>
   );
