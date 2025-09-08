@@ -60,7 +60,7 @@ export default function NavBar() {
   const items = [
     { label: "O nas", path: "/AboutFoundation" },
     { label: "Aktualności", path: "/NewsPage" },
-    { label: "Rezerwacja", path: "/Abc" },
+    { label: "Grafik", path: "/Abc" },
     { label: "Cennik", path: "/Help" },
     { label: "Kontakt", path: "/Contact" },
   ];
