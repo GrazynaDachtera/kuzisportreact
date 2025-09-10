@@ -45,7 +45,6 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: var(--slide-overlay);
   z-index: 0;
   pointer-events: none;
 }
@@ -136,6 +135,10 @@ p {
   background: var(--cta-green);
   transform: scale(1.2);
   opacity: 1;
+}
+
+.slider--single .dots {
+  display: none;
 }
 
 @media (max-width: 1024px) {
