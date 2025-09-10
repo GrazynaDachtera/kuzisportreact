@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
+import emailjs from "@emailjs/browser";
 import "./CtaContact.scss";
 
 type Msg = { type: "ok" | "err"; text: string } | null;
@@ -79,20 +80,6 @@ type FormState = {
   message: string;
 };
 
-const safeJson = async (res: Response): Promise<unknown> => {
-  try {
-    return await res.json();
-  } catch {
-    return null;
-  }
-};
-
-const isErrorResponse = (x: unknown): x is { error: string } =>
-  typeof x === "object" &&
-  x !== null &&
-  "error" in x &&
-  typeof (x as { error: unknown }).error === "string";
-
 export default function CtaContact() {
   const [form, setForm] = useState<FormState>({
     name: "",
@@ -139,15 +126,39 @@ export default function CtaContact() {
 
     try {
       setLoading(true);
-      const res = await fetch("/api/trial", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+
+      const submitted_at = new Intl.DateTimeFormat("pl-PL", {
+        dateStyle: "full",
+        timeStyle: "short",
+        timeZone: "Europe/Warsaw",
+      }).format(new Date());
+
+      const templateParams = {
+        name: form.name,
+        phone: form.phone,
+        email: form.email,
+        discipline: form.discipline,
+        birthDate: form.birthDate,
+        age: age ?? "",
+        level: form.level,
+        frequency: form.frequency,
+        format: form.format,
+        rodo: form.rodo ? "TAK" : "NIE",
+        marketing: form.marketing ? "TAK" : "NIE",
+        message: form.message || "",
+        submitted_at,
+        reply_to: form.email,
+      };
+
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!;
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
+
+      const res = await emailjs.send(serviceId, templateId, templateParams, {
+        publicKey,
       });
 
-      const data = await safeJson(res);
-
-      if (res.ok) {
+      if (res.status === 200) {
         setMsg({
           type: "ok",
           text: "Dziękujemy! Twoje zgłoszenie zostało wysłane. Skontaktujemy się wkrótce.",
@@ -166,10 +177,10 @@ export default function CtaContact() {
           message: "",
         });
       } else {
-        const errText = isErrorResponse(data)
-          ? data.error
-          : "Nie udało się wysłać formularza. Spróbuj ponownie później.";
-        setMsg({ type: "err", text: errText });
+        setMsg({
+          type: "err",
+          text: "Nie udało się wysłać formularza. Spróbuj ponownie później.",
+        });
       }
     } catch {
       setMsg({ type: "err", text: "Wystąpił błąd sieci. Spróbuj ponownie." });
