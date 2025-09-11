@@ -3,10 +3,6 @@
   --cta-green: #808080;
   --cta-green-hover: #a2a2a2;
   --slide-overlay: rgba(0, 0, 0, 0.35);
-
-  /* Mobile focal point (tweak these to nudge the crop) */
-  --hero-m-x: 18%;   /* X position: 0% = far left, 50% = center */
-  --hero-m-y: 28%;   /* Y position: 0% = top,     50% = center */
 }
 
 /* HERO / SLIDER --------------------------------------------------------- */
@@ -20,6 +16,7 @@
   flex-grow: 1;
   display: flex;
 
+  /* Desktop/tablet height: roomy but not overwhelming */
   height: clamp(620px, calc(100svh - var(--nav-h)), 980px);
   box-sizing: border-box;
 }
@@ -43,14 +40,15 @@
   isolation: isolate;
 }
 
-/* IMAGE (desktop default = show whole mosaic) --------------------------- */
+/* IMAGE ----------------------------------------------------------------- */
+/* Desktop/tablet = show the whole mosaic */
 .slide__img {
   object-fit: contain;
   object-position: center top;
   z-index: 0;
 }
 
-/* overlay (used on tablet/mobile for readability) */
+/* subtle overlay disabled by default (only used on mobile) */
 .slide::before {
   content: "";
   position: absolute;
@@ -59,16 +57,17 @@
   pointer-events: none;
 }
 
-/* TEXT (desktop) -------------------------------------------------------- */
+/* TEXT BLOCK (desktop/tablet) ------------------------------------------- */
 .slide__text {
   z-index: 2;
   flex: 0 0 40%;
   max-width: 40%;
   padding: 0 2rem;
-  margin-left: clamp(3rem, 8vw, 10rem);
+  margin-left: clamp(3rem, 8vw, 10rem); /* pushed left as requested */
   transform: translateY(clamp(2rem, 8vh, 10rem));
-  text-align: left;
+  will-change: transform;
   container-type: inline-size;
+  text-align: left;
 }
 
 .slide__text h1 {
@@ -129,79 +128,45 @@
 
 .slider--single .dots { display: none; }
 
-/* TABLET (≤1024px) ------------------------------------------------------ */
+/* TABLET ---------------------------------------------------------------- */
 @media (max-width: 1024px) {
-  .slider {
-    --nav-h: 4rem;
-    height: clamp(520px, calc(85svh - var(--nav-h)), 880px);
-  }
-  @supports (height: 100dvh) {
-    .slider { height: clamp(520px, calc(85dvh - var(--nav-h)), 880px); }
-  }
-
-  .slide__img {
-    object-fit: cover;
-    object-position: 22% 24%; /* focus a bit left/up on tablets */
-  }
-
-  .slide::before {
-    background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.5) 100%);
-  }
-
   .slide__text {
-    position: absolute;
-    left: clamp(1.25rem, 5vw, 2rem);
-    right: clamp(1.25rem, 5vw, 2rem);
-    bottom: 2rem;
-    margin: 0;
-    padding: 0;
-    transform: none;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    max-width: 70%;
+    flex-basis: 60%;
+    max-width: 60%;
+    padding: 0 2rem;
+    margin-left: clamp(1.25rem, 6vw, 4rem);
+    transform: translateY(clamp(1.25rem, 6vh, 6rem));
   }
 
-  .slide__text h1 {
-    color: #fff;
-    font-size: clamp(2rem, 6vw, 3rem);
-    line-height: 1.02;
-    margin-bottom: 0.85rem;
-    text-shadow: 0 2px 14px rgba(0,0,0,0.35);
-  }
-
-  .slide__cta {
-    font-size: clamp(1rem, 2.8vw, 1.125rem);
-    padding: 0.85rem 1.35rem;
-    border-radius: 0.9rem;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-  }
+  .slide__text h1 { font-size: clamp(2.125rem, 12cqw, 3.75rem); }
 }
 
-/* MOBILE (≤768px) ------------------------------------------------------- */
+/* MOBILE: fill the hero, overlay text bottom-left ----------------------- */
 @media (max-width: 768px) {
   .slider {
-    --nav-h: 4.25rem;
+    --nav-h: 4.25rem; /* your mobile navbar height */
     height: clamp(440px, calc(80svh - var(--nav-h)), 720px);
-
-    /* small gap under the green navbar */
-    padding-top: clamp(8px, 2.5vw, 14px);
   }
   @supports (height: 100dvh) {
     .slider { height: clamp(440px, calc(80dvh - var(--nav-h)), 720px); }
   }
 
+  /* Make the image fill the hero on narrow screens */
   .slide__img {
-    object-fit: cover;
-    /* ⬇️ EXACT crop for the 4 cards (tweak these two vars if needed) */
-    object-position: var(--hero-m-x) var(--hero-m-y);
+    object-fit: cover;          /* key: avoids tiny image + big whitespace */
+    object-position: center 20%;
   }
 
+  /* Soft gradient for readability over the image */
   .slide::before {
-    background: linear-gradient(to bottom, rgba(0,0,0,0) 45%, rgba(0,0,0,0.55) 100%);
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 45%,
+      rgba(0,0,0,0.55) 100%
+    );
   }
 
+  /* Overlay title + CTA at the bottom-left */
   .slide__text {
     position: absolute;
     left: clamp(1rem, 6vw, 2rem);
@@ -210,16 +175,18 @@
     margin: 0;
     padding: 0;
     transform: none;
+
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
+
     max-width: none;
   }
 
   .slide__text h1 {
-    color: #fff;
-    font-size: clamp(1.9rem, 9vw, 2.6rem);
+    color: #ffffff;
+    font-size: clamp(1.75rem, 9vw, 2.5rem);
     line-height: 1.02;
     margin-bottom: 0.75rem;
     text-shadow: 0 2px 12px rgba(0,0,0,0.35);

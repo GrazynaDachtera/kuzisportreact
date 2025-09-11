@@ -48,7 +48,7 @@ export default function HeroSlider() {
               quality={90}
               placeholder="blur"
               sizes="100vw"
-              className="slide__img" // <-- keep class so CSS can control crop per breakpoint
+              className="slide__img"
             />
 
             <div className="slide__text">
