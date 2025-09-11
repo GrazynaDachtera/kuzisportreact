@@ -7,7 +7,6 @@
 
 /* HERO / SLIDER --------------------------------------------------------- */
 .slider {
-  /* height = viewport minus fixed navbar height */
   --nav-h: 0rem;
 
   position: relative;
@@ -17,13 +16,13 @@
   flex-grow: 1;
   display: flex;
 
-  height: calc(100svh - var(--nav-h));
-  padding-top: 0;                 /* no padding hack */
+  /* Desktop/tablet height: roomy but not overwhelming */
+  height: clamp(620px, calc(100svh - var(--nav-h)), 980px);
   box-sizing: border-box;
 }
 
 @supports (height: 100dvh) {
-  .slider { height: calc(110dvh - var(--nav-h)); }
+  .slider { height: clamp(620px, calc(100dvh - var(--nav-h)), 980px); }
 }
 
 .slides {
@@ -38,10 +37,18 @@
   align-items: center;
   height: 100%;
   position: relative;
-  isolation: isolate; /* text over image/overlay */
+  isolation: isolate;
 }
 
-/* overlay above the image, below the text */
+/* IMAGE ----------------------------------------------------------------- */
+/* Desktop/tablet = show the whole mosaic */
+.slide__img {
+  object-fit: contain;
+  object-position: center top;
+  z-index: 0;
+}
+
+/* subtle overlay disabled by default (only used on mobile) */
 .slide::before {
   content: "";
   position: absolute;
@@ -50,16 +57,17 @@
   pointer-events: none;
 }
 
-/* TEXT BLOCK ------------------------------------------------------------ */
+/* TEXT BLOCK (desktop/tablet) ------------------------------------------- */
 .slide__text {
-  z-index: 2;                 /* above overlay and image */
+  z-index: 2;
   flex: 0 0 40%;
   max-width: 40%;
-  padding: 0 2rem;            /* keep some right padding */
-  margin-left: clamp(3rem, 8vw, 10rem);
+  padding: 0 2rem;
+  margin-left: clamp(3rem, 8vw, 10rem); /* pushed left as requested */
   transform: translateY(clamp(2rem, 8vh, 10rem));
   will-change: transform;
   container-type: inline-size;
+  text-align: left;
 }
 
 .slide__text h1 {
@@ -73,14 +81,6 @@
 
 @supports not (font-size: 1cqw) {
   .slide__text h1 { font-size: clamp(2.5rem, 7vw, 5rem); }
-}
-
-p {
-  white-space: pre-line;
-  font-size: 1.25rem;
-  line-height: 1.4;
-  color: #666;
-  margin-bottom: 2.5rem;
 }
 
 .slide__cta {
@@ -100,7 +100,6 @@ p {
 
 .slide__cta:hover,
 .slide__cta:focus-visible { background-color: var(--cta-green-hover); }
-
 .slide__cta:active { transform: translateY(1px); }
 
 /* DOTS ------------------------------------------------------------------ */
@@ -129,51 +128,76 @@ p {
 
 .slider--single .dots { display: none; }
 
-/* RESPONSIVE ------------------------------------------------------------ */
+/* TABLET ---------------------------------------------------------------- */
 @media (max-width: 1024px) {
   .slide__text {
     flex-basis: 60%;
     max-width: 60%;
     padding: 0 2rem;
-    margin-left: clamp(1.5rem, 6vw, 5rem);
-    transform: translateY(clamp(1.5rem, 6vh, 6rem));
+    margin-left: clamp(1.25rem, 6vw, 4rem);
+    transform: translateY(clamp(1.25rem, 6vh, 6rem));
   }
 
-  .slide__text h1 {
-    font-size: clamp(2.125rem, 12cqw, 3.75rem);
-  }
+  .slide__text h1 { font-size: clamp(2.125rem, 12cqw, 3.75rem); }
 }
 
+/* MOBILE: fill the hero, overlay text bottom-left ----------------------- */
 @media (max-width: 768px) {
   .slider {
-    --nav-h: 5rem;                   /* mobile header height */
-    height: calc(100svh - var(--nav-h));
+    --nav-h: 4.25rem; /* your mobile navbar height */
+    height: clamp(440px, calc(80svh - var(--nav-h)), 720px);
   }
   @supports (height: 100dvh) {
-    .slider { height: calc(100dvh - var(--nav-h)); }
+    .slider { height: clamp(440px, calc(80dvh - var(--nav-h)), 720px); }
   }
 
-  .slide {
-    justify-content: center;
-    padding: 2rem;
+  /* Make the image fill the hero on narrow screens */
+  .slide__img {
+    object-fit: cover;          /* key: avoids tiny image + big whitespace */
+    object-position: center 20%;
   }
 
+  /* Soft gradient for readability over the image */
+  .slide::before {
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 45%,
+      rgba(0,0,0,0.55) 100%
+    );
+  }
+
+  /* Overlay title + CTA at the bottom-left */
   .slide__text {
-    flex-basis: auto;
-    max-width: 100%;
+    position: absolute;
+    left: clamp(1rem, 6vw, 2rem);
+    right: clamp(1rem, 6vw, 2rem);
+    bottom: calc(1.25rem + env(safe-area-inset-bottom));
+    margin: 0;
     padding: 0;
-    margin-left: 0;                    /* centered on mobile */
-    text-align: center;
+    transform: none;
+
     display: flex;
     flex-direction: column;
-    align-items: center;
-    transform: translateY(2rem);
+    align-items: flex-start;
+    text-align: left;
+
+    max-width: none;
   }
 
   .slide__text h1 {
-    font-size: clamp(1.875rem, 14cqw, 3rem);
-    line-height: 1;
+    color: #ffffff;
+    font-size: clamp(1.75rem, 9vw, 2.5rem);
+    line-height: 1.02;
+    margin-bottom: 0.75rem;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.35);
   }
 
-  .dots { bottom: 3rem; }
+  .slide__cta {
+    font-size: clamp(0.95rem, 3.8vw, 1.05rem);
+    padding: 0.8rem 1.25rem;
+    border-radius: 0.9rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  }
+
+  .dots { bottom: calc(0.75rem + env(safe-area-inset-bottom)); }
 }

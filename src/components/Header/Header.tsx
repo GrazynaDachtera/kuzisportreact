@@ -1,18 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
 import MosaicHeader from "../../../public/Header/MosaicHeader.png";
 import "./Header.scss";
 
 interface Slide {
+  titleLines: string[];
   cta: { label: string; href: string };
   img: { src: StaticImageData; alt: string };
 }
 
 const slides: Slide[] = [
   {
+    titleLines: ["Kuzi", "Sport"],
     cta: { label: "Sprawdź", href: "/AboutFoundation" },
     img: { src: MosaicHeader, alt: "Kuzi Sport – mozaika zdjęć" },
   },
@@ -46,11 +48,18 @@ export default function HeroSlider() {
               quality={90}
               placeholder="blur"
               sizes="100vw"
-              style={{ objectFit: "contain", objectPosition: "center top" }}
+              className="slide__img"
             />
 
-            {/* CTA only */}
-            <div className="slide__text slide__text--cta-only">
+            <div className="slide__text">
+              <h1>
+                {s.titleLines.map((line, li) => (
+                  <Fragment key={`line-${i}-${li}`}>
+                    <span>{line}</span>
+                    {li < s.titleLines.length - 1 && <br />}
+                  </Fragment>
+                ))}
+              </h1>
               <Link href={s.cta.href} className="slide__cta">
                 {s.cta.label}
               </Link>
