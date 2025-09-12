@@ -21,7 +21,7 @@ export default function News() {
     },
     {
       href: "https://www.facebook.com/reel/1088676116800201",
-      thumbnail: "/News/smallimage2.png",
+      thumbnail: "/News/Smallimage2.png",
       category:
         "SPORTY WALKI · SPORTY GIMNASTYCZNE · GRUPY REKREACYJNE · GRUPY WYCZYNOWE",
       title:
