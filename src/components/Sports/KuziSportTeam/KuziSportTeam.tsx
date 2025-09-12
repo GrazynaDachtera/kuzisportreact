@@ -26,28 +26,40 @@ const ArrowIcon = () => (
 const ITEMS = [
   {
     name: "treningi uzupełniające dla wybranych dyscyplin (np. lekka atletyka, taniec, narciarstwo)",
-    href: "/treningi-uzupelniajace",
+    href: "/Sports/KuziSportTeam/SupplementaryTraining",
   },
-  { name: "wycieczki szkolne i lekcje WF", href: "/wycieczki-i-lekcje-wf" },
-  { name: "eventy sportowe, pokazy", href: "/eventy-sportowe-pokazy" },
-  { name: "urodzinki sportowe", href: "/urodzinki-sportowe" },
+  {
+    name: "wycieczki szkolne i lekcje WF",
+    href: "/Sports/KuziSportTeam/SchoolTrips",
+  },
+  {
+    name: "eventy sportowe, pokazy",
+    href: "/Sports/KuziSportTeam/SportEvents",
+  },
+  {
+    name: "urodzinki sportowe",
+    href: "/Sports/KuziSportTeam/SportsBirthday",
+  },
   {
     name: "warsztaty wakacyjne, półkolonie i obozy sportowe",
-    href: "/warsztaty-polkolonie-obozy",
+    href: "/Sports/KuziSportTeam/Workshops",
   },
   {
     name: "staże i zloty ogólnopolskie, seminaria i zgrupowania, obozy dochodzeniowe",
-    href: "/staze-zloty-seminaria-zgrupowania",
+    href: "/Sports/KuziSportTeam/Internships",
   },
   {
     name: "konsultacje dietetyczne, psycholog sportowy",
-    href: "/konsultacje-dietetyczne-psycholog-sportowy",
+    href: "/Sports/KuziSportTeam/Consultations",
   },
   {
     name: "warsztaty, szkolenia trenerskie",
-    href: "/warsztaty-szkolenia-trenerskie",
+    href: "/Sports/KuziSportTeam/TrainerTrainings",
   },
-  { name: "treningi dla firm", href: "/treningi-dla-firm" },
+  {
+    name: "treningi dla firm",
+    href: "/Sports/KuziSportTeam/TrainingsForCompanies",
+  },
 ];
 
 export default function ProjectsPage() {

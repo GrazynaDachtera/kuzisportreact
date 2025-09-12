@@ -26,20 +26,23 @@ const ArrowIcon = () => (
 const DISCIPLINES = [
   {
     name: "Treningi motoryczne dla klubów sportowych",
-    href: "/treningi-motoryczne-kluby",
+    href: "/Sports/KuziSportPerformance/MotorTrainings",
   },
-  { name: "Trening obwodowy Train Station", href: "/train-station" },
+  {
+    name: "Trening obwodowy Train Station",
+    href: "/Sports/KuziSportPerformance/TrainStation",
+  },
   {
     name: "Treningi personalne na siłowni (uzupełniające, wzmacniające, terapeutyczne, BPS) oraz treningi indywidualne w obrębie wybranych dyscyplin",
-    href: "/treningi-personalne-i-indywidualne",
+    href: "/Sports/KuziSportPerformance/PersonalTrainings",
   },
   {
     name: "EMS (Elektrostymulacja mięśniowa) oraz Drenaż limfatyczny",
-    href: "/ems-drenaz-limfatyczny",
+    href: "/Sports/KuziSportPerformance/Ems",
   },
   {
     name: "Zajęcia z fizjoterapeutą, zajęcia rehabilitacyjne",
-    href: "/fizjoterapia-rehabilitacja",
+    href: "/Sports/KuziSportPerformance/Physiotherapist",
   },
 ];
 

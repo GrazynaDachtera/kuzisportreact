@@ -1,68 +1,100 @@
 "use client";
 
-import Link from "next/link";
-import "./KuziSportGymnastics.scss";
+import "./WomensGymnastics.scss";
 
-const ArrowIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="22"
-    height="22"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2.5"
-    strokeLinecap="butt"
-    strokeLinejoin="miter"
-    className="KuziSportGymnastics-arrow-icon"
-    aria-hidden="true"
-    focusable="false"
-  >
-    <path d="M7 7 L17 17" />
-    <path d="M17 7 L17 17 L7 17" />
-  </svg>
-);
-
-const DISCIPLINES = [
-  { name: "Akrobatyka sportowa", href: "/akrobatyka-sportowa" },
-  { name: "Gimnastyka sportowa kobiet", href: "/gimnastyka-sportowa-kobiet" },
-  { name: "Akrobatyka powietrzna", href: "/akrobatyka-powietrzna" },
-  { name: "Parkour", href: "/parkour" },
-  {
-    name: "Street workout, kalistenika, freestyle na drążkach",
-    href: "/street-workout",
-  },
-];
-
-export default function ProjectsPage() {
+export default function WomensGymnasticsPage() {
   return (
-    <main className="KuziSportGymnastics">
-      <section className="KuziSportGymnastics-grid-wrapper">
-        <div className="KuziSportGymnastics-container">
-          <div className="KuziSportGymnastics-content">
-            <h2 className="KuziSportGymnastics-title">
-              Sporty Gimnastyczne - Kuzi Sport Gymnastics
-            </h2>
+    <main className="WomensGymnastics">
+      <section className="WomensGymnastics-wrapper">
+        <div className="WomensGymnastics-container">
+          <div className="WomensGymnastics-content">
+            <h1 className="WomensGymnastics-hero">
+              Gimnastyka Sportowa - przyrządy
+            </h1>
 
-            <nav className="KuziSportGymnastics-grid" role="list">
-              {DISCIPLINES.map((d) => (
-                <Link
-                  key={d.href}
-                  href={d.href}
-                  className="KuziSportGymnastics-item"
-                  role="listitem"
-                >
-                  <span className="KuziSportGymnastics-icon-wrapper">
-                    <ArrowIcon />
-                  </span>
-                  <span className="KuziSportGymnastics-text">
-                    <span className="KuziSportGymnastics-item-title">
-                      {d.name}
-                    </span>
-                  </span>
-                </Link>
-              ))}
-            </nav>
+            <p className="WomensGymnastics-paragraph">
+              Gimnastyka sportowa jest niezwykle widowiskowym a jednocześnie
+              ekstremalnie trudnym sportem.
+            </p>
+            <p className="WomensGymnastics-paragraph">
+              Kobiety wykonują układy na Równoważni, Poręczach asymetrycznych,
+              skok przez stół gimnastyczny oraz układ ćwiczeń wolnych na
+              planszy. Mężczyźni poza skokiem i układem ćwiczeń wolnych trenują
+              na kółkach, drążku, poręczach równoległych i koniu z łękami.
+            </p>
+            <p className="WomensGymnastics-paragraph">
+              W naszym klubie szkolimy na wszystkich przyrządach.
+            </p>
+
+            <h2 className="WomensGymnastics-title">FAQ</h2>
+
+            <ol className="WomensGymnastics-faq">
+              <li>
+                <h3 className="WomensGymnastics-question">
+                  1. W jakim wieku powinno się zaczynać przygodę z gimnastyką
+                  sportową?
+                </h3>
+                <p className="WomensGymnastics-paragraph">
+                  W tym wypadku im wcześniej tym lepiej. Jeśli planujemy udział
+                  w zawodach sportowych to najpóźniej 7/8 lat. Należy też
+                  zaznaczyć, że można rozwijać się w ramach programu Gimnastyka
+                  Dla Wszystkich, lub profesjonalnie podejmując trening
+                  zmierzający do mistrzostwa sportowego.
+                </p>
+              </li>
+
+              <li>
+                <h3 className="WomensGymnastics-question">
+                  2. Ile godzin treningów przewiduje klub dla zawodników?
+                </h3>
+                <p className="WomensGymnastics-paragraph">
+                  Na etapie klasy 1-3 będziemy prowadzić treningi codziennie w
+                  dwóch blokach – 1h ćwiczeń wolnych + 1h z przyrządem od
+                  poniedziałku do soboty.
+                </p>
+                <p className="WomensGymnastics-paragraph">
+                  Zawodnicy w wieku juniora młodszego i juniorzy będą dodatkowo
+                  trenować przed szkołą lub w 3 blokach popołudniowych.
+                </p>
+              </li>
+
+              <li>
+                <h3 className="WomensGymnastics-question">
+                  3. Jaki strój obowiązuje na zajęciach?
+                </h3>
+                <p className="WomensGymnastics-paragraph">
+                  Estetyczny strój sportowy – u kobiet legginsy i bluzka, lub
+                  body gimnastyczne, u mężczyzn krótkie spodenki i koszulka bez
+                  rękawów, ewentualnie T-shirt. Zalecany strój – strój klubowy
+                  dostępny w sklepie w recepcji na zamówienie.
+                </p>
+              </li>
+
+              <li>
+                <h3 className="WomensGymnastics-question">
+                  4. Czy skórki gimnastyczne są konieczne?
+                </h3>
+                <p className="WomensGymnastics-paragraph">
+                  Nie, ale potrafią znacznie uprzyjemnić ćwiczenia na drążku i
+                  poręczach.
+                </p>
+              </li>
+
+              <li>
+                <h3 className="WomensGymnastics-question">
+                  5. Czy treningi są ciężkie?
+                </h3>
+                <p className="WomensGymnastics-paragraph">
+                  Na etapie gimnastyki dla wszystkich są dosyć wymagające, na
+                  etapie treningów ku mistrzostwu sportowemu – bardzo
+                  wymagające. Obok trenowania układów na przyrządach, zwiększamy
+                  konsekwentnie siłę przy zachowaniu ekstremalnie wysokiej
+                  mobilności i gibkości. Przygotowanie zawodnika do rywalizacji
+                  na najwyższym poziomie sportowym wymaga treningu po 4-6h
+                  dziennie.
+                </p>
+              </li>
+            </ol>
           </div>
         </div>
       </section>

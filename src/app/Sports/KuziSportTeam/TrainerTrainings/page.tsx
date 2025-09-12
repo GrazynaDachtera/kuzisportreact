@@ -3,7 +3,7 @@
 import React, { useRef } from "react";
 import Navbar from "@/components/Navbar/Navbar";
 import SportsHeading from "@/components/Sports/SportsHeading/SportsHeading";
-import KuziSportTeam from "@/components/Sports/KuziSportTeam/KuziSportTeam";
+import TrainerTrainings from "@/components/Sports/KuziSportTeam/TrainerTrainings/TrainerTrainings";
 import Footer from "@/components/Footer/Footer";
 import Cookies from "@/components/Cookies/Cookies";
 import "@/app/globals.css";
@@ -20,7 +20,7 @@ export default function KuziSportTeamSubpage() {
           <div className="main">
             <Navbar />
             <SportsHeading />
-            <KuziSportTeam />
+            <TrainerTrainings />
           </div>
           <Footer />
         </section>

@@ -6,117 +6,41 @@
   --brand-green-dark: #2b7a55;
   --text-color: #4a5565;
   --muted: #eef1f3;
-  --body-fs: clamp(0.95rem, 1.1vw + 0.55rem, 1.05rem);
+  --body-fs: clamp(1rem, 1.1vw + 0.7rem, 1.125rem);
   font-family: "Poppins", sans-serif;
 }
 
-.KuziSportFight {
+.Boks {
   width: 100%;
   font-family: "Poppins", sans-serif;
+  background: #fff;
 }
 
-.KuziSportFight-grid-wrapper {
-  position: relative;
-  background: #fff;
+.Boks-wrapper {
   padding-block: var(--section-py);
 }
-.KuziSportFight-grid-wrapper::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("/Sports/KuziSportFight.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: clamp(180px, 35vw, 420px);
-  opacity: 0.07;
-  filter: grayscale(100%);
-  pointer-events: none;
-  z-index: 0;
-}
 
-.KuziSportFight-container {
+.Boks-container {
   width: 92%;
-  max-width: 1200px;
+  max-width: 1100px;
   margin-inline: auto;
-  padding-inline: clamp(1rem, 2vw, 2rem);
-  position: relative;
-  z-index: 1;
 }
 
-.KuziSportFight-content {
+.Boks-content {
   max-width: 860px;
-  margin-inline: 0;
 }
 
-.KuziSportFight-title {
+.Boks-hero {
+  margin: 0 0 0.75rem 0;
   font-weight: 800;
-  font-size: clamp(1.3rem, 1.8vw + 0.7rem, 1.8rem);
+  font-size: clamp(2.5rem, 4vw + 1rem, 3.25rem);
+  line-height: 1.2;
   color: var(--brand-green);
   letter-spacing: 0.2px;
-  margin: 0;
   text-align: left;
 }
 
-.KuziSportFight-grid {
-  margin-top: clamp(1.25rem, 2.2vw, 2.25rem);
-  display: grid;
-  grid-template-columns: 1fr;
-  row-gap: 18px;
-}
-
-.KuziSportFight-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  text-decoration: none;
-  color: var(--text-color);
-  padding: 10px 12px;
-  border-radius: 10px;
-  transition: color .2s ease, background-color .2s ease, transform .2s ease;
-}
-
-.KuziSportFight-item:hover,
-.KuziSportFight-item:focus-visible {
-  color: var(--brand-green-dark);
-  background: var(--muted);
-  outline: none;
-}
-
-.KuziSportFight-icon-wrapper {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 2px;
-}
-
-.KuziSportFight-arrow-icon {
-  width: 18px;
-  height: 18px;
-  color: var(--brand-green);
-  transition: transform .2s ease;
-}
-
-.KuziSportFight-item:hover .KuziSportFight-arrow-icon,
-.KuziSportFight-item:focus-visible .KuziSportFight-arrow-icon {
-  transform: translateX(2px);
-}
-
-.KuziSportFight-text { flex: 1; }
-
-.KuziSportFight-item-title {
-  font-weight: 600;
-  font-size: var(--body-fs);
-  margin: 0;
-  line-height: 1.6;
-  color: currentColor;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .KuziSportFight-item,
-  .KuziSportFight-arrow-icon { transition: none; }
-}
-
 @media (max-width: 480px) {
-  .KuziSportFight-content { max-width: 100%; }
-  .KuziSportFight-item { padding: 8px 10px; }
+  .Boks-content { max-width: 100%; }
+  .Boks-hero { font-size: clamp(2rem, 7vw, 2.4rem); }
 }

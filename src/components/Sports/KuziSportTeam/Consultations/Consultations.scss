@@ -6,117 +6,41 @@
   --brand-green-dark: #2b7a55;
   --text-color: #4a5565;
   --muted: #eef1f3;
-  --body-fs: clamp(0.95rem, 1.1vw + 0.55rem, 1.05rem);
+  --body-fs: clamp(1rem, 1.1vw + 0.7rem, 1.125rem);
   font-family: "Poppins", sans-serif;
 }
 
-.KuziSportTeam {
+.Consulations {
   width: 100%;
   font-family: "Poppins", sans-serif;
+  background: #fff;
 }
 
-.KuziSportTeam-grid-wrapper {
-  position: relative;
-  background: #fff;
+.Consulations-wrapper {
   padding-block: var(--section-py);
 }
-.KuziSportTeam-grid-wrapper::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("/Sports/KuziSportTeam.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: clamp(180px, 35vw, 420px);
-  opacity: 0.07;
-  filter: grayscale(100%);
-  pointer-events: none;
-  z-index: 0;
-}
 
-.KuziSportTeam-container {
+.Consulations-container {
   width: 92%;
-  max-width: 1200px;
+  max-width: 1100px;
   margin-inline: auto;
-  padding-inline: clamp(1rem, 2vw, 2rem);
-  position: relative;
-  z-index: 1;
 }
 
-.KuziSportTeam-content {
+.Consulations-content {
   max-width: 860px;
-  margin-inline: 0;
 }
 
-.KuziSportTeam-title {
+.Consulations-hero {
+  margin: 0 0 0.75rem 0;
   font-weight: 800;
-  font-size: clamp(1.3rem, 1.8vw + 0.7rem, 1.8rem);
+  font-size: clamp(2.5rem, 4vw + 1rem, 3.25rem);
+  line-height: 1.2;
   color: var(--brand-green);
   letter-spacing: 0.2px;
-  margin: 0;
   text-align: left;
 }
 
-.KuziSportTeam-grid {
-  margin-top: clamp(1.25rem, 2.2vw, 2.25rem);
-  display: grid;
-  grid-template-columns: 1fr;
-  row-gap: 18px;
-}
-
-.KuziSportTeam-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  text-decoration: none;
-  color: var(--text-color);
-  padding: 10px 12px;
-  border-radius: 10px;
-  transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
-}
-
-.KuziSportTeam-item:hover,
-.KuziSportTeam-item:focus-visible {
-  color: var(--brand-green-dark);
-  background: var(--muted);
-  outline: none;
-}
-
-.KuziSportTeam-icon-wrapper {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 2px;
-}
-
-.KuziSportTeam-arrow-icon {
-  width: 18px;
-  height: 18px;
-  color: var(--brand-green);
-  transition: transform 0.2s ease;
-}
-
-.KuziSportTeam-item:hover .KuziSportTeam-arrow-icon,
-.KuziSportTeam-item:focus-visible .KuziSportTeam-arrow-icon {
-  transform: translateX(2px);
-}
-
-.KuziSportTeam-text { flex: 1; }
-
-.KuziSportTeam-item-title {
-  font-weight: 600;
-  font-size: var(--body-fs);
-  margin: 0;
-  line-height: 1.6;
-  color: currentColor;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .KuziSportTeam-item,
-  .KuziSportTeam-arrow-icon { transition: none; }
-}
-
 @media (max-width: 480px) {
-  .KuziSportTeam-content { max-width: 100%; }
-  .KuziSportTeam-item { padding: 8px 10px; }
+  .Consulations-content { max-width: 100%; }
+  .Consulations-hero { font-size: clamp(2rem, 7vw, 2.4rem); }
 }

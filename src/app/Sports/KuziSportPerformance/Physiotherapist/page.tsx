@@ -3,7 +3,7 @@
 import React, { useRef } from "react";
 import Navbar from "@/components/Navbar/Navbar";
 import SportsHeading from "@/components/Sports/SportsHeading/SportsHeading";
-import KuziSportPerformance from "@/components/Sports/KuziSportPerformance/KuziSportPerformance";
+import Physiotherapist from "@/components/Sports/KuziSportPerformance/Physiotherapist/Physiotherapist";
 import Footer from "@/components/Footer/Footer";
 import Cookies from "@/components/Cookies/Cookies";
 import "@/app/globals.css";
@@ -20,7 +20,7 @@ export default function KuziSportPerformanceSubpage() {
           <div className="main">
             <Navbar />
             <SportsHeading />
-            <KuziSportPerformance />
+            <Physiotherapist />
           </div>
           <Footer />
         </section>

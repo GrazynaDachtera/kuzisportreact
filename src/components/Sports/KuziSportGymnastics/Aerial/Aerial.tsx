@@ -1,68 +1,39 @@
 "use client";
 
-import Link from "next/link";
-import "./KuziSportGymnastics.scss";
+import "./Aerial.scss";
 
-const ArrowIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="22"
-    height="22"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2.5"
-    strokeLinecap="butt"
-    strokeLinejoin="miter"
-    className="KuziSportGymnastics-arrow-icon"
-    aria-hidden="true"
-    focusable="false"
-  >
-    <path d="M7 7 L17 17" />
-    <path d="M17 7 L17 17 L7 17" />
-  </svg>
-);
-
-const DISCIPLINES = [
-  { name: "Akrobatyka sportowa", href: "/akrobatyka-sportowa" },
-  { name: "Gimnastyka sportowa kobiet", href: "/gimnastyka-sportowa-kobiet" },
-  { name: "Akrobatyka powietrzna", href: "/akrobatyka-powietrzna" },
-  { name: "Parkour", href: "/parkour" },
-  {
-    name: "Street workout, kalistenika, freestyle na drążkach",
-    href: "/street-workout",
-  },
-];
-
-export default function ProjectsPage() {
+export default function AerialPage() {
   return (
-    <main className="KuziSportGymnastics">
-      <section className="KuziSportGymnastics-grid-wrapper">
-        <div className="KuziSportGymnastics-container">
-          <div className="KuziSportGymnastics-content">
-            <h2 className="KuziSportGymnastics-title">
-              Sporty Gimnastyczne - Kuzi Sport Gymnastics
-            </h2>
+    <main className="Aerial">
+      <section className="Aerial-wrapper">
+        <div className="Aerial-container">
+          <div className="Aerial-content">
+            <h1 className="Aerial-hero">Akrobatyka powietrzna</h1>
 
-            <nav className="KuziSportGymnastics-grid" role="list">
-              {DISCIPLINES.map((d) => (
-                <Link
-                  key={d.href}
-                  href={d.href}
-                  className="KuziSportGymnastics-item"
-                  role="listitem"
-                >
-                  <span className="KuziSportGymnastics-icon-wrapper">
-                    <ArrowIcon />
-                  </span>
-                  <span className="KuziSportGymnastics-text">
-                    <span className="KuziSportGymnastics-item-title">
-                      {d.name}
-                    </span>
-                  </span>
-                </Link>
-              ))}
-            </nav>
+            <h2 className="Aerial-title">Koło – aerial hoop</h2>
+            <p className="Aerial-paragraph">
+              Dynamiczny rekwizyt czerpiący garściami z poręczy asymetrycznych z
+              jednej strony a trapezu z drugiej. Ćwiczenia na kole dają
+              niezwykły efekt, będący wypadkową estetyki cyrkowej oraz motoryki
+              gimnastycznej oraz lekkości tanecznej.
+            </p>
+            <p className="Aerial-paragraph">
+              W naszym klubie zarówno szkolimy indywidualnie, jak i trenujemy w
+              małych 4&nbsp;osobowych grupach VIP, gdzie każda osoba korzysta z
+              jednego koła.
+            </p>
+
+            <h2 className="Aerial-title">Paski – aerial straps</h2>
+            <p className="Aerial-paragraph">
+              Zajęcia tylko w trybie indywidualnym lub warsztatowym, realizujemy
+              na stanowisku z regulacją wysokości, oraz na trzech stanowiskach o
+              różnej wysokości i długości pasów.
+            </p>
+            <p className="Aerial-paragraph">
+              Przyrząd jest niezwykle efektowny, pozwala wykonywać figury
+              indywidualnie, jak i w duecie. Technicznie czerpie z kół
+              gimnastycznych oraz ćwiczeń na linie.
+            </p>
           </div>
         </div>
       </section>

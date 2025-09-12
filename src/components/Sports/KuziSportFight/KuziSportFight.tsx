@@ -24,10 +24,10 @@ const ArrowIcon = () => (
 );
 
 const DISCIPLINES = [
-  { name: "K1 kickboxing", href: "/k1-kickboxing" },
-  { name: "Karate", href: "/karate" },
-  { name: "Boks", href: "/boks" },
-  { name: "Grappling", href: "/grappling" },
+  { name: "K1 kickboxing", href: "/Sports/KuziSportFight/Kickboxing" },
+  { name: "Karate", href: "/Sports/KuziSportFight/Karate" },
+  { name: "Boks", href: "/Sports/KuziSportFight/Boks" },
+  { name: "Grappling", href: "/Sports/KuziSportFight/Grappling" },
 ];
 
 export default function KuziSportFightPage() {

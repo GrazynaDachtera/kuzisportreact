@@ -24,13 +24,19 @@ const ArrowIcon = () => (
 );
 
 const DISCIPLINES = [
-  { name: "Akrobatyka sportowa", href: "/akrobatyka-sportowa" },
-  { name: "Gimnastyka sportowa kobiet", href: "/gimnastyka-sportowa-kobiet" },
-  { name: "Akrobatyka powietrzna", href: "/akrobatyka-powietrzna" },
-  { name: "Parkour", href: "/parkour" },
+  {
+    name: "Akrobatyka sportowa",
+    href: "/Sports/KuziSportGymnastics/Acrobatics",
+  },
+  {
+    name: "Gimnastyka sportowa kobiet",
+    href: "/Sports/KuziSportGymnastics/WomensGymnastics",
+  },
+  { name: "Akrobatyka powietrzna", href: "/Sports/KuziSportGymnastics/Aerial" },
+  { name: "Parkour", href: "/Sports/KuziSportGymnastics/Parkour" },
   {
     name: "Street workout, kalistenika, freestyle na drążkach",
-    href: "/street-workout",
+    href: "/Sports/KuziSportGymnastics/StreetWorkout",
   },
 ];
 

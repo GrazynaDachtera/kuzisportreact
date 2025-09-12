@@ -3,7 +3,7 @@
 import React, { useRef } from "react";
 import Navbar from "@/components/Navbar/Navbar";
 import SportsHeading from "@/components/Sports/SportsHeading/SportsHeading";
-import KuziSportFight from "@/components/Sports/KuziSportFight/KuziSportFight";
+import Boks from "@/components/Sports/KuziSportFight/Boks/Boks";
 import Footer from "@/components/Footer/Footer";
 import Cookies from "@/components/Cookies/Cookies";
 import "@/app/globals.css";
@@ -20,7 +20,7 @@ export default function Project2Subpage() {
           <div className="main">
             <Navbar />
             <SportsHeading />
-            <KuziSportFight />
+            <Boks />
           </div>
           <Footer />
         </section>
