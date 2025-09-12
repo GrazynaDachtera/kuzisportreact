@@ -13,24 +13,26 @@ type Article = {
 export default function News() {
   const articles: Article[] = [
     {
-      href: "https://www.facebook.com/photo/?fbid=731160189901239&set=a.182448548105742&locale=pl_PL",
-      thumbnail: "/News/smallimage1.jpg",
-      category: "PRACE · TRAMWAJE · UTRUDNIENIA",
-      title:
-        "🚊🚌 Status prac na torach? W poniedziałek 18 sierpnia: ➡️  przywrócone zostaje funkcjonowanie linii 1️⃣ i 7️⃣na trasach stałych, ➡️ 1️⃣0️⃣ będzie jeździła przez Łazarz. A to dlatego, że przez Hetmańską tramwaje będą mogły jeździć na wprost, ale jeszcze będą utrudnienia dla 🚗aut z powodu zamknięcia ulicy 28 czerwca 1956 na odcinku od Hetmańskiej do Traugutta. ⚠️ Węzeł Bałtyk nadal rozkopany, obowiązują objazdy tramwajowe przez Towarową. 1️⃣6️⃣4️⃣ wróciło na zwykłą trasę 🙌 Wszystkie szczegóły znajdziecie na stronie MPK Poznań Sp. z o.o., link w komentarzu ⬇️⬇️⬇️ PS Wiecie o łące i ulach na zajezdni Franowo?",
+      href: "https://www.facebook.com/kuzisport/posts/pfbid0tePb3Unyy7A7nuqPMSceibgSD4X5etanbfajieEMUY2aA8NHNUvKrBa4uE7MQsK1l",
+      thumbnail: "/News/Smallimage1.jpg",
+      category: "NOWY NABÓR · ZAJĘCIA · 2025/2026",
+      title: `Nowy nabór na zajęcia sportowe w Kuzi Sport! 🤸‍♀️🥋🥊 Drodzy rodzice i młodzi sportowcy!
+        Z radością ogłaszamy rozpoczęcie naboru na zajęcia sportowe w Kuzi Sport na rok szkolny 2025/2026! 🏆 To doskonała okazja, aby rozwijać swoje umiejętności, nawiązać nowe znajomości i przede wszystkim dobrze się bawić!`,
     },
     {
-      href: "https://www.facebook.com/photo/?fbid=122112297740958380&set=a.122111249054958380&locale=pl_PL",
-      thumbnail: "/News/smallimage2.jpg",
-      category: "PIKNIKI · POŻARY · NAUKA",
-      title: "Już wkrótce nasze sasiedzkie pikniki! Sprawdź Wydarzenia 👇👇👇",
+      href: "https://www.facebook.com/reel/1088676116800201",
+      thumbnail: "/News/smallimage2.png",
+      category:
+        "SPORTY WALKI · SPORTY GIMNASTYCZNE · GRUPY REKREACYJNE · GRUPY WYCZYNOWE",
+      title:
+        "Zapraszamy na treningi grup rekreacyjnych i wyczynowych ze sportów walki🥊🥋🏆 i sportów gimnastycznych🤸🤸‍♂🤸‍♀🏆!!! Topowa jakość i olbrzymie spektrum możliwości za rozsądną cenę. Przyjdź do gymu Kuzi-Sport przy ul. Św. Michała 56 w Poznaniu i zanurz się w bezkres sportowego progresu!",
     },
     {
-      href: "https://www.facebook.com/photo?fbid=728726370144621&set=a.182448548105742&locale=pl_PL",
-      thumbnail: "/News/smallimage3.jpg",
-      category: "KONCERTY · FYRTEL · WARSZTATY",
-      title:
-        '🎉 W tym tygodniu piątek wypada już w czwartek, więc naszą listę wydłużyliśmy o jeden dzień, ale i tak wszystko się nie zmieściło: sprawdźcie w komentarzach szczegóły. Jest też link do informatora, co będzie w długi weekend działało na naszym fyrtlu👇👇 Dodaliśmy też kilka pomysłów "z dojazdem", m.in. na placu Wolności.',
+      href: "https://www.facebook.com/events/1548467753166522/",
+      thumbnail: "/News/Smallimage3.jpg",
+      category: "SEMINARIUM · KICKBOXING · RÓŻA GUMIENNA",
+      title: `Zapraszamy na wyjątkowe wydarzenie sportowe w naszym klubie! 💥
+        Już wkrótce swoje doświadczenie i wiedzę przekaże Wam Róża Gumienna – jedna z najbardziej utytułowanych polskich zawodniczek sportów walki, mistrzyni FEN i medalistka mistrzostw świata oraz Europy.`,
     },
   ];
 
