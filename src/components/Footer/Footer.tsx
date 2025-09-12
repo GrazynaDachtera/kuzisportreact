@@ -58,6 +58,7 @@ const FooterFirstSection = () => {
       header: "Zapisz się!",
       links: [
         { text: "Rezerwacja", to: "/Abc" },
+        { text: "Grafik", to: "/Abc" },
         { text: "Cennik", to: "/Abc" },
         { text: "Kontakt", to: "/Contact" },
       ],
