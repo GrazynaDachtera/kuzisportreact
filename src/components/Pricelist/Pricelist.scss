@@ -83,7 +83,9 @@
   gap: 10px;
 }
 .price-row.solo { margin-top: 6px; }
-.row-name { font-size: var(--body-fs); line-height: 1.5; }
+.row-name { font-size: var(--body-fs); line-height: 1.5;
+  font-weight: 550;
+}
 .row-price { font-weight: 800; color: var(--brand-green); font-variant-numeric: tabular-nums; }
 .row-note { grid-column: 1 / -1; color: #8aa79a; font-size: .9rem; margin-top: -2px; }
 
