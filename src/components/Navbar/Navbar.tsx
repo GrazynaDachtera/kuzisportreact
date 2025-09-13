@@ -58,12 +58,12 @@ export default function NavBar() {
   }, [close]);
 
   const items = [
-    { label: "O nas", path: "/AboutFoundation" },
+    { label: "O nas", path: "/AboutUs" },
     { label: "Aktualności", path: "/NewsPage" },
     { label: "Dyscypliny", path: "/Sports" },
-    { label: "Rezerwacja", path: "/Sports" },
-    { label: "Grafik", path: "/Abc" },
-    { label: "Cennik", path: "/Help" },
+    { label: "Rezerwacja", path: "/Reservation" },
+    { label: "Grafik", path: "/Schedule" },
+    { label: "Cennik", path: "/Pricelist" },
     { label: "Kontakt", path: "/Contact" },
   ];
 

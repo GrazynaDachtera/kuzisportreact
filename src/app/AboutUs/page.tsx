@@ -2,15 +2,16 @@
 
 import React, { useRef } from "react";
 import Navbar from "@/components/Navbar/Navbar";
-import AreasExtendedHeading from "@/components/AboutUs/AreasOfActivity/AreasExtended/AreasExtendedHeading/AreasExtendedHeading";
-import AreasExtended from "@/components/AboutUs/AreasOfActivity/AreasExtended/AreasExtended";
-import MapComponent from "@/components/MapComponent/MapComponent";
+import AboutUsHeading from "@/components/AboutUs/AboutUsHeading/AboutUsHeading";
+import Mission from "@/components/AboutUs/Mission/Mission";
+import AreasOfActivity from "@/components/AboutUs/AreasOfActivity/AreasOfActivity";
+import Members from "@/components/AboutUs/Members/Members";
 import Footer from "@/components/Footer/Footer";
 import Cookies from "@/components/Cookies/Cookies";
 import "@/app/globals.css";
 import { useSmoothScrollbar } from "@/components/hooks/useSmoothScrollbar";
 
-export default function AreasOfActivity() {
+export default function AboutFoundationPage() {
   const scrollRef = useRef<HTMLDivElement>(null);
   useSmoothScrollbar(scrollRef);
 
@@ -20,11 +21,12 @@ export default function AreasOfActivity() {
         <section className="kuziSport">
           <div className="main">
             <Navbar />
-            <AreasExtendedHeading />
-            <AreasExtended />
-            <MapComponent />
-            <Footer />
+            <AboutUsHeading />
+            <Mission />
+            <AreasOfActivity />
+            <Members />
           </div>
+          <Footer />
         </section>
       </div>
       <Cookies />

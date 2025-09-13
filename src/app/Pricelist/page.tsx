@@ -2,15 +2,13 @@
 
 import React, { useRef } from "react";
 import Navbar from "@/components/Navbar/Navbar";
-import AreasExtendedHeading from "@/components/AboutUs/AreasOfActivity/AreasExtended/AreasExtendedHeading/AreasExtendedHeading";
-import AreasExtended from "@/components/AboutUs/AreasOfActivity/AreasExtended/AreasExtended";
-import MapComponent from "@/components/MapComponent/MapComponent";
+import Pricelist from "@/components/Pricelist/Pricelist";
 import Footer from "@/components/Footer/Footer";
 import Cookies from "@/components/Cookies/Cookies";
 import "@/app/globals.css";
 import { useSmoothScrollbar } from "@/components/hooks/useSmoothScrollbar";
 
-export default function AreasOfActivity() {
+export default function HelpPage() {
   const scrollRef = useRef<HTMLDivElement>(null);
   useSmoothScrollbar(scrollRef);
 
@@ -20,11 +18,9 @@ export default function AreasOfActivity() {
         <section className="kuziSport">
           <div className="main">
             <Navbar />
-            <AreasExtendedHeading />
-            <AreasExtended />
-            <MapComponent />
-            <Footer />
+            <Pricelist />
           </div>
+          <Footer />
         </section>
       </div>
       <Cookies />
