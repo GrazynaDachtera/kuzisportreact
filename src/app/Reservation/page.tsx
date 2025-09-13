@@ -3,12 +3,13 @@
 import React, { useRef } from "react";
 import Navbar from "@/components/Navbar/Navbar";
 import Reservation from "@/components/Reservation/Reservation";
+import MapComponent from "@/components/MapComponent/MapComponent";
 import Footer from "@/components/Footer/Footer";
 import Cookies from "@/components/Cookies/Cookies";
 import "@/app/globals.css";
 import { useSmoothScrollbar } from "@/components/hooks/useSmoothScrollbar";
 
-export default function HelpPage() {
+export default function ReservationPage() {
   const scrollRef = useRef<HTMLDivElement>(null);
   useSmoothScrollbar(scrollRef);
 
@@ -19,6 +20,7 @@ export default function HelpPage() {
           <div className="main">
             <Navbar />
             <Reservation />
+            <MapComponent />
             <Footer />
           </div>
         </section>
