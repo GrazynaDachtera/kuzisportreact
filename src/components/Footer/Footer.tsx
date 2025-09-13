@@ -49,7 +49,7 @@ const FooterFirstSection = () => {
     {
       header: "Kuzi Sport",
       links: [
-        { text: "O nas", to: "/AboutFoundation" },
+        { text: "O nas", to: "/AboutUs" },
         { text: "Aktualności", to: "/News" },
         { text: "Dyscypliny", to: "/Sports" },
       ],
@@ -57,9 +57,9 @@ const FooterFirstSection = () => {
     {
       header: "Zapisz się!",
       links: [
-        { text: "Rezerwacja", to: "/Abc" },
-        { text: "Grafik", to: "/Abc" },
-        { text: "Cennik", to: "/Abc" },
+        { text: "Rezerwacja", to: "/Reservation" },
+        { text: "Grafik", to: "/Schedule" },
+        { text: "Cennik", to: "/Pricelist" },
         { text: "Kontakt", to: "/Contact" },
       ],
     },
