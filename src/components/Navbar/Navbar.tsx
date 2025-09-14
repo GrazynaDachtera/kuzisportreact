@@ -1,3 +1,4 @@
+// components/NavBar.tsx
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
@@ -13,9 +14,7 @@ export default function NavBar() {
   const [mounted, setMounted] = useState(false);
   const drawerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  useEffect(() => setMounted(true), []);
 
   const toggle = () => {
     setOpen((prev) => {
@@ -38,8 +37,9 @@ export default function NavBar() {
         open &&
         drawerRef.current &&
         !drawerRef.current.contains(e.target as Node)
-      )
+      ) {
         close();
+      }
     };
     document.addEventListener("mousedown", handler);
     document.addEventListener("touchstart", handler);
@@ -77,7 +77,7 @@ export default function NavBar() {
                 <div className="logo-navbar">
                   <Link href="/" aria-label="KuziSport – Home" onClick={close}>
                     <Image
-                      src="/NavBar/logokuzisport1.png"
+                      src="/NavBar/logokuzisport.png"
                       alt="Logo KuziSport"
                       width={432}
                       height={161}
@@ -104,7 +104,10 @@ export default function NavBar() {
                 <button
                   className={`hamburger-btn ${open ? "active" : ""}`}
                   aria-label="Menu"
+                  aria-expanded={open}
+                  aria-controls="nav-drawer"
                   onClick={toggle}
+                  type="button"
                 >
                   <span />
                   <span />
@@ -114,6 +117,7 @@ export default function NavBar() {
             </header>
 
             <div
+              id="nav-drawer"
               ref={drawerRef}
               className={`nav-drawer ${open ? "open" : ""}`}
               onMouseLeave={close}

@@ -1,8 +1,11 @@
+/* components/Navbar.scss */
 :root {
   --brand-green: #3da575;
-  --nav-accent: #2e7d57;
-  --nav-accent-hover: #276b49;
-  --nav-link-hover: #bbf7d0;
+  --nav-accent: #2e7d57;        /* main green (matches your screenshot) */
+  --nav-accent-hover: #276b49;  /* darker on hover/active */
+  --nav-link-hover: #bbf7d0;    /* light mint (optional) */
+  --nav-shadow: 0 1px 0 rgba(0, 0, 0, 0.06),
+                0 12px 26px -22px rgba(0, 0, 0, 0.35); /* subtle bottom shadow */
 }
 
 .wrapper-navbar {
@@ -11,8 +14,9 @@
   left: 0;
   width: 100%;
   padding: 0.9rem 1.5rem;
-  background: var(--brand-green);
+  background: #fff;
   z-index: 1000;
+  box-shadow: var(--nav-shadow); /* bottom-biased shadow */
 }
 
 .navbar {
@@ -41,6 +45,7 @@
   }
 }
 
+/* HAMBURGER — green in both states */
 .hamburger-btn {
   display: none;
   flex-direction: column;
@@ -52,14 +57,16 @@
   border: none;
   cursor: pointer;
   padding: 0;
+
   span {
     display: block;
     width: 100%;
     height: 0.3rem;
-    background: #fff;
+    background: var(--nav-accent); /* was #fff */
     border-radius: 1.5rem;
     transition: 0.3s;
   }
+
   &.active span:nth-child(1) { transform: translateY(0.65rem) rotate(45deg); }
   &.active span:nth-child(2) { opacity: 0; }
   &.active span:nth-child(3) { transform: translateY(-0.65rem) rotate(-45deg); }
@@ -67,13 +74,16 @@
 
 .hamburger-btn.active span { background: var(--nav-accent); }
 
+/* Show hamburger / hide horizontal menu on certain displays (kept from your setup) */
 @media (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
   .hamburger-btn { display: flex; }
   .nav-horizontal { display: none !important; }
 }
 
+/* DESKTOP horizontal nav */
 .nav-horizontal {
   display: none;
+
   @media (min-width: 769px) {
     display: flex;
     gap: 1.5rem;
@@ -84,30 +94,33 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+
     li {
       padding: 0 1rem;
+
       a {
-        color: #fff;
-        font-weight: 550;
+        color: var(--nav-accent);       /* GREEN like in the drawer */
+        font-weight: 600;
         text-decoration: none;
         white-space: nowrap;
         transition: color 0.2s ease;
       }
-      &.active a,
+
+      &.active a { color: var(--nav-accent); }
+
       a:hover,
-      a:focus-visible { color: var(--nav-link-hover); }
+      a:focus-visible { color: var(--nav-accent-hover); }
     }
   }
 }
 
 @media (max-width: 768px) {
-  .logo-navbar .logo {
-    max-height: 50px;
-  }
+  .logo-navbar .logo { max-height: 50px; }
 }
 
 .nav-horizontal.hidden { display: none !important; }
 
+/* MOBILE Drawer */
 .nav-drawer {
   position: fixed;
   top: 0;
@@ -122,19 +135,23 @@
   transition: transform 0.3s ease;
   z-index: 999;
   pointer-events: none;
+
   ul {
     list-style: none;
     margin: 0;
     padding: 0;
+
     li {
       margin: 1rem 0;
+
       a {
         font-size: 1.25rem;
-        font-weight: 550;
+        font-weight: 600;
         color: var(--nav-accent);
         text-decoration: none;
         position: relative;
         transition: color 0.2s ease;
+
         &::after {
           content: "";
           position: absolute;
@@ -147,26 +164,32 @@
           transform-origin: left;
           transition: transform 0.3s;
         }
+
         &:hover::after,
         &:focus-visible::after { transform: scaleX(1); }
       }
+
       &.active a {
         color: var(--nav-accent);
         &::after { transform: scaleX(1); }
       }
+
       &:hover a,
       a:focus-visible { color: var(--nav-accent-hover); }
     }
   }
+
   .social-icons {
     display: flex;
     gap: 10px;
     margin-top: 2rem;
+
     a {
       display: inline-flex;
       color: var(--nav-accent);
       transition: color 0.2s ease;
     }
+
     a:hover { color: var(--nav-accent-hover); }
     a svg { display: block; }
   }
@@ -193,6 +216,7 @@
   .wrapper-navbar { padding: 0.9rem 1.25rem; }
 }
 
+/* When the drawer is open, hide the bar & shadow */
 body.menu-open .wrapper-navbar {
   background: transparent;
   padding: 0;

@@ -21,7 +21,7 @@ const slides: Slide[] = [
 ];
 
 export default function HeroSlider() {
-  const [index, setIndex] = useState<number>(0);
+  const [index, setIndex] = useState(0);
   const isMulti = slides.length > 1;
 
   return (
@@ -60,6 +60,7 @@ export default function HeroSlider() {
                   </Fragment>
                 ))}
               </h1>
+
               <Link href={s.cta.href} className="slide__cta">
                 {s.cta.label}
               </Link>

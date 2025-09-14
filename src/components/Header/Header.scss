@@ -12,11 +12,10 @@
   position: relative;
   overflow: hidden;
   width: 100%;
-  background: #fff;
+  background: #0e0e0e; /* helps hide any side gutters on ultra-wide screens */
   flex-grow: 1;
   display: flex;
 
-  /* Desktop/tablet height: roomy but not overwhelming */
   height: clamp(620px, calc(100svh - var(--nav-h)), 980px);
   box-sizing: border-box;
 }
@@ -38,28 +37,30 @@
   height: 100%;
   position: relative;
   isolation: isolate;
+  background: #fff;
 }
 
 /* IMAGE ----------------------------------------------------------------- */
-/* Desktop/tablet default = show the whole mosaic */
+/* Desktop: show whole mosaic (no top/bottom cropping) */
 .slide__img {
   object-fit: contain;
   object-position: center top;
   z-index: 0;
 }
 
-/* subtle overlay disabled by default (only used on tablet/mobile) */
+/* Darker bottom shadow overlay */
 .slide::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-      background: linear-gradient(
-      to bottom,
-      rgba(0,0,0,0) 45%,
-      rgba(0,0,0,0.55) 100%
-    );
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 40%,
+    rgba(0, 0, 0, 0.28) 68%,
+    rgba(0, 0, 0, 0.72) 100%
+  );
 }
 
 /* TEXT BLOCK (desktop) -------------------------------------------------- */
@@ -68,7 +69,6 @@
   flex: 0 0 40%;
   max-width: 40%;
   padding: 0 2rem;
-  /* nudged left on desktop */
   margin-left: clamp(1rem, 4.5vw, 5rem);
   transform: translateY(clamp(2rem, 8vh, 10rem));
   will-change: transform;
@@ -81,7 +81,7 @@
   line-height: 0.95;
   letter-spacing: -0.02em;
   text-wrap: balance;
-  color: #087457;
+  color: #fff;
   margin: 0 0 1rem;
 }
 
@@ -136,26 +136,27 @@
 .slider--single .dots { display: none; }
 
 /* TABLET (Surface, iPad, etc.) ----------------------------------------- */
-/* Switch to overlay layout, make the image fill the hero, and size text for tablets */
 @media (max-width: 1024px) {
   .slider {
-    --nav-h: 4.25rem; /* tablet navbar height (hamburger) */
+    --nav-h: 4.25rem;
     height: clamp(520px, calc(88svh - var(--nav-h)), 820px);
   }
   @supports (height: 100dvh) {
     .slider { height: clamp(520px, calc(88dvh - var(--nav-h)), 820px); }
   }
 
+  /* Fill hero on tablet to remove side gutters */
   .slide__img {
-    object-fit: cover;        /* fill hero to avoid large whitespace */
+    object-fit: cover;
     object-position: center 15%;
   }
 
   .slide::before {
     background: linear-gradient(
       to bottom,
-      rgba(0,0,0,0) 35%,
-      rgba(0,0,0,0.55) 100%
+      rgba(0, 0, 0, 0) 32%,
+      rgba(0, 0, 0, 0.32) 62%,
+      rgba(0, 0, 0, 0.78) 100%
     );
   }
 
@@ -173,7 +174,7 @@
     align-items: flex-start;
     text-align: left;
 
-    max-width: none;    /* allow long lines; balanced by font-size below */
+    max-width: none;
     flex: none;
   }
 
@@ -195,10 +196,10 @@
   .dots { bottom: calc(0.9rem + env(safe-area-inset-bottom)); }
 }
 
-/* MOBILE: overlay text bottom-left, slightly smaller sizes -------------- */
+/* MOBILE --------------------------------------------------------------- */
 @media (max-width: 768px) {
   .slider {
-    --nav-h: 4.25rem; /* mobile navbar height */
+    --nav-h: 4.25rem;
     height: clamp(440px, calc(80svh - var(--nav-h)), 720px);
   }
   @supports (height: 100dvh) {
@@ -213,8 +214,9 @@
   .slide::before {
     background: linear-gradient(
       to bottom,
-      rgba(0,0,0,0) 45%,
-      rgba(0,0,0,0.55) 100%
+      rgba(0, 0, 0, 0) 40%,
+      rgba(0, 0, 0, 0.34) 66%,
+      rgba(0, 0, 0, 0.85) 100%
     );
   }
 
