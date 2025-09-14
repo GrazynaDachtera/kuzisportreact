@@ -1,7 +1,7 @@
 "use client";
 
 import "./BusinessPartners.scss";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import React, { useEffect, useMemo, useState } from "react";
 import Multisport from "../../../public/BusinessPartners/profit.webp";
 import BenefitSystems from "../../../public/BusinessPartners/benefitsystems.png";
@@ -55,7 +55,9 @@ function highlightNode(node: React.ReactNode, q: string): React.ReactNode {
   return node;
 }
 
-const PARTNER_LOGOS: { src: any; alt: string }[] = [
+type PartnerLogo = { src: StaticImageData | string; alt: string };
+
+const PARTNER_LOGOS: PartnerLogo[] = [
   { src: P1, alt: "Miasto Poznań" },
   { src: P2, alt: "Marszałek Województwa Wielkopolskiego" },
   { src: P3, alt: "OIP" },
@@ -198,7 +200,7 @@ export default function PrivacyPolicyPage() {
 
   const active = SECTIONS.find((s) => s.id === activeId) ?? SECTIONS[0];
 
-  function onKeyNav(e: React.KeyboardEvent) {
+  function onKeyNav(e: React.KeyboardEvent<HTMLElement>) {
     if (!filtered.length) return;
     if (e.key === "ArrowDown") {
       e.preventDefault();
