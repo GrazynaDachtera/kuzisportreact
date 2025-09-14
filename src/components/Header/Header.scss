@@ -12,13 +12,17 @@
   position: relative;
   overflow: hidden;
   width: 100%;
-  background: #0e0e0e; /* helps hide any side gutters on ultra-wide screens */
+  max-width: 100vw;
+  background: #0e0e0e;
   flex-grow: 1;
   display: flex;
+  touch-action: pan-y;
 
   height: clamp(620px, calc(100svh - var(--nav-h)), 980px);
   box-sizing: border-box;
+  outline: none;
 }
+.slider:focus-visible { box-shadow: 0 0 0 3px rgba(255,255,255,.25) inset; }
 
 @supports (height: 100dvh) {
   .slider { height: clamp(620px, calc(100dvh - var(--nav-h)), 980px); }
@@ -26,29 +30,35 @@
 
 .slides {
   display: flex;
-  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   height: 100%;
+  will-change: transform;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slides { transition: none; }
 }
 
 .slide {
-  flex: 0 0 100vw;
+  flex: 0 0 100%;
   display: flex;
   align-items: center;
   height: 100%;
   position: relative;
   isolation: isolate;
-  background: #fff;
+  background: transparent; /* avoid any banding behind the image */
 }
 
 /* IMAGE ----------------------------------------------------------------- */
-/* Desktop: show whole mosaic (no top/bottom cropping) */
+/* Use cover so the image fills the slide height – overlay == image height */
 .slide__img {
-  object-fit: contain;
-  object-position: center top;
+  object-fit: cover;         /* <-- key change from contain */
+  object-position: center 20%;
   z-index: 0;
 }
 
-/* Darker bottom shadow overlay */
+/* Bottom gradient overlay for text legibility (matches slide height) */
 .slide::before {
   content: "";
   position: absolute;
@@ -84,7 +94,6 @@
   color: #fff;
   margin: 0 0 1rem;
 }
-
 @supports not (font-size: 1cqw) {
   .slide__text h1 { font-size: clamp(2.5rem, 7vw, 5rem); }
 }
@@ -112,7 +121,7 @@
 /* DOTS ------------------------------------------------------------------ */
 .dots {
   position: absolute;
-  bottom: 2rem;
+  bottom: max(1rem, calc(1rem + env(safe-area-inset-bottom)));
   z-index: 3;
   display: flex;
   gap: 1rem;
@@ -130,7 +139,8 @@
   cursor: pointer;
   transition: background 0.3s, transform 0.3s, opacity 0.3s;
 }
-.dot:hover { opacity: 1; }
+.dot:hover,
+.dot:focus-visible { opacity: 1; outline: 2px solid rgba(255,255,255,.35); outline-offset: 2px; }
 .dot.active { background: var(--cta-green); transform: scale(1.2); opacity: 1; }
 
 .slider--single .dots { display: none; }
@@ -145,7 +155,6 @@
     .slider { height: clamp(520px, calc(88dvh - var(--nav-h)), 820px); }
   }
 
-  /* Fill hero on tablet to remove side gutters */
   .slide__img {
     object-fit: cover;
     object-position: center 15%;
@@ -237,4 +246,14 @@
   }
 
   .dots { bottom: calc(0.75rem + env(safe-area-inset-bottom)); }
+}
+
+/* SMALL LANDSCAPE (phones turned sideways) ------------------------------ */
+@media (max-height: 480px) and (orientation: landscape) {
+  .slider {
+    height: min(520px, 100svh);
+  }
+  .slide__text {
+    bottom: calc(0.75rem + env(safe-area-inset-bottom));
+  }
 }
