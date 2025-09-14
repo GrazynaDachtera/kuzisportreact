@@ -10,7 +10,7 @@
   --nav-h: 0rem;
 
   position: relative;
-  overflow: hidden;
+  overflow: hidden;                 /* fallback */
   width: 100%;
   max-width: 100vw;
   background: #0e0e0e;
@@ -21,8 +21,29 @@
   height: clamp(620px, calc(100svh - var(--nav-h)), 980px);
   box-sizing: border-box;
   outline: none;
+
+  /* --- seam busters --- */
+  transform: translateZ(0);         /* flatten compositing */
+  backface-visibility: hidden;
+  contain: paint;                   /* isolate painting of this section */
+  margin-bottom: -2px;              /* overlap next section slightly */
 }
-.slider:focus-visible { box-shadow: 0 0 0 3px rgba(255,255,255,.25) inset; }
+@supports (overflow: clip) {
+  .slider { overflow: clip; }
+}
+/* Paint a tiny extender under the slider to cover any 1px gap on scroll */
+.slider::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  bottom: -2px;
+  height: 2px;
+  background: #0e0e0e;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.slider:focus-visible { box-shadow: none; }
 
 @supports (height: 100dvh) {
   .slider { height: clamp(620px, calc(100dvh - var(--nav-h)), 980px); }
@@ -34,6 +55,9 @@
   will-change: transform;
   transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   width: 100%;
+
+  /* help avoid fractional-pixel artifacts while scrolling */
+  transform: translateZ(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -47,25 +71,32 @@
   height: 100%;
   position: relative;
   isolation: isolate;
-  background: transparent; /* avoid any banding behind the image */
+  background: #0e0e0e;             /* same as slider bg */
+}
+
+/* Next/Image wrapper (for `fill`) – overdraw by 2px to kill sub-pixel seams */
+.slide > span {
+  position: absolute !important;
+  inset: -2px !important;           /* bleed past edges */
 }
 
 /* IMAGE ----------------------------------------------------------------- */
-/* Use cover so the image fills the slide height – overlay == image height */
 .slide__img {
-  object-fit: cover;         /* <-- key change from contain */
+  object-fit: cover;
   object-position: center 20%;
   z-index: 0;
+
+  backface-visibility: hidden;
+  transform: translateZ(0);         /* promote to its own layer cleanly */
 }
 
-/* Bottom gradient overlay for text legibility (matches slide height) */
+/* Bottom gradient overlay for text legibility (matches the bleed) */
 .slide::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: -2px;
   z-index: 1;
   pointer-events: none;
-
 }
 
 /* TEXT BLOCK (desktop) -------------------------------------------------- */
@@ -214,7 +245,6 @@
     object-fit: cover;
     object-position: center 20%;
   }
-
 
   .slide__text {
     left: clamp(1rem, 6vw, 2rem);
