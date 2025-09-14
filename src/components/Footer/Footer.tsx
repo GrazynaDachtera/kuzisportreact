@@ -67,8 +67,7 @@ const FooterFirstSection = () => {
       header: "Informacje prawne",
       links: [
         { text: "Regulamin", to: "/Regulations" },
-        { text: "RODO", to: "/Rodo" },
-        { text: "Partnerzy", to: "/PrivacyPolicy" },
+        { text: "Partnerzy", to: "/BusinessPartners" },
       ],
     },
     {

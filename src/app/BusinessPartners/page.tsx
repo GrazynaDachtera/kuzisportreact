@@ -2,13 +2,13 @@
 
 import React, { useRef } from "react";
 import Navbar from "@/components/Navbar/Navbar";
-import PrivacyPolicy from "@/components/PrivacyPolicy/PrivacyPolicy";
+import BusinessPartners from "@/components/BusinessPartners/BusinessPartners";
 import Footer from "@/components/Footer/Footer";
 import Cookies from "@/components/Cookies/Cookies";
 import "@/app/globals.css";
 import { useSmoothScrollbar } from "@/components/hooks/useSmoothScrollbar";
 
-export default function PrivacyPolicyPage() {
+export default function BusinessPartnersPage() {
   const scrollRef = useRef<HTMLDivElement>(null);
   useSmoothScrollbar(scrollRef);
 
@@ -18,7 +18,7 @@ export default function PrivacyPolicyPage() {
         <section className="kuziSport">
           <div className="main">
             <Navbar />
-            <PrivacyPolicy />
+            <BusinessPartners />
           </div>
           <Footer />
         </section>
