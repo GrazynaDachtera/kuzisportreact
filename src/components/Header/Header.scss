@@ -65,12 +65,7 @@
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 40%,
-    rgba(0, 0, 0, 0.28) 68%,
-    rgba(0, 0, 0, 0.72) 100%
-  );
+
 }
 
 /* TEXT BLOCK (desktop) -------------------------------------------------- */
@@ -220,14 +215,6 @@
     object-position: center 20%;
   }
 
-  .slide::before {
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0) 40%,
-      rgba(0, 0, 0, 0.34) 66%,
-      rgba(0, 0, 0, 0.85) 100%
-    );
-  }
 
   .slide__text {
     left: clamp(1rem, 6vw, 2rem);
