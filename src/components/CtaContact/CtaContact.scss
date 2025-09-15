@@ -152,7 +152,6 @@
   min-width: 44px;
 }
 
-/* Checkboxes – match base form size (native, with accent-color) */
 .check {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -172,7 +171,6 @@
   .req { color: #dc2626; }
 }
 
-/* Aside (shield note) */
 .aside {
   grid-column: 1 / -1;
   display: inline-flex;
@@ -184,7 +182,6 @@
   color: var(--brand);
 }
 
-/* Primary CTA button */
 .actions { grid-column: 1 / -1; margin-top: .75rem; }
 
 .btn {
@@ -216,7 +213,6 @@
 .btn__label { line-height: 1; }
 .btn__icon { margin-left: .6rem; display: inline-flex; line-height: 0; }
 
-/* Messages */
 .msg {
   grid-column: 1 / -1;
   margin: .6rem 0 0 0;
@@ -228,7 +224,6 @@
 .msg--ok { background: #f0fff6; color: #0b6a3d; border-color: #d1fae5; }
 .msg--err { background: #fff5f5; color: #7a1b1b; border-color: #fecaca; }
 
-/* Consistent colors */
 .trial .field > label,
 .trial .field > legend,
 .trial .pills .pill span { color: #6a7280; }
@@ -239,3 +234,20 @@
 
 .trial input::placeholder,
 .trial textarea::placeholder { color: #6a7280; opacity: .85; }
+
+@media (max-width: 768px) {
+  .trial__header {
+    display: grid;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .trial__header h2 {
+    font-size: clamp(2rem, 8vw, 2.6rem);
+  }
+
+  .trial__header .trial__sub {
+    font-size: clamp(1rem, 3.8vw, 1.1rem);
+    max-width: 32ch;
+  }
+}
