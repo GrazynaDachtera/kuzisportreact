@@ -80,7 +80,7 @@ export default function AreasOfActivity({
                 ))}
               </ul>
 
-              <Link href="/AreasOfActivity" className="areas-cta">
+              <Link href="/Reservation" className="areas-cta">
                 Zarezerwuj termin
                 <svg
                   className="areas-cta-icon"
