@@ -82,7 +82,7 @@ $image-shadow: 0 16px 40px rgba($brand-green, 0.18),
 }
 
 .projectsHomePage-title {
-  font-size: clamp(1.4rem, 2vw + 1rem, 2.4rem);
+  font-size: clamp(1.4rem, 2vw + 1rem, 2.2rem);
   font-weight: 800;
   line-height: 1.2;
   letter-spacing: -0.01em;
@@ -204,7 +204,7 @@ $image-shadow: 0 16px 40px rgba($brand-green, 0.18),
 }
 
 .grid-item-title {
-  font-size: var(--title-fs);
+  font-size: clamp(1.2rem, 2.2vw + 0.5rem, 1.2rem);
   font-weight: 700;
   line-height: var(--title-lh);
   margin-bottom: 8px;
