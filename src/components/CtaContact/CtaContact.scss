@@ -1,43 +1,48 @@
-:root {
-  --bg: #f4f6f9;
-  --line: #e5e7eb;
-  --input-bg: #fff;
-  --brand: var(--brand-green, #3da575);
-  --brand-ink: #114538;
-  --r: 10px;
-  --pill-r: 9999px;
-  --control-h: 48px;
-}
+$bg: #f4f6f9;
+$line: #e5e7eb;
+$input-bg: #fff;
+$brand: #114538;
+$brand-ink: #114538;
+$r: 10px;
+$pill-r: 9999px;
+$control-h: 48px;
+
+$font: "Poppins", sans-serif;
+$text: #6a7280;
 
 .trial {
   width: 100%;
-  background: var(--bg);
-  color: #6a7280;
+  background: $bg;
+  color: $text;
   padding: clamp(1.75rem, 4vw, 3rem) 1rem;
 
   &__container {
-    width: 92%;
-    max-width: 1000px;
+    width: min(92rem, 92%);
     margin-inline: auto;
-    padding-inline: clamp(1rem, 2vw, 2rem);
+    padding-inline: 2rem;
   }
 
-  &__content { width: 100%; }
+  &__content {
+    width: 100%;
+  }
 
   &__header {
     margin-bottom: clamp(1rem, 2.5vw, 1.75rem);
 
     h2 {
-      margin: 0 0 .5rem 0;
-      font-family: "Poppins", sans-serif;
+      margin: 0 0 0.5rem 0;
+      font-family: $font;
       font-weight: 800;
       font-size: clamp(2rem, 3.5vw, 2.5rem);
-      color: var(--brand);
-      letter-spacing: .1px;
+      color: $brand;
+      letter-spacing: -0.01em;
       line-height: 1.15;
     }
 
-    .trial__sub { margin: 0; font-size: clamp(.95rem, 1.5vw, 1.05rem); }
+    .trial__sub {
+      margin: 0;
+      font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+    }
   }
 
   &__form {
@@ -53,20 +58,30 @@
 
 .field {
   display: grid;
-  gap: .6rem;
+  gap: 0.6rem;
   min-width: 0;
 
-  &--full { grid-column: 1 / -1; }
+  &--full {
+    grid-column: 1 / -1;
+  }
 
-  label, legend { font-size: .95rem; font-weight: 600; }
+  label,
+  legend {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
 
   input[type="text"],
   input[type="tel"],
   input[type="email"],
   input[type="date"],
-  select { height: var(--control-h); }
+  select {
+    height: $control-h;
+  }
 
-  textarea { min-height: calc(var(--control-h) * 2.1); }
+  textarea {
+    min-height: calc(#{$control-h} * 2.1);
+  }
 
   input[type="text"],
   input[type="tel"],
@@ -77,16 +92,21 @@
     width: 100%;
     min-width: 0;
     padding: 0 1rem;
-    border-radius: var(--r);
-    border: 1px solid var(--line);
-    background: var(--input-bg);
-    font-size: .95rem;
+    border-radius: $r;
+    border: 1px solid $line;
+    background: $input-bg;
+    font-size: 0.95rem;
     outline: none;
-    transition: border-color .15s ease, background-color .15s ease;
-    color: #6a7280;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+    color: $text;
 
-    &::placeholder { color: #6a7280; }
-    &:focus { border-color: var(--brand); background: #fff; }
+    &::placeholder {
+      color: $text;
+    }
+    &:focus {
+      border-color: $brand;
+      background: #fff;
+    }
   }
 
   select {
@@ -98,20 +118,25 @@
     padding-right: 2rem;
   }
 
-  .hint { margin-top: -.2rem; font-size: .85rem; }
+  .hint {
+    margin-top: -0.2rem;
+    font-size: 0.85rem;
+  }
 
   &.group {
     border: none !important;
     padding: 0;
     margin: 0;
 
-    legend { margin-bottom: .25rem; }
+    legend {
+      margin-bottom: 0.25rem;
+    }
   }
 }
 
 .pills {
   display: flex;
-  gap: .6rem;
+  gap: 0.6rem;
   flex-wrap: wrap;
 
   .pill {
@@ -120,13 +145,13 @@
     align-items: center;
     justify-content: center;
     height: 40px;
-    padding: 0 .9rem;
-    border-radius: var(--pill-r);
-    border: 1px solid var(--line);
+    padding: 0 0.9rem;
+    border-radius: $pill-r;
+    border: 1px solid $line;
     background: #fff;
     font-weight: 600;
-    font-size: .92rem;
-    color: #6a7280;
+    font-size: 0.92rem;
+    color: $text;
     cursor: pointer;
     user-select: none;
 
@@ -138,51 +163,60 @@
     }
 
     &.is-active {
-      border-color: rgba(61,165,117,.5);
-      background: rgba(61,165,117,.08);
+      border-color: rgba($brand, 0.5);
+      background: rgba($brand, 0.08);
     }
   }
 
-  &.pills--wrap { flex-wrap: wrap; }
+  &.pills--wrap {
+    flex-wrap: wrap;
+  }
 }
 
 .pills--compact .pill {
   height: 36px;
-  padding: 0 .75rem;
+  padding: 0 0.75rem;
   min-width: 44px;
 }
 
 .check {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: .6rem;
+  gap: 0.6rem;
   align-items: start;
-  font-size: .95rem;
+  font-size: 0.95rem;
 
   input[type="checkbox"] {
-    margin-top: .2rem;
-    accent-color: var(--brand);
+    margin-top: 0.2rem;
+    accent-color: $brand;
     appearance: auto;
     width: auto;
     height: auto;
   }
 
-  span { color: #6a7280; }
-  .req { color: #dc2626; }
+  span {
+    color: $text;
+  }
+  .req {
+    color: #dc2626;
+  }
 }
 
 .aside {
   grid-column: 1 / -1;
   display: inline-flex;
   align-items: center;
-  gap: .5rem;
-  margin: .4rem 0 0;
+  gap: 0.5rem;
+  margin: 0.4rem 0 0;
   font-size: 1rem;
   font-weight: 600;
-  color: var(--brand);
+  color: $brand;
 }
 
-.actions { grid-column: 1 / -1; margin-top: .75rem; }
+.actions {
+  grid-column: 1 / -1;
+  margin-top: 0.75rem;
+}
 
 .btn {
   display: inline-flex;
@@ -196,44 +230,85 @@
 .btn {
   height: 56px;
   padding: 0 1.6rem;
-  border-radius: 32px;
-  background: var(--brand);
+  border-radius: 9999px;
+  background: $brand;
   color: #fff;
   font-weight: 800;
   font-size: 1rem;
-  box-shadow: 0 2px 0 rgba(0,0,0,.04), 0 6px 14px rgba(61,165,117,.25);
-  transition: transform .05s ease, filter .15s ease, background .15s ease;
-
-  &:hover,
-  &:focus-visible { filter: brightness(.95); }
-  &:active { transform: translateY(1px); }
-  &:disabled { opacity: .6; cursor: not-allowed; }
+  box-shadow: 0 8px 22px rgba($brand, 0.25);
+  transition: transform 0.05s ease, filter 0.15s ease, background 0.15s ease,
+    box-shadow 0.15s ease;
+  line-height: 1;
+  position: relative;
 }
 
-.btn__label { line-height: 1; }
-.btn__icon { margin-left: .6rem; display: inline-flex; line-height: 0; }
+.btn--primary::after {
+  content: "↗";
+  display: inline-block;
+  margin-left: 0.6rem;
+  font-weight: 800;
+  transform: translateY(-1px);
+}
+
+.btn__icon {
+  display: none;
+}
+
+.btn--primary:hover,
+.btn--primary:focus-visible {
+  background: $brand-ink;
+  filter: brightness(0.97);
+  box-shadow: 0 10px 26px rgba($brand, 0.32);
+}
+
+.btn--primary:active {
+  transform: translateY(1px);
+}
+.btn--primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn__label {
+  line-height: 1;
+}
 
 .msg {
   grid-column: 1 / -1;
-  margin: .6rem 0 0 0;
-  font-size: .92rem;
-  padding: .6rem .8rem;
+  margin: 0.6rem 0 0 0;
+  font-size: 0.92rem;
+  padding: 0.6rem 0.8rem;
   border-radius: 8px;
-  border: 1px solid var(--line);
+  border: 1px solid $line;
 }
-.msg--ok { background: #f0fff6; color: #0b6a3d; border-color: #d1fae5; }
-.msg--err { background: #fff5f5; color: #7a1b1b; border-color: #fecaca; }
+.msg--ok {
+  background: #f0fff6;
+  color: #0b6a3d;
+  border-color: #d1fae5;
+}
+.msg--err {
+  background: #fff5f5;
+  color: #7a1b1b;
+  border-color: #fecaca;
+}
 
 .trial .field > label,
 .trial .field > legend,
-.trial .pills .pill span { color: #6a7280; }
+.trial .pills .pill span {
+  color: $text;
+}
 
 .trial input,
 .trial textarea,
-.trial select { color: #6a7280; }
+.trial select {
+  color: $text;
+}
 
 .trial input::placeholder,
-.trial textarea::placeholder { color: #6a7280; opacity: .85; }
+.trial textarea::placeholder {
+  color: $text;
+  opacity: 0.85;
+}
 
 @media (max-width: 768px) {
   .trial__header {

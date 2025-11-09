@@ -5,7 +5,6 @@ import Navbar from "../components/Navbar/Navbar";
 import Header from "../components/Header/Header";
 import Reviews from "../components/Reviews/Reviews";
 import SportsHomePage from "../components/SportsHomePage/SportsHomePage";
-import News from "../components/News/News";
 import CtaContact from "../components/CtaContact/CtaContact";
 import MapComponent from "@/components/MapComponent/MapComponent";
 import Footer from "../components/Footer/Footer";
@@ -35,7 +34,6 @@ export default function Home() {
           <Reviews />
           <SportsHomePage />
           <CtaContact />
-          <News />
           <MapComponent />
           <Footer />
         </section>
