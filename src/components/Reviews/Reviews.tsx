@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import "./Reviews.scss";
 
 const PhoneIcon = () => (
@@ -55,67 +56,145 @@ const PinIcon = () => (
   </svg>
 );
 
+type Address = {
+  street: string;
+  postalCode: string;
+  city: string;
+};
+
+type IconComponent = () => ReactNode;
+
+type AddressItem = {
+  Icon: IconComponent;
+  label: string;
+  href: string;
+  type: "address";
+  address: Address;
+};
+
+type LinkItem = {
+  Icon: IconComponent;
+  label: string;
+  href: string;
+  value: string;
+  type?: "text" | "phone" | "email";
+};
+
+type ContactItem = AddressItem | LinkItem;
+
+const ADDRESS: Address = {
+  street: "ul. Św. Michała 56",
+  postalCode: "61-005",
+  city: "Poznań",
+};
+
+const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  `${ADDRESS.street}, ${ADDRESS.postalCode} ${ADDRESS.city}`
+)}`;
+
+function StripItem(props: ContactItem) {
+  const { Icon, label } = props;
+
+  if (props.type === "address") {
+    return (
+      <div
+        className="strip-item"
+        itemScope
+        itemType="https://schema.org/Organization"
+      >
+        <div className="icon" aria-hidden="true">
+          <Icon />
+        </div>
+        <div
+          className="meta"
+          itemProp="address"
+          itemScope
+          itemType="https://schema.org/PostalAddress"
+        >
+          <p className="label">{label}</p>
+          <a
+            className="value"
+            href={props.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Adres"
+          >
+            <span itemProp="streetAddress">{props.address.street}</span>,{" "}
+            <span itemProp="postalCode">{props.address.postalCode}</span>{" "}
+            <span itemProp="addressLocality">{props.address.city}</span>
+          </a>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="strip-item">
+      <div className="icon" aria-hidden="true">
+        <Icon />
+      </div>
+      <div className="meta">
+        <p className="label">{label}</p>
+        <a className="value" href={props.href}>
+          {"value" in props ? props.value : ""}
+        </a>
+      </div>
+    </div>
+  );
+}
+
 export default function Reviews() {
-  const mapsUrl =
-    "https://www.google.com/maps/search/?api=1&query=ul.+U%C5%82a%C5%84ska+5%2C+60-748+Pozna%C5%84";
+  const CONTACTS: ContactItem[] = [
+    {
+      Icon: PhoneIcon,
+      label: "Biuro:",
+      value: "605 072 681",
+      href: "tel:+48605072681",
+      type: "phone",
+    },
+    {
+      Icon: PinIcon,
+      label: "Adres:",
+      href: MAPS_URL,
+      type: "address",
+      address: ADDRESS,
+    },
+    {
+      Icon: MailIcon,
+      label: "E-mail:",
+      value: "kuzisport.biuro@gmail.com",
+      href: "mailto:kuzisport.biuro@gmail.com",
+      type: "email",
+    },
+    {
+      Icon: PhoneIcon,
+      label: "Recepcja:",
+      value: "+48 785-828-666",
+      href: "tel:+48785828666",
+      type: "phone",
+    },
+    {
+      Icon: PhoneIcon,
+      label: "Trenerzy:",
+      value: "+48 785-082-777",
+      href: "tel:+48785082777",
+      type: "phone",
+    },
+    {
+      Icon: PhoneIcon,
+      label: "Trenerzy:",
+      value: "+48 505-875-735",
+      href: "tel:+48505875735",
+      type: "phone",
+    },
+  ];
 
   return (
     <section className="contact-strip" aria-label="Dane kontaktowe">
       <div className="contact-container strip-grid">
-        <div className="strip-item">
-          <div className="icon" aria-hidden="true">
-            <PhoneIcon />
-          </div>
-          <div className="meta">
-            <p className="label">Biuro:</p>
-            <a href="tel:605550370" className="value">
-              605 072 681
-            </a>
-          </div>
-        </div>
-
-        <div
-          className="strip-item"
-          itemScope
-          itemType="https://schema.org/Organization"
-        >
-          <div className="icon" aria-hidden="true">
-            <PinIcon />
-          </div>
-          <div
-            className="meta"
-            itemProp="address"
-            itemScope
-            itemType="https://schema.org/PostalAddress"
-          >
-            <a
-              className="value"
-              href={mapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              itemProp="name"
-            >
-              Kuzi Sport
-            </a>
-            <p className="label" aria-label="Adres">
-              <span itemProp="streetAddress">ul. Św. Michała 56</span>,{" "}
-              <span itemProp="postalCode">61-005</span>{" "}
-              <span itemProp="addressLocality">Poznań</span>
-            </p>
-          </div>
-        </div>
-
-        <div className="strip-item">
-          <div className="icon" aria-hidden="true">
-            <MailIcon />
-          </div>
-          <div className="meta">
-            <p className="label">E-mail:</p>
-            <a href="mailto:kontakt@sasiedzkilazarz.pl" className="value">
-              kuzisport.biuro@gmail.com
-            </a>
-          </div>
-        </div>
+        {CONTACTS.map((item, idx) => (
+          <StripItem key={idx} {...item} />
+        ))}
       </div>
     </section>
   );
