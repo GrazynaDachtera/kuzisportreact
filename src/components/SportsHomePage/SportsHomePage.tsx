@@ -57,7 +57,7 @@ export default function ProjectsHomePage() {
           <div className="projectsHomePage-top">
             <div className="projectsHomePage-content">
               <h2 className="projectsHomePage-title">
-                Nasze Dyscypliny Sportowe w Klubie
+                <span className="title-line">Nasze dyscypliny sportowe </span>
               </h2>
               <p className="projectsHomePage-description">
                 Witamy na stronie naszego klubu, gdzie pasja do sportu spotyka
@@ -76,7 +76,7 @@ export default function ProjectsHomePage() {
 
             <div className="projectsHomePage-image-wrapper">
               <Image
-                src="/ProjectsHomePage/person.png"
+                src="/ProjectsHomePage/aerial.jpg"
                 alt="Portret osoby"
                 width={652}
                 height={336}

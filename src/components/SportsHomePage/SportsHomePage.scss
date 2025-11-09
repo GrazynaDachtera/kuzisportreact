@@ -1,23 +1,23 @@
-:root {
-  --section-py: clamp(1.5rem, 2vw, 3rem);
-  --brand-green: #3da575;
-  --cta-green: #2e7d57;
-  --cta-green-hover: #276b49;
-  font-family: "Poppins", sans-serif;
-}
+$section-py: clamp(1.5rem, 2vw, 3rem);
+$brand-green: #114538;
+$cta-green: #114538;
+$cta-green-hover: #276b49;
+$font: "Poppins", sans-serif;
 
 $text: #6a7280;
 $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
+$image-shadow: 0 16px 40px rgba($brand-green, 0.18),
+  0 6px 16px rgba($brand-green, 0.1);
 
 .ProjectsHomePage {
   width: 100%;
-  font-family: "Poppins", sans-serif;
+  font-family: $font;
   color: $text;
 }
 
 .projectsHomePage-top-wrapper {
   background-color: #f8f9fa;
-  padding-block: var(--section-py);
+  padding-block: $section-py;
 }
 
 .projectsHomePage-top-wrapper .projectsHomePage-container {
@@ -32,7 +32,7 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
 }
 
 .projectsHomePage-container {
-  width: 90%;
+  width: min(92rem, 92%);
   margin: 0 auto;
   padding: 0 2rem;
 }
@@ -41,7 +41,7 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 40px;
+  gap: clamp(16px, 3vw, 32px);
 }
 
 @media (min-width: 992px) {
@@ -51,13 +51,9 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
     max-width: 50%;
   }
 
-  .projectsHomePage-content {
-    max-width: 50%;
-  }
-
   .projectsHomePage-image {
-    width: 95%;
-    max-width: 500px;
+    width: 100%;
+    max-width: 560px;
     height: auto;
     object-fit: contain;
   }
@@ -73,7 +69,7 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
 
 .projectsHomePage-content {
   flex: 1;
-  max-width: 500px;
+  max-width: 640px;
 }
 
 @media (max-width: 992px) {
@@ -86,35 +82,54 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
 }
 
 .projectsHomePage-title {
-  font-size: clamp(2rem, 4vw + 1rem, 3rem);
-  font-weight: 700;
-  margin-bottom: 20px;
-  color: var(--brand-green);
+  font-size: clamp(1.4rem, 2vw + 1rem, 2.6rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 0 0 clamp(12px, 1.2vw, 20px);
+  color: $brand-green;
+  flex-wrap: wrap;
 }
 
 .projectsHomePage-description {
   font-size: $body-fs;
-  line-height: 1.6;
-  margin-bottom: 30px;
+  line-height: 1.65;
+  margin-bottom: clamp(18px, 2vw, 28px);
   color: $text;
 }
 
 .projectsHomePage-button {
-  padding: 12px 24px;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #eeeeee;
-  background-color: var(--cta-green);
-  border: none;
-  border-radius: 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ffffff;
+  background-color: $cta-green;
+  border: 0;
+  border-radius: 9999px;
   cursor: pointer;
   text-decoration: none;
-  transition: background-color 0.3s ease-in-out;
+  line-height: 1;
+  box-shadow: 0 8px 22px rgba($cta-green, 0.25);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+.projectsHomePage-button::after {
+  content: "↗";
+  display: inline-block;
+  font-weight: 800;
+  transform: translateY(-1px);
 }
 
 .projectsHomePage-button:hover,
 .projectsHomePage-button:focus-visible {
-  background-color: var(--cta-green-hover);
+  background-color: $cta-green-hover;
+  box-shadow: 0 10px 26px rgba($cta-green, 0.32);
+  transform: translateY(-1px);
+  outline: none;
 }
 
 @media (max-width: 992px) {
@@ -135,6 +150,8 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
   width: 100%;
   height: auto;
   object-fit: contain;
+  border-radius: 2rem;
+  box-shadow: $image-shadow;
 }
 
 .projectsHomePage-grid {
@@ -157,18 +174,33 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
 
 .grid-item-icon-wrapper {
   border: none;
-  padding: 4px;
+  padding: 0;
   display: inline-flex;
-  align-items: flex-start;
-  justify-content: left;
-  border-radius: 4px;
-  margin-top: 5px;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  margin-top: 4px;
+  position: relative;
+}
+
+.grid-item-icon-wrapper::before {
+  content: "➔";
+  font-weight: 900;
+  font-size: 26px;
+  line-height: 1;
+  color: $brand-green;
+  transform: translateX(0);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.grid-item:hover .grid-item-icon-wrapper::before {
+  transform: translateX(4px);
+  color: $cta-green-hover;
 }
 
 .grid-item-icon-wrapper .arrow-icon {
-  width: 20px;
-  height: 20px;
-  color: var(--brand-green);
+  display: none;
 }
 
 .grid-item-text {
@@ -178,14 +210,15 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
 .grid-item-title {
   font-size: clamp(1.2rem, 2.2vw + 0.5rem, 1.8rem);
   font-weight: 700;
+  line-height: 1.25;
   margin-bottom: 8px;
-  color: var(--brand-green);
+  color: $brand-green;
 }
 
 .grid-item-title a,
 .grid-item-title a:link,
 .grid-item-title a:visited {
-  color: var(--brand-green);
+  color: $brand-green;
   text-decoration: none;
   display: inline-block;
   transition: color 0.3s ease-in-out;
@@ -194,12 +227,12 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
 .grid-item-title a:hover,
 .grid-item-title a:focus-visible,
 .grid-item-title a:active {
-  color: var(--cta-green-hover);
+  color: $cta-green-hover;
 }
 
 .grid-item-description {
   font-size: $body-fs;
-  line-height: 1.5;
+  line-height: 1.55;
   color: $text;
 }
 
@@ -218,6 +251,7 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
   .projectsHomePage-content {
     align-items: center;
     text-align: center;
+    max-width: 38rem;
   }
 
   .projectsHomePage-button {
