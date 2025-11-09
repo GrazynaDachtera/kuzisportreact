@@ -5,23 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import "./SportsHomePage.scss";
 
-const ArrowIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2.5"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className="arrow-icon"
-  >
-    <path d="M7 7h10v10" />
-  </svg>
-);
-
 export default function ProjectsHomePage() {
   const features = [
     {
@@ -67,8 +50,6 @@ export default function ProjectsHomePage() {
                 doświadczeń. Poniżej przedstawiamy szczegóły dotyczące naszych
                 głównych dyscyplin:
               </p>
-
-              {/* ✅ Link styled as a button */}
               <Link href="/Sports" className="projectsHomePage-button">
                 Sprawdź
               </Link>
@@ -93,9 +74,7 @@ export default function ProjectsHomePage() {
           <div className="projectsHomePage-grid">
             {features.map((feature, index) => (
               <div className="grid-item" key={index}>
-                <div className="grid-item-icon-wrapper">
-                  <ArrowIcon />
-                </div>
+                <div className="grid-item-icon-wrapper" aria-hidden="true" />
                 <div className="grid-item-text">
                   {feature.link ? (
                     <h3 className="grid-item-title">
