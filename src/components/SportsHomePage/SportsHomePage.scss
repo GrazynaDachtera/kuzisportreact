@@ -92,8 +92,8 @@ $image-shadow: 0 16px 40px rgba($brand-green, 0.18),
 }
 
 .projectsHomePage-description {
-  font-size: clamp(0.7rem, calc((2vw + 1rem) * 0.5), 1.2rem);
-  line-height: 1.65;
+  font-size: $body-fs;
+  line-height: 1.55;
   margin-bottom: clamp(18px, 2vw, 28px);
   color: $text;
 }
@@ -204,8 +204,9 @@ $image-shadow: 0 16px 40px rgba($brand-green, 0.18),
 }
 
 .grid-item-title {
-  font-size: clamp(0.7rem, calc((2vw + 1rem) * 0.5), 1.2rem);
+  font-size: var(--title-fs);
   font-weight: 700;
+  line-height: var(--title-lh);
   margin-bottom: 8px;
   color: $brand-green;
 }
@@ -229,6 +230,14 @@ $image-shadow: 0 16px 40px rgba($brand-green, 0.18),
   font-size: $body-fs;
   line-height: 1.55;
   color: $text;
+}
+
+/* Smaller section titles on desktop while keeping bullet centered */
+@media (min-width: 1200px) {
+  .ProjectsHomePage .grid-item {
+    --title-fs: 1.45rem;
+    --bullet-size: 28px;
+  }
 }
 
 @media (max-width: 992px) {

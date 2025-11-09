@@ -3,6 +3,8 @@ $line: #e5e7eb;
 $input-bg: #fff;
 $brand: #114538;
 $brand-ink: #114538;
+$cta-green-hover: #276b49;
+$cta-green: #114538;
 $r: 10px;
 $pill-r: 9999px;
 $control-h: 48px;
@@ -42,6 +44,7 @@ $text: #6a7280;
     .trial__sub {
       margin: 0;
       font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+      font-weight: 700;
     }
   }
 
@@ -228,17 +231,20 @@ $text: #6a7280;
 
 .btn--primary,
 .btn {
-  height: 56px;
-  padding: 0 1.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border: 0;
   border-radius: 9999px;
-  background: $brand;
-  color: #fff;
+  background-color: $cta-green;
+  color: #ffffff;
   font-weight: 800;
-  font-size: 1rem;
-  box-shadow: 0 8px 22px rgba($brand, 0.25);
-  transition: transform 0.05s ease, filter 0.15s ease, background 0.15s ease,
-    box-shadow 0.15s ease;
+  font-size: 1.05rem;
   line-height: 1;
+  box-shadow: 0 8px 22px rgba($cta-green, 0.25);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease,
+    transform 0.15s ease;
   position: relative;
 }
 
@@ -256,14 +262,16 @@ $text: #6a7280;
 
 .btn--primary:hover,
 .btn--primary:focus-visible {
-  background: $brand-ink;
-  filter: brightness(0.97);
-  box-shadow: 0 10px 26px rgba($brand, 0.32);
+  background-color: $cta-green-hover;
+  box-shadow: 0 10px 26px rgba($cta-green, 0.32);
+  transform: translateY(-1px);
+  outline: none;
 }
 
 .btn--primary:active {
   transform: translateY(1px);
 }
+
 .btn--primary:disabled {
   opacity: 0.6;
   cursor: not-allowed;
@@ -281,11 +289,13 @@ $text: #6a7280;
   border-radius: 8px;
   border: 1px solid $line;
 }
+
 .msg--ok {
   background: #f0fff6;
   color: #0b6a3d;
   border-color: #d1fae5;
 }
+
 .msg--err {
   background: #fff5f5;
   color: #7a1b1b;
