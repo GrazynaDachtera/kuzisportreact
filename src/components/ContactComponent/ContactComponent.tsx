@@ -189,13 +189,13 @@ export default function ContactComponent() {
               <input
                 type="text"
                 name="bot_honey"
-                style={{ display: "none" }}
+                className="honey"
                 tabIndex={-1}
                 autoComplete="off"
               />
               <input type="hidden" name="page_url" value="/kontakt" />
 
-              <p aria-live="polite" style={{ margin: 0 }}>
+              <p aria-live="polite" className="status-line">
                 {status === "sending" && "Wysyłanie…"}
                 {status === "sent" && (
                   <span className="security">
@@ -203,7 +203,7 @@ export default function ContactComponent() {
                   </span>
                 )}
                 {status === "error" && (
-                  <span style={{ color: "#c00" }}>{errorMsg}</span>
+                  <span className="error">{errorMsg}</span>
                 )}
               </p>
 
@@ -296,7 +296,6 @@ export default function ContactComponent() {
               height={560}
               priority
               sizes="(max-width: 992px) 90vw, 46vw"
-              style={{ width: "100%", height: "100%", objectFit: "contain" }}
             />
           </div>
         </div>
