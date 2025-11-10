@@ -21,28 +21,36 @@ const isExternalHref = (to: string) =>
 
 const toTelHref = (raw: string) => `tel:${raw.replace(/[^0-9+]/g, "")}`;
 
-const FooterMenu = ({ header, links }: IFooterMenu) => (
-  <div className="footer-menu-container">
-    <h4 className="footer-menu-header">{header}</h4>
-    {links.map(({ text, to }, idx) =>
-      isExternalHref(to) ? (
-        <a
-          key={`${to}-${idx}`}
-          href={to}
-          className="footer-menu-link"
-          target={to.startsWith("http") ? "_blank" : undefined}
-          rel={to.startsWith("http") ? "noopener noreferrer" : undefined}
-        >
-          {text}
-        </a>
-      ) : (
-        <Link key={`${to}-${idx}`} href={to} className="footer-menu-link">
-          {text}
-        </Link>
-      )
-    )}
-  </div>
-);
+const FooterMenu = ({ header, links }: IFooterMenu) => {
+  const navId = `footer-nav-${header.toLowerCase().replace(/\s+/g, "-")}`;
+  return (
+    <nav className="footer-menu-container" aria-labelledby={navId}>
+      <h2 id={navId} className="footer-menu-header">
+        {header}
+      </h2>
+      <ul className="footer-menu-list">
+        {links.map(({ text, to }, idx) => (
+          <li key={`${to}-${idx}`} className="footer-menu-item">
+            {isExternalHref(to) ? (
+              <a
+                href={to}
+                className="footer-menu-link"
+                target={to.startsWith("http") ? "_blank" : undefined}
+                rel={to.startsWith("http") ? "noopener noreferrer" : undefined}
+              >
+                {text}
+              </a>
+            ) : (
+              <Link href={to} className="footer-menu-link">
+                {text}
+              </Link>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+};
 
 const FooterFirstSection = () => {
   const menus: IFooterMenu[] = [
@@ -52,11 +60,6 @@ const FooterFirstSection = () => {
         { text: "O nas", to: "/AboutUs" },
         { text: "Aktualności", to: "/News" },
         { text: "Dyscypliny", to: "/Sports" },
-      ],
-    },
-    {
-      header: "Zapisz się!",
-      links: [
         { text: "Rezerwacja", to: "/Reservation" },
         { text: "Grafik", to: "/Schedule" },
         { text: "Cennik", to: "/Pricelist" },
@@ -93,13 +96,13 @@ const FooterFirstSection = () => {
   ];
 
   return (
-    <div className="footer-first-section">
+    <section className="footer-first-section" aria-label="Nawigacja w stopce">
       <div className="footer-middle">
         {menus.map((menu, idx) => (
           <FooterMenu key={idx} {...menu} />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
@@ -117,39 +120,56 @@ const FooterSecondSection = () => {
   const year = new Date().getFullYear();
 
   return (
-    <div className="footer-second-section">
+    <section
+      className="footer-second-section"
+      aria-label="Dane adresowe i prawa autorskie"
+    >
       <div className="footer-address-wrapper">
-        <div className="footer-address-content">
+        <address
+          className="footer-address-content"
+          itemScope
+          itemType="https://schema.org/Organization"
+        >
           {address.map((item, idx) => (
             <div key={idx}>
-              <h4 className="footer-address-header">{item.header}</h4>
-              <p className="footer-address-line">{item.address}</p>
+              <h2 className="footer-address-header" itemProp="name">
+                {item.header}
+              </h2>
+              <p className="footer-address-line" itemProp="address">
+                {item.address}
+              </p>
               <p className="footer-nip">{item.NIP}</p>
               <div className="footer-phone-numbers">
                 {item.phoneNumbers.map((phone, i) => (
                   <p key={i} className="footer-phone">
-                    <a href={toTelHref(phone)}>{phone}</a>
+                    <a href={toTelHref(phone)} itemProp="telephone">
+                      {phone}
+                    </a>
                   </p>
                 ))}
               </div>
               <p className="footer-address-email">
-                <a href={`mailto:${item.email}`}>{item.email}</a>
+                <a href={`mailto:${item.email}`} itemProp="email">
+                  {item.email}
+                </a>
               </p>
             </div>
           ))}
+        </address>
+        <div className="footer-copyright" aria-label="Prawa autorskie">
+          © {year} KuziSport.
         </div>
-        <div className="footer-copyright">© {year} KuziSport.</div>
       </div>
-    </div>
+    </section>
   );
 };
 
 const Footer = () => (
-  <div className="footer-main-container">
+  <footer className="footer-main-container" role="contentinfo">
     <FooterFirstSection />
-    <hr className="footer-divider" />
+    <hr className="footer-divider" aria-hidden="true" />
     <FooterSecondSection />
-  </div>
+  </footer>
 );
 
 export default Footer;
