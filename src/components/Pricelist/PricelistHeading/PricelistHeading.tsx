@@ -1,17 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import "./AboutUsHeading.scss";
+import "./PricelistHeading.scss";
 
-export default function AboutUsHeading() {
+export default function PricelistHeading() {
   return (
     <header
       className="headingKuziSport-wrapper"
       aria-labelledby="about-heading"
     >
       <h1 id="about-heading" className="headingKuziSport-title">
-        <Link href="/AboutUs" className="headingKuziSport-link">
-          O nas
+        <Link href="/Pricelist" className="headingKuziSport-link">
+          Cennik
         </Link>
       </h1>
     </header>

@@ -24,20 +24,6 @@
   font-family: "Poppins", sans-serif;
 }
 
-/* HERO (keeps the title above content) */
-.page-hero {
-  width: 100%;
-  background: #fff;
-  padding: clamp(1.25rem, 2.5vw, 2.5rem) clamp(1rem, 3vw, 2rem);
-  padding-top: calc(var(--nav-h) + 4rem);
-}
-.page-hero-title {
-  margin: 0;
-  font-weight: 800;
-  font-size: clamp(2rem, 4vw + 1rem, 3rem);
-  color: var(--text-color);
-}
-
 /* FORM SECTION */
 .Reservation .trial {
   width: 100%;
@@ -125,7 +111,8 @@
   background: var(--input-bg);
   font-size: 0.95rem;
   outline: none;
-  transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color 0.15s ease, background-color 0.15s ease,
+    box-shadow 0.15s ease;
   color: #6a7280;
 }
 .Reservation .field input::placeholder,

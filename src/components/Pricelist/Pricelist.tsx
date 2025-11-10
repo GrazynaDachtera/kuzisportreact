@@ -55,11 +55,6 @@ const SECTIONS: PriceSection[] = [
 export default function HelpPage() {
   return (
     <section className="PriceList">
-      {/* HERO like on "Grafik" */}
-      <div className="page-hero">
-        <h1 className="page-hero-title">Cennik</h1>
-      </div>
-
       <div className="price-container">
         <p className="price-sub">
           Ceny zgodne z aktualnym cennikiem klubu na sezon 2025/2026.

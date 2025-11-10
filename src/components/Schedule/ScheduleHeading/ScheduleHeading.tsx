@@ -3,7 +3,7 @@
 import Link from "next/link";
 import "./ScheduleHeading.scss";
 
-export default function NewsPageHeading() {
+export default function ScheduleHeading() {
   return (
     <header
       className="headingKuziSport-wrapper"

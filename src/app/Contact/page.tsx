@@ -2,6 +2,7 @@
 
 import React, { useRef } from "react";
 import Navbar from "@/components/Navbar/Navbar";
+import ContactHeading from "@/components/ContactComponent/ContactHeading/ContactHeading";
 import ContactComponent from "@/components/ContactComponent/ContactComponent";
 import MapComponent from "@/components/MapComponent/MapComponent";
 import Footer from "@/components/Footer/Footer";
@@ -19,6 +20,7 @@ export default function Contact() {
         <section className="kuziSport">
           <div className="main">
             <Navbar />
+            <ContactHeading />
             <ContactComponent />
           </div>
           <MapComponent />

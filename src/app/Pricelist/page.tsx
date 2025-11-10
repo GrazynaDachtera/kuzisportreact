@@ -2,6 +2,7 @@
 
 import React, { useRef } from "react";
 import Navbar from "@/components/Navbar/Navbar";
+import PricelistHeading from "@/components/Pricelist/PricelistHeading/PricelistHeading";
 import Pricelist from "@/components/Pricelist/Pricelist";
 import Footer from "@/components/Footer/Footer";
 import Cookies from "@/components/Cookies/Cookies";
@@ -18,6 +19,7 @@ export default function HelpPage() {
         <section className="kuziSport">
           <div className="main">
             <Navbar />
+            <PricelistHeading />
             <Pricelist />
           </div>
           <Footer />

@@ -190,10 +190,6 @@ export default function HelpPage() {
 
   return (
     <section className="Reservation">
-      <div className="page-hero">
-        <h1 className="page-hero-title">Rezerwacja</h1>
-      </div>
-
       <section className="trial" aria-labelledby="trial-heading">
         <div className="trial__container">
           <div className="trial__content">
