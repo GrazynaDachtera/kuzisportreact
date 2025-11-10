@@ -3,12 +3,17 @@
 import Link from "next/link";
 import "./ScheduleHeading.scss";
 
-export default function AbcHeadingPage() {
+export default function NewsPageHeading() {
   return (
-    <main className="AbcHeading-wrapper">
-      <h1 className="AbcHeading-title">
-        <Link href="/Schedule">Grafik</Link>
+    <header
+      className="headingKuziSport-wrapper"
+      aria-labelledby="about-heading"
+    >
+      <h1 id="about-heading" className="headingKuziSport-title">
+        <Link href="/Schedule" className="headingKuziSport-link">
+          Grafik zajęć
+        </Link>
       </h1>
-    </main>
+    </header>
   );
 }
