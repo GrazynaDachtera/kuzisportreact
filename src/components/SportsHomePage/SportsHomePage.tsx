@@ -61,8 +61,8 @@ export default function ProjectsHomePage() {
 
             <div className="projectsHomePage-image-wrapper">
               <Image
-                src="/ProjectsHomePage/aerial.jpg"
-                alt="Zajęcia aerial silks - osoba ćwicząca na szarfach"
+                src="/ProjectsHomePage/calistenics.jpeg"
+                alt="Zajęcia kalisteniki - osoba ćwicząca na paraletkach"
                 width={652}
                 height={336}
                 className="projectsHomePage-image"
