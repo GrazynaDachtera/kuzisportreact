@@ -125,7 +125,7 @@ export default function MapComponent({
         L.control.zoom({ position: "bottomright" }).addTo(mapRef.current);
 
         const pinSvg = `
-          <svg width="56" height="72" viewBox="0 0 56 72" xmlns="http://www.w3.org/2000/svg">
+          <svg width="3.5rem" height="4.5rem" viewBox="0 0 56 72" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
             <path d="M28 72c8-14 28-27 28-44C56 12.54 43.46 0 28 0S0 12.54 0 28c0 17 20 30 28 44z" fill="currentColor"/>
             <circle cx="28" cy="28" r="10" fill="#fff"/>
           </svg>
@@ -163,12 +163,32 @@ export default function MapComponent({
   }, [address]);
 
   return (
-    <section className={`MapComponent ${poppins.className} ${className}`}>
-      <div ref={mapEl} className="map-embed" />
-      <div className="info-card" aria-label="Company contact card">
+    <section
+      className={`MapComponent ${poppins.className} ${className}`}
+      role="region"
+      aria-labelledby="map-title"
+    >
+      <h2 id="map-title" className="visually-hidden">
+        Lokalizacja i dane firmy
+      </h2>
+
+      <div
+        ref={mapEl}
+        className="map-embed"
+        role="img"
+        aria-label={`Mapa lokalizacji: ${address}`}
+      />
+
+      <div className="info-card" aria-label="Karta kontaktowa firmy">
         <div className="card-header">
-          <span className="pin">
-            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+          <span className="pin" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              width="1.375rem"
+              height="1.375rem"
+              aria-hidden="true"
+              focusable="false"
+            >
               <path
                 d="M12 21s-6-5.33-6-10a6 6 0 1 1 12 0c0 4.67-6 10-6 10z"
                 fill="none"
@@ -190,7 +210,7 @@ export default function MapComponent({
 
         <p className="address">{address}</p>
 
-        <div className="list">
+        <div className="list" aria-label="Identyfikatory firmy">
           <div>
             <b>NIP:</b> {nip}
           </div>
@@ -198,6 +218,18 @@ export default function MapComponent({
             <b>REGON:</b> {regon}
           </div>
         </div>
+
+        <a
+          className="map-link"
+          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+            address
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer external"
+          aria-label="Otwórz lokalizację w Mapach Google (otworzy się w nowej karcie)"
+        >
+          Otwórz w Mapach
+        </a>
       </div>
     </section>
   );

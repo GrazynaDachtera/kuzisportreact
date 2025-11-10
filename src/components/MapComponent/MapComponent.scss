@@ -1,13 +1,25 @@
 :root {
-  --accent: #114538; /* green */
+  --accent: #114538;
   --text: #52525b;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 0.0625rem !important;
+  height: 0.0625rem !important;
+  padding: 0 !important;
+  margin: -0.0625rem !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
 }
 
 .MapComponent {
   position: relative;
   width: 100%;
-  height: 520px;
-  border-radius: 16px;
+  height: 26.25rem;
+  border-radius: 1rem;
   overflow: hidden;
 }
 
@@ -27,63 +39,64 @@
   filter: grayscale(100%) brightness(1.05) contrast(0.92);
 }
 
-/* Pin color for L.divIcon (uses currentColor in SVG) */
 .custom-pin {
   color: var(--accent);
 }
 
 .info-card {
   position: absolute;
-  left: 32px;
-  top: 32px;
-  z-index: 10;
-  max-width: 360px;
+  inset-block-start: 1rem;
+  inset-inline-start: 1rem;
+  inset-inline-end: 1rem;
+  z-index: 1;
+  max-width: none;
   background: #fff;
-  border-radius: 22px;
-  padding: 26px 28px;
+  border-radius: 1.375rem;
+  padding: 1.625rem 1.75rem;
   line-height: 1.55;
   color: var(--text);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.06), 0 28px 60px rgba(0, 0, 0, 0.12);
-  pointer-events: none;
+  box-shadow: 0 0.75rem 1.25rem rgba(0, 0, 0, 0.06),
+    0 1.75rem 3.75rem rgba(0, 0, 0, 0.12);
+  pointer-events: auto;
 }
 
 .card-header {
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 14px;
+  gap: 0.875rem;
+  margin-block-end: 0.875rem;
 }
 
 .pin {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 46px;
-  height: 46px;
+  width: 2.875rem;
+  height: 2.875rem;
   border-radius: 9999px;
   background: #fff;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  border: 0.0625rem solid #e5e7eb;
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.08);
   color: var(--accent);
-  flex: 0 0 46px;
+  flex: 0 0 2.875rem;
 }
 
 .info-card h3 {
   margin: 0;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 700;
   color: var(--accent);
 }
 
 .address {
-  margin: 10px 0 14px;
-  font-size: 16px;
+  margin: 0.625rem 0 0.875rem;
+  font-size: 1rem;
   font-weight: 700;
 }
 
 .list > div {
-  margin-top: 8px;
-  font-size: 15px;
+  margin-block-start: 0.5rem;
+  font-size: 0.9375rem;
   font-weight: 700;
   color: var(--text);
 }
@@ -93,26 +106,53 @@
   color: var(--accent);
 }
 
+.map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-block-start: 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+  outline: none;
+}
+
+.map-link::after {
+  content: "↗︎";
+  font-size: 0.95em;
+  line-height: 1;
+  transform: translateY(-0.0625rem);
+}
+
+.map-link:hover,
+.map-link:focus-visible {
+  text-decoration: underline;
+  box-shadow: 0 0 0 0.25rem rgba(17, 69, 56, 0.15);
+  border-radius: 0.25rem;
+}
+
 /* Zoom controls */
 .leaflet-right .leaflet-control-zoom {
-  margin: 0 18px 18px 0;
+  margin: 0 1.125rem 1.125rem 0;
 }
 
 .leaflet-control-zoom {
   border: none;
-  border-radius: 12px;
+  border-radius: 0.75rem;
   overflow: hidden;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08), 0 12px 28px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 0.375rem 0.875rem rgba(0, 0, 0, 0.08),
+    0 0.75rem 1.75rem rgba(0, 0, 0, 0.12);
 }
 
 .leaflet-control-zoom a {
-  width: 48px;
-  height: 48px;
-  line-height: 48px;
+  width: 3rem;
+  height: 3rem;
+  line-height: 3rem;
   background: #fff;
   color: var(--text);
   text-align: center;
-  font-size: 26px;
+  font-size: 1.625rem;
   font-weight: 400;
   font-family: inherit;
   border: none;
@@ -122,22 +162,33 @@
   background: #fafafa;
   color: #52525b;
 }
+
 .leaflet-control-zoom a:focus {
   outline: none;
-  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.06);
-}
-.leaflet-control-zoom-in {
-  border-bottom: 1px solid #e5e7eb;
+  box-shadow: inset 0 0 0 0.125rem rgba(0, 0, 0, 0.06);
 }
 
-@media (max-width: 640px) {
+.leaflet-control-zoom-in {
+  border-bottom: 0.0625rem solid #e5e7eb;
+}
+
+/* ≥40em */
+@media (min-width: 40em) {
   .MapComponent {
-    height: 420px;
+    height: 32.5rem;
   }
+
   .info-card {
-    left: 16px;
-    top: 16px;
-    right: 16px;
-    max-width: none;
+    inset-inline-start: 2rem;
+    inset-block-start: 2rem;
+    inset-inline-end: auto;
+    max-width: 22.5rem;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .leaflet-tile-pane {
+    filter: grayscale(100%) contrast(0.95);
   }
 }

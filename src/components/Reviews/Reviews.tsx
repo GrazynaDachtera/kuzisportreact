@@ -6,8 +6,6 @@ import "./Reviews.scss";
 const PhoneIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="18"
-    height="18"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -15,6 +13,8 @@ const PhoneIcon = () => (
     strokeLinecap="round"
     strokeLinejoin="round"
     aria-hidden="true"
+    focusable="false"
+    className="icon-svg"
   >
     <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3.11 5.18 2 2 0 0 1 5.1 3h3a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11L9.1 10.9a16 16 0 0 0 4 4l1.57-1.15a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92z" />
   </svg>
@@ -23,8 +23,6 @@ const PhoneIcon = () => (
 const MailIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="18"
-    height="18"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -32,6 +30,8 @@ const MailIcon = () => (
     strokeLinecap="round"
     strokeLinejoin="round"
     aria-hidden="true"
+    focusable="false"
+    className="icon-svg"
   >
     <path d="M4 4h16v16H4z" />
     <path d="m22 6-10 7L2 6" />
@@ -41,8 +41,6 @@ const MailIcon = () => (
 const PinIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="18"
-    height="18"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -50,6 +48,8 @@ const PinIcon = () => (
     strokeLinecap="round"
     strokeLinejoin="round"
     aria-hidden="true"
+    focusable="false"
+    className="icon-svg"
   >
     <path d="M12 22s-7-5.14-7-11a7 7 0 1 1 14 0c0 5.86-7 11-7 11z" />
     <circle cx="12" cy="11" r="2.5" />
@@ -96,9 +96,11 @@ function StripItem(props: ContactItem) {
   const { Icon, label } = props;
 
   if (props.type === "address") {
+    const fullAddress = `${props.address.street}, ${props.address.postalCode} ${props.address.city}`;
     return (
-      <div
+      <li
         className="strip-item"
+        role="listitem"
         itemScope
         itemType="https://schema.org/Organization"
       >
@@ -116,30 +118,50 @@ function StripItem(props: ContactItem) {
             className="value"
             href={props.href}
             target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Adres"
+            rel="noopener noreferrer external"
+            aria-label={`Otwórz adres w Mapach Google: ${fullAddress}`}
           >
             <span itemProp="streetAddress">{props.address.street}</span>,{" "}
             <span itemProp="postalCode">{props.address.postalCode}</span>{" "}
             <span itemProp="addressLocality">{props.address.city}</span>
           </a>
         </div>
-      </div>
+      </li>
     );
   }
 
+  const value = "value" in props ? props.value : "";
+  const aria =
+    props.type === "phone"
+      ? `${label} ${value}, zadzwoń`
+      : props.type === "email"
+      ? `${label} ${value}, wyślij e-mail`
+      : `${label} ${value}`;
+
+  const itemPropAttr =
+    props.type === "phone"
+      ? { itemProp: "telephone" }
+      : props.type === "email"
+      ? { itemProp: "email" }
+      : {};
+
   return (
-    <div className="strip-item">
+    <li className="strip-item" role="listitem">
       <div className="icon" aria-hidden="true">
         <Icon />
       </div>
       <div className="meta">
         <p className="label">{label}</p>
-        <a className="value" href={props.href}>
-          {"value" in props ? props.value : ""}
+        <a
+          className="value"
+          href={props.href}
+          aria-label={aria}
+          {...itemPropAttr}
+        >
+          {value}
         </a>
       </div>
-    </div>
+    </li>
   );
 }
 
@@ -190,11 +212,20 @@ export default function Reviews() {
   ];
 
   return (
-    <section className="contact-strip" aria-label="Dane kontaktowe">
-      <div className="contact-container strip-grid">
-        {CONTACTS.map((item, idx) => (
-          <StripItem key={idx} {...item} />
-        ))}
+    <section
+      className="contact-strip"
+      aria-labelledby="contact-title"
+      role="region"
+    >
+      <h2 id="contact-title" className="visually-hidden">
+        Dane kontaktowe
+      </h2>
+      <div className="contact-container">
+        <ul className="strip-grid" role="list">
+          {CONTACTS.map((item, idx) => (
+            <StripItem key={idx} {...item} />
+          ))}
+        </ul>
       </div>
     </section>
   );
