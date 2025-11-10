@@ -3,11 +3,10 @@ $brand-green: #114538;
 $cta-green: #114538;
 $cta-green-hover: #276b49;
 $font: "Poppins", sans-serif;
-
 $text: #6a7280;
 $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
-$image-shadow: 0 16px 40px rgba($brand-green, 0.18),
-  0 6px 16px rgba($brand-green, 0.1);
+$image-shadow: 0 1rem 2.5rem rgba($brand-green, 0.18),
+  0 0.375rem 1rem rgba($brand-green, 0.1);
 
 .ProjectsHomePage {
   width: 100%;
@@ -20,89 +19,57 @@ $image-shadow: 0 16px 40px rgba($brand-green, 0.18),
   padding-block: $section-py;
 }
 
-.projectsHomePage-top-wrapper .projectsHomePage-container {
-  padding-block: 0;
-  padding-inline: 2rem;
-}
-
-.projectsHomePage-grid-wrapper {
-  background-color: #ffffff;
-  padding: 60px 0;
-  width: 100%;
-}
-
 .projectsHomePage-container {
   width: min(92rem, 92%);
   margin: 0 auto;
-  padding: 0 2rem;
+  padding-inline: 1rem;
+  padding-block: 0;
 }
 
 .projectsHomePage-top {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: clamp(16px, 3vw, 32px);
-}
-
-@media (min-width: 992px) {
-  .projectsHomePage-content,
-  .projectsHomePage-image-wrapper {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
-
-  .projectsHomePage-image {
-    width: 100%;
-    max-width: 560px;
-    height: auto;
-    object-fit: contain;
-  }
-}
-
-@media (max-width: 992px) {
-  .projectsHomePage-top {
-    flex-direction: column;
-    text-align: left;
-    align-items: flex-start;
-  }
+  text-align: center;
+  gap: 1rem;
 }
 
 .projectsHomePage-content {
   flex: 1;
-  max-width: 640px;
-}
-
-@media (max-width: 992px) {
-  .projectsHomePage-content {
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
+  max-width: 38rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .projectsHomePage-title {
-  font-size: clamp(1.4rem, 2vw + 1rem, 2.2rem);
+  font-size: clamp(2rem, 8vw, 2.6rem);
   font-weight: 800;
   line-height: 1.2;
   letter-spacing: -0.01em;
-  margin: 0 0 clamp(12px, 1.2vw, 20px);
+  margin: 0 0 clamp(0.75rem, 1.2vw, 1.25rem);
   color: $brand-green;
   flex-wrap: wrap;
+  text-align: left;
+  align-self: stretch;
+  width: 100%;
 }
 
 .projectsHomePage-description {
   font-size: $body-fs;
   line-height: 1.55;
-  margin-bottom: clamp(18px, 2vw, 28px);
+  margin-bottom: clamp(1.125rem, 2vw, 1.75rem);
   color: $text;
+  text-align: left;
+  align-self: stretch;
+  width: 100%;
 }
 
 .projectsHomePage-button {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 14px 28px;
+  gap: 0.625rem;
+  padding: 0.875rem 1.75rem;
   font-size: 1.05rem;
   font-weight: 800;
   color: #ffffff;
@@ -112,69 +79,75 @@ $image-shadow: 0 16px 40px rgba($brand-green, 0.18),
   cursor: pointer;
   text-decoration: none;
   line-height: 1;
-  box-shadow: 0 8px 22px rgba($cta-green, 0.25);
+  box-shadow: 0 0.5rem 1.375rem rgba($cta-green, 0.25);
   transition: background-color 0.2s ease, box-shadow 0.2s ease,
     transform 0.15s ease;
+  align-self: center;
 }
 
 .projectsHomePage-button::after {
-  content: "↗";
+  content: "\2197\FE0E";
   display: inline-block;
+  font-family: $font;
   font-weight: 800;
-  transform: translateY(-1px);
+  line-height: 1;
+  transform: translateY(-0.0625rem);
 }
 
 .projectsHomePage-button:hover,
 .projectsHomePage-button:focus-visible {
   background-color: $cta-green-hover;
-  box-shadow: 0 10px 26px rgba($cta-green, 0.32);
-  transform: translateY(-1px);
+  box-shadow: 0 0.625rem 1.625rem rgba($cta-green, 0.32);
+  transform: translateY(-0.0625rem);
   outline: none;
 }
 
-@media (max-width: 992px) {
-  .projectsHomePage-button {
-    align-self: flex-start;
-  }
+.projectsHomePage-button:focus-visible {
+  box-shadow: 0 0 0 0.1875rem rgba($cta-green, 0.28),
+    0 0.5rem 1.375rem rgba($cta-green, 0.25);
 }
 
 .projectsHomePage-image-wrapper {
   flex: 1;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   max-width: 100%;
+  margin-top: 1rem;
+  width: 100%;
 }
 
 .projectsHomePage-image {
-  width: 100%;
+  width: min(85vw, 32.5rem);
   height: auto;
   object-fit: contain;
   border-radius: 2rem;
   box-shadow: $image-shadow;
 }
 
-.projectsHomePage-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px 30px;
-  counter-reset: feature;
+.projectsHomePage-grid-wrapper {
+  background-color: #ffffff;
+  padding-block: 3.75rem;
+  width: 100%;
 }
 
-@media (max-width: 768px) {
-  .projectsHomePage-grid {
-    grid-template-columns: 1fr;
-  }
+.projectsHomePage-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem 1.875rem;
+  counter-reset: feature;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .grid-item {
-  --bullet-size: 32px;
+  --bullet-size: 2rem;
   --title-fs: clamp(1.2rem, 2.2vw + 0.5rem, 1.8rem);
   --title-lh: 1.25;
-
   display: flex;
   align-items: flex-start;
-  gap: 15px;
+  gap: 0.9375rem;
   counter-increment: feature;
 }
 
@@ -188,7 +161,7 @@ $image-shadow: 0 16px 40px rgba($brand-green, 0.18),
   display: grid;
   place-items: center;
   font-weight: 800;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1;
   margin-top: calc(
     (var(--title-lh) * var(--title-fs) - var(--bullet-size)) / 2
@@ -207,7 +180,7 @@ $image-shadow: 0 16px 40px rgba($brand-green, 0.18),
   font-size: clamp(1.2rem, 2.2vw + 0.5rem, 1.2rem);
   font-weight: 700;
   line-height: var(--title-lh);
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
   color: $brand-green;
 }
 
@@ -217,7 +190,7 @@ $image-shadow: 0 16px 40px rgba($brand-green, 0.18),
   color: $brand-green;
   text-decoration: none;
   display: inline-block;
-  transition: color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out, box-shadow 0.2s ease;
 }
 
 .grid-item-title a:hover,
@@ -226,58 +199,74 @@ $image-shadow: 0 16px 40px rgba($brand-green, 0.18),
   color: $cta-green-hover;
 }
 
+.grid-item-title a:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem rgba($cta-green, 0.28);
+  border-radius: 0.5rem;
+}
+
 .grid-item-description {
   font-size: $body-fs;
   line-height: 1.55;
   color: $text;
 }
 
-/* Smaller section titles on desktop while keeping bullet centered */
-@media (min-width: 1200px) {
-  .ProjectsHomePage .grid-item {
-    --title-fs: 1.45rem;
-    --bullet-size: 28px;
-  }
-}
-
-@media (max-width: 992px) {
-  .projectsHomePage-top-wrapper .projectsHomePage-container {
+/* ≥480px -> 30em */
+@media (min-width: 30em) {
+  .projectsHomePage-container {
     padding-inline: 2rem;
   }
 }
 
-@media (max-width: 768px) {
-  .projectsHomePage-top {
-    align-items: center;
-    text-align: center;
-  }
-
-  .projectsHomePage-content {
-    align-items: center;
-    text-align: center;
-    max-width: 38rem;
-  }
-
-  .projectsHomePage-button {
-    align-self: center;
-  }
-
-  .projectsHomePage-image-wrapper {
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1rem;
+/* ≥768px -> 48em */
+@media (min-width: 48em) {
+  .projectsHomePage-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .projectsHomePage-image {
-    width: min(85vw, 520px);
-    height: auto;
+    width: 100%;
+  }
+
+  .projectsHomePage-title {
+    font-size: clamp(1.4rem, 2vw + 1rem, 2.2rem);
   }
 }
 
-@media (max-width: 480px) {
-  .projectsHomePage-top-wrapper .projectsHomePage-container,
-  .projectsHomePage-container {
-    padding-inline: 1rem;
+/* ≥992px -> 62em */
+@media (min-width: 62em) {
+  .projectsHomePage-top {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(1rem, 3vw, 2rem);
+    text-align: initial;
+  }
+
+  .projectsHomePage-content,
+  .projectsHomePage-image-wrapper {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .projectsHomePage-content {
+    max-width: 40rem;
+    align-items: flex-start;
+  }
+
+  .projectsHomePage-button {
+    align-self: flex-start;
+  }
+
+  .projectsHomePage-image {
+    max-width: 35rem;
+  }
+}
+
+/* ≥1200px -> 75em */
+@media (min-width: 75em) {
+  .ProjectsHomePage .grid-item {
+    --title-fs: 1.45rem;
+    --bullet-size: 1.75rem;
   }
 }

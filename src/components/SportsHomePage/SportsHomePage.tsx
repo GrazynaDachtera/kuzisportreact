@@ -34,13 +34,13 @@ export default function ProjectsHomePage() {
   ];
 
   return (
-    <section className="ProjectsHomePage">
+    <section className="ProjectsHomePage" aria-labelledby="sports-heading">
       <div className="projectsHomePage-top-wrapper">
         <div className="projectsHomePage-container">
           <div className="projectsHomePage-top">
             <div className="projectsHomePage-content">
-              <h2 className="projectsHomePage-title">
-                <span className="title-line">Nasze dyscypliny sportowe </span>
+              <h2 id="sports-heading" className="projectsHomePage-title">
+                <span className="title-line">Nasze dyscypliny sportowe</span>
               </h2>
               <p className="projectsHomePage-description">
                 Witamy na stronie naszego klubu, gdzie pasja do sportu spotyka
@@ -50,7 +50,11 @@ export default function ProjectsHomePage() {
                 doświadczeń. Poniżej przedstawiamy szczegóły dotyczące naszych
                 głównych dyscyplin:
               </p>
-              <Link href="/Sports" className="projectsHomePage-button">
+              <Link
+                href="/Sports"
+                className="projectsHomePage-button"
+                aria-label="Przejdź do listy wszystkich dyscyplin sportowych"
+              >
                 Sprawdź
               </Link>
             </div>
@@ -58,7 +62,7 @@ export default function ProjectsHomePage() {
             <div className="projectsHomePage-image-wrapper">
               <Image
                 src="/ProjectsHomePage/aerial.jpg"
-                alt="Portret osoby"
+                alt="Zajęcia aerial silks - osoba ćwicząca na szarfach"
                 width={652}
                 height={336}
                 className="projectsHomePage-image"
@@ -69,11 +73,14 @@ export default function ProjectsHomePage() {
         </div>
       </div>
 
-      <div className="projectsHomePage-grid-wrapper">
+      <div
+        className="projectsHomePage-grid-wrapper"
+        aria-labelledby="sports-heading"
+      >
         <div className="projectsHomePage-container">
-          <div className="projectsHomePage-grid">
+          <ol className="projectsHomePage-grid" role="list">
             {features.map((feature, index) => (
-              <div className="grid-item" key={index}>
+              <li className="grid-item" key={index}>
                 <div className="grid-item-icon-wrapper" aria-hidden="true" />
                 <div className="grid-item-text">
                   {feature.link ? (
@@ -89,9 +96,9 @@ export default function ProjectsHomePage() {
                     </p>
                   )}
                 </div>
-              </div>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </div>
     </section>
