@@ -3,12 +3,17 @@
 import Link from "next/link";
 import "./NewsPageHeading.scss";
 
-export default function AboutFoundationHeading() {
+export default function NewsPageHeading() {
   return (
-    <main className="NewsPageHeading-wrapper">
-      <h1 className="NewsPageHeading-title">
-        <Link href="/NewsPage">Aktualności</Link>
+    <header
+      className="headingKuziSport-wrapper"
+      aria-labelledby="about-heading"
+    >
+      <h1 id="about-heading" className="headingKuziSport-title">
+        <Link href="/NewsPage" className="headingKuziSport-link">
+          Aktualności
+        </Link>
       </h1>
-    </main>
+    </header>
   );
 }

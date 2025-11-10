@@ -3,7 +3,7 @@ $space-2: 1rem;
 $space-3: 1.5rem;
 $space-4: 2rem;
 
-.AboutFoundationHeading-wrapper {
+.headingKuziSport-wrapper {
   --nav-h: 5.375rem;
   --pad-inline: #{$space-2};
   display: flex;
@@ -12,7 +12,7 @@ $space-4: 2rem;
   padding-block-end: $space-4;
 }
 
-.AboutFoundationHeading-title {
+.headingKuziSport-title {
   scroll-margin-top: calc(var(--nav-h) + 2rem);
   width: 100%;
   display: flex;
@@ -28,7 +28,7 @@ $space-4: 2rem;
   padding-top: calc(var(--nav-h) + 4rem);
 }
 
-.AboutFoundationHeading-link {
+.headingKuziSport-link {
   color: inherit;
   text-decoration: none;
   padding: $space-1 0;
@@ -46,23 +46,23 @@ $space-4: 2rem;
 }
 
 @media (min-width: 30.0625em) {
-  .AboutFoundationHeading-wrapper {
+  .headingKuziSport-wrapper {
     --nav-h: 4.5rem;
     --pad-inline: #{$space-3};
   }
 
-  .AboutFoundationHeading-title {
+  .headingKuziSport-title {
     font-size: clamp(2rem, 4vw + 1rem, 3rem);
   }
 }
 
 @media (min-width: 64.0625em) {
-  .AboutFoundationHeading-wrapper {
+  .headingKuziSport-wrapper {
     --nav-h: 5rem;
     --pad-inline: #{$space-4};
   }
 
-  .AboutFoundationHeading-title {
+  .headingKuziSport-title {
     font-size: clamp(2rem, 3vw + 1rem, 3rem);
   }
 }

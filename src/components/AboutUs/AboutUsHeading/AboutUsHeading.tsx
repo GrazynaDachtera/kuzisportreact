@@ -6,11 +6,11 @@ import "./AboutUsHeading.scss";
 export default function AboutFoundationHeading() {
   return (
     <header
-      className="AboutFoundationHeading-wrapper"
+      className="headingKuziSport-wrapper"
       aria-labelledby="about-heading"
     >
-      <h1 id="about-heading" className="AboutFoundationHeading-title">
-        <Link href="/AboutUs" className="AboutFoundationHeading-link">
+      <h1 id="about-heading" className="headingKuziSport-title">
+        <Link href="/AboutUs" className="headingKuziSport-link">
           O nas
         </Link>
       </h1>
