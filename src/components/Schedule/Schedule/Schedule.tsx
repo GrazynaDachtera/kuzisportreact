@@ -14,11 +14,11 @@ type Day =
 type ScheduleItem = {
   id: string;
   day: Day;
-  start: string; // "HH:MM"
-  end: string; // "HH:MM"
-  title: string; // e.g. "Parkour", "Akrobatyka"
+  start: string;
+  end: string;
+  title: string;
   group?: string;
-  location?: string; // e.g. "Sala", "Szkoła GES", "Ring", "Train Station"
+  location?: string;
   tags?: string[];
 };
 
@@ -34,9 +34,7 @@ const DAYS: Day[] = [
 const byTime = (a: ScheduleItem, b: ScheduleItem) =>
   a.start.localeCompare(b.start);
 
-// UPDATED SCHEDULE (synced to latest PDF) :contentReference[oaicite:1]{index=1}
 const SCHEDULE: ScheduleItem[] = [
-  // —————————————————— PONIEDZIAŁEK ——————————————————
   {
     id: "mon-gim-1",
     day: "Poniedziałek",
@@ -127,8 +125,6 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Sala",
     tags: ["dzieci 4+"],
   },
-
-  // Szkoła GES (Poniedziałek)
   {
     id: "mon-ges-1",
     day: "Poniedziałek",
@@ -179,8 +175,6 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Szkoła GES",
     tags: ["studenci"],
   },
-
-  // Ring (Poniedziałek)
   {
     id: "mon-ring-1",
     day: "Poniedziałek",
@@ -220,8 +214,6 @@ const SCHEDULE: ScheduleItem[] = [
     group: "Zajęcia indywidualne",
     location: "Ring",
   },
-
-  // —————————————————— WTOREK ——————————————————
   {
     id: "tue-gim-1",
     day: "Wtorek",
@@ -271,8 +263,6 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Sala",
     tags: ["aerial"],
   },
-
-  // Szkoła GES (Wtorek)
   {
     id: "tue-ges-1",
     day: "Wtorek",
@@ -323,8 +313,6 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Szkoła GES",
     tags: ["wyczyn"],
   },
-
-  // Ring (Wtorek)
   {
     id: "tue-ring-1",
     day: "Wtorek",
@@ -345,8 +333,6 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Ring",
     tags: ["prospekci"],
   },
-
-  // —————————————————— ŚRODA ——————————————————
   {
     id: "wed-gim-1",
     day: "Środa",
@@ -437,8 +423,6 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Sala",
     tags: ["studenci", "dorośli"],
   },
-
-  // Szkoła GES (Środa)
   {
     id: "wed-ges-1",
     day: "Środa",
@@ -469,7 +453,6 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Szkoła GES",
     tags: ["dzieci 11–14"],
   },
-  // NEW per PDF: external group training
   {
     id: "wed-ges-ext",
     day: "Środa",
@@ -489,8 +472,6 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Szkoła GES",
     tags: ["wyczyn"],
   },
-
-  // Ring (Środa)
   {
     id: "wed-ring-0",
     day: "Środa",
@@ -521,7 +502,6 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Ring",
     tags: ["zaawansowani"],
   },
-  // NEW per PDF: individual
   {
     id: "wed-ring-3",
     day: "Środa",
@@ -531,8 +511,6 @@ const SCHEDULE: ScheduleItem[] = [
     group: "Zajęcia indywidualne",
     location: "Ring",
   },
-
-  // —————————————————— CZWARTEK ——————————————————
   {
     id: "thu-gim-1",
     day: "Czwartek",
@@ -563,7 +541,6 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Sala",
     tags: ["dzieci 11–14"],
   },
-  // NEW per PDF: "Gimnastyka Studenci" shown alongside Stretching
   {
     id: "thu-gim-std",
     day: "Czwartek",
@@ -593,8 +570,6 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Sala",
     tags: ["aerial"],
   },
-
-  // Szkoła GES (Czwartek)
   {
     id: "thu-ges-1",
     day: "Czwartek",
@@ -635,8 +610,6 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Szkoła GES",
     tags: ["wyczyn"],
   },
-
-  // Ring (Czwartek)
   {
     id: "thu-ring-1",
     day: "Czwartek",
@@ -666,8 +639,6 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Ring",
     tags: ["boks"],
   },
-
-  // —————————————————— PIĄTEK ——————————————————
   {
     id: "fri-ges-0",
     day: "Piątek",
@@ -718,9 +689,6 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Sala",
     tags: ["dzieci 11–14"],
   },
-
-  // Szkoła GES (Piątek)
-  // NEW per PDF: external group in GES + Gymnastyka Wyczyn present
   {
     id: "fri-ges-ext",
     day: "Piątek",
@@ -740,8 +708,6 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Szkoła GES",
     tags: ["wyczyn"],
   },
-
-  // Sala (Piątek) – Aerial
   {
     id: "fri-aerial-1",
     day: "Piątek",
@@ -751,7 +717,6 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Sala",
     tags: ["aerial"],
   },
-  // NEW per PDF: explicit late Aerial Hoop slot
   {
     id: "fri-aerial-2",
     day: "Piątek",
@@ -761,8 +726,6 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Sala",
     tags: ["aerial"],
   },
-
-  // Ring (Piątek)
   {
     id: "fri-ring-1",
     day: "Piątek",
@@ -783,8 +746,6 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Ring",
     tags: ["zamknięta"],
   },
-
-  // —————————————————— SOBOTA ——————————————————
   {
     id: "sat-akr-1",
     day: "Sobota",
@@ -834,7 +795,6 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Sala",
     tags: ["wyczyn"],
   },
-  // NEW per PDF: external/events block
   {
     id: "sat-events",
     day: "Sobota",
@@ -844,8 +804,6 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Sala",
     tags: ["zewnętrzna", "event"],
   },
-
-  // Ring (Sobota)
   {
     id: "sat-ring-1",
     day: "Sobota",
@@ -855,8 +813,6 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Ring",
     tags: ["kickboxing"],
   },
-
-  // Info (Sobota)
   {
     id: "sat-info-1",
     day: "Sobota",
@@ -872,7 +828,6 @@ const SCHEDULE: ScheduleItem[] = [
 export default function AbcPage() {
   const [activeDay, setActiveDay] = useState<Day>("Poniedziałek");
   const [query, setQuery] = useState("");
-  const [loc, setLoc] = useState<string>("Wszystkie");
   const [cat, setCat] = useState<string>("Wszystkie");
 
   const categories = useMemo(() => {
@@ -881,20 +836,13 @@ export default function AbcPage() {
     return ["Wszystkie", ...Array.from(set).sort()];
   }, []);
 
-  const locations = useMemo(() => {
-    const set = new Set<string>();
-    SCHEDULE.forEach((x) => x.location && set.add(x.location));
-    return ["Wszystkie", ...Array.from(set).sort()];
-  }, []);
-
   const dayItems = useMemo(() => {
     const q = query.trim().toLowerCase();
     return SCHEDULE.filter((x) => x.day === activeDay)
-      .filter((x) => (loc === "Wszystkie" ? true : x.location === loc))
       .filter((x) => (cat === "Wszystkie" ? true : x.title === cat))
       .filter((x) =>
         q
-          ? [x.title, x.group, x.location, ...(x.tags ?? [])]
+          ? [x.title, x.group, ...(x.tags ?? [])]
               .filter(Boolean)
               .join(" ")
               .toLowerCase()
@@ -902,14 +850,13 @@ export default function AbcPage() {
           : true
       )
       .sort(byTime);
-  }, [activeDay, query, loc, cat]);
+  }, [activeDay, query, cat]);
 
   return (
     <section className="Schedule">
       <div className="schedule-container">
         <header className="schedule-header">
           <h2 className="schedule-title">Grafik zajęć 2025/2026</h2>
-
           <div
             className="schedule-tabs"
             role="tablist"
@@ -927,23 +874,7 @@ export default function AbcPage() {
               </button>
             ))}
           </div>
-
           <div className="schedule-filters" aria-label="Filtry">
-            <label className="filter">
-              <span className="filter-label">Lokalizacja</span>
-              <select
-                value={loc}
-                onChange={(e) => setLoc(e.target.value)}
-                className="filter-input"
-              >
-                {locations.map((l) => (
-                  <option key={l} value={l}>
-                    {l}
-                  </option>
-                ))}
-              </select>
-            </label>
-
             <label className="filter">
               <span className="filter-label">Zajęcia</span>
               <select
@@ -958,7 +889,6 @@ export default function AbcPage() {
                 ))}
               </select>
             </label>
-
             <label className="filter filter-search">
               <span className="sr-only">Szukaj</span>
               <input
@@ -982,17 +912,11 @@ export default function AbcPage() {
                   <span className="time-sep">–</span>
                   <span className="time-end">{item.end}</span>
                 </div>
-
                 <div className="class-main">
                   <div className="class-top">
                     <h3 className="class-title">{item.title}</h3>
-                    {item.location && (
-                      <span className="class-location">{item.location}</span>
-                    )}
                   </div>
-
                   {item.group && <p className="class-group">{item.group}</p>}
-
                   {item.tags && item.tags.length > 0 && (
                     <ul className="class-tags">
                       {item.tags.map((t) => (
