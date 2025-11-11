@@ -125,6 +125,7 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Sala",
     tags: ["dzieci 4+"],
   },
+
   {
     id: "mon-ges-1",
     day: "Poniedziałek",
@@ -175,6 +176,7 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Szkoła GES",
     tags: ["studenci"],
   },
+
   {
     id: "mon-ring-1",
     day: "Poniedziałek",
@@ -214,6 +216,7 @@ const SCHEDULE: ScheduleItem[] = [
     group: "Zajęcia indywidualne",
     location: "Ring",
   },
+
   {
     id: "tue-gim-1",
     day: "Wtorek",
@@ -263,6 +266,7 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Sala",
     tags: ["aerial"],
   },
+
   {
     id: "tue-ges-1",
     day: "Wtorek",
@@ -313,6 +317,7 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Szkoła GES",
     tags: ["wyczyn"],
   },
+
   {
     id: "tue-ring-1",
     day: "Wtorek",
@@ -333,6 +338,7 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Ring",
     tags: ["prospekci"],
   },
+
   {
     id: "wed-gim-1",
     day: "Środa",
@@ -423,6 +429,7 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Sala",
     tags: ["studenci", "dorośli"],
   },
+
   {
     id: "wed-ges-1",
     day: "Środa",
@@ -472,6 +479,7 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Szkoła GES",
     tags: ["wyczyn"],
   },
+
   {
     id: "wed-ring-0",
     day: "Środa",
@@ -511,6 +519,7 @@ const SCHEDULE: ScheduleItem[] = [
     group: "Zajęcia indywidualne",
     location: "Ring",
   },
+
   {
     id: "thu-gim-1",
     day: "Czwartek",
@@ -570,6 +579,7 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Sala",
     tags: ["aerial"],
   },
+
   {
     id: "thu-ges-1",
     day: "Czwartek",
@@ -610,6 +620,7 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Szkoła GES",
     tags: ["wyczyn"],
   },
+
   {
     id: "thu-ring-1",
     day: "Czwartek",
@@ -639,6 +650,7 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Ring",
     tags: ["boks"],
   },
+
   {
     id: "fri-ges-0",
     day: "Piątek",
@@ -689,6 +701,7 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Sala",
     tags: ["dzieci 11–14"],
   },
+
   {
     id: "fri-ges-ext",
     day: "Piątek",
@@ -708,6 +721,7 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Szkoła GES",
     tags: ["wyczyn"],
   },
+
   {
     id: "fri-aerial-1",
     day: "Piątek",
@@ -726,6 +740,7 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Sala",
     tags: ["aerial"],
   },
+
   {
     id: "fri-ring-1",
     day: "Piątek",
@@ -746,6 +761,7 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Ring",
     tags: ["zamknięta"],
   },
+
   {
     id: "sat-akr-1",
     day: "Sobota",
@@ -804,6 +820,7 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Sala",
     tags: ["zewnętrzna", "event"],
   },
+
   {
     id: "sat-ring-1",
     day: "Sobota",
@@ -813,6 +830,7 @@ const SCHEDULE: ScheduleItem[] = [
     location: "Ring",
     tags: ["kickboxing"],
   },
+
   {
     id: "sat-info-1",
     day: "Sobota",
@@ -853,10 +871,13 @@ export default function AbcPage() {
   }, [activeDay, query, cat]);
 
   return (
-    <section className="Schedule">
+    <section className="Schedule" aria-labelledby="schedule-heading">
       <div className="schedule-container">
         <header className="schedule-header">
-          <h2 className="schedule-title">Grafik zajęć 2025/2026</h2>
+          <h2 id="schedule-heading" className="schedule-title">
+            Grafik zajęć 2025/2026
+          </h2>
+
           <div
             className="schedule-tabs"
             role="tablist"
@@ -874,6 +895,7 @@ export default function AbcPage() {
               </button>
             ))}
           </div>
+
           <div className="schedule-filters" aria-label="Filtry">
             <label className="filter">
               <span className="filter-label">Zajęcia</span>
@@ -889,8 +911,9 @@ export default function AbcPage() {
                 ))}
               </select>
             </label>
+
             <label className="filter filter-search">
-              <span className="sr-only">Szukaj</span>
+              <span className="filter-label">Szukaj</span>
               <input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
@@ -912,11 +935,14 @@ export default function AbcPage() {
                   <span className="time-sep">–</span>
                   <span className="time-end">{item.end}</span>
                 </div>
+
                 <div className="class-main">
                   <div className="class-top">
                     <h3 className="class-title">{item.title}</h3>
                   </div>
+
                   {item.group && <p className="class-group">{item.group}</p>}
+
                   {item.tags && item.tags.length > 0 && (
                     <ul className="class-tags">
                       {item.tags.map((t) => (
