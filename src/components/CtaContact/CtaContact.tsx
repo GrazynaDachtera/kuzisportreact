@@ -82,6 +82,11 @@ type FormState = {
 
 type Errors = Partial<Record<keyof FormState, string>>;
 
+type ValidatorFn<K extends keyof FormState> = (
+  val: FormState[K],
+  full: FormState
+) => string | undefined;
+
 export default function CtaContact() {
   const [form, setForm] = useState<FormState>({
     name: "",
@@ -100,6 +105,7 @@ export default function CtaContact() {
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState<Msg>(null);
   const [errors, setErrors] = useState<Errors>({});
+  const [step, setStep] = useState<1 | 2 | 3>(1);
   const formRef = useRef<HTMLFormElement>(null);
 
   const age = useMemo(() => {
@@ -113,18 +119,59 @@ export default function CtaContact() {
     return years;
   }, [form.birthDate]);
 
-  const update = <K extends keyof FormState>(key: K, value: FormState[K]) =>
-    setForm((f) => ({ ...f, [key]: value }));
+  const emailOk = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
 
-  const validate = (data: FormState): Errors => {
+  const validators: { [K in keyof FormState]: ValidatorFn<K> } = {
+    name: (v) => (v.trim() ? undefined : "Podaj imię i nazwisko."),
+    phone: (v) => {
+      const d = v.replace(/\D/g, "");
+      return d.length >= 6 ? undefined : "Podaj numer telefonu.";
+    },
+    email: (v) => (emailOk(v) ? undefined : "Podaj adres e-mail."),
+    discipline: (v) => (v.trim() ? undefined : "Wybierz dyscyplinę."),
+    birthDate: (v) => {
+      if (!v) return "Podaj datę urodzenia.";
+      const d = new Date(v);
+      if (Number.isNaN(d.getTime())) return "Nieprawidłowa data.";
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      if (d > today) return "Data nie może być z przyszłości.";
+      return undefined;
+    },
+    level: () => undefined,
+    frequency: () => undefined,
+    format: () => undefined,
+    rodo: (v) => (v ? undefined : "Wymagana zgoda na przetwarzanie danych."),
+    marketing: () => undefined,
+    message: () => undefined,
+  };
+
+  const validateStep = (s: 1 | 2 | 3): Errors => {
+    const keysByStep: Record<1 | 2 | 3, (keyof FormState)[]> = {
+      1: ["name", "phone", "email"],
+      2: ["discipline", "birthDate"],
+      3: ["rodo"],
+    };
     const e: Errors = {};
-    if (!data.name.trim()) e.name = "Podaj imię i nazwisko.";
-    if (!data.phone.trim()) e.phone = "Podaj numer telefonu.";
-    if (!data.email.trim()) e.email = "Podaj adres e-mail.";
-    if (!data.discipline.trim()) e.discipline = "Wybierz dyscyplinę.";
-    if (!data.birthDate) e.birthDate = "Podaj datę urodzenia.";
-    if (!data.rodo) e.rodo = "Wymagana zgoda na przetwarzanie danych.";
+    for (const k of keysByStep[s]) {
+      const msg = validators[k](form[k] as never, form);
+      if (msg) e[k] = msg;
+    }
     return e;
+  };
+
+  const update = <K extends keyof FormState>(key: K, value: FormState[K]) => {
+    const next = { ...form, [key]: value };
+    setForm(next);
+    const msg = validators[key](value, next);
+    setErrors((prev) => {
+      if (!msg) {
+        const rest: Errors = { ...prev };
+        delete rest[key];
+        return rest;
+      }
+      return { ...prev, [key]: msg };
+    });
   };
 
   const focusFirstError = (e: Errors) => {
@@ -136,43 +183,63 @@ export default function CtaContact() {
       "birthDate",
       "rodo",
     ];
+    const idMap: Record<string, string> = {
+      name: "trial-name",
+      phone: "trial-phone",
+      email: "trial-email",
+      discipline: "trial-discipline",
+      birthDate: "trial-birth",
+      rodo: "trial-rodo",
+    };
     for (const key of order) {
       if (e[key]) {
-        const idMap: Record<string, string> = {
-          name: "trial-name",
-          phone: "trial-phone",
-          email: "trial-email",
-          discipline: "trial-discipline",
-          birthDate: "trial-birth",
-          rodo: "trial-rodo",
-        };
         const el = document.getElementById(idMap[key]);
-        if (el) {
-          (el as HTMLElement).focus();
-        }
+        if (el) (el as HTMLElement).focus();
         break;
       }
     }
   };
 
+  const goTo = (target: 1 | 2 | 3) => {
+    if (target <= step) return setStep(target);
+    for (let s = step as number; s < target; s++) {
+      const es = validateStep(s as 1 | 2 | 3);
+      if (Object.keys(es).length) {
+        setErrors((prev) => ({ ...prev, ...es }));
+        setStep(s as 1 | 2 | 3);
+        focusFirstError(es);
+        return;
+      }
+    }
+    setStep(target);
+  };
+
+  const next = () => goTo(Math.min(step + 1, 3) as 1 | 2 | 3);
+  const back = () => setStep(Math.max(step - 1, 1) as 1 | 2 | 3);
+
   const handleSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
     setMsg(null);
-    const v = validate(form);
-    setErrors(v);
-    if (Object.keys(v).length > 0) {
-      focusFirstError(v);
+    let allErrors: Errors = {};
+    [1, 2, 3].forEach(
+      (s) => (allErrors = { ...allErrors, ...validateStep(s as 1 | 2 | 3) })
+    );
+    setErrors(allErrors);
+    if (Object.keys(allErrors).length) {
+      const firstBad = [1, 2, 3].find(
+        (s) => Object.keys(validateStep(s as 1 | 2 | 3)).length
+      ) as 1 | 2 | 3;
+      setStep(firstBad);
+      focusFirstError(allErrors);
       return;
     }
     try {
       setLoading(true);
-
       const submitted_at = new Intl.DateTimeFormat("pl-PL", {
         dateStyle: "full",
         timeStyle: "short",
         timeZone: "Europe/Warsaw",
       }).format(new Date());
-
       const templateParams = {
         name: form.name,
         phone: form.phone,
@@ -189,15 +256,12 @@ export default function CtaContact() {
         submitted_at,
         reply_to: form.email,
       };
-
       const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
       const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!;
       const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
-
       const res = await emailjs.send(serviceId, templateId, templateParams, {
         publicKey,
       });
-
       if (res.status === 200) {
         setMsg({
           type: "ok",
@@ -217,6 +281,7 @@ export default function CtaContact() {
           message: "",
         });
         setErrors({});
+        setStep(1);
         formRef.current?.reset();
       } else {
         setMsg({
@@ -231,370 +296,538 @@ export default function CtaContact() {
     }
   };
 
-  const errId = (k: keyof FormState) => `err-${k}`;
+  const step1Done = !!(form.name && form.phone && form.email);
+  const step2Done = !!(form.discipline && form.birthDate);
+
+  const DISCIPLINE_GROUPS_SORTED = useMemo(
+    () =>
+      DISCIPLINE_GROUPS.map((g) => ({
+        ...g,
+        options: [...g.options].sort((a, b) => a.localeCompare(b, "pl")),
+      })),
+    []
+  );
 
   return (
     <section className="trial" aria-labelledby="trial-heading">
       <div className="trial__container">
         <div className="trial__content">
-          <header className="trial__header">
-            <h2 id="trial-heading">Zapisz się na zajęcia próbne</h2>
-            <p className="trial__sub">Krótki formularz - oddzwonimy.</p>
-          </header>
+          <div className="trial__card">
+            <header className="trial__header">
+              <h2 id="trial-heading">Zapisz się na zajęcia próbne</h2>
+              <p className="trial__sub">Krótki formularz – oddzwonimy.</p>
+            </header>
 
-          <form
-            ref={formRef}
-            className="trial__form"
-            onSubmit={handleSubmit}
-            noValidate
-            aria-describedby="form-status"
-            aria-busy={loading ? "true" : "false"}
-          >
-            <div className={`field ${errors.name ? "field--error" : ""}`}>
-              <label htmlFor="trial-name">
-                Imię i nazwisko{" "}
-                <span className="req" aria-hidden="true">
-                  *
-                </span>
-              </label>
-              <input
-                id="trial-name"
-                type="text"
-                placeholder="Jan Kowalski"
-                value={form.name}
-                onChange={(e) => update("name", e.target.value)}
-                required
-                autoComplete="name"
-                aria-invalid={errors.name ? "true" : "false"}
-                aria-describedby={errors.name ? errId("name") : undefined}
-              />
-              {errors.name && (
-                <span id={errId("name")} className="error-text" role="alert">
-                  {errors.name}
-                </span>
-              )}
-            </div>
-
-            <div className={`field ${errors.phone ? "field--error" : ""}`}>
-              <label htmlFor="trial-phone">
-                Telefon{" "}
-                <span className="req" aria-hidden="true">
-                  *
-                </span>
-              </label>
-              <input
-                id="trial-phone"
-                type="tel"
-                inputMode="tel"
-                placeholder="np. 785 828 666"
-                value={form.phone}
-                onChange={(e) => update("phone", e.target.value)}
-                required
-                pattern="[\d\s+()-]{6,}"
-                autoComplete="tel"
-                aria-invalid={errors.phone ? "true" : "false"}
-                aria-describedby={errors.phone ? errId("phone") : undefined}
-              />
-              {errors.phone && (
-                <span id={errId("phone")} className="error-text" role="alert">
-                  {errors.phone}
-                </span>
-              )}
-            </div>
-
-            <div className={`field ${errors.email ? "field--error" : ""}`}>
-              <label htmlFor="trial-email">
-                E-mail{" "}
-                <span className="req" aria-hidden="true">
-                  *
-                </span>
-              </label>
-              <input
-                id="trial-email"
-                type="email"
-                placeholder="np. jan@domena.pl"
-                value={form.email}
-                onChange={(e) => update("email", e.target.value)}
-                required
-                autoComplete="email"
-                aria-invalid={errors.email ? "true" : "false"}
-                aria-describedby={errors.email ? errId("email") : undefined}
-              />
-              {errors.email && (
-                <span id={errId("email")} className="error-text" role="alert">
-                  {errors.email}
-                </span>
-              )}
-            </div>
-
-            <div className={`field ${errors.discipline ? "field--error" : ""}`}>
-              <label htmlFor="trial-discipline">
-                Dyscyplina{" "}
-                <span className="req" aria-hidden="true">
-                  *
-                </span>
-              </label>
-              <select
-                id="trial-discipline"
-                value={form.discipline}
-                onChange={(e) => update("discipline", e.target.value)}
-                required
-                aria-invalid={errors.discipline ? "true" : "false"}
-                aria-describedby={
-                  errors.discipline ? errId("discipline") : undefined
-                }
+            <nav className="trial__stepper" aria-label="Postęp formularza">
+              <a
+                href="#step-1"
+                className={`stepper__item ${step === 1 ? "is-active" : ""} ${
+                  step1Done ? "is-done" : ""
+                }`}
+                aria-current={step === 1 ? "step" : undefined}
+                onClick={(e) => {
+                  e.preventDefault();
+                  goTo(1);
+                }}
               >
-                <option value="" disabled>
-                  Wybierz…
-                </option>
-                {DISCIPLINE_GROUPS.map((g) => (
-                  <optgroup key={g.label} label={g.label}>
-                    {g.options.map((opt) => (
-                      <option key={opt} value={opt}>
-                        {opt}
-                      </option>
-                    ))}
-                  </optgroup>
-                ))}
-              </select>
-              {errors.discipline && (
-                <span
-                  id={errId("discipline")}
-                  className="error-text"
-                  role="alert"
-                >
-                  {errors.discipline}
+                <span className="stepper__dot" aria-hidden>
+                  1
                 </span>
-              )}
-            </div>
+                <span className="stepper__label">Dane</span>
+              </a>
+              <a
+                href="#step-2"
+                className={`stepper__item ${step === 2 ? "is-active" : ""} ${
+                  step2Done ? "is-done" : ""
+                }`}
+                aria-current={step === 2 ? "step" : undefined}
+                onClick={(e) => {
+                  e.preventDefault();
+                  goTo(2);
+                }}
+              >
+                <span className="stepper__dot" aria-hidden>
+                  2
+                </span>
+                <span className="stepper__label">Preferencje</span>
+              </a>
+              <a
+                href="#step-3"
+                className={`stepper__item ${step === 3 ? "is-active" : ""}`}
+                aria-current={step === 3 ? "step" : undefined}
+                onClick={(e) => {
+                  e.preventDefault();
+                  goTo(3);
+                }}
+              >
+                <span className="stepper__dot" aria-hidden>
+                  3
+                </span>
+                <span className="stepper__label">Zgody & wysyłka</span>
+              </a>
+            </nav>
 
-            <div className={`field ${errors.birthDate ? "field--error" : ""}`}>
-              <label htmlFor="trial-birth">
-                Data urodzenia{" "}
-                <span className="req" aria-hidden="true">
-                  *
-                </span>
-              </label>
-              <input
-                id="trial-birth"
-                type="date"
-                value={form.birthDate}
-                onChange={(e) => update("birthDate", e.target.value)}
-                required
-                max={new Date().toISOString().slice(0, 10)}
-                aria-invalid={errors.birthDate ? "true" : "false"}
-                aria-describedby={
-                  [
-                    age !== null ? "age-hint" : null,
-                    errors.birthDate ? errId("birthDate") : null,
-                  ]
-                    .filter(Boolean)
-                    .join(" ") || undefined
-                }
-              />
-              {age !== null && (
-                <small id="age-hint" className="hint">
-                  Wiek: {age} lat
-                </small>
-              )}
-              {errors.birthDate && (
-                <span
-                  id={errId("birthDate")}
-                  className="error-text"
-                  role="alert"
-                >
-                  {errors.birthDate}
-                </span>
-              )}
-            </div>
-
-            <fieldset className="field group">
-              <legend>Poziom</legend>
+            <form
+              ref={formRef}
+              className="trial__form"
+              onSubmit={handleSubmit}
+              noValidate
+              aria-busy={loading ? "true" : "false"}
+            >
               <div
-                className="pills"
-                role="radiogroup"
-                aria-label="Poziom zaawansowania"
+                id="step-1"
+                className={`step ${step === 1 ? "is-active" : ""}`}
+                role="tabpanel"
+                hidden={step !== 1}
               >
-                {SKILL_LEVELS.map((lvl) => (
-                  <label
-                    key={lvl}
-                    className={`pill ${form.level === lvl ? "is-active" : ""}`}
-                  >
-                    <input
-                      type="radio"
-                      name="skill"
-                      value={lvl}
-                      checked={form.level === lvl}
-                      onChange={() => update("level", lvl)}
-                    />
-                    <span>{lvl}</span>
+                <div className="step__cap">
+                  <span className="step__dot" aria-hidden>
+                    1
+                  </span>
+                  <h3 className="step__title">Dane kontaktowe</h3>
+                </div>
+
+                <div className={`field ${errors.name ? "field--error" : ""}`}>
+                  <label htmlFor="trial-name">
+                    Imię i nazwisko{" "}
+                    <span className="req" aria-hidden="true">
+                      *
+                    </span>
                   </label>
-                ))}
-              </div>
-            </fieldset>
+                  <input
+                    id="trial-name"
+                    type="text"
+                    placeholder="Jan Kowalski"
+                    value={form.name}
+                    onChange={(e) => update("name", e.target.value)}
+                    required
+                    autoComplete="name"
+                    aria-invalid={errors.name ? "true" : "false"}
+                    aria-describedby={errors.name ? "err-name" : undefined}
+                  />
+                  {errors.name && (
+                    <span id="err-name" className="error-text" role="alert">
+                      {errors.name}
+                    </span>
+                  )}
+                </div>
 
-            <fieldset className="field group">
-              <legend>Treningi / tydzień</legend>
+                <div className={`field ${errors.phone ? "field--error" : ""}`}>
+                  <label htmlFor="trial-phone">
+                    Telefon{" "}
+                    <span className="req" aria-hidden="true">
+                      *
+                    </span>
+                  </label>
+                  <input
+                    id="trial-phone"
+                    type="tel"
+                    inputMode="tel"
+                    placeholder="np. 785 828 666"
+                    value={form.phone}
+                    onChange={(e) => update("phone", e.target.value)}
+                    required
+                    pattern="[\d\s+()-]{6,}"
+                    autoComplete="tel"
+                    aria-invalid={errors.phone ? "true" : "false"}
+                    aria-describedby={errors.phone ? "err-phone" : undefined}
+                  />
+                  {errors.phone && (
+                    <span id="err-phone" className="error-text" role="alert">
+                      {errors.phone}
+                    </span>
+                  )}
+                </div>
+
+                <div
+                  className={`field field--full ${
+                    errors.email ? "field--error" : ""
+                  }`}
+                >
+                  <label htmlFor="trial-email">
+                    E-mail{" "}
+                    <span className="req" aria-hidden="true">
+                      *
+                    </span>
+                  </label>
+                  <input
+                    id="trial-email"
+                    type="email"
+                    placeholder="np. jan@domena.pl"
+                    value={form.email}
+                    onChange={(e) => update("email", e.target.value)}
+                    required
+                    autoComplete="email"
+                    aria-invalid={errors.email ? "true" : "false"}
+                    aria-describedby={errors.email ? "err-email" : undefined}
+                  />
+                  {errors.email && (
+                    <span id="err-email" className="error-text" role="alert">
+                      {errors.email}
+                    </span>
+                  )}
+                </div>
+
+                <div className="wizard-controls actions actions--sticky">
+                  <button
+                    type="button"
+                    className="btn btn--primary"
+                    onClick={() => {
+                      const es = validateStep(1);
+                      setErrors((prev) => ({ ...prev, ...es }));
+                      if (Object.keys(es).length) {
+                        focusFirstError(es);
+                        return;
+                      }
+                      next();
+                    }}
+                  >
+                    <span className="btn__label">Dalej</span>
+                  </button>
+                </div>
+              </div>
+
               <div
-                className="pills pills--compact"
-                role="radiogroup"
-                aria-label="Częstotliwość treningów"
+                id="step-2"
+                className={`step ${step === 2 ? "is-active" : ""}`}
+                role="tabpanel"
+                hidden={step !== 2}
               >
-                {TRAININGS_PER_WEEK.map((f) => (
-                  <label
-                    key={f}
-                    className={`pill ${
-                      form.frequency === f ? "is-active" : ""
+                <div className="step__cap">
+                  <span className="step__dot" aria-hidden>
+                    2
+                  </span>
+                  <h3 className="step__title">Preferencje treningowe</h3>
+                </div>
+
+                <div className="grid-2">
+                  <div
+                    className={`field ${
+                      errors.discipline ? "field--error" : ""
                     }`}
                   >
-                    <input
-                      type="radio"
-                      name="frequency"
-                      value={f}
-                      checked={form.frequency === f}
-                      onChange={() => update("frequency", f)}
-                    />
-                    <span>{f}</span>
-                  </label>
-                ))}
-              </div>
-            </fieldset>
+                    <label htmlFor="trial-discipline">
+                      Dyscyplina{" "}
+                      <span className="req" aria-hidden="true">
+                        *
+                      </span>
+                    </label>
+                    <select
+                      id="trial-discipline"
+                      value={form.discipline}
+                      onChange={(e) => update("discipline", e.target.value)}
+                      required
+                      aria-invalid={errors.discipline ? "true" : "false"}
+                      aria-describedby={
+                        errors.discipline ? "err-discipline" : undefined
+                      }
+                    >
+                      <option value="" disabled>
+                        Wybierz…
+                      </option>
+                      {DISCIPLINE_GROUPS_SORTED.map((g) => (
+                        <optgroup key={g.label} label={g.label}>
+                          {g.options.map((opt) => (
+                            <option key={opt} value={opt}>
+                              {opt}
+                            </option>
+                          ))}
+                        </optgroup>
+                      ))}
+                    </select>
+                    {errors.discipline && (
+                      <span
+                        id="err-discipline"
+                        className="error-text"
+                        role="alert"
+                      >
+                        {errors.discipline}
+                      </span>
+                    )}
+                  </div>
 
-            <fieldset className="field group">
-              <legend>Forma zajęć</legend>
-              <div
-                className="pills pills--wrap"
-                role="radiogroup"
-                aria-label="Forma zajęć"
-              >
-                {CLASS_FORMS.map((f) => (
-                  <label
-                    key={f}
-                    className={`pill ${form.format === f ? "is-active" : ""}`}
+                  <div
+                    className={`field ${
+                      errors.birthDate ? "field--error" : ""
+                    }`}
                   >
+                    <label htmlFor="trial-birth">
+                      Data urodzenia{" "}
+                      <span className="req" aria-hidden="true">
+                        *
+                      </span>
+                    </label>
                     <input
-                      type="radio"
-                      name="format"
-                      value={f}
-                      checked={form.format === f}
-                      onChange={() => update("format", f)}
+                      id="trial-birth"
+                      type="date"
+                      value={form.birthDate}
+                      onChange={(e) => update("birthDate", e.target.value)}
+                      required
+                      max={new Date().toISOString().slice(0, 10)}
+                      aria-invalid={errors.birthDate ? "true" : "false"}
+                      aria-describedby={
+                        errors.birthDate ? "err-birthDate" : undefined
+                      }
                     />
-                    <span>{f}</span>
-                  </label>
-                ))}
+                    {age !== null && (
+                      <small id="age-hint" className="hint">
+                        Wiek: {age} lat
+                      </small>
+                    )}
+                    {errors.birthDate && (
+                      <span
+                        id="err-birthDate"
+                        className="error-text"
+                        role="alert"
+                      >
+                        {errors.birthDate}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <div className="grid-2">
+                  <fieldset className="field group">
+                    <legend>Poziom</legend>
+                    <div
+                      className="pills"
+                      role="radiogroup"
+                      aria-label="Poziom zaawansowania"
+                    >
+                      {SKILL_LEVELS.map((lvl) => (
+                        <label
+                          key={lvl}
+                          className={`pill ${
+                            form.level === lvl ? "is-active" : ""
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name="skill"
+                            value={lvl}
+                            checked={form.level === lvl}
+                            onChange={() => update("level", lvl)}
+                          />
+                          <span>{lvl}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </fieldset>
+
+                  <fieldset className="field group">
+                    <legend>Treningi / tydzień</legend>
+                    <div
+                      className="pills pills--compact"
+                      role="radiogroup"
+                      aria-label="Częstotliwość treningów"
+                    >
+                      {TRAININGS_PER_WEEK.map((f) => (
+                        <label
+                          key={f}
+                          className={`pill ${
+                            form.frequency === f ? "is-active" : ""
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name="frequency"
+                            value={f}
+                            checked={form.frequency === f}
+                            onChange={() => update("frequency", f)}
+                          />
+                          <span>{f}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </fieldset>
+                </div>
+
+                <fieldset className="field group field--full">
+                  <legend>Forma zajęć</legend>
+                  <div
+                    className="pills pills--wrap"
+                    role="radiogroup"
+                    aria-label="Forma zajęć"
+                  >
+                    {CLASS_FORMS.map((f) => (
+                      <label
+                        key={f}
+                        className={`pill ${
+                          form.format === f ? "is-active" : ""
+                        }`}
+                      >
+                        <input
+                          type="radio"
+                          name="format"
+                          value={f}
+                          checked={form.format === f}
+                          onChange={() => update("format", f)}
+                        />
+                        <span>{f}</span>
+                      </label>
+                    ))}
+                  </div>
+                </fieldset>
+
+                <div className="field field--full">
+                  <label htmlFor="trial-message">Wiadomość (opcjonalnie)</label>
+                  <textarea
+                    id="trial-message"
+                    rows={4}
+                    placeholder="Dodatkowe informacje, preferowane godziny…"
+                    value={form.message}
+                    onChange={(e) => update("message", e.target.value)}
+                  />
+                </div>
+
+                <div className="wizard-controls actions actions--sticky">
+                  <button
+                    type="button"
+                    className="btn btn--secondary"
+                    onClick={back}
+                  >
+                    <span className="btn__label">Wstecz</span>
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn--primary"
+                    onClick={() => {
+                      const es = validateStep(2);
+                      setErrors((prev) => ({ ...prev, ...es }));
+                      if (Object.keys(es).length) {
+                        focusFirstError(es);
+                        return;
+                      }
+                      next();
+                    }}
+                  >
+                    <span className="btn__label">Dalej</span>
+                  </button>
+                </div>
               </div>
-            </fieldset>
 
-            <div className="field field--full">
-              <label htmlFor="trial-message">Wiadomość (opcjonalnie)</label>
-              <textarea
-                id="trial-message"
-                rows={4}
-                placeholder="Dodatkowe informacje, preferowane godziny…"
-                value={form.message}
-                onChange={(e) => update("message", e.target.value)}
-              />
-            </div>
+              <div
+                id="step-3"
+                className={`step ${step === 3 ? "is-active" : ""}`}
+                role="tabpanel"
+                hidden={step !== 3}
+              >
+                <div className="step__cap">
+                  <span className="step__dot" aria-hidden>
+                    3
+                  </span>
+                  <h3 className="step__title">Zgody & wysyłka</h3>
+                </div>
 
-            <label
-              className={`check field--full ${
-                errors.rodo ? "field--error" : ""
-              }`}
-              htmlFor="trial-rodo"
-            >
-              <input
-                id="trial-rodo"
-                type="checkbox"
-                checked={form.rodo}
-                onChange={(e) => update("rodo", e.target.checked)}
-                required
-                aria-invalid={errors.rodo ? "true" : "false"}
-                aria-describedby={errors.rodo ? errId("rodo") : undefined}
-              />
-              <span>
-                Zgoda na przetwarzanie danych osobowych{" "}
-                <span className="req" aria-hidden="true">
-                  *
-                </span>
-              </span>
-            </label>
-            {errors.rodo && (
-              <span id={errId("rodo")} className="error-text" role="alert">
-                {errors.rodo}
-              </span>
-            )}
-
-            <label className="check field--full" htmlFor="trial-marketing">
-              <input
-                id="trial-marketing"
-                type="checkbox"
-                checked={form.marketing}
-                onChange={(e) => update("marketing", e.target.checked)}
-              />
-              <span>Zgoda marketingowa</span>
-            </label>
-
-            <p className="aside">
-              <span className="ico-shield" aria-hidden="true">
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  focusable="false"
-                  aria-hidden="true"
+                <label
+                  className={`check field--full ${
+                    errors.rodo ? "field--error" : ""
+                  }`}
+                  htmlFor="trial-rodo"
                 >
-                  <path
-                    d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6l7-3z"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                  <input
+                    id="trial-rodo"
+                    type="checkbox"
+                    checked={form.rodo}
+                    onChange={(e) => update("rodo", e.target.checked)}
+                    required
+                    aria-invalid={errors.rodo ? "true" : "false"}
+                    aria-describedby={errors.rodo ? "err-rodo" : undefined}
                   />
-                  <path
-                    d="M9.5 12.5l2 2 4-4"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                  <span>
+                    Zgoda na przetwarzanie danych osobowych{" "}
+                    <span className="req" aria-hidden="true">
+                      *
+                    </span>
+                  </span>
+                </label>
+                {errors.rodo && (
+                  <span id="err-rodo" className="error-text" role="alert">
+                    {errors.rodo}
+                  </span>
+                )}
+
+                <label className="check field--full" htmlFor="trial-marketing">
+                  <input
+                    id="trial-marketing"
+                    type="checkbox"
+                    checked={form.marketing}
+                    onChange={(e) => update("marketing", e.target.checked)}
                   />
-                </svg>
-              </span>
-              Twoje dane są bezpieczne
-            </p>
+                  <span>Zgoda marketingowa</span>
+                </label>
 
-            <div className="actions">
-              <button
-                className="btn btn--primary"
-                type="submit"
-                disabled={loading}
-                aria-disabled={loading ? "true" : "false"}
-              >
-                <span className="btn__label">
-                  {loading ? "Wysyłanie…" : "Wyślij wiadomość"}
-                </span>
-              </button>
-            </div>
+                <p className="aside">
+                  <span className="ico-shield" aria-hidden="true">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      focusable="false"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6l7-3z"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M9.5 12.5l2 2 4-4"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  Twoje dane są bezpieczne
+                </p>
 
-            <div
-              id="form-status"
-              aria-live="polite"
-              role="status"
-              className="visually-hidden"
-            >
-              {loading ? "Trwa wysyłanie formularza…" : msg?.text || ""}
-            </div>
+                <div className="wizard-controls actions actions--sticky">
+                  <button
+                    type="button"
+                    className="btn btn--secondary"
+                    onClick={back}
+                  >
+                    <span className="btn__label">Wstecz</span>
+                  </button>
+                  <button
+                    className="btn btn--primary"
+                    type="submit"
+                    disabled={loading}
+                    aria-disabled={loading ? "true" : "false"}
+                  >
+                    <span className="btn__label">
+                      {loading ? "Wysyłanie…" : "Wyślij wiadomość"}
+                    </span>
+                  </button>
+                </div>
 
-            {msg && (
-              <p
-                aria-live="polite"
-                role={msg.type === "err" ? "alert" : "status"}
-                className={`msg ${msg.type === "ok" ? "msg--ok" : "msg--err"}`}
-              >
-                {msg.text}
-              </p>
-            )}
-          </form>
+                <div
+                  id="form-status"
+                  aria-live="polite"
+                  role="status"
+                  className="visually-hidden"
+                >
+                  {loading ? "Trwa wysyłanie formularza…" : msg?.text || ""}
+                </div>
+                {msg && (
+                  <p
+                    aria-live="polite"
+                    role={msg.type === "err" ? "alert" : "status"}
+                    className={`msg ${
+                      msg.type === "ok" ? "msg--ok" : "msg--err"
+                    }`}
+                  >
+                    {msg.text}
+                  </p>
+                )}
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </section>
