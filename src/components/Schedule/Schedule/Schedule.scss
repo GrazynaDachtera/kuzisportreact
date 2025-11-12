@@ -1,3 +1,5 @@
+@use "sass:color";
+
 $section-py: clamp(1.5rem, 2vw, 3rem);
 $brand-green: #114538;
 $text: #5c6a64;
@@ -64,7 +66,8 @@ $bp-xl: 80em;
   line-height: 1.15;
 }
 
-/* MOBILE FIRST — tabs stacked */
+/* ---------- TABS ---------- */
+/* Mobile-first: stacked buttons */
 .schedule-tabs {
   display: grid;
   grid-template-columns: 1fr;
@@ -118,11 +121,10 @@ $bp-xl: 80em;
   }
 }
 
-/* DESKTOP/TABLET — horizontal pills, no single item stretching */
+/* Tablet/desktop: single row, content-sized pills, NO first-item stretch */
 @media (min-width: $bp-md) {
   .schedule-tabs {
-    /* Reset the mobile 1fr template so all items size by content uniformly */
-    grid-template-columns: none;
+    grid-template-columns: none; /* reset 1fr column */
     grid-auto-flow: column;
     grid-auto-columns: max-content;
 
@@ -156,11 +158,12 @@ $bp-xl: 80em;
 
   .tab {
     width: auto;
-    min-inline-size: max-content; /* avoid growth, keep equal-by-content */
+    min-inline-size: max-content;
     scroll-snap-align: start;
   }
 }
 
+/* ---------- FILTERS (labels fix) ---------- */
 .schedule-filters {
   display: grid;
   grid-template-columns: 1fr;
@@ -177,16 +180,35 @@ $bp-xl: 80em;
 .filter {
   display: grid;
   gap: 0.5rem;
+  min-width: 0; /* allow children to shrink in grid */
 }
 
 .filter-label {
-  font-size: 1rem;
+  display: block;
+  font-size: clamp(0.9rem, 2.6vw, 1rem); /* smaller on tiny screens */
   font-weight: 800;
   color: $brand-green;
   letter-spacing: -0.01em;
+  line-height: 1.2;
+  white-space: normal; /* allow wrapping */
+  overflow-wrap: anywhere; /* prefer natural wrapping */
+  hyphens: auto;
+
+  @supports not (overflow-wrap: anywhere) {
+    word-break: break-word; /* Safari/older fallback */
+  }
+}
+
+/* micro tweak for very narrow phones (~≤352px) */
+@media (max-width: 22em) {
+  .filter-label {
+    font-size: clamp(0.85rem, 3.8vw, 0.95rem);
+  }
 }
 
 .filter-input {
+  width: 100%;
+  min-width: 0; /* prevent overflow in grid */
   border: 0.0625rem solid $line;
   border-radius: $r;
   padding: 0 1rem;
@@ -209,6 +231,7 @@ $bp-xl: 80em;
   }
 }
 
+/* ---------- LIST ---------- */
 .schedule-list {
   display: grid;
   gap: 1rem;
@@ -226,6 +249,7 @@ $bp-xl: 80em;
   }
 }
 
+/* ---------- CARDS ---------- */
 .class-card {
   display: grid;
   grid-template-columns: 1fr;
@@ -325,7 +349,7 @@ $bp-xl: 80em;
   .tag {
     background: $chip-bg;
     color: $chip-text;
-    border: 1px solid lighten($line, 6%);
+    border: 1px solid color.adjust($line, $lightness: 6%);
     border-radius: $pill-r;
     padding: 0.4rem 0.7rem;
     font-size: 0.82rem;
@@ -352,6 +376,7 @@ $bp-xl: 80em;
   }
 }
 
+/* A11y helper */
 .sr-only {
   position: absolute !important;
   width: 0.0625rem !important;
