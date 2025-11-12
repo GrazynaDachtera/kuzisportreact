@@ -80,10 +80,6 @@ $bp-xl: 80em;
   padding: 0;
   margin: 0 0 1rem 0;
   overflow: visible;
-  overscroll-behavior: auto;
-  scroll-snap-type: none;
-  mask-image: none;
-  -webkit-mask-image: none;
 }
 
 .tab {
@@ -107,7 +103,6 @@ $bp-xl: 80em;
   &:hover {
     transform: translateY(-1px);
   }
-
   &:hover,
   &:focus-visible {
     border-color: rgba($brand-green, 0.35);
@@ -129,7 +124,6 @@ $bp-xl: 80em;
     display: inline-grid;
     width: max-content;
     max-width: 100%;
-    grid-template-columns: none;
     grid-auto-flow: column;
     grid-auto-columns: max-content;
     gap: 0.5rem;
@@ -142,20 +136,8 @@ $bp-xl: 80em;
     overscroll-behavior-x: contain;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    mask-image: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0),
-      #000 1rem,
-      #000 calc(100% - 1rem),
-      rgba(0, 0, 0, 0)
-    );
-    -webkit-mask-image: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0),
-      #000 1rem,
-      #000 calc(100% - 1rem),
-      rgba(0, 0, 0, 0)
-    );
+    mask-image: none;
+    -webkit-mask-image: none;
   }
 
   .tab {
@@ -194,9 +176,6 @@ $bp-xl: 80em;
   color: $brand-green;
   letter-spacing: -0.01em;
   line-height: 1.2;
-  white-space: normal;
-  overflow-wrap: anywhere;
-  hyphens: auto;
 }
 
 @media (max-width: 22em) {
@@ -249,44 +228,37 @@ $bp-xl: 80em;
   color: $brand-green;
   font-weight: 800;
   font-size: 0.95rem;
-  line-height: 1;
   cursor: pointer;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
   transition: transform 0.08s ease, box-shadow 0.2s ease, border-color 0.2s ease,
     background-color 0.2s ease, opacity 0.2s ease;
 }
-
 .clear-btn:hover {
   transform: translateY(-1px);
   background: #f6fbf8;
   border-color: color.adjust($line, $lightness: -8%);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
 }
-
 .clear-btn:focus-visible {
   outline: none;
   box-shadow: 0 0 0 0.22rem rgba($brand-green, 0.2),
     0 6px 14px rgba(0, 0, 0, 0.06);
   border-color: $brand-green;
 }
-
 .clear-btn:active {
   transform: translateY(0);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
 }
-
 .clear-btn[disabled] {
   opacity: 0.45;
   cursor: default;
   box-shadow: none;
   visibility: hidden;
 }
-
 .clear-icon {
   width: 18px;
   height: 18px;
 }
-
 .clear-label {
   font-weight: 800;
 }
@@ -306,7 +278,6 @@ $bp-xl: 80em;
   gap: 1rem;
   grid-template-columns: 1fr;
 }
-
 @media (min-width: $bp-lg) {
   .schedule-list {
     grid-template-columns: 1fr 1fr;
@@ -444,7 +415,6 @@ $bp-xl: 80em;
   padding: 1.25rem;
   color: #7f968d;
 }
-
 .schedule-note {
   margin-top: 1.125rem;
   color: #6c8a7e;
@@ -474,7 +444,6 @@ $bp-xl: 80em;
   background: #0f1715;
   color: #e7f1ed;
 }
-
 .theme-dark .class-card {
   background: linear-gradient(180deg, rgba(#50e3c2, 0.9), rgba(#50e3c2, 0.6))
       left / 0.25rem 100% no-repeat,
@@ -482,7 +451,6 @@ $bp-xl: 80em;
   border-color: rgba(255, 255, 255, 0.12);
   box-shadow: none;
 }
-
 .theme-dark .class-time {
   background: rgba(255, 255, 255, 0.08);
   color: #e7f1ed;
