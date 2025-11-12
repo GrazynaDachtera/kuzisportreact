@@ -1,23 +1,30 @@
-@use "sass:color";
-
 $section-py: clamp(1.5rem, 2vw, 3rem);
 $brand-green: #114538;
 $cta-green: #114538;
 $cta-green-hover: #276b49;
 $font: "Poppins", sans-serif;
-
-$page-gray: #f8f9fa;
-$surface: #ffffff;
-$text: #5a6471;
-$muted: #7b8794;
+$text: #6a7280;
 $line: #e5e7eb;
-
-$input-bg: $surface;
+$input-bg: #fff;
 $r: 0.625rem;
 $pill-r: 9999px;
 $control-h: 3rem;
 $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
 
+/* Stepper palette */
+$stepper-bg: #eef4ff;
+$stepper-border: #d7e4ff;
+$stepper-text: #0f3860;
+$stepper-active-bg: #ffffff;
+$stepper-active-border: #7aa5ff;
+$stepper-shadow: rgba(122, 165, 255, 0.25);
+
+/* Ensure hidden panels are truly hidden across all breakpoints */
+[hidden] {
+  display: none !important;
+}
+
+/* Accessibility utility */
 .visually-hidden {
   position: absolute !important;
   width: 0.0625rem !important;
@@ -32,23 +39,27 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
 
 .trial {
   width: 100%;
-  background-color: $page-gray;
+  background-color: #f5f7f9;
   color: $text;
   padding-block: $section-py;
   padding-bottom: 3.75rem;
+  padding-inline: 0;
 
   &__container {
     width: min(92rem, 92%);
     margin-inline: auto;
+    padding-block: 0;
     padding-inline: 1rem;
-
-    @media (min-width: 30em) {
-      padding-inline: 2rem;
-    }
   }
 
   &__content {
     width: 100%;
+  }
+
+  &__card {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
   }
 
   &__header {
@@ -62,11 +73,6 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
       color: $brand-green;
       letter-spacing: -0.01em;
       line-height: 1.15;
-
-      @media (min-width: 48em) {
-        font-size: clamp(1.4rem, 2vw + 1rem, 2.2rem);
-        line-height: 1.2;
-      }
     }
 
     .trial__sub {
@@ -76,145 +82,107 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
       line-height: 1.55;
       max-width: 65ch;
       text-align: left;
-      color: $muted;
     }
   }
-}
 
-.trial__card {
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-  padding-inline: 0;
-  padding-block: 0;
-  box-shadow: none;
-}
+  /* Mobile: stepper stacked; Desktop switches back to row later */
+  &__stepper {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    margin: 0 0 1.25rem 0;
 
-.trial__stepper {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
-  gap: 0.5rem;
-  margin: 0 0 1rem 0;
-  background: #eef1f4;
-  border: 1px solid color.adjust($line, $lightness: -4%);
-  border-radius: 9999px;
-  padding: 0.4rem;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-}
+    .stepper__item {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.625rem 1rem;
+      border-radius: $pill-r;
 
-.stepper__item {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  justify-content: center;
-  padding: 0.5rem 0.7rem;
-  border-radius: 9999px;
-  text-decoration: none;
-  color: $brand-green;
-  font-weight: 800;
-  font-size: clamp(0.9rem, 0.3vw + 0.8rem, 1rem);
-  border: 1px solid rgba(17, 69, 56, 0.12);
-  background: transparent;
-  transition: background-color 0.2s ease, box-shadow 0.2s ease,
-    border-color 0.2s ease, transform 0.08s ease;
+      border: 1px solid $stepper-border;
+      background: $stepper-bg;
+      color: $stepper-text;
 
-  &:hover {
-    transform: translateY(-1px);
+      font-weight: 800;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background-color 0.2s ease, border-color 0.2s ease,
+        transform 0.08s ease, box-shadow 0.2s ease;
+
+      &:hover,
+      &:focus-visible {
+        background: lighten($stepper-bg, 2%);
+        border-color: darken($stepper-border, 6%);
+        outline: none;
+        transform: translateY(-1px);
+      }
+
+      &.is-active {
+        background: $stepper-active-bg;
+        border-color: $stepper-active-border;
+        box-shadow: 0 8px 18px $stepper-shadow;
+      }
+
+      &.is-done:not(.is-active) {
+        border-color: mix($stepper-active-border, $stepper-border, 40%);
+        background: lighten($stepper-bg, 1%);
+      }
+
+      .stepper__dot {
+        display: inline-grid;
+        place-content: center;
+        width: 1.625rem;
+        height: 1.625rem;
+        border-radius: 50%;
+        background: $brand-green;
+        color: #fff;
+        font-size: 0.92rem;
+        font-weight: 800;
+      }
+    }
   }
 
-  &.is-active {
-    background: $surface;
-    border-color: rgba(17, 69, 56, 0.42);
-    box-shadow: 0 0.625rem 1.25rem rgba(17, 69, 56, 0.08);
-  }
-
-  &.is-done .stepper__dot {
-    background: #0f6a54;
-  }
-}
-
-.stepper__dot {
-  inline-size: 1.75rem;
-  block-size: 1.75rem;
-  display: grid;
-  place-items: center;
-  border-radius: 9999px;
-  font-weight: 900;
-  color: #fff;
-  background: #114538;
-  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.08);
-  font-size: 1rem;
-  line-height: 1;
-}
-
-.stepper__label {
-  white-space: nowrap;
-}
-
-.trial__form {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-
-  @media (min-width: 48em) {
-    gap: 1.25rem;
+  &__form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 }
 
+/* Show only active panel by default (works on mobile & desktop) */
 .step {
   display: none;
-  grid-template-columns: 1fr;
   gap: 1rem;
-  padding-block: 0.25rem 0.5rem;
 
-  @media (min-width: 48em) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 1.25rem;
-    row-gap: 1rem;
+  &.is-active {
+    display: grid;
   }
-}
-
-.step.is-active {
-  display: grid;
 }
 
 .step__cap {
-  grid-column: 1 / -1;
-  display: inline-grid;
-  grid-auto-flow: column;
-  grid-auto-columns: max-content;
+  display: flex;
   align-items: center;
   gap: 0.6rem;
-  margin: 0.25rem 0 0.25rem;
 }
 
 .step__dot {
-  inline-size: 1.5rem;
-  block-size: 1.5rem;
-  display: grid;
-  place-items: center;
-  border-radius: 9999px;
-  font-weight: 900;
-  color: #fff;
+  display: inline-grid;
+  place-content: center;
+  width: 1.875rem;
+  height: 1.875rem;
+  border-radius: 50%;
   background: $brand-green;
-  font-size: 0.95rem;
-  line-height: 1;
+  color: #fff;
+  font-weight: 800;
 }
 
 .step__title {
   margin: 0;
-  font-weight: 900;
+  font-weight: 800;
   color: $brand-green;
-  font-size: clamp(1.05rem, 0.6vw + 0.95rem, 1.3rem);
-  letter-spacing: -0.01em;
-}
-
-#trial-discipline,
-#trial-message,
-.field--full {
-  grid-column: 1 / -1;
+  font-size: clamp(1.3rem, 2.2vw + 0.6rem, 1.6rem);
 }
 
 .field {
@@ -222,11 +190,14 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
   gap: 0.6rem;
   min-width: 0;
 
+  &--full {
+    grid-column: 1 / -1;
+  }
+
   label,
   legend {
     font-size: 0.95rem;
-    font-weight: 700;
-    color: $text;
+    font-weight: 600;
   }
 
   input[type="text"],
@@ -251,22 +222,23 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
     min-width: 0;
     padding: 0 1rem;
     border-radius: $r;
-    border: 1px solid $line;
+    border: 0.0625rem solid $line;
     background: $input-bg;
     font-size: 0.95rem;
     outline: none;
     transition: border-color 0.15s ease, background-color 0.15s ease,
       box-shadow 0.15s ease;
-    color: #334155;
+    color: $text;
 
     &::placeholder {
-      color: #9aa3b2;
+      color: $text;
+      opacity: 0.6;
     }
 
     &:focus-visible {
       border-color: $brand-green;
-      background: $surface;
-      box-shadow: 0 0 0 0.1875rem rgba($brand-green, 0.16);
+      background: #fff;
+      box-shadow: 0 0 0 0.1875rem rgba($brand-green, 0.18);
     }
   }
 
@@ -282,7 +254,6 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
   .hint {
     margin-top: -0.2rem;
     font-size: 0.85rem;
-    color: $muted;
   }
 
   &.group {
@@ -321,14 +292,13 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
     height: 2.5rem;
     padding: 0 0.9rem;
     border-radius: $pill-r;
-    border: 1px solid $line;
-    background: $surface;
+    border: 0.0625rem solid $line;
+    background: #fff;
     font-weight: 600;
     font-size: 0.92rem;
-    color: #475569;
+    color: $text;
     cursor: pointer;
     user-select: none;
-    transition: border-color 0.15s ease, background-color 0.15s ease;
 
     input {
       position: absolute;
@@ -338,8 +308,8 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
     }
 
     &.is-active {
-      border-color: rgba(17, 69, 56, 0.5);
-      background: rgba(17, 69, 56, 0.08);
+      border-color: rgba($brand-green, 0.5);
+      background: rgba($brand-green, 0.08);
     }
   }
 
@@ -368,8 +338,8 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
     height: 1.375rem;
     margin: 0;
     border-radius: 0.375rem;
-    border: 0.125rem solid rgba(17, 69, 56, 0.35);
-    background: $surface;
+    border: 0.125rem solid rgba($brand-green, 0.35);
+    background: #fff;
     display: inline-grid;
     place-content: center;
     cursor: pointer;
@@ -377,8 +347,8 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
       box-shadow 0.2s ease, transform 0.08s ease;
 
     &:hover {
-      border-color: rgba(17, 69, 56, 0.7);
-      box-shadow: 0 0 0 0.375rem rgba(17, 69, 56, 0.06);
+      border-color: rgba($brand-green, 0.7);
+      box-shadow: 0 0 0 0.375rem rgba($brand-green, 0.06);
     }
 
     &:active {
@@ -387,7 +357,7 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
 
     &:focus-visible {
       outline: none;
-      box-shadow: 0 0 0 0.25rem rgba(17, 69, 56, 0.18);
+      box-shadow: 0 0 0 0.25rem rgba($brand-green, 0.2);
       border-color: $brand-green;
     }
 
@@ -441,24 +411,12 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
 .actions {
   grid-column: 1 / -1;
   margin-top: 0.75rem;
-  text-align: center;
+  text-align: left;
+  display: flex;
+  gap: 0.75rem;
 
-  @media (min-width: 48em) {
-    text-align: left;
-  }
-}
-
-.actions.actions--sticky {
-  position: sticky;
-  bottom: 0;
-  align-self: end;
-  background: linear-gradient(180deg, rgba($page-gray, 0), $page-gray 40%);
-  padding-top: 0.5rem;
-
-  @media (min-width: 48em) {
-    position: static;
-    background: none;
-    padding-top: 0;
+  @media (min-width: 40em) {
+    gap: 1rem;
   }
 }
 
@@ -475,7 +433,7 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
   font-weight: 800;
   font-size: 1.05rem;
   line-height: 1;
-  box-shadow: 0 0.5rem 1.375rem rgba(17, 69, 56, 0.25);
+  box-shadow: 0 0.5rem 1.375rem rgba($cta-green, 0.25);
   transition: background-color 0.2s ease, box-shadow 0.2s ease,
     transform 0.15s ease;
   cursor: pointer;
@@ -499,7 +457,7 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
 .btn--primary:hover,
 .btn--primary:focus-visible {
   background-color: $cta-green-hover;
-  box-shadow: 0 0.625rem 1.625rem rgba(17, 69, 56, 0.32);
+  box-shadow: 0 0.625rem 1.625rem rgba($cta-green, 0.32);
   transform: translateY(-0.0625rem);
   outline: none;
 }
@@ -507,49 +465,47 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
 .btn--primary:active {
   transform: translateY(0.0625rem);
 }
-
 .btn--primary:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
-
 .btn__label {
   line-height: 1;
 }
 
-.btn--ghost {
+$btn-secondary-bg: #f4f6f8;
+$btn-secondary-border: #d8dde3;
+$btn-secondary-text: #114538;
+
+.btn--secondary {
   display: inline-flex;
   align-items: center;
   gap: 0.625rem;
-  padding: 0.875rem 1.25rem;
+  padding: 0.85rem 1.35rem;
+  border: 1px solid $btn-secondary-border;
   border-radius: 9999px;
-  border: 1px solid #d1d5db;
-  background: #ffffff;
-  color: #114538;
+  background: $btn-secondary-bg;
+  color: $btn-secondary-text;
   font-weight: 800;
   font-size: 1.02rem;
   line-height: 1;
-  transition: background-color 0.2s ease, box-shadow 0.2s ease,
-    transform 0.15s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    transform 0.15s ease, box-shadow 0.2s ease;
+  cursor: pointer;
 
   &:hover,
   &:focus-visible {
-    background: #f8fafc;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
-    outline: none;
+    background: lighten($btn-secondary-bg, 2%);
+    border-color: darken($btn-secondary-border, 6%);
     transform: translateY(-1px);
+    outline: none;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
   }
 
   &:active {
     transform: translateY(0);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
   }
-}
-
-.wizard-controls {
-  display: flex;
-  gap: 1rem;
-  justify-content: flex-end;
-  align-items: center;
 }
 
 .msg {
@@ -558,37 +514,69 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
   font-size: 0.92rem;
   padding: 0.6rem 0.8rem;
   border-radius: 0.5rem;
-  border: 1px solid $line;
-  background: $surface;
+  border: 0.0625rem solid $line;
 }
-
 .msg--ok {
   background: #f0fff6;
   color: #0b6a3d;
   border-color: #d1fae5;
 }
-
 .msg--err {
   background: #fff5f5;
   color: #7a1b1b;
   border-color: #fecaca;
 }
 
-#step-1,
-#step-2,
-#step-3 {
-  scroll-margin-top: 1rem;
+@media (min-width: 30em) {
+  .trial__container {
+    padding-inline: 2rem;
+  }
 }
 
-.theme-dark .trial {
-  background: #0f1715;
+@media (min-width: 48em) {
+  .trial__header {
+    margin-bottom: clamp(1rem, 2.5vw, 1.75rem);
+  }
+
+  .trial__header h2 {
+    font-size: clamp(1.4rem, 2vw + 1rem, 2.2rem);
+    line-height: 1.2;
+  }
+
+  .trial__form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .actions {
+    text-align: left;
+  }
+
+  /* Desktop: row stepper */
+  .trial__stepper {
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    grid-template-columns: none;
+
+    .stepper__item {
+      width: auto;
+    }
+  }
 }
-.theme-dark .trial__card {
-  background: transparent;
-  border: 0;
-  box-shadow: none;
+
+@media (min-width: 75em) {
+  .trial__form {
+    gap: 1.5rem;
+  }
 }
-.theme-dark .trial__stepper {
-  background: #101a17;
-  border-color: rgba(255, 255, 255, 0.12);
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+
+  @media (min-width: 62em) {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
 }
