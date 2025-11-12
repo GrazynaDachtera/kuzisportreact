@@ -31,9 +31,6 @@ const DAYS: Day[] = [
   "Sobota",
 ];
 
-const byTime = (a: ScheduleItem, b: ScheduleItem) =>
-  a.start.localeCompare(b.start);
-
 const SCHEDULE: ScheduleItem[] = [
   {
     id: "mon-gim-1",
@@ -843,6 +840,9 @@ const SCHEDULE: ScheduleItem[] = [
   },
 ];
 
+const byTime = (a: ScheduleItem, b: ScheduleItem) =>
+  a.start.localeCompare(b.start);
+
 export default function AbcPage() {
   const [activeDay, setActiveDay] = useState<Day>("Poniedziałek");
   const [query, setQuery] = useState("");
@@ -851,17 +851,19 @@ export default function AbcPage() {
   const selectId = useId();
   const searchId = useId();
 
-  const categories = useMemo(() => {
+  const categories = useMemo<string[]>(() => {
     const set = new Set<string>();
-    SCHEDULE.forEach((x) => set.add(x.title));
+    SCHEDULE.forEach((x: ScheduleItem) => set.add(x.title));
     return ["Wszystkie", ...Array.from(set).sort()];
   }, []);
 
-  const dayItems = useMemo(() => {
+  const dayItems = useMemo<ScheduleItem[]>(() => {
     const q = query.trim().toLowerCase();
-    return SCHEDULE.filter((x) => x.day === activeDay)
-      .filter((x) => (cat === "Wszystkie" ? true : x.title === cat))
-      .filter((x) =>
+    return SCHEDULE.filter((x: ScheduleItem) => x.day === activeDay)
+      .filter((x: ScheduleItem) =>
+        cat === "Wszystkie" ? true : x.title === cat
+      )
+      .filter((x: ScheduleItem) =>
         q
           ? [x.title, x.group, ...(x.tags ?? [])]
               .filter(Boolean)
@@ -875,11 +877,15 @@ export default function AbcPage() {
 
   const onTabsKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
     const i = DAYS.indexOf(activeDay);
-    if (e.key === "ArrowRight") {
-      setActiveDay(DAYS[(i + 1) % DAYS.length]);
-    } else if (e.key === "ArrowLeft") {
+    if (e.key === "ArrowRight") setActiveDay(DAYS[(i + 1) % DAYS.length]);
+    else if (e.key === "ArrowLeft")
       setActiveDay(DAYS[(i - 1 + DAYS.length) % DAYS.length]);
-    }
+  };
+
+  const clearDisabled = cat === "Wszystkie" && query.trim() === "";
+  const clearFilters = () => {
+    setCat("Wszystkie");
+    setQuery("");
   };
 
   return (
@@ -919,7 +925,7 @@ export default function AbcPage() {
                 onChange={(e) => setCat(e.target.value)}
                 className="filter-input"
               >
-                {categories.map((c) => (
+                {categories.map((c: string) => (
                   <option key={c} value={c}>
                     {c}
                   </option>
@@ -939,6 +945,19 @@ export default function AbcPage() {
                 inputMode="search"
               />
             </label>
+
+            <div className="filters-actions">
+              <button
+                type="button"
+                className="clear-btn"
+                aria-label="Wyczyść wszystkie filtry"
+                onClick={clearFilters}
+                disabled={clearDisabled}
+                title="Wyczyść wszystkie filtry"
+              >
+                ×
+              </button>
+            </div>
           </div>
 
           <div className="sr-only" role="status" aria-live="polite">
@@ -955,7 +974,7 @@ export default function AbcPage() {
           {dayItems.length === 0 ? (
             <p className="empty">Brak zajęć dla wybranych filtrów.</p>
           ) : (
-            dayItems.map((item) => (
+            dayItems.map((item: ScheduleItem) => (
               <article key={item.id} className="class-card" role="listitem">
                 <div className="class-time">
                   <span className="time-start">{item.start}</span>
@@ -977,7 +996,7 @@ export default function AbcPage() {
 
                   {item.tags && item.tags.length > 0 && (
                     <ul className="class-tags">
-                      {item.tags.map((t) => (
+                      {item.tags.map((t: string) => (
                         <li key={t} className="tag">
                           {t}
                         </li>
