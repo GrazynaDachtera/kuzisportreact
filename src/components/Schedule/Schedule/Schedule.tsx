@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useId } from "react";
 import "./Schedule.scss";
 
 type Day =
@@ -848,6 +848,9 @@ export default function AbcPage() {
   const [query, setQuery] = useState("");
   const [cat, setCat] = useState<string>("Wszystkie");
 
+  const selectId = useId();
+  const searchId = useId();
+
   const categories = useMemo(() => {
     const set = new Set<string>();
     SCHEDULE.forEach((x) => set.add(x.title));
@@ -870,6 +873,15 @@ export default function AbcPage() {
       .sort(byTime);
   }, [activeDay, query, cat]);
 
+  const onTabsKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
+    const i = DAYS.indexOf(activeDay);
+    if (e.key === "ArrowRight") {
+      setActiveDay(DAYS[(i + 1) % DAYS.length]);
+    } else if (e.key === "ArrowLeft") {
+      setActiveDay(DAYS[(i - 1 + DAYS.length) % DAYS.length]);
+    }
+  };
+
   return (
     <section className="Schedule" aria-labelledby="schedule-heading">
       <div className="schedule-container">
@@ -882,12 +894,14 @@ export default function AbcPage() {
             className="schedule-tabs"
             role="tablist"
             aria-label="Dni tygodnia"
+            onKeyDown={onTabsKeyDown}
           >
             {DAYS.map((d) => (
               <button
                 key={d}
                 role="tab"
                 aria-selected={activeDay === d}
+                aria-controls={`panel-${d}`}
                 className={`tab ${activeDay === d ? "is-active" : ""}`}
                 onClick={() => setActiveDay(d)}
               >
@@ -897,9 +911,10 @@ export default function AbcPage() {
           </div>
 
           <div className="schedule-filters" aria-label="Filtry">
-            <label className="filter">
+            <label className="filter" htmlFor={selectId}>
               <span className="filter-label">Zajęcia</span>
               <select
+                id={selectId}
                 value={cat}
                 onChange={(e) => setCat(e.target.value)}
                 className="filter-input"
@@ -912,19 +927,31 @@ export default function AbcPage() {
               </select>
             </label>
 
-            <label className="filter filter-search">
+            <label className="filter filter-search" htmlFor={searchId}>
               <span className="filter-label">Szukaj</span>
               <input
+                id={searchId}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Szukaj: grupa, wiek, słowo kluczowe…"
                 className="filter-input"
+                type="search"
+                inputMode="search"
               />
             </label>
           </div>
+
+          <div className="sr-only" role="status" aria-live="polite">
+            {dayItems.length} wyników dla {activeDay}
+          </div>
         </header>
 
-        <div className="schedule-list" role="list">
+        <div
+          className="schedule-list"
+          role="list"
+          id={`panel-${activeDay}`}
+          aria-labelledby="schedule-heading"
+        >
           {dayItems.length === 0 ? (
             <p className="empty">Brak zajęć dla wybranych filtrów.</p>
           ) : (
@@ -939,6 +966,11 @@ export default function AbcPage() {
                 <div className="class-main">
                   <div className="class-top">
                     <h3 className="class-title">{item.title}</h3>
+                    {item.location && (
+                      <span className="class-loc" aria-label="Lokalizacja">
+                        {item.location}
+                      </span>
+                    )}
                   </div>
 
                   {item.group && <p className="class-group">{item.group}</p>}
