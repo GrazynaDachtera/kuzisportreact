@@ -955,7 +955,20 @@ export default function AbcPage() {
                 disabled={clearDisabled}
                 title="Wyczyść wszystkie filtry"
               >
-                ×
+                <svg
+                  className="clear-icon"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M6 6l12 12M18 6L6 18"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                </svg>
+                <span className="clear-label">Wyczyść</span>
               </button>
             </div>
           </div>
