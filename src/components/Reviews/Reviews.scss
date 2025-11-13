@@ -5,7 +5,7 @@ $brand: #114538;
 $container: 75rem;
 $space: clamp(1rem, 4vw, 2rem);
 
-.contactNavigation {
+.ctaAdressSection {
   padding-block: $space;
   display: flex;
   justify-content: center;
@@ -70,14 +70,13 @@ $space: clamp(1rem, 4vw, 2rem);
   }
 
   &__meta {
-    // nested label & value inside meta
-    .contactNavigation__label {
+    .ctaAdressSection__label {
       margin: 0;
       font-size: 0.875rem;
       color: #6a7280;
     }
 
-    .contactNavigation__value {
+    .ctaAdressSection__value {
       margin: 0;
       font-weight: 700;
       color: $brand;
@@ -123,29 +122,27 @@ $space: clamp(1rem, 4vw, 2rem);
   }
 }
 
-/* ≥35em (~560px) */
 @media (min-width: 35em) {
-  .contactNavigation__grid {
+  .ctaAdressSection__grid {
     grid-template-columns: 1fr 1fr;
     row-gap: 0.75rem;
   }
 }
 
-/* ≥56.25em (~900px) */
 @media (min-width: 56.25em) {
-  .contactNavigation__grid {
+  .ctaAdressSection__grid {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .contactNavigation__item {
+  .ctaAdressSection__item {
     border-right: 0.0625rem solid $line;
   }
 
-  .contactNavigation__item:nth-child(3n) {
+  .ctaAdressSection__item:nth-child(3n) {
     border-right: 0;
   }
 
-  .contactNavigation__item:last-child .contactNavigation__value {
+  .ctaAdressSection__item:last-child .ctaAdressSection__value {
     white-space: nowrap;
   }
 }
