@@ -14,7 +14,7 @@ const SKILL_LEVELS = [
 const TRAININGS_PER_WEEK = ["1", "2", "3 lub więcej"] as const;
 const CLASS_FORMS = [
   "indywidualne",
-  "mikrogrupa 2–4",
+  "mikrogrupa 2-4",
   "grupowe",
   "grupy zamknięte",
 ] as const;
@@ -322,7 +322,7 @@ export default function CtaContact() {
           <div className="trial__card">
             <header className="trial__header">
               <h2 id="trial-heading">Zapisz się na zajęcia próbne</h2>
-              <p className="trial__sub">Krótki formularz – oddzwonimy.</p>
+              <p className="trial__sub">Krótki formularz - oddzwonimy.</p>
             </header>
 
             <nav
@@ -375,7 +375,7 @@ export default function CtaContact() {
                 <span className="stepper__dot" aria-hidden>
                   3
                 </span>
-                <span className="stepper__label">Zgody & wysyłka</span>
+                <span className="stepper__label">Zgody i wysyłka</span>
               </button>
             </nav>
 
@@ -718,7 +718,7 @@ export default function CtaContact() {
                   <span className="step__dot" aria-hidden>
                     3
                   </span>
-                  <h3 className="step__title">Zgody & wysyłka</h3>
+                  <h3 className="step__title">Zgody i wysyłka</h3>
                 </div>
 
                 <label

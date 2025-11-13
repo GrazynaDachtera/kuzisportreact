@@ -22,7 +22,7 @@ export default function ProjectsHomePage() {
     {
       title: "Treningi motoryczne - Kuzi Sport Performance",
       description:
-        "Kompleksowe przygotowanie motoryczne dla sportowców i amatorów: siła, szybkość, stabilizacja, mobilność. Treningi indywidualne i dla klubów (Train Station, siłownia/BPS), wsparcie fizjoterapeuty, EMS i drenaż limfatyczny – bezpiecznie i pod cele danej dyscypliny.",
+        "Kompleksowe przygotowanie motoryczne dla sportowców i amatorów: siła, szybkość, stabilizacja, mobilność. Treningi indywidualne i dla klubów (Train Station, siłownia/BPS), wsparcie fizjoterapeuty, EMS i drenaż limfatyczny - bezpiecznie i pod cele danej dyscypliny.",
       link: "/Sports/KuziSportPerformance",
     },
     {
