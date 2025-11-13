@@ -308,6 +308,13 @@ export default function CtaContact() {
     []
   );
 
+  const ageHintIds = (hasAge: boolean, hasError: boolean) => {
+    const ids = [];
+    if (hasAge) ids.push("age-hint");
+    if (hasError) ids.push("err-birthDate");
+    return ids.length ? ids.join(" ") : undefined;
+  };
+
   return (
     <section className="trial" aria-labelledby="trial-heading">
       <div className="trial__container">
@@ -318,53 +325,58 @@ export default function CtaContact() {
               <p className="trial__sub">Krótki formularz – oddzwonimy.</p>
             </header>
 
-            <nav className="trial__stepper" aria-label="Postęp formularza">
-              <a
-                href="#step-1"
+            <nav
+              className="trial__stepper"
+              aria-label="Postęp formularza"
+              role="tablist"
+              aria-orientation="horizontal"
+            >
+              <button
+                type="button"
+                role="tab"
+                id="stepper-step-1"
+                aria-controls="step-1"
+                aria-selected={step === 1}
                 className={`stepper__item ${step === 1 ? "is-active" : ""} ${
                   step1Done ? "is-done" : ""
                 }`}
-                aria-current={step === 1 ? "step" : undefined}
-                onClick={(e) => {
-                  e.preventDefault();
-                  goTo(1);
-                }}
+                onClick={() => goTo(1)}
               >
                 <span className="stepper__dot" aria-hidden>
                   1
                 </span>
                 <span className="stepper__label">Dane</span>
-              </a>
-              <a
-                href="#step-2"
+              </button>
+              <button
+                type="button"
+                role="tab"
+                id="stepper-step-2"
+                aria-controls="step-2"
+                aria-selected={step === 2}
                 className={`stepper__item ${step === 2 ? "is-active" : ""} ${
                   step2Done ? "is-done" : ""
                 }`}
-                aria-current={step === 2 ? "step" : undefined}
-                onClick={(e) => {
-                  e.preventDefault();
-                  goTo(2);
-                }}
+                onClick={() => goTo(2)}
               >
                 <span className="stepper__dot" aria-hidden>
                   2
                 </span>
                 <span className="stepper__label">Preferencje</span>
-              </a>
-              <a
-                href="#step-3"
+              </button>
+              <button
+                type="button"
+                role="tab"
+                id="stepper-step-3"
+                aria-controls="step-3"
+                aria-selected={step === 3}
                 className={`stepper__item ${step === 3 ? "is-active" : ""}`}
-                aria-current={step === 3 ? "step" : undefined}
-                onClick={(e) => {
-                  e.preventDefault();
-                  goTo(3);
-                }}
+                onClick={() => goTo(3)}
               >
                 <span className="stepper__dot" aria-hidden>
                   3
                 </span>
                 <span className="stepper__label">Zgody & wysyłka</span>
-              </a>
+              </button>
             </nav>
 
             <form
@@ -378,6 +390,7 @@ export default function CtaContact() {
                 id="step-1"
                 className={`step ${step === 1 ? "is-active" : ""}`}
                 role="tabpanel"
+                aria-labelledby="stepper-step-1"
                 hidden={step !== 1}
               >
                 <div className="step__cap">
@@ -489,8 +502,11 @@ export default function CtaContact() {
 
               <div
                 id="step-2"
-                className={`step ${step === 2 ? "is-active" : ""}`}
+                className={`step step--preferences ${
+                  step === 2 ? "is-active" : ""
+                }`}
                 role="tabpanel"
+                aria-labelledby="stepper-step-2"
                 hidden={step !== 2}
               >
                 <div className="step__cap">
@@ -500,155 +516,140 @@ export default function CtaContact() {
                   <h3 className="step__title">Preferencje treningowe</h3>
                 </div>
 
-                <div className="grid-2">
-                  <div
-                    className={`field ${
-                      errors.discipline ? "field--error" : ""
-                    }`}
+                <div
+                  className={`field field--full ${
+                    errors.discipline ? "field--error" : ""
+                  }`}
+                >
+                  <label htmlFor="trial-discipline">
+                    Dyscyplina{" "}
+                    <span className="req" aria-hidden="true">
+                      *
+                    </span>
+                  </label>
+                  <select
+                    id="trial-discipline"
+                    value={form.discipline}
+                    onChange={(e) => update("discipline", e.target.value)}
+                    required
+                    aria-invalid={errors.discipline ? "true" : "false"}
+                    aria-describedby={
+                      errors.discipline ? "err-discipline" : undefined
+                    }
                   >
-                    <label htmlFor="trial-discipline">
-                      Dyscyplina{" "}
-                      <span className="req" aria-hidden="true">
-                        *
-                      </span>
-                    </label>
-                    <select
-                      id="trial-discipline"
-                      value={form.discipline}
-                      onChange={(e) => update("discipline", e.target.value)}
-                      required
-                      aria-invalid={errors.discipline ? "true" : "false"}
-                      aria-describedby={
-                        errors.discipline ? "err-discipline" : undefined
-                      }
+                    <option value="" disabled>
+                      Wybierz…
+                    </option>
+                    {DISCIPLINE_GROUPS_SORTED.map((g) => (
+                      <optgroup key={g.label} label={g.label}>
+                        {g.options.map((opt) => (
+                          <option key={opt} value={opt}>
+                            {opt}
+                          </option>
+                        ))}
+                      </optgroup>
+                    ))}
+                  </select>
+                  {errors.discipline && (
+                    <span
+                      id="err-discipline"
+                      className="error-text"
+                      role="alert"
                     >
-                      <option value="" disabled>
-                        Wybierz…
-                      </option>
-                      {DISCIPLINE_GROUPS_SORTED.map((g) => (
-                        <optgroup key={g.label} label={g.label}>
-                          {g.options.map((opt) => (
-                            <option key={opt} value={opt}>
-                              {opt}
-                            </option>
-                          ))}
-                        </optgroup>
-                      ))}
-                    </select>
-                    {errors.discipline && (
-                      <span
-                        id="err-discipline"
-                        className="error-text"
-                        role="alert"
-                      >
-                        {errors.discipline}
-                      </span>
-                    )}
-                  </div>
-
-                  <div
-                    className={`field ${
-                      errors.birthDate ? "field--error" : ""
-                    }`}
-                  >
-                    <label htmlFor="trial-birth">
-                      Data urodzenia{" "}
-                      <span className="req" aria-hidden="true">
-                        *
-                      </span>
-                    </label>
-                    <input
-                      id="trial-birth"
-                      type="date"
-                      value={form.birthDate}
-                      onChange={(e) => update("birthDate", e.target.value)}
-                      required
-                      max={new Date().toISOString().slice(0, 10)}
-                      aria-invalid={errors.birthDate ? "true" : "false"}
-                      aria-describedby={
-                        errors.birthDate ? "err-birthDate" : undefined
-                      }
-                    />
-                    {age !== null && (
-                      <small id="age-hint" className="hint">
-                        Wiek: {age} lat
-                      </small>
-                    )}
-                    {errors.birthDate && (
-                      <span
-                        id="err-birthDate"
-                        className="error-text"
-                        role="alert"
-                      >
-                        {errors.birthDate}
-                      </span>
-                    )}
-                  </div>
+                      {errors.discipline}
+                    </span>
+                  )}
                 </div>
 
-                <div className="grid-2">
-                  <fieldset className="field group">
-                    <legend>Poziom</legend>
-                    <div
-                      className="pills"
-                      role="radiogroup"
-                      aria-label="Poziom zaawansowania"
+                <div
+                  className={`field field--full ${
+                    errors.birthDate ? "field--error" : ""
+                  }`}
+                >
+                  <label htmlFor="trial-birth">
+                    Data urodzenia{" "}
+                    <span className="req" aria-hidden="true">
+                      *
+                    </span>
+                  </label>
+                  <input
+                    id="trial-birth"
+                    type="date"
+                    value={form.birthDate}
+                    onChange={(e) => update("birthDate", e.target.value)}
+                    required
+                    max={new Date().toISOString().slice(0, 10)}
+                    aria-invalid={errors.birthDate ? "true" : "false"}
+                    aria-describedby={ageHintIds(
+                      age !== null,
+                      !!errors.birthDate
+                    )}
+                  />
+                  {age !== null && (
+                    <small id="age-hint" className="hint">
+                      Wiek: {age} lat
+                    </small>
+                  )}
+                  {errors.birthDate && (
+                    <span
+                      id="err-birthDate"
+                      className="error-text"
+                      role="alert"
                     >
-                      {SKILL_LEVELS.map((lvl) => (
-                        <label
-                          key={lvl}
-                          className={`pill ${
-                            form.level === lvl ? "is-active" : ""
-                          }`}
-                        >
-                          <input
-                            type="radio"
-                            name="skill"
-                            value={lvl}
-                            checked={form.level === lvl}
-                            onChange={() => update("level", lvl)}
-                          />
-                          <span>{lvl}</span>
-                        </label>
-                      ))}
-                    </div>
-                  </fieldset>
-
-                  <fieldset className="field group">
-                    <legend>Treningi / tydzień</legend>
-                    <div
-                      className="pills pills--compact"
-                      role="radiogroup"
-                      aria-label="Częstotliwość treningów"
-                    >
-                      {TRAININGS_PER_WEEK.map((f) => (
-                        <label
-                          key={f}
-                          className={`pill ${
-                            form.frequency === f ? "is-active" : ""
-                          }`}
-                        >
-                          <input
-                            type="radio"
-                            name="frequency"
-                            value={f}
-                            checked={form.frequency === f}
-                            onChange={() => update("frequency", f)}
-                          />
-                          <span>{f}</span>
-                        </label>
-                      ))}
-                    </div>
-                  </fieldset>
+                      {errors.birthDate}
+                    </span>
+                  )}
                 </div>
 
                 <fieldset className="field group field--full">
+                  <legend>Poziom</legend>
+                  <div className="pills">
+                    {SKILL_LEVELS.map((lvl) => (
+                      <label
+                        key={lvl}
+                        className={`pill ${
+                          form.level === lvl ? "is-active" : ""
+                        }`}
+                      >
+                        <input
+                          type="radio"
+                          name="skill"
+                          value={lvl}
+                          checked={form.level === lvl}
+                          onChange={() => update("level", lvl)}
+                        />
+                        <span>{lvl}</span>
+                      </label>
+                    ))}
+                  </div>
+                </fieldset>
+
+                <fieldset className="field group field--full">
+                  <legend>Treningi / tydzień</legend>
+                  <div className="pills pills--compact">
+                    {TRAININGS_PER_WEEK.map((f) => (
+                      <label
+                        key={f}
+                        className={`pill ${
+                          form.frequency === f ? "is-active" : ""
+                        }`}
+                      >
+                        <input
+                          type="radio"
+                          name="frequency"
+                          value={f}
+                          checked={form.frequency === f}
+                          onChange={() => update("frequency", f)}
+                        />
+                        <span>{f}</span>
+                      </label>
+                    ))}
+                  </div>
+                </fieldset>
+
+                <fieldset className="field group field--full">
                   <legend>Forma zajęć</legend>
-                  <div
-                    className="pills pills--wrap"
-                    role="radiogroup"
-                    aria-label="Forma zajęć"
-                  >
+                  <div className="pills pills--wrap">
                     {CLASS_FORMS.map((f) => (
                       <label
                         key={f}
@@ -710,6 +711,7 @@ export default function CtaContact() {
                 id="step-3"
                 className={`step ${step === 3 ? "is-active" : ""}`}
                 role="tabpanel"
+                aria-labelledby="stepper-step-3"
                 hidden={step !== 3}
               >
                 <div className="step__cap">
