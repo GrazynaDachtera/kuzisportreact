@@ -3,6 +3,7 @@
 import React, { useRef } from "react";
 import Navbar from "@/components/Navbar/Navbar";
 import ReservationHeading from "@/components/Reservation/ReservationHeading/ReservationHeading";
+import Reviews from "@/components/Reviews/Reviews";
 import Reservation from "@/components/Reservation/Reservation";
 import MapComponent from "@/components/MapComponent/MapComponent";
 import Footer from "@/components/Footer/Footer";
@@ -21,6 +22,7 @@ export default function ReservationPage() {
           <div className="main">
             <Navbar />
             <ReservationHeading />
+            <Reviews />
             <Reservation />
             <MapComponent />
             <Footer />
