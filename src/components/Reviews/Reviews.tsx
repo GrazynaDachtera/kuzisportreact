@@ -14,7 +14,7 @@ const PhoneIcon = () => (
     strokeLinejoin="round"
     aria-hidden="true"
     focusable="false"
-    className="icon-svg"
+    className="contactNavigation__iconSvg"
   >
     <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3.11 5.18 2 2 0 0 1 5.1 3h3a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11L9.1 10.9a16 16 0 0 0 4 4l1.57-1.15a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92z" />
   </svg>
@@ -31,7 +31,7 @@ const MailIcon = () => (
     strokeLinejoin="round"
     aria-hidden="true"
     focusable="false"
-    className="icon-svg"
+    className="contactNavigation__iconSvg"
   >
     <path d="M4 4h16v16H4z" />
     <path d="m22 6-10 7L2 6" />
@@ -49,7 +49,7 @@ const PinIcon = () => (
     strokeLinejoin="round"
     aria-hidden="true"
     focusable="false"
-    className="icon-svg"
+    className="contactNavigation__iconSvg"
   >
     <path d="M12 22s-7-5.14-7-11a7 7 0 1 1 14 0c0 5.86-7 11-7 11z" />
     <circle cx="12" cy="11" r="2.5" />
@@ -99,23 +99,23 @@ function StripItem(props: ContactItem) {
     const fullAddress = `${props.address.street}, ${props.address.postalCode} ${props.address.city}`;
     return (
       <li
-        className="strip-item"
+        className="contactNavigation__item"
         role="listitem"
         itemScope
         itemType="https://schema.org/Organization"
       >
-        <div className="icon" aria-hidden="true">
+        <div className="contactNavigation__icon" aria-hidden="true">
           <Icon />
         </div>
         <div
-          className="meta"
+          className="contactNavigation__meta"
           itemProp="address"
           itemScope
           itemType="https://schema.org/PostalAddress"
         >
-          <p className="label">{label}</p>
+          <p className="contactNavigation__label">{label}</p>
           <a
-            className="value"
+            className="contactNavigation__value"
             href={props.href}
             target="_blank"
             rel="noopener noreferrer external"
@@ -146,14 +146,14 @@ function StripItem(props: ContactItem) {
       : {};
 
   return (
-    <li className="strip-item" role="listitem">
-      <div className="icon" aria-hidden="true">
+    <li className="contactNavigation__item" role="listitem">
+      <div className="contactNavigation__icon" aria-hidden="true">
         <Icon />
       </div>
-      <div className="meta">
-        <p className="label">{label}</p>
+      <div className="contactNavigation__meta">
+        <p className="contactNavigation__label">{label}</p>
         <a
-          className="value"
+          className="contactNavigation__value"
           href={props.href}
           aria-label={aria}
           {...itemPropAttr}
@@ -213,15 +213,15 @@ export default function Reviews() {
 
   return (
     <section
-      className="contact-strip"
+      className="contactNavigation"
       aria-labelledby="contact-title"
       role="region"
     >
-      <h2 id="contact-title" className="visually-hidden">
+      <h2 id="contact-title" className="contactNavigation__visuallyHidden">
         Dane kontaktowe
       </h2>
-      <div className="contact-container">
-        <ul className="strip-grid" role="list">
+      <div className="contactNavigation__container">
+        <ul className="contactNavigation__grid" role="list">
           {CONTACTS.map((item, idx) => (
             <StripItem key={idx} {...item} />
           ))}

@@ -5,79 +5,105 @@ $brand: #114538;
 $container: 75rem;
 $space: clamp(1rem, 4vw, 2rem);
 
-.visually-hidden {
-  position: absolute !important;
-  width: 0.0625rem !important;
-  height: 0.0625rem !important;
-  padding: 0 !important;
-  margin: -0.0625rem !important;
-  overflow: hidden !important;
-  clip: rect(0 0 0 0) !important;
-  white-space: nowrap !important;
-  border: 0 !important;
-}
-
-.contact-strip {
+.contactNavigation {
   padding-block: $space;
   display: flex;
   justify-content: center;
   background: transparent;
-}
 
-.contact-container {
-  max-width: $container;
-  width: 100%;
-  margin-inline: auto;
-  padding-inline: max(#{$space}, env(safe-area-inset-left));
-  padding-inline-end: max(#{$space}, env(safe-area-inset-right));
-}
+  &__visuallyHidden {
+    position: absolute !important;
+    width: 0.0625rem !important;
+    height: 0.0625rem !important;
+    padding: 0 !important;
+    margin: -0.0625rem !important;
+    overflow: hidden !important;
+    clip: rect(0 0 0 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
 
-.strip-grid {
-  background: $white;
-  border-radius: 1.25rem;
-  box-shadow: 0 0.625rem 1.875rem rgba(25, 35, 60, 0.08);
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0;
-  padding: 1rem clamp(1rem, 3vw, 2rem);
-  position: relative;
-  z-index: 1;
-  width: clamp(20rem, 90vw, 68.75rem);
-  margin-inline: auto;
-  list-style: none;
-}
+  &__container {
+    max-width: $container;
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: max(#{$space}, env(safe-area-inset-left));
+    padding-inline-end: max(#{$space}, env(safe-area-inset-right));
+  }
 
-.strip-item {
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-  padding: 0.75rem 1rem;
-  border-right: 0;
-}
+  &__grid {
+    background: $white;
+    border-radius: 1.25rem;
+    box-shadow: 0 0.625rem 1.875rem rgba(25, 35, 60, 0.08);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 1rem clamp(1rem, 3vw, 2rem);
+    position: relative;
+    z-index: 1;
+    width: clamp(20rem, 90vw, 68.75rem);
+    margin-inline: auto;
+    list-style: none;
+  }
 
-.icon {
-  display: grid;
-  place-items: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 9999px;
-  background: $white;
-  box-shadow: 0 0.375rem 1.125rem rgba(25, 35, 60, 0.12);
-}
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.75rem 1rem;
+    border-right: 0;
+  }
 
-.icon-svg {
-  width: 1.125rem;
-  height: 1.125rem;
-}
+  &__icon {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    background: $white;
+    box-shadow: 0 0.375rem 1.125rem rgba(25, 35, 60, 0.12);
+  }
 
-.meta {
-  .label {
+  &__iconSvg {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  &__meta {
+    // nested label & value inside meta
+    .contactNavigation__label {
+      margin: 0;
+      font-size: 0.875rem;
+      color: #6a7280;
+    }
+
+    .contactNavigation__value {
+      margin: 0;
+      font-weight: 700;
+      color: $brand;
+      text-decoration: none;
+      word-break: break-word;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &:focus-visible {
+        outline: none;
+        text-decoration: underline;
+        box-shadow: 0 0 0 0.25rem rgba($brand, 0.15);
+        border-radius: 0.25rem;
+      }
+    }
+  }
+
+  &__label {
     margin: 0;
     font-size: 0.875rem;
     color: #6a7280;
   }
 
-  .value {
+  &__value {
     margin: 0;
     font-weight: 700;
     color: $brand;
@@ -99,7 +125,7 @@ $space: clamp(1rem, 4vw, 2rem);
 
 /* ≥35em (~560px) */
 @media (min-width: 35em) {
-  .strip-grid {
+  .contactNavigation__grid {
     grid-template-columns: 1fr 1fr;
     row-gap: 0.75rem;
   }
@@ -107,19 +133,19 @@ $space: clamp(1rem, 4vw, 2rem);
 
 /* ≥56.25em (~900px) */
 @media (min-width: 56.25em) {
-  .strip-grid {
+  .contactNavigation__grid {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .strip-item {
+  .contactNavigation__item {
     border-right: 0.0625rem solid $line;
   }
 
-  .strip-item:nth-child(3n) {
+  .contactNavigation__item:nth-child(3n) {
     border-right: 0;
   }
 
-  .strip-item:last-child .value {
+  .contactNavigation__item:last-child .contactNavigation__value {
     white-space: nowrap;
   }
 }

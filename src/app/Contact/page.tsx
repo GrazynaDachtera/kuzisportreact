@@ -4,6 +4,7 @@ import React, { useRef } from "react";
 import Navbar from "@/components/Navbar/Navbar";
 import ContactHeading from "@/components/ContactComponent/ContactHeading/ContactHeading";
 import ContactComponent from "@/components/ContactComponent/ContactComponent";
+import Reviews from "@/components/Reviews/Reviews";
 import MapComponent from "@/components/MapComponent/MapComponent";
 import Footer from "@/components/Footer/Footer";
 import Cookies from "@/components/Cookies/Cookies";
@@ -21,6 +22,7 @@ export default function Contact() {
           <div className="main">
             <Navbar />
             <ContactHeading />
+            <Reviews />
             <ContactComponent />
           </div>
           <MapComponent />
