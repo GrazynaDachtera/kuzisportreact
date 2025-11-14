@@ -184,7 +184,7 @@ export default function Reviews() {
     {
       Icon: PhoneIcon,
       label: "Biuro:",
-      value: "605 072 681",
+      value: "+48 605-072-681",
       href: "tel:+48605072681",
       type: "phone",
     },
