@@ -196,6 +196,7 @@ export default function ContactComponent() {
                 <input
                   id="name"
                   name="name"
+                  type="text"
                   placeholder="Imię i nazwisko / Firma"
                   required
                   autoComplete="name"
