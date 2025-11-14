@@ -169,6 +169,20 @@ export default function Reviews() {
   const CONTACTS: ContactItem[] = [
     {
       Icon: PhoneIcon,
+      label: "Treningi i współpraca:",
+      value: "+48 785-082-777",
+      href: "tel:+48785082777",
+      type: "phone",
+    },
+    {
+      Icon: PhoneIcon,
+      label: "Recepcja:",
+      value: "+48 785-828-666",
+      href: "tel:+48785828666",
+      type: "phone",
+    },
+    {
+      Icon: PhoneIcon,
       label: "Biuro:",
       value: "605 072 681",
       href: "tel:+48605072681",
@@ -187,27 +201,6 @@ export default function Reviews() {
       value: "kuzisport.biuro@gmail.com",
       href: "mailto:kuzisport.biuro@gmail.com",
       type: "email",
-    },
-    {
-      Icon: PhoneIcon,
-      label: "Recepcja:",
-      value: "+48 785-828-666",
-      href: "tel:+48785828666",
-      type: "phone",
-    },
-    {
-      Icon: PhoneIcon,
-      label: "Trenerzy:",
-      value: "+48 785-082-777",
-      href: "tel:+48785082777",
-      type: "phone",
-    },
-    {
-      Icon: PhoneIcon,
-      label: "Trenerzy:",
-      value: "+48 505-875-735",
-      href: "tel:+48505875735",
-      type: "phone",
     },
   ];
 
