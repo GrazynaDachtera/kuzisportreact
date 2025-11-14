@@ -22,7 +22,7 @@ const ArrowIcon = () => (
     strokeWidth="2.5"
     strokeLinecap="round"
     strokeLinejoin="round"
-    className="arrow-icon"
+    className="contactFormKuziSport__arrowIcon"
   >
     <path d="M7 7h10v10" />
     <path d="M7 17 17 7" />
@@ -120,66 +120,109 @@ export default function ContactComponent() {
   }
 
   return (
-    <section className={`Contact ${poppins.className}`}>
-      <div className="contact-top">
-        <div className="contact-container contact-grid">
-          <div className="contact-form">
-            <h1 className="contact-title">Kontakt</h1>
+    <section
+      className={`contactFormKuziSport ${poppins.className}`}
+      aria-labelledby="contact-heading"
+    >
+      <div className="contactFormKuziSport__top">
+        <div className="contactFormKuziSport__container contactFormKuziSport__grid">
+          <div className="contactFormKuziSport__hero">
+            <div className="contactFormKuziSport__heroCard">
+              <Image
+                src="/Contact/CalistenicsImage.jpeg"
+                alt="Calisthenics training"
+                width={620}
+                height={560}
+                priority
+                sizes="(max-width: 992px) 90vw, 46vw"
+              />
+            </div>
+          </div>
+
+          <div className="contactFormKuziSport__panel">
+            <header className="contactFormKuziSport__header">
+              <h1 id="contact-heading" className="contactFormKuziSport__title">
+                Kontakt
+              </h1>
+              <p className="contactFormKuziSport__sub">
+                Krótki formularz – oddzwonimy.
+              </p>
+            </header>
 
             <form
               ref={formRef}
-              className="form"
+              className="contactFormKuziSport__form"
               onSubmit={handleSubmit}
               noValidate
+              aria-busy={status === "sending" ? "true" : "false"}
             >
               <input
                 type="text"
                 name="bot_honey"
-                className="honey"
+                className="contactFormKuziSport__honey"
                 tabIndex={-1}
                 autoComplete="off"
               />
               <input type="hidden" name="page_url" value="/kontakt" />
 
-              <p aria-live="polite" className="status-line">
+              <p
+                aria-live="polite"
+                role="status"
+                className="contactFormKuziSport__statusLine"
+              >
                 {status === "sending" && "Wysyłanie…"}
                 {status === "sent" && (
-                  <span className="security">
+                  <span className="contactFormKuziSport__security">
                     <ShieldIcon /> Dziękujemy! Wiadomość wysłana.
                   </span>
                 )}
                 {status === "error" && (
-                  <span className="error">{errorMsg}</span>
+                  <span className="contactFormKuziSport__error">
+                    {errorMsg}
+                  </span>
                 )}
               </p>
 
-              <div className="row full">
-                <label className="sr-only" htmlFor="name">
-                  Imię i nazwisko / Firma
+              <div className="contactFormKuziSport__row contactFormKuziSport__row--full contactFormKuziSport__field contactFormKuziSport__field--full">
+                <label htmlFor="name">
+                  Imię i nazwisko / Firma{" "}
+                  <span
+                    className="contactFormKuziSport__req"
+                    aria-hidden="true"
+                  >
+                    *
+                  </span>
                 </label>
                 <input
                   id="name"
                   name="name"
                   placeholder="Imię i nazwisko / Firma"
                   required
+                  autoComplete="name"
                 />
               </div>
 
-              <div className="row two">
-                <div>
-                  <label className="sr-only" htmlFor="phone">
-                    Telefon
-                  </label>
+              <div className="contactFormKuziSport__row contactFormKuziSport__row--two">
+                <div className="contactFormKuziSport__field">
+                  <label htmlFor="phone">Telefon</label>
                   <input
                     id="phone"
                     name="phone"
-                    placeholder="Telefon"
+                    type="tel"
                     inputMode="tel"
+                    placeholder="Telefon"
+                    autoComplete="tel"
                   />
                 </div>
-                <div>
-                  <label className="sr-only" htmlFor="email">
-                    E-mail
+                <div className="contactFormKuziSport__field">
+                  <label htmlFor="email">
+                    E-mail{" "}
+                    <span
+                      className="contactFormKuziSport__req"
+                      aria-hidden="true"
+                    >
+                      *
+                    </span>
                   </label>
                   <input
                     id="email"
@@ -187,13 +230,20 @@ export default function ContactComponent() {
                     type="email"
                     placeholder="E-mail"
                     required
+                    autoComplete="email"
                   />
                 </div>
               </div>
 
-              <div className="row full">
-                <label className="sr-only" htmlFor="message">
-                  Wiadomość
+              <div className="contactFormKuziSport__row contactFormKuziSport__row--full contactFormKuziSport__field contactFormKuziSport__field--full">
+                <label htmlFor="message">
+                  Wiadomość{" "}
+                  <span
+                    className="contactFormKuziSport__req"
+                    aria-hidden="true"
+                  >
+                    *
+                  </span>
                 </label>
                 <textarea
                   id="message"
@@ -204,45 +254,41 @@ export default function ContactComponent() {
                 />
               </div>
 
-              <label className="consent">
+              <div
+                className="contactFormKuziSport__divider"
+                aria-hidden="true"
+              />
+
+              <label className="contactFormKuziSport__consent">
                 <input type="checkbox" name="consent_rodo" required />
                 <span>
                   Zgoda na przetwarzanie danych osobowych{" "}
-                  <span className="required">*</span>
+                  <span className="contactFormKuziSport__required">*</span>
                 </span>
               </label>
 
-              <label className="consent">
+              <label className="contactFormKuziSport__consent">
                 <input type="checkbox" name="consent_marketing" />
                 <span>Zgoda marketingowa</span>
               </label>
 
-              <p className="security">
+              <p className="contactFormKuziSport__security">
                 <ShieldIcon /> <span>Twoje dane są bezpieczne</span>
               </p>
 
-              <button
-                type="submit"
-                className="submit"
-                disabled={status === "sending"}
-              >
-                <span>
-                  {status === "sending" ? "Wysyłanie…" : "Wyślij wiadomość"}
-                </span>
-                <ArrowIcon />
-              </button>
+              <div className="contactFormKuziSport__actions">
+                <button
+                  type="submit"
+                  className="contactFormKuziSport__submit"
+                  disabled={status === "sending"}
+                >
+                  <span>
+                    {status === "sending" ? "Wysyłanie…" : "Wyślij wiadomość"}
+                  </span>
+                  <ArrowIcon />
+                </button>
+              </div>
             </form>
-          </div>
-
-          <div className="contact-hero">
-            <Image
-              src="/Contact/ContactImage.png"
-              alt="Zespół"
-              width={620}
-              height={560}
-              priority
-              sizes="(max-width: 992px) 90vw, 46vw"
-            />
           </div>
         </div>
       </div>
