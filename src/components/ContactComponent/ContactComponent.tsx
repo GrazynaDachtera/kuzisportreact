@@ -131,10 +131,10 @@ export default function ContactComponent() {
               <Image
                 src="/Contact/CalistenicsImage.jpeg"
                 alt="Calisthenics training"
-                width={620}
-                height={560}
                 priority
+                fill
                 sizes="(max-width: 992px) 90vw, 46vw"
+                className="contactFormKuziSport__heroImage"
               />
             </div>
           </div>
