@@ -1,15 +1,29 @@
 "use client";
 
 import "./Pricelist.scss";
-import React from "react";
+import React, { useMemo, useState, useId } from "react";
 
 type PriceRow = { name: string; price: string; note?: string };
-type PriceSection = { id: string; title: string; items: PriceRow[] };
+
+type Category = "Gimnastyka i parkour" | "Sporty walki" | "Aerial" | "Karate";
+type CategoryFilter = "Wszystkie" | Category;
+
+type PriceSection = {
+  id: string;
+  title: string;
+  items: PriceRow[];
+  siblingDiscount?: boolean;
+  siblingDiscountScope?: string;
+  category: Category;
+};
 
 const SECTIONS: PriceSection[] = [
   {
     id: "gym-acro-parkour",
     title: "Gimnastyka / Akrobatyka sportowa / Parkour",
+    siblingDiscount: true,
+    siblingDiscountScope: "gimnastyki",
+    category: "Gimnastyka i parkour",
     items: [
       { name: "1 raz w tygodniu", price: "240 zł" },
       { name: "2 razy w tygodniu", price: "400 zł" },
@@ -19,6 +33,8 @@ const SECTIONS: PriceSection[] = [
   {
     id: "kickboxing-box",
     title: "Kickboxing / Boks",
+    siblingDiscount: true,
+    category: "Sporty walki",
     items: [
       { name: "1 raz w tygodniu", price: "200 zł" },
       { name: "2 razy i więcej w tygodniu", price: "280 zł" },
@@ -27,6 +43,7 @@ const SECTIONS: PriceSection[] = [
   {
     id: "aerial-hoop",
     title: "Aerial Hoop (Koła)",
+    category: "Aerial",
     items: [
       { name: "Zajęcia indywidualne", price: "170 zł / 1 osoba" },
       { name: "Zajęcia 2-osobowe", price: "280 zł", note: "(140 zł od osoby)" },
@@ -37,6 +54,8 @@ const SECTIONS: PriceSection[] = [
   {
     id: "aerial-silks",
     title: "Aerial Silks (Szarfy)",
+    siblingDiscount: true,
+    category: "Aerial",
     items: [
       { name: "1 raz w tygodniu", price: "280 zł" },
       { name: "2 razy w tygodniu", price: "500 zł" },
@@ -45,6 +64,7 @@ const SECTIONS: PriceSection[] = [
   {
     id: "karate",
     title: "Karate",
+    category: "Karate",
     items: [
       { name: "1 raz w tygodniu", price: "200 zł" },
       { name: "2 razy w tygodniu", price: "275 zł" },
@@ -53,15 +73,113 @@ const SECTIONS: PriceSection[] = [
 ];
 
 export default function HelpPage() {
+  const [cat, setCat] = useState<CategoryFilter>("Wszystkie");
+  const [query, setQuery] = useState("");
+  const [onlySiblingDiscount, setOnlySiblingDiscount] = useState(false);
+
+  const selectId = useId();
+  const searchId = useId();
+  const toggleId = useId();
+
+  const categories = useMemo<CategoryFilter[]>(() => {
+    const set = new Set<Category>();
+    SECTIONS.forEach((s) => set.add(s.category));
+    return ["Wszystkie", ...Array.from(set)];
+  }, []);
+
+  const filteredSections = useMemo(() => {
+    const q = query.trim().toLowerCase();
+
+    return SECTIONS.filter((section) => {
+      if (cat !== "Wszystkie" && section.category !== cat) return false;
+      if (onlySiblingDiscount && !section.siblingDiscount) return false;
+
+      if (!q) return true;
+
+      const text = [
+        section.title,
+        section.siblingDiscountScope,
+        ...section.items.map((i) => i.name),
+        ...section.items.map((i) => i.price),
+        ...section.items.map((i) => i.note ?? ""),
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+
+      return text.includes(q);
+    });
+  }, [cat, query, onlySiblingDiscount]);
+
+  const hasResults = filteredSections.length > 0;
+
   return (
-    <section className="PriceList">
+    <section className="PriceList" aria-labelledby="pricelist-heading">
       <div className="price-container">
-        <p className="price-sub">
-          Ceny zgodne z aktualnym cennikiem klubu na sezon 2025/2026.
-        </p>
+        <header className="price-header">
+          <h2 id="pricelist-heading" className="price-title">
+            Cennik zajęć 2025/2026
+          </h2>
+          <p className="price-sub">
+            Ceny zgodne z aktualnym cennikiem klubu na sezon 2025/2026.
+          </p>
+
+          <div className="price-filters" aria-label="Filtry cennika">
+            <label className="price-filter" htmlFor={selectId}>
+              <span className="filter-label">Rodzaj zajęć</span>
+              <select
+                id={selectId}
+                className="filter-input"
+                value={cat}
+                onChange={(e) => setCat(e.target.value as CategoryFilter)}
+              >
+                {categories.map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label
+              className="price-filter price-filter-search"
+              htmlFor={searchId}
+            >
+              <span className="filter-label">Szukaj w cenniku</span>
+              <input
+                id={searchId}
+                className="filter-input"
+                type="search"
+                inputMode="search"
+                placeholder="Np. aerial, 2 razy w tygodniu…"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+              />
+            </label>
+
+            <label className="price-toggle" htmlFor={toggleId}>
+              <input
+                id={toggleId}
+                type="checkbox"
+                className="toggle-input"
+                checked={onlySiblingDiscount}
+                onChange={(e) => setOnlySiblingDiscount(e.target.checked)}
+              />
+              <span className="toggle-label">
+                Tylko ze zniżką dla rodzeństwa
+              </span>
+            </label>
+          </div>
+        </header>
 
         <div className="price-list" role="list">
-          {SECTIONS.map((section) => (
+          {!hasResults && (
+            <p className="price-empty">
+              Brak pozycji dla wybranych filtrów. Zmień kryteria wyszukiwania.
+            </p>
+          )}
+
+          {filteredSections.map((section) => (
             <article key={section.id} className="price-card" role="listitem">
               <h3 className="card-title">{section.title}</h3>
               <ul className="card-lines">
@@ -73,6 +191,17 @@ export default function HelpPage() {
                   </li>
                 ))}
               </ul>
+              {section.siblingDiscount && (
+                <div className="banner">
+                  <strong>Zniżka dla rodzeństwa</strong> – 10%
+                  {section.siblingDiscountScope && (
+                    <span className="banner-scope">
+                      {" "}
+                      (dotyczy tylko {section.siblingDiscountScope})
+                    </span>
+                  )}
+                </div>
+              )}
             </article>
           ))}
 
@@ -81,9 +210,6 @@ export default function HelpPage() {
             <div className="price-row solo">
               <span className="row-name">Jednorazowo</span>
               <span className="row-price">170 zł / zajęcia</span>
-            </div>
-            <div className="banner">
-              <strong>Zniżka dla rodzeństwa</strong> – 10%
             </div>
           </article>
         </div>
