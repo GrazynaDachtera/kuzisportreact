@@ -11,14 +11,13 @@ $body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
 $page-bg: #ffffff;
 $control-h: 2.7rem;
 
-/* ROOT */
-
 .PriceList {
   width: 100%;
   background-color: $page-bg;
   color: $text;
   padding-block: $section-py;
-  padding-bottom: 3rem;
+  padding-bottom: 3.75rem;
+  padding-inline: 0;
   font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial,
     sans-serif;
 }
@@ -27,14 +26,17 @@ $control-h: 2.7rem;
   font-family: inherit;
 }
 
-/* match Schedule container width so headings align visually */
 .price-container {
   width: min(92rem, 92%);
   margin-inline: auto;
   padding-inline: 1rem;
 }
 
-/* HEADER + TITLE + FILTERS */
+@media (min-width: 30em) {
+  .price-container {
+    padding-inline: 2rem;
+  }
+}
 
 .price-header {
   display: grid;
@@ -114,8 +116,6 @@ $control-h: 2.7rem;
   }
 }
 
-/* TOGGLE */
-
 .price-toggle {
   display: inline-flex;
   align-items: center;
@@ -174,8 +174,6 @@ $control-h: 2.7rem;
   font-weight: 600;
 }
 
-/* GRID */
-
 .price-list {
   display: grid;
   grid-template-columns: 1fr;
@@ -189,8 +187,6 @@ $control-h: 2.7rem;
   }
 }
 
-/* EMPTY STATE */
-
 .price-empty {
   grid-column: 1 / -1;
   text-align: center;
@@ -201,8 +197,6 @@ $control-h: 2.7rem;
   border: 1px dashed #e5e7eb;
   background: #f9fafb;
 }
-
-/* CARD */
 
 .price-card {
   background: #ffffff;
@@ -227,8 +221,6 @@ $control-h: 2.7rem;
   box-shadow: 0 18px 40px rgba($brand-green, 0.18);
 }
 
-/* TITLE INSIDE CARD */
-
 .card-title {
   margin: 0;
   color: $brand-green;
@@ -237,8 +229,6 @@ $control-h: 2.7rem;
   letter-spacing: -0.01em;
   line-height: 1.25;
 }
-
-/* ROWS */
 
 .card-lines {
   margin: 0;
@@ -287,8 +277,6 @@ $control-h: 2.7rem;
   color: $muted;
 }
 
-/* DISCOUNT / BANNER */
-
 .banner {
   margin-top: 0.8rem;
   padding: 0.65rem 1rem;
@@ -312,8 +300,6 @@ $control-h: 2.7rem;
   color: $muted;
 }
 
-/* FOOTER NOTE */
-
 .price-note {
   margin-top: 1.8rem;
   font-size: 0.95rem;
@@ -330,8 +316,6 @@ $control-h: 2.7rem;
   line-height: 1.6;
 }
 
-/* Optional dark theme */
-
 .theme-dark .PriceList {
   background: #020617;
   color: #e5f0ec;
@@ -344,7 +328,6 @@ $control-h: 2.7rem;
 }
 
 .theme-dark .price-card.highlight {
-  border-color: #38bdf8;
   box-shadow: 0 18px 40px rgba(8, 47, 73, 0.7);
 }
 
