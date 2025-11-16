@@ -14,8 +14,6 @@ const poppins = Poppins({
 const ArrowIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="22"
-    height="22"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -23,6 +21,8 @@ const ArrowIcon = () => (
     strokeLinecap="round"
     strokeLinejoin="round"
     className="contactFormKuziSport__arrowIcon"
+    aria-hidden="true"
+    focusable="false"
   >
     <path d="M7 7h10v10" />
     <path d="M7 17 17 7" />
@@ -32,51 +32,73 @@ const ArrowIcon = () => (
 const ShieldIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="16"
-    height="16"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
+    aria-hidden="true"
+    focusable="false"
   >
     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
   </svg>
 );
 
+type Status = "idle" | "sending" | "sent" | "error";
+
 export default function ContactComponent() {
   const formRef = useRef<HTMLFormElement>(null);
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
-    "idle"
-  );
-  const [errorMsg, setErrorMsg] = useState<string>("");
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!formRef.current) return;
+    const form = formRef.current;
+    if (!form) return;
 
-    if (!formRef.current.checkValidity()) {
-      formRef.current.reportValidity();
+    if (!form.checkValidity()) {
+      form.reportValidity();
       return;
     }
 
-    const honey = (
-      formRef.current.querySelector(
-        'input[name="bot_honey"]'
-      ) as HTMLInputElement | null
-    )?.value;
+    const honey =
+      form
+        .querySelector<HTMLInputElement>("input[name='bot_honey']")
+        ?.value.trim() ?? "";
     if (honey) return;
 
-    const rodoCb = formRef.current.querySelector<HTMLInputElement>(
-      "input[name='consent_rodo']"
-    )!;
-    const mktCb = formRef.current.querySelector<HTMLInputElement>(
-      "input[name='consent_marketing']"
-    )!;
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
-    formRef.current
-      .querySelectorAll(
+    if (!serviceId || !templateId || !publicKey) {
+      console.error("EmailJS configuration is missing");
+      setErrorMsg(
+        "Formularz jest chwilowo niedostępny. Spróbuj ponownie później."
+      );
+      setStatus("error");
+      return;
+    }
+
+    const rodoCb = form.querySelector<HTMLInputElement>(
+      "input[name='consent_rodo']"
+    );
+    const mktCb = form.querySelector<HTMLInputElement>(
+      "input[name='consent_marketing']"
+    );
+
+    if (!rodoCb || !mktCb) {
+      console.error("Consent checkboxes not found in the form");
+      setErrorMsg(
+        "Ups… Wystąpił błąd formularza. Odśwież stronę i spróbuj ponownie."
+      );
+      setStatus("error");
+      return;
+    }
+
+    form
+      .querySelectorAll<HTMLInputElement>(
         "input[type='hidden'][name='consent_rodo'], input[type='hidden'][name='consent_marketing']"
       )
       .forEach((el) => el.remove());
@@ -94,20 +116,17 @@ export default function ContactComponent() {
     mktHidden.name = "consent_marketing";
     mktHidden.value = mktCb.checked ? "Tak" : "Nie";
 
-    formRef.current.appendChild(rodoHidden);
-    formRef.current.appendChild(mktHidden);
+    form.appendChild(rodoHidden);
+    form.appendChild(mktHidden);
 
     setStatus("sending");
     setErrorMsg("");
 
     try {
-      await emailjs.sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string,
-        formRef.current,
-        { publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY as string }
-      );
-      formRef.current.reset();
+      await emailjs.sendForm(serviceId, templateId, form, {
+        publicKey,
+      });
+      form.reset();
       setStatus("sent");
     } catch (err) {
       console.error("EmailJS error:", err);
@@ -123,17 +142,18 @@ export default function ContactComponent() {
     <section
       className={`contactFormKuziSport ${poppins.className}`}
       aria-labelledby="contact-heading"
+      aria-describedby="contact-description contact-security"
     >
       <div className="contactFormKuziSport__top">
         <div className="contactFormKuziSport__container contactFormKuziSport__grid">
           <div className="contactFormKuziSport__hero">
-            <div className="contactFormKuziSport__heroCard">
+            <div className="contactFormKuziSport__heroCard" aria-hidden="true">
               <Image
                 src="/Contact/CalistenicsImage.jpeg"
-                alt="Calisthenics training"
+                alt=""
                 priority
                 fill
-                sizes="(max-width: 992px) 90vw, 46vw"
+                sizes="(max-width: 62rem) 90vw, 46vw"
                 className="contactFormKuziSport__heroImage"
               />
             </div>
@@ -144,7 +164,7 @@ export default function ContactComponent() {
               <h1 id="contact-heading" className="contactFormKuziSport__title">
                 Kontakt
               </h1>
-              <p className="contactFormKuziSport__sub">
+              <p id="contact-description" className="contactFormKuziSport__sub">
                 Krótki formularz – oddzwonimy.
               </p>
             </header>
@@ -154,7 +174,7 @@ export default function ContactComponent() {
               className="contactFormKuziSport__form"
               onSubmit={handleSubmit}
               noValidate
-              aria-busy={status === "sending" ? "true" : "false"}
+              aria-busy={status === "sending"}
             >
               <input
                 type="text"
@@ -166,6 +186,7 @@ export default function ContactComponent() {
               <input type="hidden" name="page_url" value="/kontakt" />
 
               <p
+                id="contact-status"
                 aria-live="polite"
                 role="status"
                 className="contactFormKuziSport__statusLine"
@@ -191,6 +212,9 @@ export default function ContactComponent() {
                     aria-hidden="true"
                   >
                     *
+                  </span>
+                  <span className="contactFormKuziSport__srOnly">
+                    Pole wymagane
                   </span>
                 </label>
                 <input
@@ -224,6 +248,9 @@ export default function ContactComponent() {
                     >
                       *
                     </span>
+                    <span className="contactFormKuziSport__srOnly">
+                      Pole wymagane
+                    </span>
                   </label>
                   <input
                     id="email"
@@ -245,6 +272,9 @@ export default function ContactComponent() {
                   >
                     *
                   </span>
+                  <span className="contactFormKuziSport__srOnly">
+                    Pole wymagane
+                  </span>
                 </label>
                 <textarea
                   id="message"
@@ -261,7 +291,12 @@ export default function ContactComponent() {
               />
 
               <label className="contactFormKuziSport__consent">
-                <input type="checkbox" name="consent_rodo" required />
+                <input
+                  type="checkbox"
+                  name="consent_rodo"
+                  required
+                  aria-required="true"
+                />
                 <span>
                   Zgoda na przetwarzanie danych osobowych{" "}
                   <span className="contactFormKuziSport__required">*</span>
@@ -273,7 +308,10 @@ export default function ContactComponent() {
                 <span>Zgoda marketingowa</span>
               </label>
 
-              <p className="contactFormKuziSport__security">
+              <p
+                id="contact-security"
+                className="contactFormKuziSport__security"
+              >
                 <ShieldIcon /> <span>Twoje dane są bezpieczne</span>
               </p>
 
@@ -282,6 +320,7 @@ export default function ContactComponent() {
                   type="submit"
                   className="contactFormKuziSport__submit"
                   disabled={status === "sending"}
+                  aria-disabled={status === "sending"}
                 >
                   <span>
                     {status === "sending" ? "Wysyłanie…" : "Wyślij wiadomość"}
@@ -297,7 +336,7 @@ export default function ContactComponent() {
   );
 }
 
-if (typeof window !== "undefined") {
+if (typeof window !== "undefined" && process.env.NODE_ENV !== "production") {
   console.log("EmailJS vars:", {
     service: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
     template: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
