@@ -137,17 +137,20 @@ export default function HelpPage() {
               </select>
             </label>
 
-            <label className="price-toggle" htmlFor={toggleId}>
-              <input
-                id={toggleId}
-                type="checkbox"
-                className="toggle-input"
-                checked={onlySiblingDiscount}
-                onChange={(e) => setOnlySiblingDiscount(e.target.checked)}
-              />
-              <span className="toggle-label">
-                Tylko ze zniżką dla rodzeństwa
-              </span>
+            <label className="price-filter" htmlFor={toggleId}>
+              <span className="filter-label">Zniżka:</span>
+              <div className="price-toggle">
+                <input
+                  id={toggleId}
+                  type="checkbox"
+                  className="toggle-input"
+                  checked={onlySiblingDiscount}
+                  onChange={(e) => setOnlySiblingDiscount(e.target.checked)}
+                />
+                <span className="toggle-label">
+                  Tylko ze zniżką dla rodzeństwa
+                </span>
+              </div>
             </label>
           </div>
         </header>
@@ -162,6 +165,7 @@ export default function HelpPage() {
           {filteredSections.map((section) => (
             <article key={section.id} className="price-card" role="listitem">
               <h3 className="card-title">{section.title}</h3>
+
               <ul className="card-lines">
                 {section.items.map((row, i) => (
                   <li key={i} className="price-row">
@@ -171,6 +175,7 @@ export default function HelpPage() {
                   </li>
                 ))}
               </ul>
+
               {section.siblingDiscount && (
                 <div className="banner">
                   <strong>Zniżka dla rodzeństwa</strong> – 10%
