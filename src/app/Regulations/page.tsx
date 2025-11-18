@@ -2,6 +2,7 @@
 
 import React, { useRef } from "react";
 import Navbar from "@/components/Navbar/Navbar";
+import RegulationsHeading from "@/components/Regulations/RegulationsHeading/RegulationsHeading";
 import Regulations from "@/components/Regulations/Regulations";
 import Footer from "@/components/Footer/Footer";
 import Cookies from "@/components/Cookies/Cookies";
@@ -18,6 +19,7 @@ export default function RegulationsPage() {
         <section className="kuziSport">
           <div className="main">
             <Navbar />
+            <RegulationsHeading />
             <Regulations />
           </div>
           <Footer />

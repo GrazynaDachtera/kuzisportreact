@@ -217,28 +217,12 @@ export default function RegulationsPage() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  function handlePrint() {
-    const prev = showAll;
-    setShowAll(true);
-    const restore = () => {
-      if (!prev) setShowAll(false);
-      window.removeEventListener("afterprint", restore);
-    };
-    window.addEventListener("afterprint", restore);
-    setTimeout(() => window.print(), 0);
-  }
-
   return (
     <main className="regulations-wrapper">
-      <h1 className="regulations-title">Regulamin</h1>
-
       <section className="regulations-content">
         <div className="regulations-actions">
           <button className="btn" onClick={() => setShowAll((v) => !v)}>
             {showAll ? "Pokaż tylko wybrany" : "Pokaż wszystko"}
-          </button>
-          <button className="btn" onClick={handlePrint}>
-            Drukuj PDF
           </button>
           <button className="btn" onClick={copyLink}>
             {copied ? "Skopiowano" : "Kopiuj link do sekcji"}

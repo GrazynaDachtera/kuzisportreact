@@ -1,0 +1,82 @@
+$space-1: 0.5rem;
+$space-2: 1rem;
+$space-3: 1.5rem;
+$space-4: 2rem;
+
+.headingKuziSport-wrapper {
+  --nav-h: 5.375rem;
+  --pad-inline: #{$space-2};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block-end: $space-4;
+}
+
+.headingKuziSport-title {
+  scroll-margin-top: calc(var(--nav-h) + 2rem);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 0;
+  padding: clamp(1rem, 3vw, 2rem) var(--pad-inline);
+  font-weight: 800;
+  font-size: clamp(2.25rem, 7vw + 0.5rem, 3.25rem);
+  line-height: 1.1;
+  color: #374151;
+  background: #f8f9fa;
+  padding-top: calc(var(--nav-h) + 4rem);
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  border-bottom: 0 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+.headingKuziSport-link {
+  color: inherit;
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  border-bottom: 0 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  padding: $space-1 0;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    border-bottom: 0 !important;
+    background-image: none !important;
+    box-shadow: none !important;
+  }
+
+  &:focus-visible {
+    outline: 0.125rem solid currentColor;
+    outline-offset: 0.125rem;
+    border-radius: 0.25rem;
+  }
+}
+
+@media (min-width: 30.0625em) {
+  .headingKuziSport-wrapper {
+    --nav-h: 4.5rem;
+    --pad-inline: #{$space-3};
+  }
+
+  .headingKuziSport-title {
+    font-size: clamp(2rem, 4vw + 1rem, 3rem);
+  }
+}
+
+@media (min-width: 64.0625em) {
+  .headingKuziSport-wrapper {
+    --nav-h: 5rem;
+    --pad-inline: #{$space-4};
+  }
+
+  .headingKuziSport-title {
+    font-size: clamp(2rem, 3vw + 1rem, 3rem);
+  }
+}
