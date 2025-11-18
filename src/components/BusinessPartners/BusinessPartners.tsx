@@ -75,7 +75,16 @@ const SECTIONS: Section[] = [
     title: "BENEFIT SYSTEMS",
     body: (
       <>
-        <p>Akceptujemy karty Benefit Systems ..............</p>
+        <p>
+          Program Benefit Systems to działanie mające na celu promowanie
+          aktywności fizycznej i zdrowego stylu życia wśród uczestników. W
+          klubie Kuzi Sport możesz skorzystać z różnych form wsparcia, które
+          oferuje ten program. Obejmuje to możliwość korzystania z zajęć w
+          ramach sztuk walki (boks, kickboxing) oraz siłowni. Przed rozpoczęciem
+          korzystania z programu, warto zapoznać się z ofertą klubu Kuzi Sport
+          oraz sprawdzić, jakie dokładnie usługi są objęte programem Benefit
+          Systems, aby w pełni wykorzystać dostępne możliwości.
+        </p>
         <figure
           className="BusinessPartners-mediaSlot"
           aria-label="Miejsce na logo Benefit Systems"
@@ -101,7 +110,13 @@ const SECTIONS: Section[] = [
     title: "FIT PROFIT",
     body: (
       <>
-        <p>Akceptujemy karty Fit Profit ..............</p>
+        <p>
+          Program Fit Profit to oferta skierowana do osób, które chcą zadbać o
+          swoje zdrowie i aktywność fizyczną, a jego realizacja w klubie Kuzi
+          Sport daje kilka możliwości. Uczestnicy programu mogą korzystać z
+          wygodnych kart sportowych, które umożliwiają dostęp do trenowania
+          sztuk walki, tj. kickboxing, boks oraz siłowni.
+        </p>
         <figure
           className="BusinessPartners-mediaSlot"
           aria-label="Miejsce na logo Fit Profit"
@@ -127,13 +142,6 @@ const SECTIONS: Section[] = [
     title: "PARTNERZY BIZNESOWI",
     body: (
       <>
-        <p>
-          Administrator stosuje tzw. pliki cookies – dane informatyczne
-          zapisywane przez serwery internetowe na urządzeniu końcowym
-          Użytkownika, które mogą być następnie odczytywane przez serwery
-          internetowe przy każdorazowym połączeniu się z urządzeniem końcowym
-          Użytkownika.
-        </p>
         <div
           className="BusinessPartners-mediaGrid"
           role="group"
@@ -239,27 +247,12 @@ export default function PrivacyPolicyPage() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  function handlePrint() {
-    const prev = showAll;
-    setShowAll(true);
-    const restore = () => {
-      if (!prev) setShowAll(false);
-      window.removeEventListener("afterprint", restore);
-    };
-    window.addEventListener("afterprint", restore);
-    setTimeout(() => window.print(), 0);
-  }
-
   return (
     <main className="BusinessPartners-wrapper">
-      <h1 className="BusinessPartners-title">Partnerzy biznesowi</h1>
       <section className="BusinessPartners-content">
         <div className="BusinessPartners-actions">
           <button className="btn" onClick={() => setShowAll((v) => !v)}>
             {showAll ? "Pokaż tylko wybrany" : "Pokaż wszystko"}
-          </button>
-          <button className="btn" onClick={handlePrint}>
-            Drukuj PDF
           </button>
           <button className="btn" onClick={copyLink}>
             {copied ? "Skopiowano" : "Kopiuj link do sekcji"}
