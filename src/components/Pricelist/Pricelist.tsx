@@ -74,11 +74,10 @@ const SECTIONS: PriceSection[] = [
 
 export default function HelpPage() {
   const [cat, setCat] = useState<CategoryFilter>("Wszystkie");
-  const [query, setQuery] = useState("");
+  const [query] = useState("");
   const [onlySiblingDiscount, setOnlySiblingDiscount] = useState(false);
 
   const selectId = useId();
-  const searchId = useId();
   const toggleId = useId();
 
   const categories = useMemo<CategoryFilter[]>(() => {
@@ -120,13 +119,10 @@ export default function HelpPage() {
           <h2 id="pricelist-heading" className="price-title">
             Cennik zajęć 2025/2026
           </h2>
-          <p className="price-sub">
-            Ceny zgodne z aktualnym cennikiem klubu na sezon 2025/2026.
-          </p>
 
           <div className="price-filters" aria-label="Filtry cennika">
             <label className="price-filter" htmlFor={selectId}>
-              <span className="filter-label">Rodzaj zajęć</span>
+              <span className="filter-label">Rodzaj zajęć:</span>
               <select
                 id={selectId}
                 className="filter-input"
@@ -139,22 +135,6 @@ export default function HelpPage() {
                   </option>
                 ))}
               </select>
-            </label>
-
-            <label
-              className="price-filter price-filter-search"
-              htmlFor={searchId}
-            >
-              <span className="filter-label">Szukaj w cenniku</span>
-              <input
-                id={searchId}
-                className="filter-input"
-                type="search"
-                inputMode="search"
-                placeholder="Np. aerial, 2 razy w tygodniu…"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-              />
             </label>
 
             <label className="price-toggle" htmlFor={toggleId}>
@@ -215,6 +195,9 @@ export default function HelpPage() {
         </div>
 
         <footer className="price-note">
+          <p className="price-sub">
+            Ceny zgodne z aktualnym cennikiem klubu na sezon 2025/2026.
+          </p>
           <p className="note-strong">
             Siłownia gratis dla rodzica/opiekuna w trakcie trwania zajęć dziecka
             oraz dla klubowiczów powyżej 16 r.ż trenujących minimum 2 razy w

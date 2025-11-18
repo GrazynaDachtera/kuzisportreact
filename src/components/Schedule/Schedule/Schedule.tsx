@@ -918,7 +918,7 @@ export default function AbcPage() {
 
           <div className="schedule-filters" aria-label="Filtry">
             <label className="filter" htmlFor={selectId}>
-              <span className="filter-label">Zajęcia</span>
+              <span className="filter-label">Rodzaj zajęć:</span>
               <select
                 id={selectId}
                 value={cat}
@@ -934,7 +934,7 @@ export default function AbcPage() {
             </label>
 
             <label className="filter filter-search" htmlFor={searchId}>
-              <span className="filter-label">Szukaj</span>
+              <span className="filter-label">Szukaj:</span>
               <input
                 id={searchId}
                 value={query}

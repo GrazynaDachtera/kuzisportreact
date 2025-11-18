@@ -379,9 +379,9 @@ $bp-xl: 80em;
     border-color 0.18s ease, background-color 0.18s ease;
 
   &:hover {
-    transform: translateY(-3px);
-    border-color: color.adjust($card-border, $lightness: -10%);
-    box-shadow: $card-shadow-hover;
+    transform: none;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+    border-color: $card-border;
   }
 
   &:focus-within {
