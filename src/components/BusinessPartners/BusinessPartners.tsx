@@ -71,8 +71,8 @@ const PARTNER_LOGOS: PartnerLogo[] = [
 const SECTIONS: Section[] = [
   {
     id: "s1",
-    marker: "I.",
-    title: "BENEFIT SYSTEMS",
+    marker: "1.",
+    title: "Benefit Systems",
     body: (
       <>
         <p>
@@ -106,8 +106,8 @@ const SECTIONS: Section[] = [
   },
   {
     id: "s2",
-    marker: "II.",
-    title: "FIT PROFIT",
+    marker: "2.",
+    title: "Fit Profit",
     body: (
       <>
         <p>
@@ -138,8 +138,8 @@ const SECTIONS: Section[] = [
   },
   {
     id: "s3",
-    marker: "III.",
-    title: "PARTNERZY BIZNESOWI",
+    marker: "3.",
+    title: "Partnerzy biznesowi",
     body: (
       <>
         <div
