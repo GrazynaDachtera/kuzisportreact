@@ -100,9 +100,11 @@ const SECTIONS: Section[] = [
 function escRe(s: string) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
+
 function oneLine(s: string) {
   return s.replace(/\n/g, " ");
 }
+
 function highlightString(text: string, q: string): React.ReactNode {
   if (!q) return text;
   const re = new RegExp(`(${escRe(q)})`, "ig");
@@ -116,6 +118,7 @@ function highlightString(text: string, q: string): React.ReactNode {
     )
   );
 }
+
 function highlightNode(node: React.ReactNode, q: string): React.ReactNode {
   if (!q) return node;
   if (typeof node === "string") return highlightString(node, q);
@@ -281,20 +284,22 @@ export default function RegulationsPage() {
             </button>
 
             {showAll ? (
-              filtered.map((s) => (
-                <section
-                  className="regulations-block"
-                  key={s.id}
-                  id={`panel-${s.id}`}
-                  role="tabpanel"
-                  aria-labelledby={`tab-${s.id}`}
-                >
-                  <h3 className="regulations-heading">
-                    <strong className="regulations-marker">{s.marker}</strong>{" "}
-                    {s.title}
-                  </h3>
-                </section>
-              ))
+              <div className="regulations-scroll">
+                {filtered.map((s) => (
+                  <section
+                    className="regulations-block"
+                    key={s.id}
+                    id={`panel-${s.id}`}
+                    role="tabpanel"
+                    aria-labelledby={`tab-${s.id}`}
+                  >
+                    <h3 className="regulations-heading">
+                      <strong className="regulations-marker">{s.marker}</strong>{" "}
+                      {s.title}
+                    </h3>
+                  </section>
+                ))}
+              </div>
             ) : (
               <section
                 className="regulations-block"
