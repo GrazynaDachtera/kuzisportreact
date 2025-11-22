@@ -149,6 +149,25 @@ $brand-green: #114538;
   min-height: 30vh;
 }
 
+.regulations-scroll {
+  max-height: calc(100vh - #{$nav-h-desktop} - 3rem);
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.regulations-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.regulations-scroll::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 9999px;
+}
+
+.regulations-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 .back-btn {
   display: none;
   border: none;
@@ -173,7 +192,7 @@ $brand-green: #114538;
 .regulations-heading {
   margin: 0 0 0.5rem 0;
   font-weight: 700;
-  font-size: clamp(1.1rem, 2vw + 0.3rem, 1.45rem);
+  font-size: clamp(0.95rem, 1.5vw + 0.15rem, 1.15rem);
   color: $text;
 }
 
@@ -194,6 +213,12 @@ $brand-green: #114538;
 
   .regulations-block {
     scroll-margin-top: calc(#{$nav-h-tablet} + 2rem);
+  }
+
+  .regulations-scroll {
+    max-height: none;
+    overflow-y: visible;
+    padding-right: 0;
   }
 }
 
