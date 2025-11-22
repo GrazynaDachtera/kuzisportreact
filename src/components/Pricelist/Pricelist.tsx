@@ -190,13 +190,15 @@ export default function HelpPage() {
             </article>
           ))}
 
-          <article className="price-card highlight" role="listitem">
-            <h3 className="card-title">Trening indywidualny</h3>
-            <div className="price-row solo">
-              <span className="row-name">Jednorazowo</span>
-              <span className="row-price">170 zł / zajęcia</span>
-            </div>
-          </article>
+          {!onlySiblingDiscount && (
+            <article className="price-card highlight" role="listitem">
+              <h3 className="card-title">Trening indywidualny</h3>
+              <div className="price-row solo">
+                <span className="row-name">Jednorazowo</span>
+                <span className="row-price">170 zł / zajęcia</span>
+              </div>
+            </article>
+          )}
         </div>
 
         <footer className="price-note">
