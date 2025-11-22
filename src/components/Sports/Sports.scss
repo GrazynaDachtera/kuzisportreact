@@ -1,171 +1,121 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap");
+@use "sass:color";
 
-:root {
-  --section-py: clamp(2rem, 4.5vw, 5rem);
-  --brand-green: #2e9c6a;
-  --brand-green-dark: #2b7a55;
-  --text-color: #4a5565;
-  --muted: #eef1f3;
+$section-py: clamp(1.5rem, 2vw, 3rem);
+$brand-green: #114538;
+$font: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial,
+  sans-serif;
+$text: #1f2933;
 
-  /* Shared subtitle size */
-  --subtitle-fs: clamp(1.1rem, 0.6vw + 1rem, 1.5rem);
-  --subtitle-fw: 700;
+$card-bg: #f5f7f9;
+$card-border: #e5e7eb;
+$card-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+$card-shadow-hover: 0 18px 40px rgba(15, 23, 42, 0.14);
+$card-radius: 0.875rem;
+$accent-w: 0.28rem;
 
-  --body-fs: clamp(0.95rem, 1.1vw + 0.55rem, 1.05rem);
-  font-family: "Poppins", sans-serif;
-}
+$bp-lg: 64em;
 
-/* ===== Subpage (KuziSportGymnastics) ===== */
-.KuziSportGymnastics {
-  width: 100%;
-  font-family: "Poppins", sans-serif;
-}
-
-.KuziSportGymnastics-grid-wrapper {
-  background: #f4f6f9;
-  padding-block: var(--section-py);
-}
-
-.KuziSportGymnastics-container {
-  width: 92%;
-  max-width: 1200px;
-  margin-inline: auto;
-  padding-inline: clamp(1rem, 2vw, 2rem);
-}
-
-.KuziSportGymnastics-content {
-  max-width: 860px;
-  margin-inline: 0;
-}
-
-/* Subpage subtitle */
-.KuziSportGymnastics-title {
-  font-weight: var(--subtitle-fw);
-  font-size: 2.5rem;
-  color: var(--brand-green);
-  margin: 0;
-  text-align: left;
-}
-
-.KuziSportGymnastics-grid {
-  margin-top: 2.25rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  row-gap: 18px;
-}
-
-.KuziSportGymnastics-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  text-decoration: none;
-  color: var(--text-color);
-  padding: 10px 12px;
-  border-radius: 10px;
-  transition: color .2s ease, background-color .2s ease, transform .2s ease;
-}
-
-.KuziSportGymnastics-item:hover,
-.KuziSportGymnastics-item:focus-visible {
-  color: var(--brand-green-dark);
-  background: var(--muted);
-  outline: none;
-}
-
-.KuziSportGymnastics-icon-wrapper {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 2px;
-}
-
-.KuziSportGymnastics-arrow-icon {
-  width: 18px;
-  height: 18px;
-  color: var(--brand-green);
-  transition: transform .2s ease;
-}
-
-.KuziSportGymnastics-item:hover .KuziSportGymnastics-arrow-icon,
-.KuziSportGymnastics-item:focus-visible .KuziSportGymnastics-arrow-icon {
-  transform: translateX(2px);
-}
-
-.KuziSportGymnastics-text { flex: 1; }
-
-.KuziSportGymnastics-item-title {
-  font-weight: 600;
-  font-size: var(--body-fs);
-  margin: 0;
-  color: currentColor;
-}
-
-/* ===== Mother Page (Projects list) ===== */
 .projects-heading {
   width: 100%;
-  font-family: "Poppins", sans-serif;
-  color: var(--brand-green);
+  background-color: #ffffff;
+  color: $text;
+  padding-block: $section-py;
+  font-family: $font;
+}
+
+.projects-heading * {
+  font-family: inherit;
 }
 
 .projects-heading-grid-wrapper {
-  background: #fff;
-  padding-block: var(--section-py);
+  background: #ffffff;
 }
 
 .projects-heading-container {
-  width: 92%;
-  max-width: 1200px;
+  width: min(92rem, 92%);
   margin-inline: auto;
-  padding-inline: clamp(1rem, 2vw, 2rem);
+  padding-inline: 1rem;
 }
 
-/* Two-column grid */
+@media (min-width: 30em) {
+  .projects-heading-container {
+    padding-inline: 2rem;
+  }
+}
+
 .projects-heading-grid {
   display: grid;
+  gap: 1.1rem;
   grid-template-columns: 1fr;
-  column-gap: 48px;
-  row-gap: 26px;
-  width: min(100%, 1000px);
-  margin-inline: 0;
-  justify-items: start;
+  margin: 0;
+  padding: 0;
 }
-@media (max-width: 768px) {
+
+@media (min-width: $bp-lg) {
   .projects-heading-grid {
-    grid-template-columns: 1fr;
-    width: 100%;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
 .projects-grid-item {
+  position: relative;
   display: flex;
-  align-items: flex-start;
-  gap: 12px;
+  align-items: center;
+  gap: 0.95rem;
   text-decoration: none;
-  color: var(--brand-green);
-  padding: 10px 12px;
-  border-radius: 10px;
-  transition: color .2s ease, background-color .2s ease, transform .2s ease;
-}
+  color: $text;
+  padding: clamp(1rem, 2vw, 1.25rem);
+  border-radius: $card-radius;
+  background: linear-gradient(
+        180deg,
+        rgba($brand-green, 0.95) 0%,
+        rgba($brand-green, 0.75) 100%
+      )
+      left / $accent-w 100% no-repeat,
+    $card-bg;
+  border: 0.0625rem solid $card-border;
+  box-shadow: $card-shadow;
+  transition: transform 0.12s ease, box-shadow 0.22s ease,
+    border-color 0.18s ease, background-color 0.18s ease, color 0.18s ease;
 
-.projects-grid-item:hover,
-.projects-grid-item:focus-visible {
-  color: var(--brand-green-dark);
-  background: var(--muted);
-  outline: none;
+  &:hover {
+    transform: none;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+    border-color: $card-border;
+    color: $brand-green;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba($brand-green, 0.18), $card-shadow-hover;
+    border-color: color.adjust($card-border, $lightness: -12%);
+    color: $brand-green;
+  }
 }
 
 .projects-grid-item-icon-wrapper {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-top: 2px;
+  flex-shrink: 0;
+  order: 2;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 9999px;
+  background: $brand-green;
+  box-shadow: 0 12px 26px rgba($brand-green, 0.35);
+}
+
+.projects-grid-item:hover .projects-grid-item-icon-wrapper,
+.projects-grid-item:focus-visible .projects-grid-item-icon-wrapper {
+  background: color.adjust($brand-green, $lightness: -4%);
 }
 
 .projects-arrow-icon {
-  width: 18px;
-  height: 18px;
-  color: var(--brand-green);
-  transition: transform .2s ease;
+  width: 1.15rem;
+  height: 1.15rem;
+  color: #ffffff;
+  transition: transform 0.18s ease;
 }
 
 .projects-grid-item:hover .projects-arrow-icon,
@@ -173,23 +123,23 @@
   transform: translateX(2px);
 }
 
-.projects-grid-item-text { flex: 1; }
-
-/* Mother page subtitle (same as subpage) */
-.projects-grid-item-title {
-  font-weight: var(--subtitle-fw);
-  font-size: var(--subtitle-fs);
-  margin: 0;
-  color: currentColor;
-  line-height: 1.6;
+.projects-grid-item-text {
+  flex: 1;
+  order: 1;
 }
 
-/* accessibility */
+.projects-grid-item-title {
+  margin: 0;
+  color: $brand-green;
+  font-weight: 800;
+  font-size: clamp(1.1rem, 0.7vw + 1rem, 1.35rem);
+  letter-spacing: -0.01em;
+  line-height: 1.24;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .projects-grid-item,
-  .projects-arrow-icon,
-  .KuziSportGymnastics-item,
-  .KuziSportGymnastics-arrow-icon {
+  .projects-arrow-icon {
     transition: none;
   }
 }

@@ -8,9 +8,9 @@ export default function AcrobaticsPage() {
       <section className="Acrobatics-wrapper">
         <div className="Acrobatics-container">
           <div className="Acrobatics-content">
-            <h1 className="Acrobatics-hero">Akrobatyka sportowa</h1>
+            <h1 className="Acrobatics-hero">Akrobatyka</h1>
 
-            <h2 className="Acrobatics-title">Akrobatyka cyrkowa</h2>
+            <h2 className="Acrobatics-title">Akrobatyka</h2>
             <p className="Acrobatics-paragraph">
               Jako wartość dodaną, w ramach urozmaicenia zajęć, lub dla
               zainteresowanych jednostek wprowadzamy ćwiczenia na sprzęcie
@@ -26,9 +26,7 @@ export default function AcrobaticsPage() {
               <li>Power boots</li>
             </ul>
 
-            <h2 className="Acrobatics-title">
-              Akrobatyka sportowa – skoki na ścieżce
-            </h2>
+            <h2 className="Acrobatics-title">Akrobatyka – skoki na ścieżce</h2>
             <p className="Acrobatics-paragraph">
               Akrobatyka jest dyscypliną gimnastyki, w której ćwiczący wykonuje
               układy na różnych powierzchniach. W naszej sekcji trenujemy skoki
