@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { CSSProperties } from "react";
 import Link from "next/link";
 import "./Sports.scss";
 
@@ -29,18 +29,22 @@ export default function AbcPage() {
     {
       title: "Sporty Gimnastyczne - Kuzi Sport Gymnastics",
       href: "/Sports/KuziSportGymnastics",
+      image: "/sports/KuziSportGymnastics.png",
     },
     {
       title: "Sporty Walki - Kuzi Sport Fight",
       href: "/Sports/KuziSportFight",
+      image: "/sports/KuziSportFight.png",
     },
     {
       title: "Treningi motoryczne - Kuzi Sport Performance",
       href: "/Sports/KuziSportPerformance",
+      image: "/sports/KuziSportPerformance.png",
     },
     {
       title: "Treningi dla klubów - Kuzi Sport Team",
       href: "/Sports/KuziSportTeam",
+      image: "/sports/KuziSportTeam.png",
     },
   ];
 
@@ -55,12 +59,17 @@ export default function AbcPage() {
                 className="projects-grid-item"
                 key={feature.href}
                 role="listitem"
+                style={
+                  {
+                    "--card-bg-image": `url(${feature.image})`,
+                  } as CSSProperties
+                }
               >
-                <span className="projects-grid-item-icon-wrapper">
-                  <ArrowIcon />
-                </span>
                 <span className="projects-grid-item-text">
-                  <h3 className="projects-grid-item-title">{feature.title}</h3>
+                  <h3 className="projects-grid-item-title">
+                    {feature.title}
+                    <ArrowIcon />
+                  </h3>
                 </span>
               </Link>
             ))}
