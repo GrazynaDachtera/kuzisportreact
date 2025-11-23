@@ -28,23 +28,23 @@ export default function AbcPage() {
   const features = [
     {
       title: "Sporty Gimnastyczne - Kuzi Sport Gymnastics",
-      href: "Sports/KuziSportGymnastics",
-      image: "/sports/KuziSportGymnastics.png",
+      href: "/Sports/KuziSportGymnastics",
+      image: "/Sports/KuziSportGymnastics.png",
     },
     {
       title: "Sporty Walki - Kuzi Sport Fight",
-      href: "Sports/KuziSportFight",
-      image: "/sports/KuziSportFight.png",
+      href: "/Sports/KuziSportFight",
+      image: "/Sports/KuziSportFight.png",
     },
     {
       title: "Treningi motoryczne - Kuzi Sport Performance",
-      href: "Sports/KuziSportPerformance",
-      image: "/sports/KuziSportPerformance.png",
+      href: "/Sports/KuziSportPerformance",
+      image: "/Sports/KuziSportPerformance.png",
     },
     {
       title: "Treningi dla klubów - Kuzi Sport Team",
-      href: "Sports/KuziSportTeam",
-      image: "/sports/KuziSportTeam.png",
+      href: "/Sports/KuziSportTeam",
+      image: "/Sports/KuziSportTeam.png",
     },
   ];
 

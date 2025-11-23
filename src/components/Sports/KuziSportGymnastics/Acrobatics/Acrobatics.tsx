@@ -10,31 +10,22 @@ export default function AcrobaticsPage() {
           <div className="Acrobatics-content">
             <h1 className="Acrobatics-hero">Akrobatyka</h1>
 
-            <h2 className="Acrobatics-title">Akrobatyka</h2>
+            <h2 className="Acrobatics-title">
+              Akrobatyka sportowa - skoki na ścieżce
+            </h2>
             <p className="Acrobatics-paragraph">
-              Jako wartość dodaną, w ramach urozmaicenia zajęć, lub dla
-              zainteresowanych jednostek wprowadzamy ćwiczenia na sprzęcie
-              cyrkowym, między innymi
-            </p>
-            <ul className="Acrobatics-list">
-              <li>Cyr wheel</li>
-              <li>Żonglerka</li>
-              <li>Akro Staff</li>
-              <li>Slackline</li>
-              <li>Teeterboard</li>
-              <li>Monocykl</li>
-              <li>Power boots</li>
-            </ul>
-
-            <h2 className="Acrobatics-title">Akrobatyka – skoki na ścieżce</h2>
-            <p className="Acrobatics-paragraph">
-              Akrobatyka jest dyscypliną gimnastyki, w której ćwiczący wykonuje
-              układy na różnych powierzchniach. W naszej sekcji trenujemy skoki
-              na ścieżce i Double Mini Tramp (DMT).
-            </p>
-            <p className="Acrobatics-paragraph">
-              Posiadamy 12m Fast track, 24m Airtrack oraz rolowane podłogi
+              Do dyspozycji mamy 12m ścieżki air track, 15m ścieżki sportowej
+              tumble track (team gym), 12m ścieżki air track do gąbek, 8m
+              ścieżki trampolinowej fasttrack do gąbek, oraz rolowane wykładziny
               gimnastyczne.
+            </p>
+
+            <h2 className="Acrobatics-title">
+              Akrobatyka sportowa - skoki na trampolinie i podwójnej mini
+              trampolinie
+            </h2>
+            <p className="Acrobatics-paragraph">
+              Korzstamy ze sprzętu renomowanej firmy Continental.
             </p>
           </div>
         </div>

@@ -25,7 +25,7 @@ const ArrowIcon = () => (
 
 const DISCIPLINES = [
   {
-    name: "Akrobatyka sportowa",
+    name: "Akrobatyka",
     href: "/Sports/KuziSportGymnastics/Acrobatics",
   },
   {
