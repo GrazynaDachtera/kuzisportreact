@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, Fragment } from "react";
+import { useState, useEffect, Fragment } from "react";
+import type { KeyboardEvent } from "react";
 import Link from "next/link";
 import "./Header.scss";
 
@@ -15,24 +16,87 @@ const slides: Slide[] = [
     titleLines: ["Kuzi", "Sport"],
     cta: { label: "Sprawdź", href: "/AboutUs" },
     img: {
-      src: "/Header/MosaicHeader.png",
-      alt: "z",
+      src: "/Header/1.jpeg",
+      alt: "Kuzi Sport - slide 1",
+      width: 1600,
+      height: 1067,
+    },
+  },
+  {
+    titleLines: ["Kuzi", "Sport"],
+    cta: { label: "Sprawdź", href: "/AboutUs" },
+    img: {
+      src: "/Header/2.jpg",
+      alt: "Kuzi Sport - slide 2",
+      width: 1600,
+      height: 1067,
+    },
+  },
+  {
+    titleLines: ["Kuzi", "Sport"],
+    cta: { label: "Sprawdź", href: "/AboutUs" },
+    img: {
+      src: "/Header/3.jpg",
+      alt: "Kuzi Sport - slide 3",
+      width: 1600,
+      height: 1067,
+    },
+  },
+  {
+    titleLines: ["Kuzi", "Sport"],
+    cta: { label: "Sprawdź", href: "/AboutUs" },
+    img: {
+      src: "/Header/4.jpg",
+      alt: "Kuzi Sport - slide 4",
       width: 1600,
       height: 1067,
     },
   },
 ];
 
+const SLIDE_COUNT = slides.length;
+const AUTOPLAY_DELAY = 3000;
+
 export default function HeroSlider() {
   const [index, setIndex] = useState<number>(0);
-  const isMulti = slides.length > 1;
+  const [isPaused, setIsPaused] = useState<boolean>(false);
+
+  const isMulti = SLIDE_COUNT > 1;
+
+  // autoplay
+  useEffect(() => {
+    if (!isMulti || isPaused) return;
+
+    const id = setInterval(() => {
+      setIndex((prev) => (prev + 1) % SLIDE_COUNT);
+    }, AUTOPLAY_DELAY);
+
+    return () => clearInterval(id);
+  }, [isMulti, isPaused]);
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
+    if (!isMulti) return;
+    if (event.key === "ArrowRight") {
+      setIndex((prev) => (prev + 1) % SLIDE_COUNT);
+    } else if (event.key === "ArrowLeft") {
+      setIndex((prev) => (prev - 1 + SLIDE_COUNT) % SLIDE_COUNT);
+    }
+  };
 
   return (
-    <section className={`slider ${!isMulti ? "slider--single" : ""}`}>
+    <section
+      className={`slider ${!isMulti ? "slider--single" : ""}`}
+      aria-roledescription="carousel"
+      aria-label="Slajdy Kuzi Sport"
+      tabIndex={0}
+      onKeyDown={handleKeyDown}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
       <div
         className="slides"
         style={{
-          width: `${slides.length * 100}vw`,
+          width: `${SLIDE_COUNT * 100}vw`,
           transform: `translateX(-${(isMulti ? index : 0) * 100}vw)`,
         }}
       >
@@ -41,8 +105,10 @@ export default function HeroSlider() {
             className="slide"
             key={`slide-${i}`}
             style={{ backgroundImage: `url(${s.img.src})` }}
-            aria-label={s.img.alt}
-            role="img"
+            aria-roledescription="slide"
+            aria-label={`${s.img.alt} (${i + 1} z ${SLIDE_COUNT})`}
+            aria-hidden={i !== index}
+            role="group"
           >
             <div className="slide__text">
               <h1>
@@ -68,6 +134,7 @@ export default function HeroSlider() {
               key={`dot-${i}`}
               className={`dot ${i === index ? "active" : ""}`}
               aria-label={`Przejdź do slajdu ${i + 1}`}
+              aria-current={i === index ? "true" : undefined}
               onClick={() => setIndex(i)}
             />
           ))}
