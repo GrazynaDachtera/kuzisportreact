@@ -2,7 +2,7 @@
   --brand-green: #3da575;
   --cta-green: #2e7d57;
   --cta-green-hover: #214d22;
-  --slide-overlay: rgba(0, 0, 0, 0.35);
+  --slide-overlay: rgba(0, 0, 0, 0.45);
 }
 
 /* ===== Base / Desktop ===== */
@@ -46,6 +46,15 @@
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--slide-overlay);
   z-index: 0;
   pointer-events: none;
 }
