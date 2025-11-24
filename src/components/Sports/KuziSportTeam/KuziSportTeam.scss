@@ -1,14 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap");
-
-:root {
-  --section-py: clamp(2rem, 4.5vw, 5rem);
-  --brand-green: #2e9c6a;
-  --brand-green-dark: #2b7a55;
-  --text-color: #4a5565;
-  --muted: #eef1f3;
-  --body-fs: clamp(0.95rem, 1.1vw + 0.55rem, 1.05rem);
-  font-family: "Poppins", sans-serif;
-}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap");
 
 .KuziSportTeam {
   width: 100%;
@@ -17,9 +7,10 @@
 
 .KuziSportTeam-grid-wrapper {
   position: relative;
+  padding-block: clamp(2.5rem, 4.5vw, 4.75rem);
   background: #fff;
-  padding-block: var(--section-py);
 }
+
 .KuziSportTeam-grid-wrapper::before {
   content: "";
   position: absolute;
@@ -35,8 +26,7 @@
 }
 
 .KuziSportTeam-container {
-  width: 92%;
-  max-width: 1200px;
+  width: min(1120px, 92%);
   margin-inline: auto;
   padding-inline: clamp(1rem, 2vw, 2rem);
   position: relative;
@@ -44,56 +34,65 @@
 }
 
 .KuziSportTeam-content {
-  max-width: 860px;
-  margin-inline: 0;
+  max-width: 720px;
 }
 
 .KuziSportTeam-title {
-  font-weight: 800;
-  font-size: clamp(1.3rem, 1.8vw + 0.7rem, 1.8rem);
-  color: var(--brand-green);
-  letter-spacing: 0.2px;
   margin: 0;
   text-align: left;
+  font-weight: 800;
+  font-size: clamp(1.35rem, 1.4vw + 0.9rem, 1.9rem);
+  letter-spacing: 0.015em;
+  color: #114538;
 }
 
 .KuziSportTeam-grid {
-  margin-top: clamp(1.25rem, 2.2vw, 2.25rem);
+  margin-top: clamp(1.4rem, 2.2vw, 2rem);
   display: grid;
   grid-template-columns: 1fr;
-  row-gap: 18px;
+  row-gap: 0.75rem;
 }
 
 .KuziSportTeam-item {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: 0.7rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
   text-decoration: none;
-  color: var(--text-color);
-  padding: 10px 12px;
-  border-radius: 10px;
-  transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+  color: #4b5563;
+  background: transparent;
+  box-shadow: 0 6px 30px rgba(15, 67, 54, 0.03);
+  transition: background-color 0.18s ease, color 0.18s ease,
+    box-shadow 0.18s ease, transform 0.18s ease;
 }
 
 .KuziSportTeam-item:hover,
 .KuziSportTeam-item:focus-visible {
-  color: var(--brand-green-dark);
-  background: var(--muted);
+  background: #f3f7f6;
+  color: #114538;
+  box-shadow: 0 10px 40px rgba(15, 67, 54, 0.07);
+  transform: translateY(-1px);
   outline: none;
 }
 
 .KuziSportTeam-icon-wrapper {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-top: 2px;
+  margin-top: 1px;
+  background: rgba(17, 69, 56, 0.08);
 }
 
 .KuziSportTeam-arrow-icon {
-  width: 18px;
-  height: 18px;
-  color: var(--brand-green);
-  transition: transform 0.2s ease;
+  width: 16px;
+  height: 16px;
+  color: #114538;
+  transition: transform 0.18s ease;
 }
 
 .KuziSportTeam-item:hover .KuziSportTeam-arrow-icon,
@@ -101,22 +100,34 @@
   transform: translateX(2px);
 }
 
-.KuziSportTeam-text { flex: 1; }
+.KuziSportTeam-text {
+  flex: 1;
+}
 
 .KuziSportTeam-item-title {
-  font-weight: 600;
-  font-size: var(--body-fs);
   margin: 0;
+  font-size: clamp(0.98rem, 1.05vw + 0.55rem, 1.06rem);
+  font-weight: 600;
   line-height: 1.6;
   color: currentColor;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .KuziSportTeam-item,
-  .KuziSportTeam-arrow-icon { transition: none; }
+  .KuziSportTeam-arrow-icon {
+    transition: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .KuziSportTeam-content {
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 480px) {
-  .KuziSportTeam-content { max-width: 100%; }
-  .KuziSportTeam-item { padding: 8px 10px; }
+  .KuziSportTeam-item {
+    padding-inline: 0.75rem;
+    border-radius: 14px;
+  }
 }
