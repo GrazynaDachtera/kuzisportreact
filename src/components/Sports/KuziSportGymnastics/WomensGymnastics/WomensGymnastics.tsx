@@ -31,7 +31,7 @@ export default function WomensGymnasticsPage() {
             <ol className="WomensGymnastics-faq">
               <li>
                 <h3 className="WomensGymnastics-question">
-                  1. W jakim wieku powinno się zaczynać przygodę z gimnastyką
+                  W jakim wieku powinno się zaczynać przygodę z gimnastyką
                   sportową?
                 </h3>
                 <p className="WomensGymnastics-paragraph">
@@ -45,7 +45,7 @@ export default function WomensGymnasticsPage() {
 
               <li>
                 <h3 className="WomensGymnastics-question">
-                  2. Ile godzin treningów przewiduje klub dla zawodników?
+                  Ile godzin treningów przewiduje klub dla zawodników?
                 </h3>
                 <p className="WomensGymnastics-paragraph">
                   Na etapie klasy 1-3 będziemy prowadzić treningi codziennie w
@@ -60,7 +60,7 @@ export default function WomensGymnasticsPage() {
 
               <li>
                 <h3 className="WomensGymnastics-question">
-                  3. Jaki strój obowiązuje na zajęciach?
+                  Jaki strój obowiązuje na zajęciach?
                 </h3>
                 <p className="WomensGymnastics-paragraph">
                   Estetyczny strój sportowy – u kobiet legginsy i bluzka, lub
@@ -72,7 +72,7 @@ export default function WomensGymnasticsPage() {
 
               <li>
                 <h3 className="WomensGymnastics-question">
-                  4. Czy skórki gimnastyczne są konieczne?
+                  Czy skórki gimnastyczne są konieczne?
                 </h3>
                 <p className="WomensGymnastics-paragraph">
                   Nie, ale potrafią znacznie uprzyjemnić ćwiczenia na drążku i
@@ -82,7 +82,7 @@ export default function WomensGymnasticsPage() {
 
               <li>
                 <h3 className="WomensGymnastics-question">
-                  5. Czy treningi są ciężkie?
+                  Czy treningi są ciężkie?
                 </h3>
                 <p className="WomensGymnastics-paragraph">
                   Na etapie gimnastyki dla wszystkich są dosyć wymagające, na

@@ -10,7 +10,7 @@ export default function AerialPage() {
           <div className="Aerial-content">
             <h1 className="Aerial-hero">Akrobatyka powietrzna</h1>
 
-            <h2 className="Aerial-title">Koło – aerial hoop</h2>
+            <h2 className="Aerial-title">Koło - aerial hoop</h2>
             <p className="Aerial-paragraph">
               Dynamiczny rekwizyt czerpiący garściami z poręczy asymetrycznych z
               jednej strony a trapezu z drugiej. Ćwiczenia na kole dają
@@ -23,7 +23,7 @@ export default function AerialPage() {
               jednego koła.
             </p>
 
-            <h2 className="Aerial-title">Paski – aerial straps</h2>
+            <h2 className="Aerial-title">Paski - aerial straps</h2>
             <p className="Aerial-paragraph">
               Zajęcia tylko w trybie indywidualnym lub warsztatowym, realizujemy
               na stanowisku z regulacją wysokości, oraz na trzech stanowiskach o
