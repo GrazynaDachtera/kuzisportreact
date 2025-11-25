@@ -1,15 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap");
 
-:root {
-  --section-py: clamp(2rem, 4.5vw, 5rem);
-  --brand-green: #2e9c6a;
-  --brand-green-dark: #2b7a55;
-  --text-color: #4a5565;
-  --muted: #eef1f3;
-  --body-fs: clamp(1rem, 1.1vw + 0.7rem, 1.125rem);
-  font-family: "Poppins", sans-serif;
-}
-
 .TrainStation {
   width: 100%;
   font-family: "Poppins", sans-serif;
@@ -17,7 +7,7 @@
 }
 
 .TrainStation-wrapper {
-  padding-block: var(--section-py);
+  padding-block: clamp(2rem, 4.5vw, 5rem);
 }
 
 .TrainStation-container {
@@ -33,21 +23,26 @@
 .TrainStation-hero {
   margin: 0 0 0.75rem 0;
   font-weight: 800;
-  font-size: clamp(2.5rem, 4vw + 1rem, 3.25rem);
+  font-size: clamp(2rem, 3vw + 0.4rem, 2.5rem);
   line-height: 1.2;
-  color: var(--brand-green);
+  color: #114538;
   letter-spacing: 0.2px;
   text-align: left;
 }
 
 .TrainStation-paragraph {
   margin: 0 0 1rem 0;
-  color: var(--text-color);
-  font-size: var(--body-fs);
+  color: #4a5565;
+  font-size: clamp(1rem, 1.1vw + 0.7rem, 1.125rem);
   line-height: 1.85;
 }
 
 @media (max-width: 480px) {
-  .TrainStation-content { max-width: 100%; }
-  .TrainStation-hero { font-size: clamp(2rem, 7vw, 2.4rem); }
+  .TrainStation-content {
+    max-width: 100%;
+  }
+
+  .TrainStation-hero {
+    font-size: clamp(1.7rem, 6vw, 2.1rem);
+  }
 }
