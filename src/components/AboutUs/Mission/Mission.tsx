@@ -27,15 +27,22 @@ const DEFAULT_ITEMS: MissionItem[] = [
   {
     title: "Misja i wizja",
     bullets: [
-      "Bezpieczne treningi pod okiem doświadczonych trenerów",
-      "Program dopasowany do grupy: rekreacja lub sport",
-      "Wspierająca atmosfera, która buduje regularność",
-      "Świetne warunki do zajęć WF przez cały rok",
+      `Nasz klub to nie tylko ,,,, i trenerów z pasją, dbających o komfort i bezpieczeństwo podczas
+zajęć. Organizujemy zajęcia dostosowane programem do potrzeb grup, z uwzględnieniem
+wieku uczestników , poziomu ich zaawansowania jak i zgłaszanych oczekiwań , tak w formie
+
+, jak i w treści. U nas odnajdą się nie tylko osoby podejmujące aktywność fizyczną w
+wymiarze rekreacyjnym, ale i zawodnicy wyczynowi oraz zawodowi sportowcy. Zapewniamy
+miłą …..`,
+      `Działamy w oparciu o nowoczesne metody treningowe, ćwicząc na profesjonalnym sprzęcie,
+wspierając swoich podopiecznych wiedzą licencjonowanych trenerów i instruktorów.`,
+      "W naszych szeregach świetnie realizują się nie tylko dzieci i młodzież, ale i dorośli – którzy z najwyższą satysfakcją wypowiadają się o jakości prowadzonego przez nas szkolenia sportowego.",
     ],
   },
   {
     title: "Skontaktuj się z nami!",
-    text: "Napisz do nas - przygotujemy propozycję zajęć dopasowaną do wieku, poziomu i celu grupy.",
+    text: `W celu dołączenia do zajęć, umówienia się na lekcje indywidualne, wynajmu sali lub
+organizacji grupy, a także innych form współpracy - SKONTAKTUJ SIĘ Z NAMI.`,
   },
 ];
 
@@ -43,7 +50,7 @@ export default function Mission({
   title = "O nas",
   items = DEFAULT_ITEMS,
   image = {
-    src: "/AboutFoundation/peopleAboutSection.jpg",
+    src: "/AboutFoundation/aerial.jpg",
     alt: "Trenerzy na sali treningowej",
     priority: true,
   },
