@@ -33,10 +33,10 @@ const DEFAULT_ITEMS: MissionItem[] = [
 ];
 
 export default function Mission({
-  title = "Kilka słów o naszym klubie :)",
+  title = "O nas",
   items = DEFAULT_ITEMS,
   image = {
-    src: "/AboutFoundation/person.png",
+    src: "/AboutFoundation/peopleAboutSection.jpg",
     alt: "portret osoby",
     priority: true,
   },

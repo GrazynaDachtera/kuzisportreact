@@ -50,13 +50,6 @@ const DEFAULT_ITEMS: ActivityItem[] = [
 export default function AreasOfActivity({
   title = "Dlaczego warto wybrać Kuzi Sport?",
   items = DEFAULT_ITEMS,
-  image = {
-    src: "/AboutFoundation/peopleAboutSection.jpg",
-    alt: "obszary działalności",
-    width: 652,
-    height: 336,
-    priority: true,
-  },
 }: AreasOfActivityProps) {
   return (
     <section className="areas-top-wrapper">
@@ -90,18 +83,6 @@ export default function AreasOfActivity({
                 </svg>
               </Link>
             </div>
-          </div>
-
-          <div className="areas-image-wrapper">
-            <Image
-              src={image.src}
-              alt={image.alt}
-              width={image.width}
-              height={image.height}
-              className="areas-image"
-              priority={image.priority}
-              sizes="(max-width:700px) 90vw, (max-width:1200px) 50vw, 33vw"
-            />
           </div>
         </div>
       </div>
