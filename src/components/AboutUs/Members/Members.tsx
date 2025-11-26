@@ -1,21 +1,24 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useCallback,
+} from "react";
 import Image from "next/image";
+import { createPortal } from "react-dom";
 import "./Members.scss";
 
-type MemberImage = {
-  src?: string;
-  alt?: string;
-  objectPosition?: string;
-};
+type MemberImage = { src?: string; alt?: string };
 
 type Member = {
   name: string;
   role: string;
   bio: string;
-  phone?: string;
   image?: MemberImage;
+  phone?: string;
 };
 
 type MembersProps = {
@@ -30,56 +33,45 @@ const defaultMembers: Member[] = [
     name: "Łukasz Kuzemko",
     role: "Założyciel Klubu",
     bio: "Trener karate i gimnastyki, licencjonowany Trener Polskiej Unii Karate, wielokrotny Mistrz Polski oraz Medalista Mistrzostw Europy karate Shotokan, trener Kadry Narodowej Shotokan/WKF na lata 2010/2011.",
-    phone: "+48 123 456 789",
     image: {
-      src: "/AboutFoundation/Members/lukasz.png",
+      src: "",
       alt: "Łukasz Kuzemko",
-      objectPosition: "50% 0%",
     },
+    phone: "+48 123 456 789",
   },
   {
     name: "Bartosz Kuzemko",
     role: "Trener",
     bio: "Magister Prawa, trener Karate i gimnastyki, 3x Mistrz Polski w Karate WKF, złoty Medalista Mistrzostw Europy w Karate Shotokan, pasjonat kalisteniki oraz biegów z przeszkodami.",
+    image: { src: "", alt: "Bartosz Kuzemko" },
     phone: "+48 883 354 040",
-    image: {
-      src: "/AboutFoundation/Members/bartosz.webp",
-      alt: "Bartosz Kuzemko",
-      objectPosition: "50% 0%",
-    },
   },
   {
     name: "Maciej Drążewski",
     role: "Trener",
     bio: "Magister Fizjoterapii, absolwent AWF w Poznaniu, licencjonowany Trener Polskiej Unii Karate, 3x Mistrz Polski w Karate WKF, aktywny zawodnik w kategorii kumite -67kg, trener-Asystent kadry Narodowej WKF od 2020 roku.",
-    phone: "+48 505 875 735",
     image: {
-      src: "/AboutFoundation/Members/Maciej.webp",
+      src: "",
       alt: "Maciej Drążewski",
-      objectPosition: "50% 0%",
     },
+    phone: "+48 505 875 735",
   },
   {
     name: "Fatih Kagan Emre",
     role: "Trener",
     bio: "Magister Informatyki, trener karate, wielokrotny medalista zawodów Tureckiej Federacji Karate.",
+    image: { src: "", alt: "Fatih Kagan Emre" },
     phone: "+48 791 650 862",
-    image: {
-      src: "/AboutFoundation/Members/Fatih.webp",
-      alt: "Fatih Kagan Emre",
-      objectPosition: "50% 0%",
-    },
   },
   {
     name: "Krystian Żuchowski",
     role: "Trener",
     bio: "Student AWF Poznań na wydziale Wychowania Fizycznego, trener karate i kickboxingu, medalista Mistrzostw Polski w Karate.",
-    phone: "+48 721 365 025",
     image: {
-      src: "/AboutFoundation/Members/Krystian.webp",
+      src: "",
       alt: "Krystian Żuchowski",
-      objectPosition: "50% 0%",
     },
+    phone: "+48 721 365 025",
   },
 ];
 
@@ -88,9 +80,8 @@ function initialsOf(name: string) {
   return parts.map((p) => p[0]?.toUpperCase() ?? "").join("");
 }
 
-function telHref(phone?: string) {
-  if (!phone) return undefined;
-  return "tel:" + phone.replace(/[^\d+]/g, "");
+function toTel(phone?: string) {
+  return (phone ?? "").replace(/[^\d+]/g, "");
 }
 
 function MemberCard({ m, onOpen }: { m: Member; onOpen: () => void }) {
@@ -104,7 +95,6 @@ function MemberCard({ m, onOpen }: { m: Member; onOpen: () => void }) {
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
             className="members-photo-img"
-            style={{ objectPosition: m.image?.objectPosition ?? "50% 0%" }}
           />
         ) : (
           <div aria-hidden className="members-photo-fallback">
@@ -122,7 +112,16 @@ function MemberCard({ m, onOpen }: { m: Member; onOpen: () => void }) {
             onClick={onOpen}
             aria-label={`Zobacz opis: ${m.name}`}
           >
-            Zobacz opis
+            <span>Zobacz opis</span>
+            <svg
+              className="members-more-icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path d="M5 12 H19" />
+              <path d="M13 6 L19 12 L13 18" />
+            </svg>
           </button>
         </div>
       </div>
@@ -151,8 +150,27 @@ export default function Members({
     const first = track.querySelector<HTMLElement>(".members-card");
     const card = first?.getBoundingClientRect().width ?? 0;
     const styles = window.getComputedStyle(track);
-    const gap = parseFloat(styles.columnGap || styles.gap || "0") || 0;
+    const gapRaw =
+      styles.getPropertyValue("column-gap") ||
+      styles.getPropertyValue("gap") ||
+      "0";
+    const gap = Number.parseFloat(gapRaw) || 0;
     return { gap, card };
+  };
+
+  const getScrollPadding = () => {
+    const el = trackRef.current;
+    if (!el) return { left: 0, right: 0 };
+    const styles = window.getComputedStyle(el);
+    const left =
+      Number.parseFloat(
+        styles.getPropertyValue("scroll-padding-left") || "0"
+      ) || 0;
+    const right =
+      Number.parseFloat(
+        styles.getPropertyValue("scroll-padding-right") || "0"
+      ) || 0;
+    return { left, right };
   };
 
   const visibleCount = () => {
@@ -161,25 +179,69 @@ export default function Members({
     const { gap, card } = getGapAndCard();
     const per = card + gap;
     if (!per) return 1;
-    return Math.max(1, Math.round(track.clientWidth / per));
+    return Math.max(1, Math.round((track.clientWidth + 0.5) / per));
   };
 
   const updateNavState = () => {
     const el = trackRef.current;
     if (!el) return;
-    const maxScroll = el.scrollWidth - el.clientWidth - 1;
+    const maxScroll = el.scrollWidth - el.clientWidth - 0.5;
     setCanPrev(el.scrollLeft > 0);
     setCanNext(el.scrollLeft < maxScroll);
+  };
+
+  const nearestIndex = (): number => {
+    const el = trackRef.current;
+    if (!el) return 0;
+    const cards = Array.from(el.querySelectorAll<HTMLElement>(".members-card"));
+    if (!cards.length) return 0;
+
+    const pad = getScrollPadding();
+    const leftEdge = el.scrollLeft + pad.left;
+
+    let idx = 0;
+    let min = Number.POSITIVE_INFINITY;
+    for (let i = 0; i < cards.length; i++) {
+      const diff = Math.abs(leftEdge - cards[i].offsetLeft);
+      if (diff < min) {
+        min = diff;
+        idx = i;
+      }
+    }
+    return idx;
+  };
+
+  const snapToNearest = (behavior: ScrollBehavior = "auto") => {
+    const el = trackRef.current;
+    if (!el) return;
+    const cards = Array.from(el.querySelectorAll<HTMLElement>(".members-card"));
+    const idx = nearestIndex();
+    const target = cards[idx];
+    if (target) {
+      target.scrollIntoView({ behavior, inline: "start", block: "nearest" });
+    }
   };
 
   const scrollByVisible = (dir: "left" | "right") => {
     const el = trackRef.current;
     if (!el) return;
-    const { gap, card } = getGapAndCard();
-    const per = card + gap || el.clientWidth;
+
+    const cards = Array.from(el.querySelectorAll<HTMLElement>(".members-card"));
+    if (!cards.length) return;
+
+    const currentIndex = nearestIndex();
     const n = visibleCount();
-    const delta = per * n * (dir === "left" ? -1 : 1);
-    el.scrollBy({ left: delta, behavior: "smooth" });
+    const delta = dir === "left" ? -n : n;
+    const targetIndex = Math.max(
+      0,
+      Math.min(currentIndex + delta, cards.length - 1)
+    );
+
+    cards[targetIndex].scrollIntoView({
+      behavior: "smooth",
+      inline: "start",
+      block: "nearest",
+    });
   };
 
   useEffect(() => {
@@ -190,7 +252,10 @@ export default function Members({
     const onScroll = () => updateNavState();
     el.addEventListener("scroll", onScroll, { passive: true });
 
-    const ro = new ResizeObserver(() => updateNavState());
+    const ro = new ResizeObserver(() => {
+      updateNavState();
+      snapToNearest("auto");
+    });
     ro.observe(el);
 
     return () => {
@@ -201,32 +266,182 @@ export default function Members({
 
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [active, setActive] = useState<Member | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  const supportsDialog =
+    typeof window !== "undefined" &&
+    typeof HTMLDialogElement !== "undefined" &&
+    "showModal" in HTMLDialogElement.prototype;
+
+  useEffect(() => setMounted(true), []);
 
   const openDialog = (m: Member) => {
     setActive(m);
-    dialogRef.current?.showModal();
+    if (supportsDialog) {
+      requestAnimationFrame(() => dialogRef.current?.showModal());
+    }
+    document.documentElement.classList.add("members-modal-open");
     document.body.style.overflow = "hidden";
   };
 
-  const closeDialog = () => {
-    dialogRef.current?.close();
+  const closeDialog = useCallback(() => {
+    if (supportsDialog) dialogRef.current?.close();
     setActive(null);
     document.body.style.overflow = "";
-  };
+    document.documentElement.classList.remove("members-modal-open");
+  }, [supportsDialog]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (!dialogRef.current?.open) return;
       if (e.key === "Escape") closeDialog();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
+  }, [closeDialog]);
+
+  useEffect(() => {
+    return () =>
+      document.documentElement.classList.remove("members-modal-open");
   }, []);
 
+  const dialogNode: React.ReactNode =
+    active &&
+    (supportsDialog ? (
+      <dialog
+        ref={dialogRef}
+        className="members-dialog"
+        aria-labelledby="members-dialog-title"
+        onClick={(e) => {
+          if (e.currentTarget === e.target) closeDialog();
+        }}
+      >
+        <div className="members-dialog-content">
+          <button
+            className="members-dialog-close"
+            onClick={closeDialog}
+            aria-label="Zamknij"
+          >
+            ×
+          </button>
+          <div className="members-dialog-scroll">
+            <div className="members-dialog-header">
+              <div className="members-dialog-avatar">
+                {active.image?.src ? (
+                  <Image
+                    src={active.image.src}
+                    alt={active.image.alt || active.name}
+                    fill
+                    sizes="96px"
+                    className="members-dialog-avatar-img"
+                  />
+                ) : (
+                  <div className="members-dialog-avatar-fallback">
+                    {initialsOf(active.name)}
+                  </div>
+                )}
+              </div>
+              <div className="members-dialog-meta">
+                <h3 id="members-dialog-title" className="members-dialog-name">
+                  {active.name}
+                </h3>
+                <p className="members-dialog-role">{active.role}</p>
+              </div>
+            </div>
+
+            <p className="members-dialog-bio">{active.bio}</p>
+
+            {active.phone && (
+              <div className="members-dialog-phone-row">
+                <svg
+                  className="members-dialog-phone-icon"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path d="M6.6 10.8c1.7 3.3 3.3 4.9 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1.3.4 2.7.7 4.2.7.7 0 1.2.5 1.2 1.2V21c0 .7-.5 1.2-1.2 1.2C10.1 22.2 1.8 13.9 1.8 3.2 1.8 2.5 2.3 2 3 2h4.1c.7 0 1.2.5 1.2 1.2 0 1.4.2 2.9.7 4.2.1.4 0 .9-.3 1.2l-2.1 2.2Z" />
+                </svg>
+                <a
+                  className="members-dialog-phone"
+                  href={`tel:${toTel(active.phone)}`}
+                  aria-label={`Zadzwoń do: ${active.name}`}
+                >
+                  {active.phone}
+                </a>
+              </div>
+            )}
+          </div>
+        </div>
+      </dialog>
+    ) : (
+      <div
+        role="dialog"
+        aria-modal="true"
+        className="members-dialog-fallback"
+        onClick={(e) => {
+          if (e.currentTarget === e.target) closeDialog();
+        }}
+      >
+        <div className="members-dialog-content">
+          <button
+            className="members-dialog-close"
+            onClick={closeDialog}
+            aria-label="Zamknij"
+          >
+            ×
+          </button>
+          <div className="members-dialog-scroll">
+            <div className="members-dialog-header">
+              <div className="members-dialog-avatar">
+                {active.image?.src ? (
+                  <Image
+                    src={active.image.src}
+                    alt={active.image.alt || active.name}
+                    fill
+                    sizes="96px"
+                    className="members-dialog-avatar-img"
+                  />
+                ) : (
+                  <div className="members-dialog-avatar-fallback">
+                    {initialsOf(active.name)}
+                  </div>
+                )}
+              </div>
+              <div className="members-dialog-meta">
+                <h3 id="members-dialog-title" className="members-dialog-name">
+                  {active.name}
+                </h3>
+                <p className="members-dialog-role">{active.role}</p>
+              </div>
+            </div>
+
+            <p className="members-dialog-bio">{active.bio}</p>
+
+            {active.phone && (
+              <div className="members-dialog-phone-row">
+                <svg
+                  className="members-dialog-phone-icon"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path d="M6.6 10.8c1.7 3.3 3.3 4.9 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1.3.4 2.7.7 4.2.7.7 0 1.2.5 1.2 1.2V21c0 .7-.5 1.2-1.2 1.2C10.1 22.2 1.8 13.9 1.8 3.2 1.8 2.5 2.3 2 3 2h4.1c.7 0 1.2.5 1.2 1.2 0 1.4.2 2.9.7 4.2.1.4 0 .9-.3 1.2l-2.1 2.2Z" />
+                </svg>
+                <a
+                  className="members-dialog-phone"
+                  href={`tel:${toTel(active.phone)}`}
+                  aria-label={`Zadzwoń do: ${active.name}`}
+                >
+                  {active.phone}
+                </a>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    ));
+
   return (
-    <section
-      className={`members-wrapper ${bg === "gray" ? "is-gray" : "is-white"}`}
-    >
+    <section className="members-wrapper">
       <div className="members-container">
         <header className="members-header">
           <h2 className="members-title">{title}</h2>
@@ -274,74 +489,7 @@ export default function Members({
         </div>
       </div>
 
-      <dialog
-        ref={dialogRef}
-        className="members-dialog"
-        aria-labelledby="members-dialog-title"
-      >
-        {active && (
-          <div className="members-dialog-content">
-            <button
-              className="members-dialog-close"
-              onClick={closeDialog}
-              aria-label="Zamknij"
-            >
-              ×
-            </button>
-            <div className="members-dialog-scroll">
-              <div className="members-dialog-header">
-                <div className="members-dialog-avatar">
-                  {active.image?.src ? (
-                    <Image
-                      src={active.image.src}
-                      alt={active.image.alt || active.name}
-                      fill
-                      sizes="96px"
-                      className="members-dialog-avatar-img"
-                    />
-                  ) : (
-                    <div className="members-dialog-avatar-fallback">
-                      {initialsOf(active.name)}
-                    </div>
-                  )}
-                </div>
-                <div className="members-dialog-meta">
-                  <h3 id="members-dialog-title" className="members-dialog-name">
-                    {active.name}
-                  </h3>
-                  <p className="members-dialog-role">{active.role}</p>
-                </div>
-              </div>
-
-              <p className="members-dialog-bio">{active.bio}</p>
-
-              {active.phone && (
-                <p className="members-dialog-phone">
-                  <svg
-                    className="phone-icon"
-                    viewBox="0 0 24 24"
-                    width="22"
-                    height="22"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      fill="currentColor"
-                      d="M2 5.5A3.5 3.5 0 0 1 5.5 2h.55a2 2 0 0 1 1.94 1.5l.5 2a2 2 0 0 1-.5 1.86l-1 1a14 14 0 0 0 6.65 6.65l1-1a2 2 0 0 1 1.86-.5l2 .5A2 2 0 0 1 20 17.95v.55A3.5 3.5 0 0 1 16.5 22h-1A15.5 15.5 0 0 1 2 7.5v-2z"
-                    />
-                  </svg>
-                  <a
-                    href={telHref(active.phone)}
-                    aria-label={`Zadzwoń do ${active.name}`}
-                  >
-                    {active.phone}
-                  </a>
-                </p>
-              )}
-            </div>
-          </div>
-        )}
-      </dialog>
+      {mounted ? createPortal(dialogNode, document.body) : null}
     </section>
   );
 }
