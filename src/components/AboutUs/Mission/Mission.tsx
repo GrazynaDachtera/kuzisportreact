@@ -13,10 +13,12 @@ type Img = {
 type MissionItem = {
   title: string;
   text?: string;
+  bullets?: string[];
 };
 
 type MissionProps = {
   title?: string;
+  lead?: string;
   items?: MissionItem[];
   image?: Img;
 };
@@ -24,11 +26,16 @@ type MissionProps = {
 const DEFAULT_ITEMS: MissionItem[] = [
   {
     title: "Misja i wizja",
-    text: "Nasza sala sportowa to nie tylko doskonałe warunki do ćwiczeń, ale także zespół doświadczonych i pasjonujących trenerów, którzy dbają o komfort i bezpieczeństwo podczas zajęć. Organizujemy programy dostosowane do potrzeb grup, uwzględniając zarówno formy rekreacyjne, jak i sportowe. Zapewniamy miłą i wspierającą atmosferę, która zachęca do aktywności fizycznej i zdrowego stylu życia. Niezależnie od pory roku, sala Kuzi Sport jest idealnym miejscem na zorganizowanie zajęć wychowania fizycznego, które zmotywują uczniów do regularnej aktywności.",
+    bullets: [
+      "Bezpieczne treningi pod okiem doświadczonych trenerów",
+      "Program dopasowany do grupy: rekreacja lub sport",
+      "Wspierająca atmosfera, która buduje regularność",
+      "Świetne warunki do zajęć WF przez cały rok",
+    ],
   },
   {
     title: "Skontaktuj się z nami!",
-    text: "Jeśli jesteś zainteresowany organizacją zajęć w naszej sali sportowej, zapraszamy do kontaktu. Razem stworzymy program, który spełni Twoje oczekiwania i przyczyni się do rozwoju fizycznego Twoich uczniów!",
+    text: "Napisz do nas - przygotujemy propozycję zajęć dopasowaną do wieku, poziomu i celu grupy.",
   },
 ];
 
@@ -37,30 +44,15 @@ export default function Mission({
   items = DEFAULT_ITEMS,
   image = {
     src: "/AboutFoundation/peopleAboutSection.jpg",
-    alt: "portret osoby",
+    alt: "Trenerzy na sali treningowej",
     priority: true,
   },
 }: MissionProps) {
   return (
-    <section className="mission-top-wrapper">
-      <div className="mission-container">
-        <div className="mission-top">
-          <div className="mission-content">
-            <h2 className="mission-title">{title}</h2>
-            <div className="mission-description">
-              <ul className="mission-list" role="list">
-                {items.map((item, idx) => (
-                  <li key={idx} className="mission-item">
-                    <h3 className="mission-item-title">{item.title}</h3>
-                    {item.text ? (
-                      <div className="mission-item-text">{item.text}</div>
-                    ) : null}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          <div className="mission-image-wrapper">
+    <section className="mission" aria-labelledby="mission-title">
+      <div className="mission__container">
+        <div className="mission__grid">
+          <figure className="mission__media">
             <Image
               src={image.src}
               alt={image.alt}
@@ -68,8 +60,36 @@ export default function Mission({
               priority={image.priority}
               quality={90}
               sizes="(max-width: 991px) 92vw, 50vw"
-              className="mission-image"
+              className="mission__image"
             />
+          </figure>
+
+          <div className="mission__content">
+            <h2 id="mission-title" className="mission__title">
+              {title}
+            </h2>
+
+            <ul className="mission__list">
+              {items.map((item) => (
+                <li key={item.title} className="mission__item">
+                  <h3 className="mission__itemTitle">{item.title}</h3>
+
+                  {item.text ? (
+                    <p className="mission__text">{item.text}</p>
+                  ) : null}
+
+                  {item.bullets?.length ? (
+                    <ul className="mission__bullets">
+                      {item.bullets.map((b) => (
+                        <li key={b} className="mission__bullet">
+                          {b}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

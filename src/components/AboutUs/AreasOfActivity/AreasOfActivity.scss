@@ -1,22 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap");
 
-$section-py: clamp(1.5rem, 2vw, 3rem);
 $brand-green: #114538;
-$text: #6a7280;
+$text-color: #6a7280;
 $font: "Poppins", sans-serif;
-$body-fs: clamp(0.98rem, 2.1vw + 0rem, 1.08rem);
-
-$card-bg: rgba($brand-green, 0.06);
-$card-border: rgba($brand-green, 0.16);
-$card-shadow: 0 1rem 2.5rem rgba($brand-green, 0.12),
-  0 0.375rem 1rem rgba($brand-green, 0.08);
+$section-py: clamp(3rem, 4vw, 4.5rem);
+$body-fs: clamp(0.98rem, 1vw + 0.6rem, 1.06rem);
+$card-bg: #ffffff;
+$card-border: rgba($brand-green, 0.12);
+$card-shadow-hover: 0 0.75rem 1.5rem rgba($brand-green, 0.12);
 
 .areas-top-wrapper {
   width: 100%;
   background: #f8f9fa;
   padding-block: $section-py;
   font-family: $font;
-  color: $text;
+  color: $text-color;
 }
 
 .areas-container {
@@ -29,33 +27,29 @@ $card-shadow: 0 1rem 2.5rem rgba($brand-green, 0.12),
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: clamp(1rem, 2vw, 1.5rem);
+  gap: clamp(16px, 3.5vw, 28px);
   text-align: left;
 }
 
 .areas-content {
   width: 100%;
-  max-width: 66rem;
-  margin-inline: auto;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
 }
 
 .areas-title {
-  font-size: clamp(2rem, 4.5vw, 2.4rem);
+  font-size: clamp(2rem, 8vw, 2.3rem);
   font-weight: 800;
-  line-height: 1.12;
+  line-height: 1.15;
   letter-spacing: -0.01em;
-  margin: 0 0 clamp(0.75rem, 1.2vw, 1.25rem);
+  margin: 0 0 clamp(1.25rem, 2.2vw, 2rem);
   color: $brand-green;
 }
 
 .areas-description {
   font-size: $body-fs;
-  line-height: 1.6;
-  color: $text;
-  width: 100%;
+  line-height: 1.7;
+  color: $text-color;
 }
 
 .areas-list {
@@ -70,63 +64,49 @@ $card-shadow: 0 1rem 2.5rem rgba($brand-green, 0.12),
 
 .areas-item {
   counter-increment: feature;
-  position: relative;
-  border-radius: 1.25rem;
   background: $card-bg;
   border: 1px solid $card-border;
-  box-shadow: 0 0.35rem 1.25rem rgba($brand-green, 0.08);
-  padding: 1rem 1rem 1rem 1.05rem;
-  overflow: hidden;
-  transition: transform 0.16s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  border-radius: 1.4rem;
+  padding: 1.05rem 1.1rem;
 }
 
-.areas-item::after {
-  content: "";
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 6px;
-  background: $brand-green;
-  opacity: 0.9;
-}
-
-.areas-item:hover {
-  transform: translateY(-2px);
-  box-shadow: $card-shadow;
-  border-color: rgba($brand-green, 0.24);
+@media (prefers-reduced-motion: no-preference) {
+  .areas-item {
+    transition: box-shadow 160ms ease, border-color 160ms ease;
+  }
 }
 
 .areas-item-title {
-  margin: 0 0 0.35rem;
+  margin: 0 0 0.5rem;
   font-weight: 800;
   line-height: 1.25;
   color: $brand-green;
-  font-size: clamp(1.1rem, 1vw + 0.9rem, 1.25rem);
+  font-size: clamp(1.05rem, 1vw + 0.85rem, 1.22rem);
   display: flex;
   align-items: flex-start;
-  gap: 0.75rem;
+  gap: 0.65rem;
 }
 
 .areas-item-title::before {
   content: counter(feature);
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
   border-radius: 9999px;
   background: $brand-green;
   color: #ffffff;
   display: grid;
   place-items: center;
-  flex: 0 0 2rem;
+  flex: 0 0 1.5rem;
   font-weight: 800;
-  font-size: 0.95rem;
-  line-height: 1;
-  transform: translateY(0.05rem);
+  font-size: 0.78rem;
+  transform: translateY(0.1rem);
 }
 
 .areas-item-text {
   margin: 0;
-  color: $text;
-  line-height: 1.65;
-  padding-left: 2.75rem;
+  padding-left: 2.15rem;
+  line-height: 1.7;
+  color: $text-color;
 }
 
 .areas-cta {
@@ -142,23 +122,26 @@ $card-shadow: 0 1rem 2.5rem rgba($brand-green, 0.12),
   color: #ffffff;
   background-color: $brand-green;
   border-radius: 9999px;
-  box-shadow: 0 0.5rem 1.375rem rgba($brand-green, 0.25);
-  transition: background-color 0.2s ease, box-shadow 0.2s ease,
-    transform 0.15s ease;
+  border: 1px solid transparent;
+  box-shadow: 0 0.5rem 1.375rem rgba($brand-green, 0.18);
   align-self: flex-start;
 }
 
-.areas-cta:hover,
-.areas-cta:focus-visible {
-  background-color: #276b49;
-  box-shadow: 0 0.625rem 1.625rem rgba($brand-green, 0.32);
-  transform: translateY(-0.0625rem);
-  outline: none;
+@media (prefers-reduced-motion: no-preference) {
+  .areas-cta {
+    transition: background-color 160ms ease, box-shadow 160ms ease,
+      border-color 160ms ease;
+  }
+}
+
+.areas-cta:hover {
+  background-color: darken($brand-green, 4%);
+  box-shadow: 0 0.6rem 1.6rem rgba($brand-green, 0.22);
 }
 
 .areas-cta:focus-visible {
-  box-shadow: 0 0 0 0.1875rem rgba($brand-green, 0.28),
-    0 0.5rem 1.375rem rgba($brand-green, 0.25);
+  outline: 3px solid rgba($brand-green, 0.28);
+  outline-offset: 2px;
 }
 
 .areas-cta-icon {
@@ -176,27 +159,11 @@ $card-shadow: 0 1rem 2.5rem rgba($brand-green, 0.12),
   .areas-container {
     padding-inline: 2rem;
   }
-
-  .areas-item {
-    padding: 1.1rem 1.15rem 1.1rem 1.2rem;
-  }
 }
 
 @media (min-width: 62em) {
   .areas-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.1rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .areas-item,
-  .areas-cta {
-    transition: none;
-  }
-
-  .areas-item:hover,
-  .areas-cta:hover {
-    transform: none;
   }
 }
