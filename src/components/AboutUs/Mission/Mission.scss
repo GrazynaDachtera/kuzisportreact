@@ -62,22 +62,46 @@ $image-shadow: 0 1rem 2.5rem rgba($brand-green, 0.18),
   list-style: none;
   padding: 0;
   margin: 0;
+  counter-reset: feature;
 }
 
 .mission-item {
-  margin: 0.5rem 0;
+  margin: 0 0 1.1rem;
+  counter-increment: feature;
 }
 
 .mission-item-title {
-  margin: 0;
-  font-weight: 700;
-  font-size: inherit;
-  line-height: 1.5;
+  margin: 0 0 0.35rem;
+  font-weight: 800;
+  line-height: 1.25;
   color: $brand-green;
+  font-size: clamp(1.1rem, 1vw + 0.9rem, 1.25rem);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.mission-item-title::before {
+  content: counter(feature);
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 9999px;
+  background: $brand-green;
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  flex: 0 0 1.35rem;
+  font-weight: 800;
+  font-size: 0.75rem;
+  line-height: 1;
+  transform: translateY(0.12rem);
 }
 
 .mission-item-text {
-  margin-top: 2px;
+  margin: 0;
+  padding-left: 2.1rem;
+  line-height: 1.65;
+  color: $text-color;
 }
 
 .mission-image-wrapper {
