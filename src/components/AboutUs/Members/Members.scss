@@ -29,7 +29,7 @@
   margin-bottom: clamp(20px, 2.5vw, 36px);
 }
 .members-title {
-  font-size: 2.3rem;
+  font-size: clamp(2rem, 8vw, 2.6rem);
   font-weight: 800;
   color: #114538;
   margin: 0 0 10px;
@@ -66,6 +66,12 @@
 }
 .members-track::-webkit-scrollbar {
   display: none;
+}
+
+@media (min-width: 48em) {
+  .members-title {
+    font-size: clamp(1.4rem, 2vw + 1rem, 2.2rem);
+  }
 }
 
 @media (min-width: 1400px) {

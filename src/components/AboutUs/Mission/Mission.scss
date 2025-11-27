@@ -42,7 +42,7 @@ $image-shadow: 0 1rem 2.5rem rgba($brand-green, 0.18),
 }
 
 .mission__title {
-  font-size: 2.3rem;
+  font-size: clamp(2rem, 8vw, 2.6rem);
   font-weight: 800;
   line-height: 1.15;
   letter-spacing: -0.01em;
@@ -200,6 +200,12 @@ $image-shadow: 0 1rem 2.5rem rgba($brand-green, 0.18),
     order: 2;
     margin-inline: auto;
     width: min(520px, 100%);
+  }
+}
+
+@media (min-width: 48em) {
+  .mission__title {
+    font-size: clamp(1.4rem, 2vw + 1rem, 2.2rem);
   }
 }
 
