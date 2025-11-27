@@ -48,6 +48,7 @@ organizacji grupy, a także innych form współpracy - SKONTAKTUJ SIĘ Z NAMI.`,
 
 export default function Mission({
   title = "O nas",
+  lead,
   items = DEFAULT_ITEMS,
   image = {
     src: "/AboutFoundation/aerial.jpg",
@@ -58,6 +59,14 @@ export default function Mission({
   return (
     <section className="mission" aria-labelledby="mission-title">
       <div className="mission__container">
+        {/* ✅ ONLY CHANGE: title above the grid */}
+        <header className="mission__header">
+          <h2 id="mission-title" className="mission__title">
+            {title}
+          </h2>
+          {lead ? <p className="mission__lead">{lead}</p> : null}
+        </header>
+
         <div className="mission__grid">
           <figure className="mission__media">
             <Image
@@ -72,10 +81,6 @@ export default function Mission({
           </figure>
 
           <div className="mission__content">
-            <h2 id="mission-title" className="mission__title">
-              {title}
-            </h2>
-
             <ul className="mission__list">
               {items.map((item) => (
                 <li key={item.title} className="mission__item">
