@@ -29,27 +29,29 @@ type Article = {
 
 const ARTICLES: Article[] = [
   {
-    href: "https://www.facebook.com/photo?fbid=765844246432833&set=a.182448548105742&locale=pl_PL",
-    thumbnail: "/News/smallimage1.jpg",
-    category: "PETYCJE · PARK · HETMAŃSKA",
-    title: `🌳Aktualizacja! 📩
-19 września petycje w sprawie parku–sadu na południe od ulicy Hetmańskiej trafiły do:
-✅️ Rady Miasta Poznania
-✅️ oraz do Prezydenta Poznania.`,
+    href: "https://www.facebook.com/kuzisport/posts/pfbid0JFGqY21FafPZZYeeApyvsqwLNowWzboEnRMy3qxpYEm82XVTy7YragKjKihexEfyl",
+    thumbnail: "/News/smallimage2.jpg",
+    category: "PLEBISCYT · TRENER ROKU · DRUŻYNA ROKU",
+    title: `Miło nam poinformować, że nasz klub Kuzi-Sport oraz trener Łukasz Kuzemko zostali nominowani w 68-ej edycji Plebiscytu Sportowego Głosu Wielkopolskiego:
+w kategorii Trener Roku: Łukasz Kuzemko
+w kategorii Drużyna Roku: Kuzi Sport`,
   },
   {
-    href: "https://www.facebook.com/sasiedzkilazarz/videos/1620423938934155/?locale=pl_PL",
-    thumbnail: "/News/smallimage2.png",
-    category: "REWITALIZACJA · WIELKOPOLSKA · KONFERENCJA",
-    title:
-      "Dzisiaj mieliśmy okazję posłuchać o rewitalizacji w Wielkopolsce, dzięki udziałowi w konferencji „Rewitalizacja się opłaca! Jak inwestować w odnowę przestrzeni i rozwój społeczności”, zorganizowanej przez Wielkopolski Fundusz Rozwoju.",
-  },
-  {
-    href: "https://www.facebook.com/photo.php?fbid=762593770091214&set=pb.100090217936902.-2207520000&type=3&locale=pl_PL",
+    href: "https://www.facebook.com/kuzisport/posts/pfbid09QeAehH9pLMskqQ6FvNC824KnfTgaQVi6N6xCmZdxkHhrghZG2if8yrfibgh1zUel",
     thumbnail: "/News/smallimage3.jpg",
-    category: "JESIEŃ · BLAJBA · WERNISAŻ",
-    title: `🍂 No i mamy jesień! 🌥️
-Słońce wstaje później, dzień robi się coraz krótszy, a wieczory z cieplym kocem wygrywają z innymi rozrywkami☕🍁`,
+    category: "MISTRZOSTWA POLSKI · KARATE · ZŁOTY MEDAL",
+    title: `Takie wiadomości lubimy! 🥋🏆🥇
+15 listopada na IV Mistrzostwach Polski Karate Masters w Łebie, w kategorii kata drużynowe +35 lat naszych 3 niepoprawnych optymistów z Kuzi Sport (trener Łukasz Kuzemko, Wojtek Gliszczyński i Robert Katafiasz) zdobyli złoty medal i tym samym odmienili przewidywalną codzienność… Gratulujemy sukcesu!`,
+  },
+  {
+    href: "https://www.facebook.com/reel/1477163077373286",
+    thumbnail: "/News/smallimage1.jpeg",
+    category: "WYCIECZKI SZKOLNE · WYNAJEM SALI · WF",
+    title: `Frajda w czasie lekcji 😄
+Nowe umiejętności 🎯
+Pasja do ruchu 🔥
+Kompetentna kadra 👩‍🏫
+Obiekt rekreacyjno-sportowy 🏟️`,
   },
 ];
 
