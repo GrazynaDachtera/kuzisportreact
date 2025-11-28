@@ -72,7 +72,7 @@ const SCHEDULE: ScheduleItem[] = [
     id: "mon-pk-2",
     day: "Poniedziałek",
     start: "17:00",
-    end: "18:00",
+    end: "18:15",
     title: "Parkour",
     group: "Dzieci 5-6 lat",
     tags: ["dzieci 5-6"],
@@ -207,7 +207,7 @@ const SCHEDULE: ScheduleItem[] = [
     id: "mon-ring-3",
     day: "Poniedziałek",
     start: "19:30",
-    end: "20:45",
+    end: "21:00",
     title: "Kickboxing",
     group: "Grupa zawodnicza",
     tags: ["Ring", "zawodnicy"],
@@ -938,6 +938,9 @@ const SCHEDULE: ScheduleItem[] = [
 const byTime = (a: ScheduleItem, b: ScheduleItem) =>
   a.start.localeCompare(b.start);
 
+const hasRingTag = (item: ScheduleItem) =>
+  (item.tags ?? []).some((t) => t.trim().toLowerCase() === "ring");
+
 export default function AbcPage() {
   const [activeDay, setActiveDay] = useState<Day>("Poniedziałek");
   const [query, setQuery] = useState("");
@@ -946,19 +949,26 @@ export default function AbcPage() {
   const selectId = useId();
   const searchId = useId();
 
+  // "Rodzaj zajęć" dropdown options:
+  // - "Wszystkie" (no category filter)
+  // - "RING" (special: filter by tag "ring")
+  // - titles from schedule
   const categories = useMemo<string[]>(() => {
     const set = new Set<string>();
-    SCHEDULE.forEach((x: ScheduleItem) => set.add(x.title));
-    return ["Wszystkie", ...Array.from(set).sort()];
+    SCHEDULE.forEach((x) => set.add(x.title));
+    return ["Wszystkie", "RING", ...Array.from(set).sort()];
   }, []);
 
   const dayItems = useMemo<ScheduleItem[]>(() => {
     const q = query.trim().toLowerCase();
-    return SCHEDULE.filter((x: ScheduleItem) => x.day === activeDay)
-      .filter((x: ScheduleItem) =>
-        cat === "Wszystkie" ? true : x.title === cat
-      )
-      .filter((x: ScheduleItem) =>
+
+    return SCHEDULE.filter((x) => x.day === activeDay)
+      .filter((x) => {
+        if (cat === "Wszystkie") return true;
+        if (cat === "RING") return hasRingTag(x);
+        return x.title === cat;
+      })
+      .filter((x) =>
         q
           ? [x.title, x.group, ...(x.tags ?? [])]
               .filter(Boolean)
@@ -1020,7 +1030,7 @@ export default function AbcPage() {
                 onChange={(e) => setCat(e.target.value)}
                 className="filter-input"
               >
-                {categories.map((c: string) => (
+                {categories.map((c) => (
                   <option key={c} value={c}>
                     {c}
                   </option>
@@ -1082,7 +1092,7 @@ export default function AbcPage() {
           {dayItems.length === 0 ? (
             <p className="empty">Brak zajęć dla wybranych filtrów.</p>
           ) : (
-            dayItems.map((item: ScheduleItem) => (
+            dayItems.map((item) => (
               <article key={item.id} className="class-card" role="listitem">
                 <div className="class-time">
                   <span className="time-start">{item.start}</span>
@@ -1104,8 +1114,8 @@ export default function AbcPage() {
 
                   {item.tags && item.tags.length > 0 && (
                     <ul className="class-tags">
-                      {item.tags.map((t: string) => (
-                        <li key={t} className="tag">
+                      {item.tags.map((t) => (
+                        <li key={`${item.id}-${t}`} className="tag">
                           {t}
                         </li>
                       ))}
