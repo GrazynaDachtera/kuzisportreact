@@ -199,8 +199,8 @@ export default function NewsSubpage() {
               aria-label="Blog"
             >
               <div className="panel__head">
-                <span className="news-tagline">Przegląd wydarzeń</span>
-                <h2 className="news-heading">Blog</h2>
+                <h2 className="panel__title">Blog</h2>
+                <p className="panel__subtitle">Przegląd wydarzeń</p>
               </div>
 
               <div className="news-list">
