@@ -949,14 +949,11 @@ export default function AbcPage() {
   const selectId = useId();
   const searchId = useId();
 
-  // "Rodzaj zajęć" dropdown options:
-  // - "Wszystkie" (no category filter)
-  // - "RING" (special: filter by tag "ring")
-  // - titles from schedule
   const categories = useMemo<string[]>(() => {
     const set = new Set<string>();
     SCHEDULE.forEach((x) => set.add(x.title));
-    return ["Wszystkie", "RING", ...Array.from(set).sort()];
+    set.add("Ring");
+    return ["Wszystkie", ...Array.from(set).sort()];
   }, []);
 
   const dayItems = useMemo<ScheduleItem[]>(() => {
@@ -965,7 +962,7 @@ export default function AbcPage() {
     return SCHEDULE.filter((x) => x.day === activeDay)
       .filter((x) => {
         if (cat === "Wszystkie") return true;
-        if (cat === "RING") return hasRingTag(x);
+        if (cat === "Ring") return hasRingTag(x);
         return x.title === cat;
       })
       .filter((x) =>
